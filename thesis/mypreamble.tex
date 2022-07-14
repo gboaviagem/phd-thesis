@@ -1,0 +1,105 @@
+%\usepackage{color}
+%%\usepackage[dvipsnames]{xcolor}
+%\usepackage{booktabs}
+%\usepackage{longtable}
+%\usepackage{bm}
+%\usepackage{upgreek}
+%\usepackage{amsmath}
+%\usepackage{amsthm}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+%\usepackage{multirow}
+%
+%\usepackage{bibentry}
+%%\usepackage{setspace}
+%%\singlespacing
+%%\onehalfspacing
+%%\doublespacing
+%%\setstretch{1.2}
+%\usepackage{emptypage} %that will empty all blank pages created by \cleardoublepage
+%\usepackage{url}	
+%\usepackage[driverfallback=dvipdfm]{hyperref}
+%\usepackage[font={small}, labelfont={bf}, margin=1cm]{caption}
+%\usepackage{subfig}
+\usepackage{enumitem}
+%\usepackage{graphicx}
+%\usepackage{xcolor}
+%\usepackage{url} % Permite exibição de sites de forma organizada
+\usepackage{nicefrac}
+%\usepackage{cite}
+%%\usepackage{parskip}
+%
+%
+%% FONT
+%%\usepackage{times}
+%%\usepackage{tgtermes}
+%%\usepackage{palatino}
+%
+%%\usepackage{epigraph}
+%%\setlength{\epigraphwidth}{.6\textwidth}
+%
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{amsmath,amsthm,amsfonts,cite,color,enumerate,subfig}
+%\newtheorem{theorem}{Teorema}
+%\newtheorem{example}{Exemplo}
+%\newtheorem{corollary}{Corol\'ario}
+%\newtheorem{definition}{Defini\c c\~ao}
+%\newtheorem{lem}[thm]{Lemma}
+%\newtheorem{cor}[thm]{Corollary}
+
+%\newtheorem{teorema}{Teorema}
+%\newtheorem{lema}{Lema}
+%\newtheorem{corolario}[theorem]{Corol\'ario}
+\usepackage{subfig}
+%
+%
+% NEW COMMANDS
+\renewcommand{\mod}[1]{\  (\mathrm{mod} \ #1)}
+%\newcommand{\ord}[1]{\mathrm{ord}(#1)}
+\newcommand{\qi}{\boldsymbol{i}}
+\newcommand{\qj}{\boldsymbol{j}}
+\newcommand{\qk}{\boldsymbol{k}}
+\newcommand{\qmu}{\boldsymbol{\mu}}
+\newcommand{\qnu}{\boldsymbol{\nu}}
+\newcommand{\qV}{\boldsymbol{V}}
+\newcommand{\sen}{\mathrm{\, sen \,}}
+\newcommand{\red}[1]{{\color{red}#1}}
+
+% ISOMORPHISM SYMBOL
+
+\makeatletter
+\newcommand*{\isomorphism}{%
+	\mathrel{%
+		\mathpalette\@isomorphism{}%
+	}%
+}
+\newcommand*{\@isomorphism}[2]{%
+	% Calculate the amount of moving \sim up as in \simeq
+	\sbox0{$#1\simeq$}%
+	\sbox2{$#1\sim$}%
+	\dimen@=\ht0 %
+	\advance\dimen@ by -\ht2 %
+	%
+	% Compose the two symbols
+	\sbox0{%
+		\lower1.9\dimen@\hbox{%
+			$\m@th#1\relbar\isomorphism@joinrel\relbar$%
+		}%
+	}%
+	\rlap{%
+		\hbox to \wd0{%
+			\hfill\raise\dimen@\hbox{$\m@th#1\sim$}\hfill
+		}%
+	}%
+	\copy0 %
+}
+\newcommand*{\isomorphism@joinrel}{%
+	\mathrel{%
+		\mkern-3.4mu %
+		\mkern-1mu %
+		\nonscript\mkern1mu %
+	}%
+}
+\makeatother
+% =========================================
