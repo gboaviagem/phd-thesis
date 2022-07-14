@@ -1,0 +1,703 @@
+%% abtex2-modelo-trabalho-academico.tex, v-1.9.7 laurocesar
+%% Copyright 2012-2018 by abnTeX2 group at http://www.abntex.net.br/ 
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is the abnTeX2 team, led
+%% by Lauro César Araujo. Further information are available on 
+%% http://www.abntex.net.br/
+%%
+%% This work consists of the files abntex2-modelo-trabalho-academico.tex,
+%% abntex2-modelo-include-comandos and abntex2-modelo-references.bib
+%%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Trabalho Academico (tese de doutorado, dissertacao de
+% mestrado e trabalhos monograficos em geral) em conformidade com 
+% ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos -
+% Apresentacao
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	11pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	twoside,			% para impressão em recto e verso. Oposto a oneside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	french,				% idioma adicional para hifenização
+	spanish,			% idioma adicional para hifenização
+	brazil				% o último idioma é o principal do documento
+	]{abntex2}
+
+% ---
+% Pacotes básicos 
+% ---
+\usepackage{times}
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+% ---
+		
+% ---
+% Pacotes adicionais
+% ---
+\include{mypreamble}
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Contribui\c c\~oes para o processamento de sinais quaterni\^onicos: aspectos te\'oricos e aplica\c c\~oes}
+\autor{Guilherme Boaviagem Ribeiro}
+\local{Recife}
+\data{2020}
+\orientador{Prof. Dr. Juliano Bandeira Lima}
+%\coorientador{Equipe \abnTeX}
+\instituicao{%
+  Universidade Federal de Pernambuco
+  \par
+  Centro de Tecnologia e Geoci\^encias
+  \par
+  Programa de P\'os-gradua\c c\~ao em Engenharia El\'etrica}
+\tipotrabalho{Projeto de Tese (Doutorado)}
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+\preambulo{Trabalho apresentado ao Programa de P\'os-gradua\c c\~ao em Engenharia El\'etrica do Centro de Tecnologia e Geoci\^encias da Universidade Federal de Pernambuco como requisito parcial para obten\c c\~ao do grau de Doutor em Engenharia El\'etrica.
+}
+% ---
+
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% ---
+% Posiciona figuras e tabelas no topo da página quando adicionadas sozinhas
+% em um página em branco. Ver https://github.com/abntex/abntex2/issues/170
+\makeatletter
+\setlength{\@fptop}{5pt} % Set distance from top of page to first float
+\makeatother
+% ---
+
+% ---
+% Possibilita criação de Quadros e Lista de quadros.
+% Ver https://github.com/abntex/abntex2/issues/176
+%
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
+% configurações para atender às regras da ABNT
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space} 
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+
+\setfloatlocations{quadro}{hbtp} % Ver https://github.com/abntex/abntex2/issues/176
+% ---
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Seleciona o idioma do documento (conforme pacotes do babel)
+%\selectlanguage{english}
+\selectlanguage{brazil}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+\imprimirfolhaderosto*
+% ---
+
+% ---
+% Inserir a ficha bibliografica
+% ---
+
+% Isto é um exemplo de Ficha Catalográfica, ou ``Dados internacionais de
+% catalogação-na-publicação''. Você pode utilizar este modelo como referência. 
+% Porém, provavelmente a biblioteca da sua universidade lhe fornecerá um PDF
+% com a ficha catalográfica definitiva após a defesa do trabalho. Quando estiver
+% com o documento, salve-o como PDF no diretório do seu projeto e substitua todo
+% o conteúdo de implementação deste arquivo pelo comando abaixo:
+%
+% \begin{fichacatalografica}
+%     \includepdf{fig_ficha_catalografica.pdf}
+% \end{fichacatalografica}
+
+%\begin{fichacatalografica}
+%	\sffamily
+%	\vspace*{\fill}					% Posição vertical
+%	\begin{center}					% Minipage Centralizado
+%	\fbox{\begin{minipage}[c][8cm]{13.5cm}		% Largura
+%	\small
+%	\imprimirautor
+%	%Sobrenome, Nome do autor
+%	
+%	\hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
+%	\imprimirlocal, \imprimirdata-
+%	
+%	\hspace{0.5cm} \thelastpage p. : il. (algumas color.) ; 30 cm.\\
+%	
+%	\hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
+%	
+%	\hspace{0.5cm}
+%	\parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
+%	\imprimirdata.}\\
+%	
+%	\hspace{0.5cm}
+%		1. Palavra-chave1.
+%		2. Palavra-chave2.
+%		2. Palavra-chave3.
+%		I. Orientador.
+%		II. Universidade xxx.
+%		III. Faculdade de xxx.
+%		IV. Título 			
+%	\end{minipage}}
+%	\end{center}
+%\end{fichacatalografica}
+% ---
+
+% ---
+% Inserir errata
+% ---
+%\begin{errata}
+%Elemento opcional da \citeonline[4.2.1.2]{NBR14724:2011}. Exemplo:
+%
+%\vspace{\onelineskip}
+%
+%FERRIGNO, C. R. A. \textbf{Tratamento de neoplasias ósseas apendiculares com
+%reimplantação de enxerto ósseo autólogo autoclavado associado ao plasma
+%rico em plaquetas}: estudo crítico na cirurgia de preservação de membro em
+%cães. 2011. 128 f. Tese (Livre-Docência) - Faculdade de Medicina Veterinária e
+%Zootecnia, Universidade de São Paulo, São Paulo, 2011.
+%
+%\begin{table}[htb]
+%\center
+%\footnotesize
+%\begin{tabular}{|p{1.4cm}|p{1cm}|p{3cm}|p{3cm}|}
+%  \hline
+%   \textbf{Folha} & \textbf{Linha}  & \textbf{Onde se lê}  & \textbf{Leia-se}  \\
+%    \hline
+%    1 & 10 & auto-conclavo & autoconclavo\\
+%   \hline
+%\end{tabular}
+%\end{table}
+%
+%\end{errata}
+% ---
+
+% ---
+% Inserir folha de aprovação
+% ---
+
+% Isto é um exemplo de Folha de aprovação, elemento obrigatório da NBR
+% 14724/2011 (seção 4.2.1.3). Você pode utilizar este modelo até a aprovação
+% do trabalho. Após isso, substitua todo o conteúdo deste arquivo por uma
+% imagem da página assinada pela banca com o comando abaixo:
+%
+% \begin{folhadeaprovacao}
+% \includepdf{folhadeaprovacao_final.pdf}
+% \end{folhadeaprovacao}
+%
+%\begin{folhadeaprovacao}
+%
+%  \begin{center}
+%    {\ABNTEXchapterfont\large\imprimirautor}
+%
+%    \vspace*{\fill}\vspace*{\fill}
+%    \begin{center}
+%      \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+%    \end{center}
+%    \vspace*{\fill}
+%    
+%    \hspace{.45\textwidth}
+%    \begin{minipage}{.5\textwidth}
+%        \imprimirpreambulo
+%    \end{minipage}%
+%    \vspace*{\fill}
+%   \end{center}
+%        
+%   Trabalho aprovado. \imprimirlocal, 24 de novembro de 2012:
+%
+%   \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
+%   \assinatura{\textbf{Professor} \\ Convidado 1}
+%   \assinatura{\textbf{Professor} \\ Convidado 2}
+%   %\assinatura{\textbf{Professor} \\ Convidado 3}
+%   %\assinatura{\textbf{Professor} \\ Convidado 4}
+%      
+%   \begin{center}
+%    \vspace*{0.5cm}
+%    {\large\imprimirlocal}
+%    \par
+%    {\large\imprimirdata}
+%    \vspace*{1cm}
+%  \end{center}
+%  
+%\end{folhadeaprovacao}
+% ---
+
+% ---
+% Dedicatória
+% ---
+%\begin{dedicatoria}
+%   \vspace*{\fill}
+%   \centering
+%   \noindent
+%   \textit{ Este trabalho é dedicado às crianças adultas que,\\
+%   quando pequenas, sonharam em se tornar cientistas.} \vspace*{\fill}
+%\end{dedicatoria}
+% ---
+
+% ---
+% Agradecimentos
+% ---
+%\begin{agradecimentos}
+%Agradecimentos.
+%\end{agradecimentos}
+% ---
+
+% ---
+% Epígrafe
+% ---
+\begin{epigrafe}
+\vspace*{\fill}
+\begin{flushright}
+\textit{Algebra is generous, she often gives more than is asked of her.}\\
+% As quoted in: Bulletin American Mathematical Society, Vol. 2 (1905), p. 285
+Jean le Rond d'Alembert
+\end{flushright}
+\end{epigrafe}
+% ---
+
+% ---
+% RESUMOS
+% ---
+
+% resumo em português
+\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+\begin{resumo}
+A explora\c c\~ao de novas estruturas alg\'ebricas para representar sinais de dom\'inio discreto frequentemente revela novos avan\c cos te\'oricos e aplica\c c\~oes. Foi o que ocorreu com o uso de quat\'ernios para representar amostras de sinais tri- ou quadridimensionais, ou com o desenvolvimento de processamento de sinais sobre grafos para tratar sinais estruturados em rede. Nesta pesquisa, ainda em curso e sintetizada neste projeto de tese, foram investigadas oportunidades no campo de processamento de sinais quaterni\^onicos. Com foco nas propriedades de matrizes quaterni\^onicas e suas aplica\c c\~oes, buscou-se resultados em duas frentes: na generaliza\c c\~ao da transformada discreta de Fourier quaterni\^onica, investigando uma nova abordagem para sua fracionariza\c c\~ao, e na constru\c c\~ao da teoria de processamento de sinais sobre grafos com pesos quaterni\^onicos. A primeira linha de estudo gerou um novo m\'etodo para a constru\c c\~ao da transformada fracion\'aria, baseado na sua autoestrutura, juntamente com uma generaliza\c c\~ao multiparam\'etrica e uma proposta de algoritmo para cifragem de imagens coloridas. A pesquisa com grafos quaterni\^onicos resultou, at\'e o momento, na estrutura\c c\~ao do conhecimento sobre diagonaliza\c c\~ao de operadores lineares quaterni\^onicos. Os pr\'oximos passos buscar\~ao partir deste conhecimento para construir ferramentas de processamento de sinais sobre grafos com pesos quaterni\^onicos.
+
+\textbf{Palavras-chave}: quat\'ernios, transformada discreta de Fourier quaterni\^onica fracion\'aria, processamento de sinais sobre grafos, processamento de imagens coloridas.
+\end{resumo}
+%
+%% resumo em inglês
+\begin{resumo}[Abstract]
+\begin{otherlanguage*}{english}
+Exploring new algebraic structures to represent discrete-domain signals often reveals valuable insights and new applications. That was the case with the embedding of three- and four-dimensional signals into the quaternion space, or the development of graph signal processing to deal with network-like data. In this ongoing research, opportunities in the field of quaternion signal processing were investigated. Focusing on properties and applications of quaternion matrices, studies on two different directions were conducted: the generalization of the quaternion discrete Fourier transform (QDFT), in the sense of a new method for its fractionarization based on its eigenstructure, and the conception of a quaternion-valued branch of graph signal processing, in which the graph edge weights belong to a 4D hypercomplex space. In the first line of research, the eigenstructure of the QDFT was unveiled in the light of the eigendecomposition of its complex-valued counterpart, what led to a new method for fractionarization of the QDFT. Besides, a multi-parametric version was proposed, alongside its application on an algorithm for color image encription. Regarding the work on graphs with quaternion-valued weights, the studies so far have revealed the relevant results in the literature on quaternion matrix algebra, specially concerning the eigendecomposition of quaternion matrices. In the future work, it is expected to build upon these results to create a framework for processing graph-based signals with both samples and graph edge weights belonging to the quaternion space.
+
+\vspace{\onelineskip}
+
+\noindent 
+\textbf{Keywords}: quaternions, fractional quaternion discrete Fourier transform, graph signal processing, color image processing.
+%quat\'ernios, transformada discreta de Fourier quaterni\^onica fracion\'aria, processamento de sinais sobre grafos, processamento de imagens coloridas.
+\end{otherlanguage*}
+\end{resumo}
+
+% resumo em francês 
+%\begin{resumo}[Résumé]
+%\begin{otherlanguage*}{french}
+%Il s'agit d'un résumé en français.
+%
+%\textbf{Mots-clés}: latex. abntex. publication de textes.
+%\end{otherlanguage*}
+%\end{resumo}
+
+% resumo em espanhol
+%\begin{resumo}[Resumen]
+%\begin{otherlanguage*}{spanish}
+%Este es el resumen en español.
+%
+%\textbf{Palabras clave}: latex. abntex. publicación de textos.
+%\end{otherlanguage*}
+%\end{resumo}
+% ---
+
+% ---
+% inserir lista de ilustrações
+% ---
+%\pdfbookmark[0]{\listfigurename}{lof}
+%\listoffigures*
+%\cleardoublepage
+% ---
+
+% ---
+% inserir lista de quadros
+% ---
+%\pdfbookmark[0]{\listofquadrosname}{loq}
+%\listofquadros*
+%\cleardoublepage
+% ---
+
+% ---
+% inserir lista de tabelas
+% ---
+%\pdfbookmark[0]{\listtablename}{lot}
+%\listoftables*
+%\cleardoublepage
+% ---
+
+% ---
+% inserir lista de abreviaturas e siglas
+% ---
+%\begin{siglas}
+%\item[QFT] \emph{Quaternion Fourier Transform}, Transformada de Fourier Quaterni\^onica
+%\item[MFrQDFT] \emph{Multi-parametric Fractional Quaternion Discrete Fourier Transform}, Transformada Multiparam\'etrica Discreta de Fourier Quaterni\^onica
+%\item[GSP] \emph{Graph Signal Processing}, Processamento de Sinais sobre Grafos
+%\item[QGSP] \emph{Quaternion Graph Signal Processing}, Processamento de Sinais sobre Grafos Quaterni\^onicos
+%\end{siglas}
+% ---
+
+% ---
+% inserir lista de símbolos
+% ---
+%\begin{simbolos}
+%\item[$ \Gamma $] Letra grega Gama
+%\item[$ \Lambda $] Lambda
+%\item[$ \zeta $] Letra grega minúscula zeta
+%\item[$ \in $] Pertence
+%\end{simbolos}
+% ---
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+\include{mainmatter}
+
+% ----------------------------------------------------------
+% Finaliza a parte no bookmark do PDF
+% para que se inicie o bookmark na raiz
+% e adiciona espaço de parte no Sumário
+% ----------------------------------------------------------
+\phantompart
+
+% ---
+% Conclusão
+% ---
+%\chapter{Conclusão}
+% ---
+
+%\lipsum[31-33]
+%Conclus\~ao.
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+%\bibliographystyle{ieeetr}
+\bibliography{mybib}
+%\addcontentsline{toc}{section}{Refer\^encias}
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Consulte o manual da classe abntex2 para orientações sobre o glossário.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+\begin{apendicesenv}
+
+% Imprime uma página indicando o início dos apêndices
+\partapendices
+
+% ----------------------------------------------------------
+\chapter{Mapeando um sistema de equa\c c\~oes lineares sobre $ \mathbb{H} $ para $ \mathbb{C} $}
+\label{ch:AppendixA}
+% ----------------------------------------------------------
+
+O teorema \ref{th:02} requer um passo do qual o leitor de \cite{zhang1997quaternions} pode ter sentido falta: a demonstra\c c\~ao da equival\^encia entre as equa\c c\~oes
+\begin{equation}
+\label{eq:A1}
+\mathbf{A} \mathbf{v} = \mathbf{v} \lambda
+\end{equation}
+e
+\begin{equation}
+\begin{pmatrix}
+\mathbf{A}_1 & \mathbf{A}_2\\ 
+- \overline{\mathbf{A}}_2 & \overline{\mathbf{A}}_1
+\end{pmatrix}
+\begin{pmatrix}
+\mathbf{v}_1 \\ 
+- \overline{\mathbf{v}}_2
+\end{pmatrix} =
+\begin{pmatrix}
+\mathbf{v}_1 \\ 
+- \overline{\mathbf{v}}_2
+\end{pmatrix}
+\lambda,
+\end{equation}
+em que $ \mathbf{A} \in \mathbb{H}^{n \times n} $, $ \mathbf{v} \in \mathbb{H}^{n} $, $ \lambda \in \mathbb{C} $, e os subscritos $ (\cdot)_1 $ e $ (\cdot)_2 $ indicam as componentes da decomposi\c c\~ao simpl\'etica usual, e.~g. $ q = q_1 + q_2 \qj $, $q\in \mathbb{H}, \ q_1, q_2 \in \mathbb{C}_{\qi} $.
+
+Para compreend\^e-lo, basta mostrar um sistema qualquer de $ m $ equa\c c\~oes lineares quaterni\^onicas,
+\begin{equation}
+\label{eq:A2}
+\mathbf{M} \mathbf{x} = \mathbf{y},
+\end{equation}
+com $ \mathbf{M} \in \mathbb{H}^{m\times n} ,\ \mathbf{x} \in \mathbb{H}^{n \times 1}, \ \mathbf{y} \in \mathbb{H}^{m \times 1} $, \'e equivalente, dadas as decomposi\c c\~oes simpl\'eticas de $ \mathbf{M} $, $ \mathbf{x} $ e $ \mathbf{y} $, ao sistema de $ 2m $ equa\c c\~oes complexas
+\begin{equation}
+\label{eq:A3}
+\begin{pmatrix}
+\mathbf{M}_1 & \mathbf{M}_2\\ 
+- \overline{\mathbf{M}}_2 & \overline{\mathbf{M}}_1
+\end{pmatrix}
+\begin{pmatrix}
+\mathbf{x}_1 \\ 
+- \overline{\mathbf{x}}_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+\mathbf{y}_1 \\ 
+- \overline{\mathbf{y}}_2
+\end{pmatrix}.
+\end{equation}
+
+Expandindo o primeiro termo de (\ref{eq:A2}), temos
+\begin{equation}
+\begin{aligned}
+\label{eq:A5}
+\mathbf{M} \mathbf{x} &= (\mathbf{M}_1 + \mathbf{M}_2 \qj)(\mathbf{x}_1 + \mathbf{x}_2 \qj) \\
+&=\mathbf{M}_1 \mathbf{x}_1 + \mathbf{M}_1 \mathbf{x}_2 \qj + \mathbf{M}_2 \qj \mathbf{x}_1 + \mathbf{M}_2 \qj \mathbf{x}_2 \qj.
+\end{aligned}
+\end{equation}
+Para manipular este resultado, vejamos como \'e poss\'ivel reescrever o produto $ \qj x $, para um certo n\'umero \emph{complexo} qualquer $ x = x_r + x_i \qi $,
+\begin{equation}
+\begin{aligned}
+\qj x &= \qj (x_r + x_i \qi) = x_r \qj + x_i \qj \qi = x_r \qj - x_i \qi \qj \\
+&= (x_r - x_i \qi) \qj = \overline{x} \qj.
+\end{aligned}
+\end{equation}
+Ou seja, como $ \qj x = \overline{x} \qj $, ent\~ao (\ref{eq:A5}) equivale a
+\begin{equation}
+\begin{aligned}
+\label{eq:A7}
+\mathbf{M} \mathbf{x} &= \mathbf{M}_1 \mathbf{x}_1 + \qj \overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2 + \qj \overline{\mathbf{M}}_2 \mathbf{x}_1 + \qj \overline{\mathbf{M}}_2 \mathbf{x}_2 \qj \\
+&= \mathbf{M}_1 \mathbf{x}_1 + \qj \overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2 + \qj \overline{\mathbf{M}}_2 \mathbf{x}_1 + \qj\qj \mathbf{M}_2 \overline{\mathbf{x}}_2 \\
+&= (\mathbf{M}_1 \mathbf{x}_1 - \mathbf{M}_2 \overline{\mathbf{x}}_2) + \qj (\overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2 + \overline{\mathbf{M}}_2 \mathbf{x}_1).
+\end{aligned}
+\end{equation}
+
+Substituindo (\ref{eq:A7}) em (\ref{eq:A2}) e escrevendo $ \mathbf{y} = \mathbf{y}_1 + \mathbf{y}_2 \qj$, temos
+\begin{equation}
+\begin{aligned}
+(\mathbf{M}_1 \mathbf{x}_1 - \mathbf{M}_2 \overline{\mathbf{x}}_2) + \qj (\overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2 + \overline{\mathbf{M}}_2 \mathbf{x}_1) &=
+\mathbf{y}_1 + \mathbf{y}_2 \qj \\
+&= \mathbf{y}_1 + \qj \overline{\mathbf{y}}_2,
+\end{aligned}
+\end{equation}
+que pode ser escrito como dois sistemas de $ m $ equa\c c\~oes lineares complexas,
+\begin{equation}
+\label{eq:A9}
+\begin{aligned}
+\mathbf{M}_1 \mathbf{x}_1 - \mathbf{M}_2 \overline{\mathbf{x}}_2 &= \mathbf{y}_1 \\
+\overline{\mathbf{M}}_2 \mathbf{x}_1 + \overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2&= \overline{\mathbf{y}}_2,
+\end{aligned}
+\end{equation}
+ou ainda,
+\begin{equation}
+\label{eq:A8}
+\begin{pmatrix}
+\mathbf{M}_1 & \mathbf{M}_2\\ 
+\overline{\mathbf{M}}_2 & - \overline{\mathbf{M}}_1
+\end{pmatrix}
+\begin{pmatrix}
+\mathbf{x}_1 \\ 
+- \overline{\mathbf{x}}_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+\mathbf{y}_1 \\ 
+\overline{\mathbf{y}}_2
+\end{pmatrix}.
+\end{equation}
+Por fim, multiplicando a segunda equa\c c\~ao matricial em (\ref{eq:A9}) por $ -1 $, (\ref{eq:A8}) se torna
+\begin{equation}
+\label{eq:10}
+\begin{pmatrix}
+\mathbf{M}_1 & \mathbf{M}_2\\ 
+- \overline{\mathbf{M}}_2 & \overline{\mathbf{M}}_1
+\end{pmatrix}
+\begin{pmatrix}
+\mathbf{x}_1 \\ 
+- \overline{\mathbf{x}}_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+\mathbf{y}_1 \\ 
+- \overline{\mathbf{y}}_2
+\end{pmatrix},
+\end{equation}
+exatamente como em (\ref{eq:A3}).
+
+\end{apendicesenv}
+% ---
+
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+
+% ---
+% Inicia os anexos
+% ---
+%\begin{anexosenv}
+%
+%% Imprime uma página indicando o início dos anexos
+%\partanexos
+%
+%% ---
+%\chapter{Morbi ultrices rutrum lorem.}
+%% ---
+%\lipsum[30]
+%
+%% ---
+%\chapter{Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis
+%parturient montes nascetur ridiculus mus}
+%% ---
+%
+%\lipsum[31]
+%
+%% ---
+%\chapter{Fusce facilisis lacinia dui}
+%% ---
+%
+%\lipsum[32]
+%
+%\end{anexosenv}
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+\phantompart
+\printindex
+%---------------------------------------------------------------------
+
+\end{document}
