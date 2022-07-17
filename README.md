@@ -29,5 +29,5 @@ git pull overleaf master --allow-unrelated-histories
 
 Since the main branch in Overlear if `master`, the push will go a bit differently, in the first time:
 ```sh
-$ git push -u overleaf main:master
+git push -u overleaf main:master
 ```
