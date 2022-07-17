@@ -1,7 +1,6 @@
 """Go through all files in ./Figures and check if they are imported."""
 import os
 
-
 thesis_folder = os.getcwd() + "/thesis"
 fig_folder = thesis_folder + "/Figures"
 
