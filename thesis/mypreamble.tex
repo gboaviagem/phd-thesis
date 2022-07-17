@@ -4,6 +4,11 @@
 \usepackage{enumitem}
 \usepackage{nicefrac}
 \usepackage{subfig}
+\usepackage{algpseudocode}
+\usepackage[ruled]{algorithm2e}
+%% This declares a command \Comment
+%% The argument will be surrounded by /* ... */
+\SetKwComment{Comment}{/* }{ */}
 
 \newtheorem{theorem}{Teorema}
 \newtheorem{example}{Exemplo}
@@ -22,6 +27,8 @@
 \newcommand{\qV}{\boldsymbol{V}}
 \newcommand{\sen}{\mathrm{\, sen \,}}
 \newcommand{\red}[1]{{\color{red}#1}}
+\DeclareRobustCommand{\rchi}{{\mathpalette\irchi\relax}}
+\newcommand{\irchi}[2]{\raisebox{\depth}{\Large $#1\chi$}} % inner command, used by \rchi
 
 % ISOMORPHISM SYMBOL
 \makeatletter

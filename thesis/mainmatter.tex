@@ -1021,7 +1021,7 @@ Na an\'alise da autoestrutura e subsequente fracionariza\c c\~ao da matriz da QD
 \begin{definition}[Matriz complexa adjunta \cite{zhang1997quaternions}]
 Dada a matriz $ \mathbf{A} \in \mathbb{H}^{n \times n} $, com decomposi\c c\~ao simpl\'etica $ \mathbf{A}_1 + \mathbf{A}_2 \qj$, $ \mathbf{A}_1,\mathbf{A}_2 \in \mathbb{C}^{n \times n} $, sua matriz complexa adjunta \'e dada por
 \begin{equation}
-X_{A} \overset{\Delta}{=}
+\rchi_{A} \overset{\Delta}{=}
 \begin{pmatrix}
 \mathbf{A}_1 & \mathbf{A}_2\\ 
 - \overline{\mathbf{A}}_2 & \overline{\mathbf{A}}_1
@@ -1029,13 +1029,44 @@ X_{A} \overset{\Delta}{=}
 \end{equation}
 \end{definition}
 
-Em \cite[Teoremas 4.2 e 4.3]{zhang1997quaternions}, Zhang traz alguns resultados interessantes da literatura a respeito de $ X_A $, dos quais cabe mencionar:
+Nos teoremas seguintes, Zhang traz resultados que desempenhar\~ao um importante papel no desenvolvimento de QGSP.
+
+\begin{theorem}[Parte do Teorema 4.2 em
+\cite{zhang1997quaternions}
+]
+\label{th:equiv01}
+Dada a matriz $ \mathbf{A} \in \mathbb{H}^{n \times n} $, as seguintes afirma\c c\~oes s\~ao equivalentes:
+
 \begin{itemize}[noitemsep]
-\item $ X_{AB} = X_{A} X_{B} $,
-\item $ X_{A^{-1}} = X_{A}^{-1}$, se $ \mathbf{A}^{-1} $ existir,
-\item $ X_{A}$ \'e unit\'aria, hermitiana ou normal se e somente se $ \mathbf{A} $ tamb\'em o for.
+\item $ \rchi_{AB} = \rchi_{A} \rchi_{B} $,
+\item $ \rchi_{A^{-1}} = \rchi_{A}^{-1}$, se $ \mathbf{A}^{-1} $ existir,
+\item $ \rchi_{A}$ \'e unit\'aria, hermitiana ou normal se e somente se $ \mathbf{A} $ tamb\'em o for.
 \end{itemize}
-A matriz complexa adjunta serve como uma representa\c c\~ao complexa da matriz quaterni\^onica e, diferente de outras representa\c c\~oes matriciais em $ \mathbb{C} $ ou $ \mathbb{R} $, esta permite estabelecer um v\'inculo entre o espectro de $ X_{A} $ e o de $ \mathbf{A} $, como ser\'a discutido adiante.
+
+\end{theorem}
+
+\begin{theorem}[Parte do Teorema 4.3 em
+\cite{zhang1997quaternions}
+]
+\label{th:equiv02}
+Dada a matriz $ \mathbf{A} \in \mathbb{H}^{n \times n} $, as seguintes afirma\c c\~oes s\~ao equivalentes:
+
+\begin{itemize}[noitemsep]
+\item $\mathbf{A}$ \'e invers\'ivel.
+\item $\mathrm{det}(\rchi_A) \neq 0$, i.e. $\rchi_{A}$ \'e invers\'ivel.
+\end{itemize}
+
+\end{theorem}
+
+
+% Em \cite[Teoremas 4.2 e 4.3]{zhang1997quaternions}, Zhang traz alguns resultados interessantes da literatura a respeito de $ X_A $, dos quais cabe mencionar:
+% \begin{itemize}[noitemsep]
+% \item $ \rchi_{AB} = \rchi_{A} \rchi_{B} $,
+% \item $ \rchi_{A^{-1}} = \rchi_{A}^{-1}$, se $ \mathbf{A}^{-1} $ existir,
+% \item $ \rchi_{A}$ \'e unit\'aria, hermitiana ou normal se e somente se $ \mathbf{A} $ tamb\'em o for.
+% \end{itemize}
+
+A matriz complexa adjunta serve como uma representa\c c\~ao complexa da matriz quaterni\^onica e, diferente de outras representa\c c\~oes matriciais em $ \mathbb{C} $ ou $ \mathbb{R} $, esta permite estabelecer um v\'inculo entre o espectro de $ \rchi_{A} $ e o de $ \mathbf{A} $, como ser\'a discutido adiante.
 
 \subsection{Autovalores}
 
@@ -1190,8 +1221,8 @@ O teorema \ref{th:02} relaciona a autodecomposi\c c\~ao de uma matriz e de sua c
 \label{th:02}
 Toda matriz $ A \in \mathbb{H}^{n \times n} $ tem exatamente $ n $ autovalores complexos
 %(\`a direita),
-%que s\~ao iguais aos autovalores de $ X_A $, sua complexa adjunta,
-com parte imagin\'aria n\~ao-negativa. Estes s\~ao ditos os \emph{autovalores padr\~ao} de $ \mathbf{A} $ e s\~ao um subconjunto dos $ 2n $ autovalores de $ X_A $.
+%que s\~ao iguais aos autovalores de $ \rchi_A $, sua complexa adjunta,
+com parte imagin\'aria n\~ao-negativa. Estes s\~ao ditos os \emph{autovalores padr\~ao} de $ \mathbf{A} $ e s\~ao um subconjunto dos $ 2n $ autovalores de $ \rchi_A $.
 \end{theorem}
 
 \begin{proof}
@@ -1217,7 +1248,7 @@ em que se pode assumir, sem perda de generalidade, que $ \lambda \in \mathbb{C} 
 \end{equation}
 envolvendo apenas vari\'aveis complexas (i.~e. as componentes da decomposi\c c\~ao de simpl\'etica de $ \mathbf{A} $ e $ \mathbf{v} $). Uma vez que
 \begin{equation}
-X_A = 
+\rchi_A = 
 \begin{pmatrix}
 \mathbf{A}_1 & \mathbf{A}_2\\ 
 - \overline{\mathbf{A}}_2 & \overline{\mathbf{A}}_1
@@ -1232,37 +1263,59 @@ v q v^{-1} &= \qj (q_r + q_i \qi) (-\qj) = q_r - q_i \qj \qi \qj\\
 &= q_r + q_i \qi \qj \qj = q_r - q_i \qi = \overline{q}.
 \end{aligned}
 \end{equation}
-Como dois autovalores conjugados de $ X_A $ s\~ao similares, eles pertencem \`a mesma autoclasse e apontam para o mesmo conjunto linearmente dependente de autovetores. Assim, pode-se tomar sempre aquele com parte imagin\'aria n\~ao-negativa, por conven\c c\~ao.
+Como dois autovalores conjugados de $ \rchi_A $ s\~ao similares, eles pertencem \`a mesma autoclasse e apontam para o mesmo conjunto linearmente dependente de autovetores. Assim, pode-se tomar sempre aquele com parte imagin\'aria nula ou n\~ao-negativa, por conven\c c\~ao.
 \end{proof}
 
-O teorema a seguir, encontrado em \cite[Teorema 7.4]{zhang1997quaternions}, \'e outro resultado fundamental relacionando a autoestrutura de uma matriz quaterni\^onica e a de sua complexa adjunta.
+O teorema a seguir \'e outro resultado fundamental relacionando a autoestrutura de uma matriz quaterni\^onica e a de sua complexa adjunta.
 
-\begin{theorem}
+\begin{theorem}[Teorema 7.4 em \cite{zhang1997quaternions}]
 \label{th:diagonal}
-Dadas as matrizes $ \mathbf{A}, \mathbf{B} \in \mathbb{H}^{n \times n} $, ent\~ao $ \mathbf{A} $ \'e similar a $ \mathbf{B} $ se, e somente se, $ X_A $ \'e similar a $ X_B $.
+Dadas as matrizes $ \mathbf{A}, \mathbf{B} \in \mathbb{H}^{n \times n} $, ent\~ao $ \mathbf{A} $ \'e similar a $ \mathbf{B} $ se, e somente se, $ X\rchi_A $ \'e similar a $ \rchi_B $.
 \end{theorem}
 
 \begin{corollary}
-Uma matriz $  \mathbf{A} \in \mathbb{H}^{n \times n} $ \'e diagonaliz\'avel se, e somente se, $ X_A $ \'e diagonaliz\'avel.
+Uma matriz $  \mathbf{A} \in \mathbb{H}^{n \times n} $ \'e diagonaliz\'avel se, e somente se, $ \rchi_A $ \'e diagonaliz\'avel.
 \end{corollary}
 \begin{proof}
-Se $ \mathbf{A} \in \mathbb{H}^{n \times n} $ \'e diagonaliz\'avel, ent\~ao \'e similar a uma matriz diagonal $ \Lambda \in \mathbb{C}^{n \times n}_{\qi} $ contendo seus autovalores padr\~ao. Do teorema \ref{th:diagonal}, segue que $ X_A $ \'e similar a
+Se $ \mathbf{A} \in \mathbb{H}^{n \times n} $ \'e diagonaliz\'avel, ent\~ao \'e similar a uma matriz diagonal $ \Lambda \in \mathbb{C}^{n \times n}_{\qi} $ contendo seus autovalores padr\~ao. Do teorema \ref{th:diagonal}, segue que $ \rchi_A $ \'e similar a
 \begin{equation}
 \label{eq:Xlambda}
-X_{\Lambda} =
+\rchi_{\Lambda} =
 \begin{pmatrix}
 \Lambda & \mathbf{0}\\ 
 \mathbf{0} & \overline{\Lambda}
 \end{pmatrix},
 \end{equation}
-que tamb\'em \'e uma matriz diagonal. Portanto, $ X_A $ \'e diagonaliz\'avel.
+que tamb\'em \'e uma matriz diagonal. Portanto, $ \rchi_A $ \'e diagonaliz\'avel.
 
-Por outro lado, se $ X_A $ \'e diagonaliz\'avel, ent\~ao \'e similar a uma matriz diagonal contendo os seus $ 2n $ autovalores, que aparecem em $ n $ pares complexos conjugados. Assim, sua matriz de autovalores pode ser escrita como (\ref{eq:Xlambda}), o que implica, pelo teorema \ref{th:diagonal}, que $ \mathbf{A} $ \'e similar a $ \Lambda $.
+Por outro lado, se $ \rchi_A $ \'e diagonaliz\'avel, ent\~ao \'e similar a uma matriz diagonal contendo os seus $ 2n $ autovalores, que aparecem em $ n $ pares complexos conjugados. Assim, sua matriz de autovalores pode ser escrita como (\ref{eq:Xlambda}), o que implica, pelo teorema \ref{th:diagonal}, que $ \mathbf{A} $ \'e similar a $ \Lambda $.
 \end{proof}
 
 \section{Construindo QGSP}
 
 \subsection{Inversão do operador de deslocamento}
+
+Com base nos teoremas \ref{th:equiv01} e \ref{th:equiv02}, a invers\~ao da matriz de autovetores do operador de deslocamento \'e realizada pelo algoritmo \ref{alg:qinv}. O algoritmo \'e uma op\c c\~ao simples e r\'apida para satisfazer a maioria dos casos (explicar melhor).
+
+Pelo teorema \ref{th:equiv02}, para saber se $\mathbf{V} \in \mathbb{H}^{n \times n}$ \'e invers\'ivel, \'e suficiente verificar se $\rchi_{V}$ possui inversa. Caso possua, para obter $\mathbf{V}^{-1}$ resta verificar se a inversa de $\rchi_{V}$ tem a forma da complexa adjunta de uma matriz quaterni\^onica, digamos $\rchi_{V}^{-1} = \rchi_{M}$. Em caso positivo, podemos concluir que $\mathbf{M} = \mathbf{V}^{-1}$, uma vez que, do teorema \ref{th:equiv01}, $\rchi_{A} \rchi_{B} = \rchi_{AB}$.
+
+\begin{algorithm}
+\caption{Invers\~ao de matriz quaterni\^onica.}\label{alg:qinv}
+\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+\Input{$\mathbf{V} \in \mathbb{H}^{n \times n}$}
+\Output{$\mathbf{V}^{-1}$ ou None (vazio).}
+$\rchi_{V} \gets \mathrm{complex\_adjoint(\mathbf{V})}$\;
+
+\If{$\mathrm{det}(\rchi_{V}) = 0$}{\Return None}
+
+$\mathbf{U} \gets \mathrm{inverse(\rchi_{V})}$
+
+\If{\textup{\textbf{not}} $\mathrm{has\_complex\_adjoint\_form}(\mathbf{U})$}{\Return None}
+
+$\mathbf{V}^{-1} \gets \mathrm{from\_complex\_adjoint}(\mathbf{U})$
+
+\Return $\mathbf{V}^{-1}$
+\end{algorithm}
 
 %\section{Poss\'iveis aplica\c c\~oes de QGSP}
 %
