@@ -1,6 +1,8 @@
 # phd-thesis
 TeX files for my PhD Thesis.
 
+This repository is edited both locally and through Overleaf.
+
 ### Adding to the local repository an Overleaf Git remote
 As explained by [Overleaf](https://www.overleaf.com/learn/how-to/Using_Git_and_GitHub),
 one can link this Github repository with the (paid) Overleaf project, after cloning locally,
