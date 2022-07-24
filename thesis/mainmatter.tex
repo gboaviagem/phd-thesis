@@ -996,7 +996,7 @@ As shown in section \ref{sec:GSPintro}, the eigendecomposition of this operator 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.3\linewidth]{Figures/signal_duher_graph_2.pdf}
-	\caption{Exemplo de sinal definido sobre um grafo. As arestas do grafo representam rela\c c\~oes de depend\^encia, ou semelhan\c ca, entre as amostras do sinal. Quais as consequ\^encias de ponder\'a-las utilizando quat\'ernios? Fonte: o autor.}
+	\caption{Example of graph signal. The graph edges capture similarity or interdependency relationship between samples. What new possibilities are created when the edges carry quaternion weights? Source: the author.}
 	\label{fig:duher}
 \end{figure}
 
@@ -1292,16 +1292,23 @@ que tamb\'em \'e uma matriz diagonal. Portanto, $ \rchi_A $ \'e diagonaliz\'avel
 Por outro lado, se $ \rchi_A $ \'e diagonaliz\'avel, ent\~ao \'e similar a uma matriz diagonal contendo os seus $ 2n $ autovalores, que aparecem em $ n $ pares complexos conjugados. Assim, sua matriz de autovalores pode ser escrita como (\ref{eq:Xlambda}), o que implica, pelo teorema \ref{th:diagonal}, que $ \mathbf{A} $ \'e similar a $ \Lambda $.
 \end{proof}
 
-\section{Construindo QGSP}
+\section{Laying the foundations for QGSP}
 
-\subsection{Inversão do operador de deslocamento}
+\subsection{On the inversion of the eigenvector matrix}
 
-Com base nos teoremas \ref{th:equiv01} e \ref{th:equiv02}, a invers\~ao da matriz de autovetores do operador de deslocamento \'e realizada pelo algoritmo \ref{alg:qinv}. O algoritmo \'e uma op\c c\~ao simples e r\'apida para satisfazer a maioria dos casos (explicar melhor).
+The inversion of quaternion matrices have been tackled by many researchers, yielding a few algorithms aiming at solving it. \red{(INSERT REFERENCES)} All seemed too costly to practical use in medium to large graphs. Based on theorems \ref{th:equiv01} and \ref{th:equiv02},
+the algorithm \ref{alg:qinv} is proposed to provide a reasonable balance between processing speed and broad applicability.
 
-Pelo teorema \ref{th:equiv02}, para saber se $\mathbf{V} \in \mathbb{H}^{n \times n}$ \'e invers\'ivel, \'e suficiente verificar se $\rchi_{V}$ possui inversa. Caso possua, para obter $\mathbf{V}^{-1}$ resta verificar se a inversa de $\rchi_{V}$ tem a forma da complexa adjunta de uma matriz quaterni\^onica, digamos $\rchi_{V}^{-1} = \rchi_{M}$. Em caso positivo, podemos concluir que $\mathbf{M} = \mathbf{V}^{-1}$, uma vez que, do teorema \ref{th:equiv01}, $\rchi_{A} \rchi_{B} = \rchi_{AB}$.
+The reasoning goes as follows. According to theorem \ref{th:equiv02}, a sufficient condition for the invertibility of a matrix $\mathbf{V} \in \mathbb{H}^{n \times n}$ is the existance of $\rchi^{-1}_{V}$. Moreover, from theorem \ref{th:equiv01}, if $\rchi^{-1}_{V}$ has the form of a complex adjoint matrix, let us say $\rchi_{V}^{-1} = \rchi_{M}$, then it follows that $\mathbf{M} = \mathbf{V}^{-1}$, since the theorem guarantees that,
+\begin{equation}
+\rchi_{V} \rchi_{V}^{-1} = \mathbf{I}_{2n \times 2n} = \rchi_{I_{n \times n}} = \rchi_{V} \rchi_{M}
+\Rightarrow \mathbf{V} \mathbf{M} = \mathbf{I}_{n \times n},
+\end{equation}
+letting $\mathbf{I}_{m \times m}$ be the identity matrix of order $m$. For simplicity, this notation is slightly loose, representing both a complex- and a quaternion-valued identity matrix, since in both cases their entries have zero-valued or zero-normed imaginary parts.
 
+\begin{center}
 \begin{algorithm}
-\caption{Invers\~ao de matriz quaterni\^onica.}\label{alg:qinv}
+\caption{Inversion of quaternion matrices.}\label{alg:qinv}
 \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
 \Input{$\mathbf{V} \in \mathbb{H}^{n \times n}$}
 \Output{$\mathbf{V}^{-1}$ ou None (vazio).}
@@ -1317,6 +1324,7 @@ $\mathbf{V}^{-1} \gets \mathrm{from\_complex\_adjoint}(\mathbf{U})$
 
 \Return $\mathbf{V}^{-1}$
 \end{algorithm}
+\end{center}
 
 %\section{Poss\'iveis aplica\c c\~oes de QGSP}
 %
