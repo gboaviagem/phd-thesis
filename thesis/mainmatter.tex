@@ -1002,23 +1002,14 @@ As shown in section \ref{sec:GSPintro}, the eigendecomposition of this operator 
 
 The problem at hand, when applying GSP, will define the characteristics of the underlying graph, e.g. whether using real or complex edge weights, directed or undirected graphs. The exploration of new algebras for the edge weights, however, open new possibilities for tools and applications, similarly to what happened in electrical engineering when modeling electric signals using complex-valued functions. The engineers were able to explore with variables that, carrying two sources of information (amplitude and phase), have proven more suitable to the visualization and manipulation of harmonic functions than if only real-valued functions were employed. That was also the reasoning of Ortoloni and Uncini \cite{ortolani2016quaternion}, when they proposed the study of discrete-time signal processing with \emph{quaternion-valued} samples.
 
-As did Jiang et al. \cite{jiang2013frequency} when benefiting from using quaternion-valued adaptive filters to tackle the problem of wind profile prediction (3D signals of wind direction at each point in the Euclidian space), or Flamant et al. \cite{flamant2018complete} that created a framework for time-frequency analysis of bivariate signals using quaternions, the hypothesis of this thesis is that the study of GSP with quaternion values may reveal both theoretical and practical implications of great value. The tools rising around the consequences of such investigation is from now on referred to as QGSP (quaternion graph signal processing).
+As did Jiang et al. \cite{jiang2013frequency} when benefiting from using quaternion-valued adaptive filters to tackle the problem of wind profile prediction (3D signals of wind direction at each point in the Euclidian space), or Flamant et al. \cite{flamant2018complete} that created a framework for time-frequency analysis of bivariate signals using quaternions, the hypothesis of this thesis is that the study of GSP with quaternion values may reveal both theoretical and practical implications of great interest. Such generalization has the appeal to allow not only for the analysis of discrete-time three- or four-dimensional signals (as in quaternion discrete signal processing), but also for the exploration of interrelations that capture there higher dimensions (i.e. edge weights). The tools arising from the consequences of such investigation is from now on referred to as QGSP (quaternion graph signal processing).
 
-Poss\'iveis aplica\c c\~oes de QGSP devem surgir em cen\'arios em que n\~ao apenas o sinal sobre o grafo \'e tri- ou quadrimensional, mas tamb\'em a rela\c c\~ao entre as amostras. Por exemplo, um sinal que indique orienta\c c\~oes no espa\c co (dire\c c\~oes do vento, ou posi\c c\~oes de um objeto gr\'afico), modelado atrav\'es de quat\'ernios puros. Em processamento de sinais quaterni\^onicos, o \emph{sinal} \'e composto de quat\'ernios, mas \emph{n\~ao o dom\'inio}, como em QGSP.
+\section{On the theory of quaternion matrices}
 
-%\red{O artigo \emph{GRAPH-BASED RGB-D IMAGE SEGMENTATION USING COLOR-DIRECTIONAL-REGION MERGING} seria uma poss\'ivel aplica\c c\~ao?
+When analyzing the eigenstructure and subsequent fractionarization of the QDFT matrix, the eigendecomposition of the DFT and the eigenvector sharing served as a convenient shortcut. In order to build the results in QGSP, however, it is required to dive into more general properties of quaternion matrices. The symplectic decomposition, already presented in (\ref{eq:decomposicao}), plays an important role in that matter, specialy for its use in defining the complex\textit{ adjoint matrix}.
 
-%Ou quem sabe um graph signal contendo posi\c c\~oes no espa\c co 3D, com arestas contendo os quat\'ernios que causam rota\c c\~ao no espa\c co?}
-
-%\section{Fundamentos de GSP}
-%\label{sec:GSP}
-
-\section{Da teoria de matrizes quaterni\^onicas}
-
-Na an\'alise da autoestrutura e subsequente fracionariza\c c\~ao da matriz da QDFT, foi tomada como atalho a autodecomposi\c c\~ao da DFT e o compartilhamento de autovetores entre as transformadas. Para elaborar resultados de QGSP, no entanto, \'e preciso mergulhar nas propriedades gerais de matrizes sobre quat\'ernios. A decomposi\c c\~ao simpl\'etica, apresentada em (\ref{eq:decomposicao}), desempenha um papel importante no estudo de matrizes quaterni\^onicas, particularmente por ajudar a definir a \emph{matriz complexa adjunta}.
-
-\begin{definition}[Matriz complexa adjunta \cite{zhang1997quaternions}]
-Dada a matriz $ \mathbf{A} \in \mathbb{H}^{n \times n} $, com decomposi\c c\~ao simpl\'etica $ \mathbf{A}_1 + \mathbf{A}_2 \qj$, $ \mathbf{A}_1,\mathbf{A}_2 \in \mathbb{C}^{n \times n} $, sua matriz complexa adjunta \'e dada por
+\begin{definition}[Complex adjoint matrix \cite{zhang1997quaternions}]
+Given $ \mathbf{A} \in \mathbb{H}^{n \times n} $, with symplectic decomposition $ \mathbf{A}_1 + \mathbf{A}_2 \qj$, $ \mathbf{A}_1,\mathbf{A}_2 \in \mathbb{C}^{n \times n} $, its complex adjoint matrix is defined as
 \begin{equation}
 \rchi_{A} \overset{\Delta}{=}
 \begin{pmatrix}
@@ -1028,31 +1019,31 @@ Dada a matriz $ \mathbf{A} \in \mathbb{H}^{n \times n} $, com decomposi\c c\~ao 
 \end{equation}
 \end{definition}
 
-Nos teoremas seguintes, Zhang traz resultados que desempenhar\~ao um importante papel no desenvolvimento de QGSP.
+In the following theorems, Zhang brings fundamental results for building QGSP.
 
-\begin{theorem}[Parte do Teorema 4.2 em
+\begin{theorem}[Part of Theorem 4.2 in
 \cite{zhang1997quaternions}
 ]
 \label{th:equiv01}
-Dada a matriz $ \mathbf{A} \in \mathbb{H}^{n \times n} $, as seguintes afirma\c c\~oes s\~ao equivalentes:
+Given the matrix $ \mathbf{A} \in \mathbb{H}^{n \times n} $, the following sentences are equivalent:
 
 \begin{itemize}[noitemsep]
 \item $ \rchi_{AB} = \rchi_{A} \rchi_{B} $,
-\item $ \rchi_{A^{-1}} = \rchi_{A}^{-1}$, se $ \mathbf{A}^{-1} $ existir,
-\item $ \rchi_{A}$ \'e unit\'aria, hermitiana ou normal se e somente se $ \mathbf{A} $ tamb\'em o for.
+\item $ \rchi_{A^{-1}} = \rchi_{A}^{-1}$, if $ \mathbf{A}^{-1} $ exists,
+\item $ \rchi_{A}$ is unitary, hermitian or normal if and only if so is $ \mathbf{A} $.
 \end{itemize}
 
 \end{theorem}
 
-\begin{theorem}[Parte do Teorema 4.3 em
+\begin{theorem}[Part of Theorem 4.3 in
 \cite{zhang1997quaternions}
 ]
 \label{th:equiv02}
-Dada a matriz $ \mathbf{A} \in \mathbb{H}^{n \times n} $, as seguintes afirma\c c\~oes s\~ao equivalentes:
+Given the matrix $ \mathbf{A} \in \mathbb{H}^{n \times n} $, the following sentences are equivalent:
 
 \begin{itemize}[noitemsep]
-\item $\mathbf{A}$ \'e invers\'ivel.
-\item $\mathrm{det}(\rchi_A) \neq 0$, i.e. $\rchi_{A}$ \'e invers\'ivel.
+\item $\mathbf{A}$ is invertible.
+\item $\mathrm{det}(\rchi_A) \neq 0$, i.e. $\rchi_{A}$ is invertible.
 \end{itemize}
 
 \end{theorem}
@@ -1297,12 +1288,12 @@ Por outro lado, se $ \rchi_A $ \'e diagonaliz\'avel, ent\~ao \'e similar a uma m
 The inversion of quaternion matrices have been tackled by many researchers, yielding a few algorithms aiming at solving it. \red{(INSERT REFERENCES)} All seemed too costly to practical use in medium to large graphs. Based on theorems \ref{th:equiv01} and \ref{th:equiv02},
 the algorithm \ref{alg:qinv} is proposed to provide a reasonable balance between processing speed and broad applicability.
 
-The reasoning goes as follows. According to theorem \ref{th:equiv02}, a sufficient condition for the invertibility of a matrix $\mathbf{V} \in \mathbb{H}^{n \times n}$ is the existance of $\rchi^{-1}_{V}$. Moreover, from theorem \ref{th:equiv01}, if $\rchi^{-1}_{V}$ has the form of a complex adjoint matrix, let us say $\rchi_{V}^{-1} = \rchi_{M}$, then it follows that $\mathbf{M} = \mathbf{V}^{-1}$, since the theorem guarantees that,
+The reasoning goes as follows. According to theorem \ref{th:equiv02}, a necessary and sufficient condition for the invertibility of a matrix $\mathbf{V} \in \mathbb{H}^{n \times n}$ is the existance of $\rchi^{-1}_{V}$. Moreover, from theorem \ref{th:equiv01}, if $\rchi^{-1}_{V}$ exists and has the form of a complex adjoint matrix, let us say $\rchi_{V}^{-1} = \rchi_{M}$, then it follows that $\mathbf{M} = \mathbf{V}^{-1}$, since the theorem guarantees that
 \begin{equation}
-\rchi_{V} \rchi_{V}^{-1} = \mathbf{I}_{2n \times 2n} = \rchi_{I_{n \times n}} = \rchi_{V} \rchi_{M}
+\rchi_{V} \rchi_{M} = \rchi_{V} \rchi_{V}^{-1} = \mathbf{I}_{2n \times 2n} = \rchi_{I_{n \times n}}
 \Rightarrow \mathbf{V} \mathbf{M} = \mathbf{I}_{n \times n},
 \end{equation}
-letting $\mathbf{I}_{m \times m}$ be the identity matrix of order $m$. For simplicity, this notation is slightly loose, representing both a complex- and a quaternion-valued identity matrix, since in both cases their entries have zero-valued or zero-normed imaginary parts.
+letting $\mathbf{I}_{m \times m}$ be the identity matrix of order $m$\footnote{For simplicity, this notation is slightly loose, representing both a complex- and a quaternion-valued identity matrix, since in both cases their entries have zero-valued or zero-normed imaginary parts.}.
 
 \begin{center}
 \begin{algorithm}

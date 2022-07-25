@@ -93,22 +93,22 @@
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % ---
-\titulo{Contribui\c c\~oes para o processamento de sinais quaterni\^onicos: aspectos te\'oricos e aplica\c c\~oes}
+\titulo{Towards quaternion graph signal processing}
 \autor{Guilherme Boaviagem Ribeiro}
 \local{Recife}
-\data{2020}
+\data{2022}
 \orientador{Prof. Dr. Juliano Bandeira Lima}
 %\coorientador{Equipe \abnTeX}
 \instituicao{%
-  Universidade Federal de Pernambuco
+  Federal University of Pernambnuco
   \par
-  Centro de Tecnologia e Geoci\^encias
+  Technology and Geoscience Center
   \par
-  Programa de P\'os-gradua\c c\~ao em Engenharia El\'etrica}
-\tipotrabalho{Projeto de Tese (Doutorado)}
+  Electrical Engineering Postgraduate Program}
+\tipotrabalho{Thesis}
 % O preambulo deve conter o tipo do trabalho, o objetivo, 
 % o nome da instituição e a área de concentração 
-\preambulo{Trabalho apresentado ao Programa de P\'os-gradua\c c\~ao em Engenharia El\'etrica do Centro de Tecnologia e Geoci\^encias da Universidade Federal de Pernambuco como requisito parcial para obten\c c\~ao do grau de Doutor em Engenharia El\'etrica.
+\preambulo{This work was presented to the Electrical Engineering Postgraduate Program, at the Technology and Geoscience Center of the Federal University of Pernambuco, as a partial requisite to obtaining a doctorate degree on Electrical Engineering.
 }
 % ---
 
@@ -338,29 +338,18 @@
 %\end{folhadeaprovacao}
 % ---
 
-% ---
-% Dedicatória
-% ---
-%\begin{dedicatoria}
-%   \vspace*{\fill}
-%   \centering
-%   \noindent
-%   \textit{ Este trabalho é dedicado às crianças adultas que,\\
-%   quando pequenas, sonharam em se tornar cientistas.} \vspace*{\fill}
-%\end{dedicatoria}
-% ---
+\begin{dedicatoria}
+  \vspace*{\fill}
+  \centering
+  \noindent
+  \textit{Este trabalho é dedicado às crianças adultas que,\\
+  quando pequenas, sonharam em se tornar cientistas.} \vspace*{\fill}
+\end{dedicatoria}
 
-% ---
-% Agradecimentos
-% ---
-%\begin{agradecimentos}
-%Agradecimentos.
-%\end{agradecimentos}
-% ---
+\begin{agradecimentos}
+Agradecimentos.
+\end{agradecimentos}
 
-% ---
-% Epígrafe
-% ---
 \begin{epigrafe}
 \vspace*{\fill}
 \begin{flushright}
@@ -418,9 +407,9 @@ Exploring new algebraic structures to represent discrete-domain signals often re
 % ---
 % inserir lista de ilustrações
 % ---
-%\pdfbookmark[0]{\listfigurename}{lof}
-%\listoffigures*
-%\cleardoublepage
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
 % ---
 
 % ---
@@ -442,23 +431,23 @@ Exploring new algebraic structures to represent discrete-domain signals often re
 % ---
 % inserir lista de abreviaturas e siglas
 % ---
-%\begin{siglas}
-%\item[QFT] \emph{Quaternion Fourier Transform}, Transformada de Fourier Quaterni\^onica
-%\item[MFrQDFT] \emph{Multi-parametric Fractional Quaternion Discrete Fourier Transform}, Transformada Multiparam\'etrica Discreta de Fourier Quaterni\^onica
-%\item[GSP] \emph{Graph Signal Processing}, Processamento de Sinais sobre Grafos
-%\item[QGSP] \emph{Quaternion Graph Signal Processing}, Processamento de Sinais sobre Grafos Quaterni\^onicos
-%\end{siglas}
+\begin{siglas}
+\item[QFT] Quaternion Fourier Transform
+\item[MFrQDFT] Multi-parametric Fractional Quaternion Discrete Fourier Transform
+\item[GSP] Graph Signal Processing
+\item[QGSP] Quaternion Graph Signal Processing
+\end{siglas}
 % ---
 
 % ---
 % inserir lista de símbolos
 % ---
-%\begin{simbolos}
-%\item[$ \Gamma $] Letra grega Gama
-%\item[$ \Lambda $] Lambda
-%\item[$ \zeta $] Letra grega minúscula zeta
-%\item[$ \in $] Pertence
-%\end{simbolos}
+\begin{simbolos}
+\item[$ \Gamma $] Letra grega Gama
+\item[$ \Lambda $] Lambda
+\item[$ \zeta $] Letra grega minúscula zeta
+\item[$ \in $] Pertence
+\end{simbolos}
 % ---
 
 % ---
@@ -528,16 +517,16 @@ Exploring new algebraic structures to represent discrete-domain signals often re
 \partapendices
 
 % ----------------------------------------------------------
-\chapter{Mapeando um sistema de equa\c c\~oes lineares sobre $ \mathbb{H} $ para $ \mathbb{C} $}
+\chapter{Mapping a system of linear equations from $ \mathbb{H} $ to $ \mathbb{C} $}
 \label{ch:AppendixA}
 % ----------------------------------------------------------
 
-O teorema \ref{th:02} requer um passo do qual o leitor de \cite{zhang1997quaternions} pode ter sentido falta: a demonstra\c c\~ao da equival\^encia entre as equa\c c\~oes
+Theorem \ref{th:02} requires a step the reader of \cite{zhang1997quaternions} may have missed: demonstrating the equivalence between
 \begin{equation}
 \label{eq:A1}
 \mathbf{A} \mathbf{v} = \mathbf{v} \lambda
 \end{equation}
-e
+and
 \begin{equation}
 \begin{pmatrix}
 \mathbf{A}_1 & \mathbf{A}_2\\ 
@@ -553,14 +542,14 @@ e
 \end{pmatrix}
 \lambda,
 \end{equation}
-em que $ \mathbf{A} \in \mathbb{H}^{n \times n} $, $ \mathbf{v} \in \mathbb{H}^{n} $, $ \lambda \in \mathbb{C} $, e os subscritos $ (\cdot)_1 $ e $ (\cdot)_2 $ indicam as componentes da decomposi\c c\~ao simpl\'etica usual, e.~g. $ q = q_1 + q_2 \qj $, $q\in \mathbb{H}, \ q_1, q_2 \in \mathbb{C}_{\qi} $.
+where $ \mathbf{A} \in \mathbb{H}^{n \times n} $, $ \mathbf{v} \in \mathbb{H}^{n} $, $ \lambda \in \mathbb{C} $, and the subscripts $ (\cdot)_1 $ a $ (\cdot)_2 $ indicate the usual symplectic decomposition components, e.~g. $ q = q_1 + q_2 \qj $, $q\in \mathbb{H}, \ q_1, q_2 \in \mathbb{C}_{\qi} $.
 
-Para compreend\^e-lo, basta mostrar um sistema qualquer de $ m $ equa\c c\~oes lineares quaterni\^onicas,
+To fully comprehend this equivalence, it suffices to prove that any system of $ m $ quaternion linear equations, expressed in matrix form as
 \begin{equation}
 \label{eq:A2}
 \mathbf{M} \mathbf{x} = \mathbf{y},
 \end{equation}
-com $ \mathbf{M} \in \mathbb{H}^{m\times n} ,\ \mathbf{x} \in \mathbb{H}^{n \times 1}, \ \mathbf{y} \in \mathbb{H}^{m \times 1} $, \'e equivalente, dadas as decomposi\c c\~oes simpl\'eticas de $ \mathbf{M} $, $ \mathbf{x} $ e $ \mathbf{y} $, ao sistema de $ 2m $ equa\c c\~oes complexas
+in which $ \mathbf{M} \in \mathbb{H}^{m\times n} ,\ \mathbf{x} \in \mathbb{H}^{n \times 1}, \ \mathbf{y} \in \mathbb{H}^{m \times 1} $, is equivalent, given the symplectic decomposition of $ \mathbf{M} $, $ \mathbf{x} $ and $ \mathbf{y} $, to a system of $ 2m $ complex equations
 \begin{equation}
 \label{eq:A3}
 \begin{pmatrix}
@@ -578,7 +567,7 @@ com $ \mathbf{M} \in \mathbb{H}^{m\times n} ,\ \mathbf{x} \in \mathbb{H}^{n \tim
 \end{pmatrix}.
 \end{equation}
 
-Expandindo o primeiro termo de (\ref{eq:A2}), temos
+Following the expansion of the left-hand side in (\ref{eq:A2}), one has
 \begin{equation}
 \begin{aligned}
 \label{eq:A5}
@@ -586,14 +575,14 @@ Expandindo o primeiro termo de (\ref{eq:A2}), temos
 &=\mathbf{M}_1 \mathbf{x}_1 + \mathbf{M}_1 \mathbf{x}_2 \qj + \mathbf{M}_2 \qj \mathbf{x}_1 + \mathbf{M}_2 \qj \mathbf{x}_2 \qj.
 \end{aligned}
 \end{equation}
-Para manipular este resultado, vejamos como \'e poss\'ivel reescrever o produto $ \qj x $, para um certo n\'umero \emph{complexo} qualquer $ x = x_r + x_i \qi $,
+It is possible to manipulate that expression by looking at how one can rewrite the product $ \qj x $, for a given arbitrary \emph{complex} number $ x = x_r + x_i \qi $,
 \begin{equation}
 \begin{aligned}
 \qj x &= \qj (x_r + x_i \qi) = x_r \qj + x_i \qj \qi = x_r \qj - x_i \qi \qj \\
 &= (x_r - x_i \qi) \qj = \overline{x} \qj.
 \end{aligned}
 \end{equation}
-Ou seja, como $ \qj x = \overline{x} \qj $, ent\~ao (\ref{eq:A5}) equivale a
+Consequently, since $ \qj x = \overline{x} \qj $, so (\ref{eq:A5}) equals
 \begin{equation}
 \begin{aligned}
 \label{eq:A7}
@@ -603,7 +592,7 @@ Ou seja, como $ \qj x = \overline{x} \qj $, ent\~ao (\ref{eq:A5}) equivale a
 \end{aligned}
 \end{equation}
 
-Substituindo (\ref{eq:A7}) em (\ref{eq:A2}) e escrevendo $ \mathbf{y} = \mathbf{y}_1 + \mathbf{y}_2 \qj$, temos
+Replacing (\ref{eq:A7}) in (\ref{eq:A2}) and using $ \mathbf{y} = \mathbf{y}_1 + \mathbf{y}_2 \qj$ yields
 \begin{equation}
 \begin{aligned}
 (\mathbf{M}_1 \mathbf{x}_1 - \mathbf{M}_2 \overline{\mathbf{x}}_2) + \qj (\overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2 + \overline{\mathbf{M}}_2 \mathbf{x}_1) &=
@@ -611,7 +600,7 @@ Substituindo (\ref{eq:A7}) em (\ref{eq:A2}) e escrevendo $ \mathbf{y} = \mathbf{
 &= \mathbf{y}_1 + \qj \overline{\mathbf{y}}_2,
 \end{aligned}
 \end{equation}
-que pode ser escrito como dois sistemas de $ m $ equa\c c\~oes lineares complexas,
+what can be written as two systems of $m$ linear complex equations,
 \begin{equation}
 \label{eq:A9}
 \begin{aligned}
@@ -619,7 +608,7 @@ que pode ser escrito como dois sistemas de $ m $ equa\c c\~oes lineares complexa
 \overline{\mathbf{M}}_2 \mathbf{x}_1 + \overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2&= \overline{\mathbf{y}}_2,
 \end{aligned}
 \end{equation}
-ou ainda,
+or equivalently,
 \begin{equation}
 \label{eq:A8}
 \begin{pmatrix}
@@ -636,7 +625,7 @@ ou ainda,
 \overline{\mathbf{y}}_2
 \end{pmatrix}.
 \end{equation}
-Por fim, multiplicando a segunda equa\c c\~ao matricial em (\ref{eq:A9}) por $ -1 $, (\ref{eq:A8}) se torna
+Finally, multiplying the second matrix equation in (\ref{eq:A9}) by $ -1 $, (\ref{eq:A8}) becomes
 \begin{equation}
 \label{eq:10}
 \begin{pmatrix}
@@ -653,7 +642,7 @@ Por fim, multiplicando a segunda equa\c c\~ao matricial em (\ref{eq:A9}) por $ -
 - \overline{\mathbf{y}}_2
 \end{pmatrix},
 \end{equation}
-exatamente como em (\ref{eq:A3}).
+precisely as in (\ref{eq:A3}).
 
 \end{apendicesenv}
 % ---
