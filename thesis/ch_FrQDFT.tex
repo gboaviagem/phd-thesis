@@ -1,52 +1,12 @@
-% \newtheorem{proposition}{Proposition}
-% \newtheorem{theorem}{Theorem}
-% \newtheorem{lemma}{Lemma}
-% \newtheorem{property}{Property}
-% \newtheorem{definition}{Definition}
-% \newtheorem{example}{Example}
-% \newtheorem{corollary}{Corollary}
-
-% \newcommand{\modification}[1]{{\color{red}#1}}
-
-% %% The amssymb package provides various useful mathematical symbols
-% \usepackage[english]{babel}
-% \usepackage{mathtools}
-% \usepackage{booktabs}
-% \usepackage{amsmath,amssymb,amsfonts,color,enumerate}
-% \usepackage{cancel} % Use \usepackage[thicklines]{cancel} for thicker strokes
-% \definecolor{cancelgray}{gray}{0.5}
-% \renewcommand{\CancelColor}{\color{cancelgray}}
-
-% % Renaming Theorem and Proof:
-% %\newtheorem{teorema}{Theorem}
-% %\renewenvironment{proof}{{\itshape Proof:}}{}
-
-% %\newtheorem{lema}{Lema}
-% %\newtheorem{corolario}{Corol\'ario}[theorem]
-% \usepackage{subfig}
-
-
-% \renewcommand{\mod}[1]{\  (\mathrm{mod} \ #1)}
-% \newcommand{\ord}[1]{\mathrm{ord}(#1)}
-% \newcommand{\qi}{\boldsymbol{i}}
-% \newcommand{\qj}{\boldsymbol{j}}
-% \newcommand{\qk}{\boldsymbol{k}}
-% \newcommand{\qmu}{\boldsymbol{\mu}}
-% \newcommand{\qnu}{\boldsymbol{\nu}}
-% \newcommand{\sen}{\mathrm{\, sen \,}}
-
 \chapter{On the fractionalization of the quaternion discrete Fourier transform}
 
-\section{Introduction}
 Linear discrete transforms are building blocks for a multitude of techniques in the field of signal processing, being almost as important as they are diverse. Among the factors which distinguish one from the others, there is the algebraic structure over which they are defined, e.~g. a finite field and its extensions (such as in number-theoretic \cite{blahut2010fast,pedrouzo2017number,chandra2014exact,lima2013} and arithmetic \cite{knockaert1994generalized, rajapaksha2014vlsi} transforms), or the real and complex fields (as in the usual discrete Fourier transform). As the algebra is extended (for instance, from $ \mathbb{R} $ to $ \mathbb{C} $), it is possible to encode more information into each signal sample. Such was the motivation behind Sangwine's definition \cite{sangwine1996fourier} of discrete two-dimensional quaternion transforms, based on their continuous counterparts previously defined by Ell \cite{ell1993quaternion}: to apply these four-dimensional numbers --- the quaternions, an extension of the complex field --- to color image processing. Since then, quaternion transforms have been useful not only to image processing \cite{ell2007hypercomplex,chen2018quaternion,li2013quaternion,evans2000hypercomplex,silva2018}, but also to other fields, such as bivariate signal analysis \cite{flamant2017spectral,flamant2017time,flamant2018complete}.
 
 Fractional transforms are yet another class of tools of great use. The fractional Fourier transform has been applied to time-frequency analysis, compression, digital watermarking, filtering, encryption, let alone its utility in Optics \cite{bultheel2002shattered,figueiredo2018}. Regarding quaternion transforms, a couple of competent works have already addressed their fractionalization \cite{guanlei2008fractional, wei2013different, roopkumar2016quaternionic} and some applications have been proposed \cite{chen2018quaternion}. However, the authors are not aware of papers approaching fractional quaternion discrete transforms from an eigenstructure analysis point of view. This reasoning may unfold new theoretical insights and implementation techniques, and such is the motivation for this work.
 
-\modification{
 In this paper, the eigenstructure of the quaternion discrete Fourier transform (QDFT) matrix is investigated and shown to be closely related to that of the unitary discrete Fourier transform (DFT). This result offers an approach for defining the fractional version of the QDFT (referred to as FrQDFT). Following the central goal of defining the transform through eigendecomposition theory, a generalization is proposed in the form of a multiple-parameter fractional quaternion discrete Fourier transform (MFrQDFT). For illustrative purposes, this work proposes and briefly explores an encryption scheme for color images with opacity layer, fully harnessing the holistic processing of 4-layered 2D signals through the MFrQDFT.
 
 The proposed method for image encryption fits in the class of schemes that use linear transforms alongside non-linear blocks \cite{hsue2018enhancing}, to implement confusion and diffusion. The currently available methods in the state-of-the-art literature respond to a diverse range of needs, as fast implementation through parallel computing \cite{wang2019fast}, increased safety and robustness by using matrix semi-tensor product \cite{wang2020image} or one-time keys \cite{liu2010}, just to name a few examples. The main scope of this paper is not the encryption scheme \textit{per se}, but rather the FrQDFT eigenscructure and the MFrQDFT definition, the latter having the image encryption as a framework to showcase some of its possibilities. Nevertheless, the proposed encryption algorithm is described and evaluated to some extent. Although being an illustrative scenario, it stands on tools adopted currently by the literature. For example, the chosen method for key generation involved the use of chaotic maps, known to help achieving high bit sensibility and large key space. It follows works such as the one by Liu and Wang \cite{liu2011color}, which proposed a color image encryption scheme using two chaotic maps and one-time keying, aiming to achieve large key space and cycle lengths. Another work by Liu and Wang \cite{liu2012} employed a piecewise linear chaotic map and DNA encoding for ensuring the initial conditions of the encryption change according to the image, whereas Wang \textit{et al.} \cite{wang2010chaotic} used a Lorentz chaotic map and a perceptron model applied to image encryption. The proposed scheme uses a chaotic tent map to generate a pseudo-random sequence, from which the secret parameters are extracted.
-}
 
 
 This paper is structured as follows. Section \ref{sec:autoestrutura} presents the usual definition of the QDFT and proves the central theorem of this work, regarding how the DFT and QDFT share symmetric eigenvectors; it closes with comments on the quaternion representation of color images with opacity layer. Section \ref{sec:FrQDFT} discusses the fractionalization of the QDFT from an eigenstructure point of view and demonstrates some properties purely based on matrix algebra. Section \ref{sec:multi} proposes a multiple-parameter extension of the fractional transform and presents an application involving encryption of color images with opacity layer. The main results are summarized in Section \ref{sec:conclusao}, and the paper closes with a brief Appendix on basic quaternion algebra.
@@ -79,7 +39,6 @@ The synthesis and analysis equations may be written in matrix form as
 \end{equation}
 where $ \mathbf{F} $ is the unitary QDFT matrix, with entries $ \{\mathbf{F}\}_{n,m} = \sqrt{N}^{-1} \exp \left( -\qmu \frac{2\pi}{N} nm \right)$. Since $ \exp \left( -\qmu \frac{2\pi}{N} \right) $ is an $ N $-th root of unity, such as $ \exp \left( -\qi \frac{2\pi}{N} \right) $, it follows that $ \mathbf{F} $ shares many properties of the DFT matrix, such as invertibility (simple calculations show that $ \mathbf{F}^{-1} = \mathbf{F}^{H} $), what guarantees validity of the inversion formulae in (\ref{eq:QDFT_inv}) and (\ref{eq:QDFT_mtx_inv}).
 
-\modification{
 The two-dimensional QDFT can be defined in a similar fashion, although more options regarding kernel positioning are available, since for any pure quaternions $ \qmu \neq \qnu $, one may verify that generally $ e^{\qnu \alpha} e^{\qmu \beta} \neq e^{\qnu \alpha + \qmu \beta} $. Ell and Sangwine \cite{ell2014quaternion} presented the \textit{eight} distinct ways of building a 2D-QFT, which translate directly into options for 2D-QDFT. One of such possibilities is to transform the quaternion-valued matrix $ \mathbf{X} \in \mathbb{H}^{N\times M}$ according to the equation
 \begin{equation}
 \label{eq:2DQDFT-01}
@@ -93,21 +52,6 @@ This formulation of the 2D-QDFT translates into the following matrix equation,
 \end{equation}
 where the Fourier matrices are similar to the one used in (\ref{eq:QDFT}), except from the pure quaternion which serves as transform axis (shown in the parenthesis). This is a consequence of the \textit{separability} of the 2D-QDFT, by which this transform may be conceived as the successive application of two 1D-QDFTs: once in the rows of $ \mathbf{X} $, once in the columns. Therefore, some results and properties derived for the 1D-QDFT may naturally extend to the two-dimensional case.
 
-%The kernel may have a single axis, e.~g. $ e^{-\qmu (\omega x + \nu y)} = e^{-\qmu (\omega x)} e^{-\qmu (\nu y)}$, being placed at the left or right side of the signal, or even.
-
-%\begin{center}
-%\begin{tabular}{cccc}
-%\toprule
-% & Left & Right & Sandwich \\
-%\midrule
-%Single-axis & $ e^{-\qmu (\omega x + \nu y)} f(\cdot)$ & $ f(\cdot) e^{-\qmu (\omega x + \nu y)}$& \\
-%Dual-axis & & & \\ 
-%Factored & & & \\
-%\bottomrule
-%\end{tabular}
-%\end{center}
-}
-
 Although the quaternion eigenvalue problem has been extensively studied and proven to be challenging \cite{de2002quaternionic,flaut2002eigenvalues,jiang2004algorithm,farid2011eigenvalues}, the investigation of the eigenstructure of matrix $ \mathbf{F} $ may benefit from the similarities between the QDFT and the DFT. As a result of Theorem \ref{th:01}, one is able to deduce the QDFT eigenstructure out of even and odd DFT eigenvectors, by using a variation of Pei's reasoning regarding the 2D-QDFT \cite{pei2010eigenfunctions}.
 
 \begin{theorem}
@@ -119,8 +63,7 @@ Let $ \mathbf{v} $ be an eigenvector of the unitary DFT with eigenvalue $ \lambd
 \end{itemize}
 \end{theorem}
 
-\newproof{pr1}{Proof}
-\begin{pr1}
+\begin{proof}
 \begin{itemize}
 \item[(a)] If $ \mathbf{v} $ has even symmetry, i.~e. $ v_n = v_{N-n} $ for $ n=1,\dots,N-1 $, then
 \begin{equation}
@@ -191,16 +134,10 @@ From (\ref{eq:17}) and (\ref{eq:19}),
 \end{aligned}
 \end{equation}
 \end{itemize}
-\end{pr1}
+\end{proof}
 
-The results of Theorem \ref{th:01} are summarized in Table \ref{tab:01}. \modification{
+The results of Theorem \ref{th:01} are summarized in Table \ref{tab:01}.
 This analysis can immediately be extended to the two-dimensional case if one considers the separability of the 2D-QDFT, mentioned after (\ref{eq:2DQDFT-02}). If $ (\mathbf{e}^{(\qmu)}, \lambda_{\qmu}) $ and $ (\mathbf{e}^{(\qnu)}, \lambda_{\qnu}) $ are (column-)eigenvector-eigenvalue pairs of the matrices $ \mathbf{F}^{(\qmu)} $ and $ \mathbf{F}^{(\qnu)} $, respectively, then the 2D signal $ \mathbf{e}^{(\qmu)} \mathbf{e}^{(\qnu)^T}  $ is a 2D-QDFT eigenvector with eigenvalue $ \lambda_{\qmu} \lambda_{\qnu} $ \cite{candan2011}. Therefore, this 2D-QDFT has eight (possibly) distinct eigenvalues: $ \pm 1, \pm \qmu, \pm \qnu, \pm \qmu \qnu $.
-%it follows \cite{candan2011} that
-%\begin{equation}
-%%\label{key}
-%\text{2D-QDFT}\{ \mathbf{e}^{(\qmu)} \mathbf{e}^{(\qnu)^T} \} = (\lambda_{\qmu} \lambda_{\qnu}) \ \mathbf{e}^{(\qmu)} \mathbf{e}^{(\qnu)^T}.
-%\end{equation}
-}
 
 \begin{table}[b!]
 \center
@@ -220,13 +157,13 @@ Odd & $ \pm \qi $ & $ - (\pm \qi) \qi \qmu = \pm \qmu $\\
 \label{subsec:2D_QDFT}
 The 2D-QDFT has been commonly used to process color images, which are represented as matrices of pure quaternions \cite{lu20072d,ell2006hypercomplex,chen2018multiple}. In this representation, each color channel of a certain pixel corresponds to an imaginary component of the pure quaternion. Although this mapping is useful and adequate, it neglects the quaternion scalar part (always set to zero), causing a difference in dimensionality between input and output of the 2D-QDFT: while the image is a 2D signal with three-dimensional components, its spectrum has four-dimensional entries. It surely is not a problem \textit{per se}, rather is an inconvenience, also found when processing real signals with the DFT.
 
-An application free from this inconvenience is the analysis of color images with opacity (or alpha) layer, as in files in PNG format (portable network graphics). In this case, each pixel $ (R,G,B,\alpha) $ is mapped into $ q = \alpha + R \qi + G \qj + B \qk $, forming the quaternion-valued matrix $ \mathbf{X} $. \modification{Let us compute the} 2D-QDFT by separately transforming the rows and columns \modification{using (\ref{eq:2DQDFT-02}), with the same transform axis on both sides},
+An application free from this inconvenience is the analysis of color images with opacity (or alpha) layer, as in files in PNG format (portable network graphics). In this case, each pixel $ (R,G,B,\alpha) $ is mapped into $ q = \alpha + R \qi + G \qj + B \qk $, forming the quaternion-valued matrix $ \mathbf{X} $. Let us compute the 2D-QDFT by separately transforming the rows and columns using (\ref{eq:2DQDFT-02}), with the same transform axis on both sides,
 \begin{equation}
 \label{eq:2DQDFT}
 \text{2D-QDFT}\{\mathbf{X} \} = \mathbf{F} \mathbf{X} \mathbf{F}^T.
 \end{equation}
 
-One should notice that the transformation in (\ref{eq:2DQDFT}) does \textit{not} consist on the successive application of the \textit{same} QDFT to the rows and columns of matrix $ \mathbf{X} $. Due to the non-commutative nature of quaternion multiplication, as it was previously mentioned, different transforms are obtained when choosing between left- or right-multiplications, even though the transform axis is kept unchanged. The operation in (\ref{eq:2DQDFT}) performs a \textit{left} QDFT on the columns and a \textit{right} QDFT on the rows\modification{, as it is clear from (\ref{eq:2DQDFT-01})}. A 2D-QDFT consisting of the \textit{same} transformation applied in both dimensions must use multiplications with the same orientation, e.~g.
+One should notice that the transformation in (\ref{eq:2DQDFT}) does \textit{not} consist on the successive application of the \textit{same} QDFT to the rows and columns of matrix $ \mathbf{X} $. Due to the non-commutative nature of quaternion multiplication, as it was previously mentioned, different transforms are obtained when choosing between left- or right-multiplications, even though the transform axis is kept unchanged. The operation in (\ref{eq:2DQDFT}) performs a \textit{left} QDFT on the columns and a \textit{right} QDFT on the rows, as it is clear from (\ref{eq:2DQDFT-01}). A 2D-QDFT consisting of the \textit{same} transformation applied in both dimensions must use multiplications with the same orientation, e.~g.
 \begin{equation}
 \label{eq:2DQDFTv2}
 \mathbf{F} \left( \mathbf{F}\mathbf{X}^T \right)^T.
@@ -301,19 +238,17 @@ The FrQDFT, as defined in (\ref{eq:QDFTmtxa2}) and (\ref{eq:QDFTmtxa}), possesse
 
 \item \textit{Reduction to the identity}: if $ a=0 $, the FrQDFT reduces to the identity operator, represented as $ \mathbb{I} $.
 
-\newproof{pr2}{Proof}
-\begin{pr2}
+\begin{proof}
 From the orthogonality of the eigenvector matrix $ \mathbf{E} $,
 \begin{equation}
 %\label{key}
 \mathbf{F}^0 = \mathbf{E} \mathbf{\Gamma}^0 \mathbf{E}^T = \mathbf{E} \mathbf{E}^T = \mathbb{I}.
 \end{equation}
-\end{pr2}
+\end{proof}
 
 \item \textit{Index addititivy}: applying the FrQDFT twice, using $ a $ and $ b $ as fractional orders, equals applying a single FrQDFT with fractional order $ a+b $. Equivalently, $ \mathbf{F}^a \mathbf{F}^b = \mathbf{F}^{a+b} $.
 
-\newproof{pr3}{Proof}
-\begin{pr3}
+\begin{proof}
 \begin{equation}
 %\label{key}
 \begin{aligned}
@@ -329,7 +264,7 @@ but, since $ \mathbf{\Gamma} $ is a diagonal matrix, $ \mathbf{\Gamma}^a \mathbf
 \mathbf{F}^a \mathbf{F}^b = \mathbf{E} \mathbf{\Gamma}^a \mathbf{\Gamma}^b \mathbf{E}^T = \mathbf{E} \mathbf{\Gamma}^{a+b} \mathbf{E}^T =
 \mathbf{F}^{a+b}.
 \end{equation}
-\end{pr3}
+\end{proof}
 
 \item \textit{Unitary matrix}: the matrix $ \mathbf{F}^a $ is unitary, i.~e.
 \begin{equation}
@@ -339,8 +274,7 @@ but, since $ \mathbf{\Gamma} $ is a diagonal matrix, $ \mathbf{\Gamma}^a \mathbf
 in which $ (\cdot)^H $ denotes the Hermitian (conjugate transpose) operator.
 %\footnote{The \textit{quaternion} conjugation is considered, i.~e. se $ q = a + b\qi + c\qj + d\qk = r \exp (\qmu \theta) $, ent\~ao seu conjugado \'e $ \bar{q} = a - b\qi - c\qj - d\qk = r \exp (-\qmu \theta) $}
 
-\newproof{pr4}{Proof}
-\begin{pr4}
+\begin{proof}
 Since all FrQDFT eigenvalues $ \gamma_n $ are fourth roots of unity in the 1-$\qmu $ plane (i.~e. $ \gamma_n = \pm 1, \pm \qmu $ and, therefore, it has unit module), they can be written as $ \gamma_n = \exp \qmu \theta $ (in which $ \theta = 0, \pm \frac{\pi}{2}, \pi $). Hence
 % ent\~ao podem ser escritos na forma $ \gamma_n = \exp \qmu \theta $ (em que $ \theta = 0, \pm \frac{\pi}{2}, \pi $). Assim,
 \begin{equation}
@@ -370,11 +304,10 @@ and, following the index additivity and the reduction to identity properties,
 \mathbf{F}^a (\mathbf{F}^a)^H = \mathbf{F}^a \mathbf{F}^{-a} = \mathbf{F}^0= \mathbb{I}.
 \end{aligned}
 \end{equation}
-\end{pr4}
+\end{proof}
 \end{itemize}
 
-\modification{Before proceeding, it matters to notice that other approaches have been used to define fractional transforms, specially suited for image encryption. Lima \textit{et al.} \cite{figueiredo2018} applied the generating matrix method to obtain eigenvectors --- in a fashion similar to this work --- and define multiorder reality-preserving discrete fractional transforms. Roopkumar \cite{roopkumar2016quaternionic}, on the other hand, defined a {continuous} one-dimensional quaternion fractional Fourier transform by using a reasoning similar to the symplectic decomposition of quaternions: adding together two traditional fractional Fourier operators with certain imaginary unit, with one of them multiplied by an orthogonal pure quaternion. None of the approaches, to the best of the authors knowledge, made use of eigenstructure analysis to define the FrQDFT and prove some of its properties.
-}
+Before proceeding, it matters to notice that other approaches have been used to define fractional transforms, specially suited for image encryption. Lima \textit{et al.} \cite{figueiredo2018} applied the generating matrix method to obtain eigenvectors --- in a fashion similar to this work --- and define multiorder reality-preserving discrete fractional transforms. Roopkumar \cite{roopkumar2016quaternionic}, on the other hand, defined a {continuous} one-dimensional quaternion fractional Fourier transform by using a reasoning similar to the symplectic decomposition of quaternions: adding together two traditional fractional Fourier operators with certain imaginary unit, with one of them multiplied by an orthogonal pure quaternion. None of the approaches, to the best of the authors knowledge, made use of eigenstructure analysis to define the FrQDFT and prove some of its properties.
 
 \section{The Multiple-parameter FrQDFT with Application to Color Image Encryption}
 \label{sec:multi}
@@ -454,9 +387,9 @@ s_{n+1} =
 \gamma(1 - s_n) & \text{if } 0{.}5 \leq s_0 \leq 1.
 \end{cases}
 \end{equation}
-with \modification{$0 <  \gamma \leq 2 $}.
+with $0 <  \gamma \leq 2 $.
 
-The tent map parameters were set to $ s_0 = 0{.}3 $ and $ \gamma = 1{.}8 $\modification{, for no particular reason other than obeying the range of values for chaotic behaviour}. The proposed encryption algorithm was used on the image in Fig. \ref{fig:dice}, what yielded the ciphered output in Fig. \ref{fig:ciphered01}.
+The tent map parameters were set to $ s_0 = 0{.}3 $ and $ \gamma = 1{.}8 $, for no particular reason other than obeying the range of values for chaotic behaviour. The proposed encryption algorithm was used on the image in Fig. \ref{fig:dice}, what yielded the ciphered output in Fig. \ref{fig:ciphered01}.
 
 In order to evaluate the key space dimension, the ciphered image was decrypted using keys $ \widetilde{s_0} = s_0 \pm \epsilon $ for different values of $ \epsilon \in [-10 \times 10^{-80}; 10 \times 10^{-80}]$, with the aid of multiple precision tools provided by the \textit{RealField} class in the SageMath software. By the end of each decryption, it was computed the MSE between the supposedly recovered image and the original one, what is plotted in Fig. \ref{fig:MSE}. The graph does not change smoothly because each tweak in $ s_0 $ propagates along the whole sequence $ \mathbf{s} $, what affects randomly all the decryption parameters. This is, of course, consequence of the nature of a chaotic map. As shown in the graph, the smallest MSE (still using wrong keys, with $ \epsilon \neq 0 $) was 39dB, obtained with $ \epsilon = -1{,}6 \times 10^{-80} $.
 
@@ -471,7 +404,7 @@ what means the key length must be
 %\label{key}
 \lceil 79 \log_2 10 \rceil = 263\text{ bits},
 \end{equation}
-a value greater than 256 bits, assumed to be appropriate for symmetric encryption schemes, by information security reports such as ECRYPT \cite{smart2018algorithms}. \modification{It is also clear from these computations and Fig. \ref{fig:ciphered03} how sensitive the scheme is to small key changes: the smallest modification within the precision of $ 10^{-80} $ in the seed $ s_0 $ was enough to provide a completely noisy decrypted image (cf. Fig. \ref{fig:ciphered03}). The high key sensitivity is also indicated by the sharp dip in the MSE $\times $ Error graph in Fig. \ref{fig:MSE}.}
+a value greater than 256 bits, assumed to be appropriate for symmetric encryption schemes, by information security reports such as ECRYPT \cite{smart2018algorithms}. It is also clear from these computations and Fig. \ref{fig:ciphered03} how sensitive the scheme is to small key changes: the smallest modification within the precision of $ 10^{-80} $ in the seed $ s_0 $ was enough to provide a completely noisy decrypted image (cf. Fig. \ref{fig:ciphered03}). The high key sensitivity is also indicated by the sharp dip in the MSE $\times $ Error graph in Fig. \ref{fig:MSE}.
 %, \'e um tamanho de chaves apropriado para manter sistemas de cifra sim\'etrica em uso por um per\'iodo estimado de 30 a 50 anos.
 %.
 %
@@ -485,7 +418,6 @@ a value greater than 256 bits, assumed to be appropriate for symmetric encryptio
 \end{figure}
 %
 
-\modification{
 Such an encryption scheme would not only be safe against brute-force attacks, given its key space dimension, but also known-plaintext attack. The reason for this is the non-linearity provided by the random-power block, as argued intensely by Hsue \cite{hsue2018enhancing}. Resistance to chosen-plaintext attacks, however, is not guaranteed, although simple adjustments could be done in future works to address this problem: the vector of fractional orders $ \mathbf{a} = \{ a_0, a_1, \dots, a_{N-1} \} $ could be made dependent on both the plain image and external parameters (such as the secret seed $ s_0 $). Such tweak in the algorithm would block the extraction of information from comparing chosen plain images with their encrypted counterparts \cite{chai2019color, hu2017chaotic, murugan2016image}, making the scheme resistant to chosen-plaintext and chosen-ciphertext attacks \cite{wang2012novel}; with resistance also to the weaker attacks of brute-force and known-plaintext.
 
 Alongside the investigation of key space dimension and sensitivity, histogram analysis play an important role in describing the performance of encryption schemes. A practical cipher should present an output symbol distribution ideally independent from the cleartext, so that no information is leaked through histogram visualization  \cite{zhang2014symmetric}.
@@ -502,7 +434,6 @@ In the case of a PNG image, four histograms are drawn, one for each layer. Fig. 
 %Histogram analysis: point out that the conversion from float to int, used prior to histogram-making, did not incur in information loss, because the MSE between the original image and the decrypted, AFTER CONVERSION, was
 %MSE:  7.380345314385882e-25
 %MSEint:  7.380345314385882e-25
-}
 
 
 \newcommand{\constlength}{0.33}
@@ -560,15 +491,13 @@ In the case of a PNG image, four histograms are drawn, one for each layer. Fig. 
 \label{fig:allhistograms}
 \end{figure}
 
-\modification{
 Finally, as stated at the beginning of the paper, there are a multitude of studies on image encryption, each addressing particular aspects and problems. Therefore, it is adequate to acknowledge the position of this proposed encryption algorithm in the literature landscape. Without providing an extensive and complete analysis, for lack of space, some remarks can be done. The key space dimension in related works vary from circa $ 10^{54} $, around 160 bits, in a work by Wang \textit{et al.} with flexible key space \cite{wang2015novel}, to more than 400 bits, in a paper by Zhang \textit{et al.} \cite{zhang2015new}, an interval which includes the 260 bits of the proposed algorithm. Regarding time of encryption, Wang \textit{et al.} \cite{wang2015novelchaotic} used Arnold cat map and dynamic random growth to obtain large running speed of the encryption and decryption algorithm. This is an aspect our proposed scheme is not optimized for, although great improvement in processing time can be achieved if the eigenvector and eigenvalue matrices of the QDFT are stored in the memory, taking the eigendecomposition out of the encryption process. As a final comment, the main advantages of the scheme proposed in this paper are its modularization, the holistic processing of color images with opacity layer, the lack of long iterations and the ease to describe, comprehend and implement.
-}
 
 \section{Conclusions}
 \label{sec:conclusao}
 This paper investigated the eigenstructure of the quaternion discrete Fourier transform. Although quaternion matrix decomposition is a challenging topic, the problem for the QDFT was solved by proving that this transform and the DFT share symmetric eigenvectors, what allowed for the construction of an orthogonal eigenbasis of the QDFT, using Hermite--Gaussian-like DFT eigenvectors \cite{de2017discrete}. This result led to the definition of a fractional QDFT, which was proven to hold properties similar to those of the FrDFT, its complex-valued counterpart.
 
-The FrQDFT was further generalized by introducing the MFrQDFT, a multiple-parameter version. Exploring the 4D nature of quaternions, a holistic encryption scheme for color images with opacity layer was proposed, as an illustrative application of the 2D-MFrQDFT, \modification{and shown to provide satisfactorily large key space and key sensitivity, resistance to known-plaintext attack and ease of description and implementation}. \modification{Future works could possibly expand this analysis and address whether some hypercomplex image moments, such as ternary radial harmonic Fourier moments and quaternion polar harmonic \cite{wang2019ternary,wang2018quaternion}, could be used for image encryption, eventually in specific scenarios and applications.}
+The FrQDFT was further generalized by introducing the MFrQDFT, a multiple-parameter version. Exploring the 4D nature of quaternions, a holistic encryption scheme for color images with opacity layer was proposed, as an illustrative application of the 2D-MFrQDFT, and shown to provide satisfactorily large key space and key sensitivity, resistance to known-plaintext attack and ease of description and implementation. Future works could possibly expand this analysis and address whether some hypercomplex image moments, such as ternary radial harmonic Fourier moments and quaternion polar harmonic \cite{wang2019ternary,wang2018quaternion}, could be used for image encryption, eventually in specific scenarios and applications.
 
 \section{Acknowledgments}
 This work has been supported by CNPq (309598/2017-6, 409543/2018-7) and CAPES.
@@ -577,9 +506,9 @@ This work has been supported by CNPq (309598/2017-6, 409543/2018-7) and CAPES.
 \section*{Appendix}
 %\subsection{Brief introduction to the quaternion algebra}
 
-The quaternions form an associative division ring invented by William Hamilton in \modification{1843} \cite{hamilton1848xi}, as the first non-commutative algebra in history. It consists of the set  $ \mathbb{H} $ of numbers $ q = a + b \qi + c \qj + d \qk $, with $ a,b,c,d \in \mathbb{R} $ and $ \qi^2 = \qj^2 = \qk^2 = -1 $, along with usual multiplication and addition. The product between imaginary units $ \qi,\qj,\qk $, however, follow the rule in Fig. \ref{fig:quatmult}, e.~g. $ \qk \qi = \qj $ and $ \qk \qj = -\qi $. As a result, quaternion multiplication is non-commutative.
+The quaternions form an associative division ring invented by William Hamilton in 1843 \cite{hamilton1848xi}, as the first non-commutative algebra in history. It consists of the set  $ \mathbb{H} $ of numbers $ q = a + b \qi + c \qj + d \qk $, with $ a,b,c,d \in \mathbb{R} $ and $ \qi^2 = \qj^2 = \qk^2 = -1 $, along with usual multiplication and addition. The product between imaginary units $ \qi,\qj,\qk $, however, follow the rule in Fig. \ref{fig:quatmult}, e.~g. $ \qk \qi = \qj $ and $ \qk \qj = -\qi $. As a result, quaternion multiplication is non-commutative.
 
-The real and vector parts of a quaternion $ q = a + b \qi + c \qj + d \qk $ are defined as $ {\cal S}(q) = a $ and $ {\cal V}(q) = b \qi + c \qj + d \qk $. A quaternion $ v $ is said to be \textit{pure} if and only if $ {\cal S}(v) = 0 $; it is a \textit{unit quaternion} whenever $ |v| \overset{\Delta}{=} \sqrt{a^2 + b^2 + c^2 + d^2} = 1 $. The conjugation of $ q $ is $ \bar{q} \overset{\Delta}{=} {\cal S}(q) - {\cal V}(q) $. There is an Euler form for quaternions, similar to the known complex case, given by
+The real and vector parts of a quaternion $ q = a + b \qi + c \qj + d \qk $ are defined as $ \mathcal{S}(q) = a $ and $ \mathcal{V}(q) = b \qi + c \qj + d \qk $. A quaternion $ v $ is said to be \textit{pure} if and only if $ \mathcal{S}(v) = 0 $; it is a \textit{unit quaternion} whenever $ |v| \overset{\Delta}{=} \sqrt{a^2 + b^2 + c^2 + d^2} = 1 $. The conjugation of $ q $ is $ \bar{q} \overset{\Delta}{=} \mathcal{S}(q) - \mathcal{V}(q) $. There is an Euler form for quaternions, similar to the known complex case, given by
 \begin{equation}
 \label{eq:euler}
 q = |q| e^{\qmu \theta} = |q|\cos \theta + |q|\qmu \sin \theta,

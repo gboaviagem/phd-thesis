@@ -8,6 +8,9 @@
 %% This declares a command \Comment
 %% The argument will be surrounded by /* ... */
 \SetKwComment{Comment}{/* }{ */}
+\usepackage{cancel} % Use \usepackage[thicklines]{cancel} for thicker strokes
+\definecolor{cancelgray}{gray}{0.5}
+\renewcommand{\CancelColor}{\color{cancelgray}}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{example}{Example}
