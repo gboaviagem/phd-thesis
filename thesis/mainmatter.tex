@@ -67,14 +67,14 @@ Somente em 1843, enquanto caminhava em dire\c c\~ao \`a RIA, Hamilton subitament
 Nas se\c c\~oes a seguir ser\~ao apresentadas as bases para compreens\~ao do trabalho desenvolvido no cap\'itulo \ref{ch:FrQDFT} e a proposta de estudo iniciada no cap\'itulo \ref{ch:QGSP}. Trata-se de fundamentos da \'algebra e do processamento de sinais sobre os quat\'ernios e, na \'ultima se\c c\~ao, de uma introdu\c c\~ao ao processamento de sinais sobre grafos.
 
 
-\section{\'Algebra dos quat\'ernios}
+\section{Introduction to the quaternion algebra}
 
-Quat\'ernios s\~ao n\'umeros $q \in \mathbb{H}$ da forma
+Quaternions are numbers $q \in \mathbb{H}$ in the form
 \begin{equation}
 q = a + b\qi + c\qj + d\qk,
 \label{eq:q}
 \end{equation}
-em que $a, b, c, d \in \mathbb{R}$ e valem as rela\c c\~oes fundamentais
+in which $a, b, c, d \in \mathbb{R}$ and the fundamental relations hold:
 \begin{equation}
 \label{eq:fund_rel}
 \begin{aligned}
@@ -243,6 +243,284 @@ Dois quat\'ernios $ q $ e $ r $ s\~ao ditos \emph{similares} se existe um quat\'
 \phi_v(x) = v x v^{-1}
 \end{equation}
 produz a rota\c c\~ao da parte vetorial (imagin\'aria) de $ x $ em torno do eixo $ \qmu $ (que tem a mesma dire\c c\~ao da parte vetorial de $ v $) de um \^angulo $ 2\alpha $ \cite{ward2012quaternions}, seguindo a regra da m\~ao direita.
+
+
+\section{On the theory of quaternion matrices}
+
+When analyzing the eigenstructure and subsequent fractionarization of the QDFT matrix, the eigendecomposition of the DFT and the eigenvector sharing served as a convenient shortcut. In order to build the results in QGSP, however, it is required to dive into more general properties of quaternion matrices. The symplectic decomposition, already presented in (\ref{eq:decomposicao}), plays an important role in that matter, specialy for its use in defining the complex\textit{ adjoint matrix}.
+
+\begin{definition}[Complex adjoint matrix \cite{zhang1997quaternions}]
+Given $ \mathbf{A} \in \mathbb{H}^{n \times n} $, with symplectic decomposition $ \mathbf{A}_1 + \mathbf{A}_2 \qj$, $ \mathbf{A}_1,\mathbf{A}_2 \in \mathbb{C}^{n \times n} $, its complex adjoint matrix is defined as
+\begin{equation}
+\rchi_{A} \overset{\Delta}{=}
+\begin{pmatrix}
+\mathbf{A}_1 & \mathbf{A}_2\\ 
+- \overline{\mathbf{A}}_2 & \overline{\mathbf{A}}_1
+\end{pmatrix}.
+\end{equation}
+\end{definition}
+
+In the following theorems, Zhang brings fundamental results for building QGSP.
+
+\begin{theorem}[Part of Theorem 4.2 in
+\cite{zhang1997quaternions}
+]
+\label{th:equiv01}
+Given the matrix $ \mathbf{A} \in \mathbb{H}^{n \times n} $, the following sentences are equivalent:
+
+\begin{itemize}[noitemsep]
+\item $ \rchi_{AB} = \rchi_{A} \rchi_{B} $,
+\item $ \rchi_{A^{-1}} = \rchi_{A}^{-1}$, if $ \mathbf{A}^{-1} $ exists,
+\item $ \rchi_{A}$ is unitary, hermitian or normal if and only if so is $ \mathbf{A} $.
+\end{itemize}
+
+\end{theorem}
+
+\begin{theorem}[Part of Theorem 4.3 in
+\cite{zhang1997quaternions}
+]
+\label{th:equiv02}
+Given the matrix $ \mathbf{A} \in \mathbb{H}^{n \times n} $, the following sentences are equivalent:
+
+\begin{itemize}[noitemsep]
+\item $\mathbf{A}$ is invertible.
+\item $\mathrm{det}(\rchi_A) \neq 0$, i.e. $\rchi_{A}$ is invertible.
+\end{itemize}
+
+\end{theorem}
+
+
+% Em \cite[Teoremas 4.2 e 4.3]{zhang1997quaternions}, Zhang traz alguns resultados interessantes da literatura a respeito de $ X_A $, dos quais cabe mencionar:
+% \begin{itemize}[noitemsep]
+% \item $ \rchi_{AB} = \rchi_{A} \rchi_{B} $,
+% \item $ \rchi_{A^{-1}} = \rchi_{A}^{-1}$, se $ \mathbf{A}^{-1} $ existir,
+% \item $ \rchi_{A}$ \'e unit\'aria, hermitiana ou normal se e somente se $ \mathbf{A} $ tamb\'em o for.
+% \end{itemize}
+
+A matriz complexa adjunta serve como uma representa\c c\~ao complexa da matriz quaterni\^onica e, diferente de outras representa\c c\~oes matriciais em $ \mathbb{C} $ ou $ \mathbb{R} $, esta permite estabelecer um v\'inculo entre o espectro de $ \rchi_{A} $ e o de $ \mathbf{A} $, como ser\'a discutido adiante.
+
+\subsection{Autovalores}
+
+Uma vez que a multiplica\c c\~ao sobre os quat\'ernios n\~ao \'e comutativa, faz-se necess\'ario distinguir os \emph{autovalores \`a esquerda} e os \emph{autovalores \`a direita} de uma matriz $ \mathbf{A} \in \mathbb{H}^{n \times n} $,
+\begin{align*}
+\mathbf{A} \mathbf{v} &= \mathbf{v} \lambda, \tag{autovalor \`a direita} \\
+\mathbf{A} \mathbf{v} &= \lambda \mathbf{v}.  \tag{autovalor \`a esquerda}
+\end{align*}
+
+Uma vez que o problema dos autovalores \`a direita foi mais compreendido do que daqueles \`a esquerda, e possui mais resultados \cite[Cap. 5]{zhang1997quaternions}, restringiremos a an\'alise aos autovalores \`a direita. Quando n\~ao for mencionado, estes ser\~ao chamados apenas de \emph{autovalores} da matriz quaterni\^onica.
+
+\'E importante mencionar que uma matriz quaterni\^onica possui um n\'umero \emph{finito} de autovalores se, e somente se, s\~ao todos reais. Do contr\'ario, cada autovalor pertence a uma classe de similaridade, segundo a transforma\c c\~ao $ \lambda_1 = q^{-1} \lambda_2 q $, contendo \emph{infinitos} outros quat\'ernios que tamb\'em s\~ao autovalores da matriz. Seja, por exemplo, o autovalor $ \lambda $ da matriz $ \mathbf{A} $, associado ao autovetor $ \mathbf{v} $. Ent\~ao,
+\begin{equation}
+\begin{aligned}
+\label{eq:similar}
+\mathbf{A} \mathbf{v} &= \mathbf{v} \lambda \\
+\mathbf{A} \mathbf{v} q &= \mathbf{v} \lambda q = \mathbf{v} q q^{-1} \lambda q \\
+\mathbf{A} (\mathbf{v} q) &= (\mathbf{v} q) q^{-1} \lambda q,
+\end{aligned}
+\end{equation}
+de modo que $ q^{-1} \lambda q $ \'e um autovalor associado ao autovetor $ \mathbf{v}q $, com $ q \in \mathbb{H}^\ast $.
+
+\subsection{Rotacionando autovalores}
+\label{subsec:rotacionando}
+
+Pretende-se aplicar a diagonaliza\c c\~ao de matrizes quaterni\^onicas no contexto da an\'alise espectral do operador de deslocamento sobre um grafo com pesos quaterni\^onicos. Neste caso, os seus autovalores poder\~ao ser interpretados como frequ\^encias. O problema do ordenamento destas frequ\^encias, bem definido para o caso de matrizes laplacianas ou de adjac\^encia reais, pode-se mostrar desafiador ao lidar com autovalores quaterni\^onicos\footnote{Mesmo ao se utilizar o racioc\'inio do teorema \ref{th:02}, da subse\c c\~ao \ref{subsec:autovetores_XA}, em que os autovalores s\~ao obtidos diretamente com valores complexos, \'e poss\'ivel que, em alguns problemas, tenha-se em m\~aos os autovalores quaterni\^onicos, caso em que o procedimento aqui descrito \'e \'util. De toda forma, a rota\c c\~ao de autovalores \'e uma ferramenta valiosa, sendo utilizada, por exemplo, na demonstra\c c\~ao do teorema \ref{th:02}.}.
+Uma hip\'otese a se analisar \'e que este ordenamento seja facilitado ao se encontrar, para cada autoclasse, o respectivo autovalor \emph{complexo}. Como feito em \cite[Eq. (4.8)]{de2002quaternioic}, trata-se de transformar a equa\c c\~ao de autovetor quaterni\^onica em outra equivalente, com autovalor complexo, a partir da rota\c c\~ao da parte imagin\'aria (\emph{rephasing}) de cada autovalor no espa\c co $ \qi, \qj, \qk $ at\'e alinh\'a-la com $ \qi $. Em suma, utilizando a propriedade de rota\c c\~ao no espa\c co $ \qV (\mathbb{H}) $ em (\ref{eq:rotacao}), parte-se de
+\begin{equation}
+\label{eq:01}
+\mathbf{A} \mathbf{v} = \mathbf{v} \lambda
+\end{equation}
+para chegar em
+\begin{equation}
+\label{eq:02}
+\mathbf{A} (\mathbf{v} q) = (\mathbf{v} q) q^{-1} \lambda q,
+\end{equation}
+com a restri\c c\~ao $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $.
+
+\begin{quotation}
+\begin{example}
+	\upshape
+	Consideremos, por exemplo, um caso em que $ \lambda = 3\qi + \qk $ e $ \mathbf{v} $ tem comprimento $ n=2 $,
+	\begin{equation}
+	%\label{key}
+	\mathbf{v} =\begin{pmatrix}
+	1 +  \qi\\
+	2 \qj + \qk
+	\end{pmatrix}.
+	\end{equation}
+	
+	A matriz quaterni\^onica $ \mathbf{A} $ que satisfaz
+	\begin{equation}
+	\label{eq:03}
+	\mathbf{A} \mathbf{v} = \mathbf{v} \lambda,
+	\end{equation}
+	com a restri\c c\~ao arbitr\'aria de possuir a primeira coluna igual a $ (1 \quad 1)^T $ \'e
+	\begin{equation}
+	%\label{key}
+	\mathbf{A} =
+	\begin{pmatrix}
+	1 & - \frac{1}{5} + \frac{3}{5} \qi + 2 \qj \\
+	1 & -3 \qi + \qj
+	\end{pmatrix}.
+	\end{equation}
+	
+	De posse das vari\'aveis da equa\c c\~ao (\ref{eq:01}), pode-se partir para ilustrar o procedimento de \emph{rephasing}, ou rota\c c\~ao da parte imagin\'aria, descrito em (\ref{eq:02}). A ideia \'e utilizar um quat\'ernio unit\'ario para rotacionar $ \lambda $ no espa\c co quaterni\^onico e, neste exemplo particular, rotacion\'a-lo no plano $ \qi \qk $ por um \^angulo $ \theta = \tan^{-1} \frac{1}{3} $ radianos em dire\c c\~ao ao eixo $ \qi $. Como ilustrado na Fig. \ref{fig:quat3ik}, o resultado esperado \'e um n\'umero $ z \in \mathbb{C}_{\qi} $.
+	
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.3\linewidth]{Figures/quaternion01.pdf}
+		\caption{Representa\c c\~ao de $ \lambda = 3\qi + \qk $ no plano $ \qi \qk $.}
+		\label{fig:quat3ik}
+	\end{figure}
+	
+%	Utilizaremos a propriedade de rota\c c\~ao da parte vetorial de quat\'ernios, em (\ref{eq:rotacao}).
+	Uma vez que o plano $ \qi \qk $ \'e ortogonal a $ \qj $ (lembrando que os tr\^es eixos s\~ao orientados positivamente), a rota\c c\~ao desejada neste plano, positivamente orientada em torno de $ \qj $ e obtida por inspe\c c\~ao da Fig. \ref{fig:quat3ik}, \'e realizada pelo quat\'ernio
+	\begin{equation}
+	\label{eq:04}
+	v = e^{\qj \alpha}, \quad 2\alpha = \theta = \tan^{-1} \frac{1}{3},
+	\end{equation}
+	utilizando o mapeamento $ \lambda \mapsto v \lambda v^{-1} $ em (\ref{eq:rotacao}).
+	
+	Uma vez que a transforma\c c\~ao desejada \'e $ \lambda \mapsto q^{-1} \lambda q $, ent\~ao
+	\begin{equation}
+	%\label{key}
+	q = v^{-1} = e^{- \qj \alpha} = e^{- \qj \frac{\theta}{2}}.
+	\end{equation}
+	
+	%It is a known property that ({\color{red}(retirado do artigo ``quat\'ernio rotation intuition'' do math.stack\-exchange, buscar melhor fonte!)}) ``if $ v = e^{\qmu \alpha} = \cos \alpha + \qmu \sin \alpha$, then the mapping $ x \mapsto v x v^{-1} $ will rotate purely imaginary quat\'ernios around the axis $ \mathbb{R} \qmu $ by the angle $ 2\alpha $ according to the right-hand rule''.
+	
+	Como forma de confer\^encia, encontremos o valor de $ \alpha $ que resulta em $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $. Como $ v = q^{-1} = \cos \alpha + \qj \sin \alpha $,
+	\begin{equation}
+	%\label{key}
+	\begin{aligned}
+	%\label{key}
+	q^{-1} \lambda &= (\cos \alpha + \qj \sin \alpha)(3 \qi + \qk)\\
+	&= \qi(3 \cos \alpha + \sin \alpha) + \qk(\cos \alpha - 3 \sin \alpha). \\
+	q^{-1} \lambda q &= [\qi(3 \cos \alpha + \sin \alpha) + \qk(\cos \alpha - 3 \sin \alpha)] (\cos \alpha - \qj \sin \alpha) \\
+	&= \qi (3 \cos 2\alpha + \sin 2\alpha) + \qk(\cos 2\alpha - 3 \sin 2\alpha).
+	\end{aligned}
+	\end{equation}
+	
+	Portanto, $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $ se e somente se
+	\begin{equation}
+	%\label{key}
+	\begin{aligned}\textbf{}
+	\cos 2\alpha - 3 \sin 2\alpha &= 0 \\
+	2\alpha &= \tan^{-1} \frac{1}{3},
+	\end{aligned}
+	\end{equation}
+	como inferido em (\ref{eq:04}).
+	
+Assim, o quat\'ernio puro unit\'ario $ q = e^{- \qj \alpha} $, $ \alpha = - \displaystyle \nicefrac{1}{2} \tan^{-1} \nicefrac{1}{3} $, \'e capaz de fazer $ q^{-1} \lambda q \in \mathbb{C}_{\qi}$, de modo que a equa\c c\~ao de autovalor em (\ref{eq:03}) pode ser reescrita como em (\ref{eq:02}),
+	\begin{equation}
+	%\label{key}
+	\mathbf{A} \underbrace{\begin{pmatrix}
+		cos \alpha + \qi \sin \alpha - \qj \sin \alpha - \qk \sin \alpha \\
+		2 \sin \alpha + \qi \sin \alpha + \qj 2 \cos \alpha + \qk \cos \alpha
+		\end{pmatrix}}_{= \mathbf{v} q} =
+	(\mathbf{v} q) \cdot \underbrace{\qi (3 \cos 2\alpha + \sin 2\alpha)}_{= q^{-1} \lambda q}.
+	%\underbrace{3.162 \qi}_{= \bar{u} q u}.
+	\end{equation}
+\end{example}
+\end{quotation}
+
+\subsection{Diagonalizabilidade}
+\label{subsec:autovetores_XA}
+
+Quanto ao problema de determinar se uma matriz quaterni\^onica \'e \emph{diagonaliz\'avel}, h\'a que se observar que, diferentemente do caso complexo, ter todos os autovalores distintos n\~ao \'e condi\c c\~ao suficiente para diagonalizabilidade. Tomemos o contra-exemplo dado por Zhang \cite[Exemplo 7.4]{zhang1997quaternions}, a matriz
+\begin{equation}
+\mathbf{A} =
+\begin{pmatrix}
+\qi & 1\\ 
+0 & \qj
+\end{pmatrix}.
+\end{equation}
+
+Embora possua autovalores distintos -- $ \qi $ e $ \qj $, pois s\~ao as entradas diagonais de uma matriz triangular --, os respectivos autovetores da matriz $ \mathbf{A} $ n\~ao formam um conjunto linearmente independente. Pode-se verificar, por exemplo, que um autovetor associado a $ \qi $ \'e $ (1, 0)^T $, enquanto um associado a $ \qj $ \'e $ (\qi + \qj, 0)^T $. A raz\~ao deles serem linearmente dependentes \'e o fato, mencionado anteriormente, de que para todo autovalor e autovetor $ \lambda $ e $ \mathbf{v} $ de uma matriz quaterni\^onica, tem-se $ q^{-1}\lambda q $ e $ \mathbf{v}q $ como outros autovalor e autovetor, com $ q \in \mathbb{H}^\ast $. Ou seja, dois autovalores \emph{similares} est\~ao sempre associados aos mesmos autovetores, a menos de um fator de escala. Por isso, quat\'ernios similares s\~ao ditos pertencentes \`a mesma \emph{autoclasse} \cite{de2000right}. Para que o conjunto de autovetores associados aos autovalores distintos de uma matriz quaterni\^onica sejam linearmente independentes, portanto, estes autovalores \textbf{n\~ao} podem ser similares.  Concluindo o exemplo dado, pode-se mostrar que $ \qi $ e $ \qj $ s\~ao similares: $ \qj = q \qi q^{-1} $, para $ q \in \{ a - a\qi - a\qj + a\qk \ | \ a\in \mathbb{R}^\ast \} $.
+
+O teorema \ref{th:02} relaciona a autodecomposi\c c\~ao de uma matriz e de sua complexa adjunta, fornecendo um princ\'ipio \'util para o estudo da autoestrutura de matrizes quaterni\^onicas.
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.6\linewidth]{Figures/complex_adjoint_eigvals_PT.pdf}
+\caption{\emph{Autovalores padrão} de uma matriz $ \mathbf{A} $ quaterni\^onica, indicados como um subconjunto dos autovalores de sua respectiva matriz complexa adjunta.}
+\end{figure}
+
+
+\begin{theorem}[\cite{zhang1997quaternions}]
+\label{th:02}
+Toda matriz $ A \in \mathbb{H}^{n \times n} $ tem exatamente $ n $ autovalores complexos
+%(\`a direita),
+%que s\~ao iguais aos autovalores de $ \rchi_A $, sua complexa adjunta,
+com parte imagin\'aria n\~ao-negativa. Estes s\~ao ditos os \emph{autovalores padr\~ao} de $ \mathbf{A} $ e s\~ao um subconjunto dos $ 2n $ autovalores de $ \rchi_A $.
+\end{theorem}
+
+\begin{proof}
+Como demonstrado no ap\^endice \ref{ch:AppendixA}, a partir da equa\c c\~ao de autovalor quaterni\^onica
+\begin{equation}
+\mathbf{A} \mathbf{v} = \mathbf{v} \lambda
+\end{equation}
+em que se pode assumir, sem perda de generalidade, que $ \lambda \in \mathbb{C} $, pode-se chegar \`a equa\c c\~ao equivalente
+\begin{equation}
+\begin{pmatrix}
+\mathbf{A}_1 & \mathbf{A}_2\\ 
+- \overline{\mathbf{A}}_2 & \overline{\mathbf{A}}_1
+\end{pmatrix}
+\begin{pmatrix}
+\mathbf{v}_1 \\ 
+- \overline{\mathbf{v}}_2
+\end{pmatrix} =
+\begin{pmatrix}
+\mathbf{v}_1 \\ 
+- \overline{\mathbf{v}}_2
+\end{pmatrix}
+\lambda,
+\end{equation}
+envolvendo apenas vari\'aveis complexas (i.~e. as componentes da decomposi\c c\~ao de simpl\'etica de $ \mathbf{A} $ e $ \mathbf{v} $). Uma vez que
+\begin{equation}
+\rchi_A = 
+\begin{pmatrix}
+\mathbf{A}_1 & \mathbf{A}_2\\ 
+- \overline{\mathbf{A}}_2 & \overline{\mathbf{A}}_1
+\end{pmatrix}
+\end{equation}
+\'e uma matriz complexa $ 2n \times 2n $, ela possui $ 2n $ autovalores complexos (distintos ou não). Segundo \cite[Teorema 5]{lee1948eigenvalues}, seus autovalores ocorrem na forma de $ n $ pares conjugados e, por isso, a matriz $ \mathbf{A} $ possui exatamente $ n $ autovalores complexos com parte imagin\'aria n\~ao-negativa.
+
+Os demais autovalores s\~ao redundantes. Seja $ q \in \mathbb{C}_{\qi}$ um destes autovalores. Podemos mostrar que $ q \sim \overline{q} $, pois obt\'em-se $ \overline{q} $ atrav\'es de uma rota\c c\~ao da parte imagin\'aria de $ q $ de 180$ ^\circ $ em torno do eixo $ \qj $. Utilizando o racioc\'inio exposto na subse\c c\~ao \ref{subsec:rotacionando}, com o quat\'ernio $ v = e^{\qj \frac{\pi}{2}} = \qj $ (logo $ v^{-1} = e^{- \qj \frac{\pi}{2}} = -\qj $) e o mapeamento $ q \mapsto v q v^{-1} $,
+\begin{equation}
+\begin{aligned}
+v q v^{-1} &= \qj (q_r + q_i \qi) (-\qj) = q_r - q_i \qj \qi \qj\\
+&= q_r + q_i \qi \qj \qj = q_r - q_i \qi = \overline{q}.
+\end{aligned}
+\end{equation}
+Como dois autovalores conjugados de $ \rchi_A $ s\~ao similares, eles pertencem \`a mesma autoclasse e apontam para o mesmo conjunto linearmente dependente de autovetores. Assim, pode-se tomar sempre aquele com parte imagin\'aria nula ou n\~ao-negativa, por conven\c c\~ao.
+\end{proof}
+
+O teorema a seguir \'e outro resultado fundamental relacionando a autoestrutura de uma matriz quaterni\^onica e a de sua complexa adjunta.
+
+\begin{theorem}[Teorema 7.4 em \cite{zhang1997quaternions}]
+\label{th:diagonal}
+Dadas as matrizes $ \mathbf{A}, \mathbf{B} \in \mathbb{H}^{n \times n} $, ent\~ao $ \mathbf{A} $ \'e similar a $ \mathbf{B} $ se, e somente se, $ X\rchi_A $ \'e similar a $ \rchi_B $.
+\end{theorem}
+
+\begin{corollary}
+Uma matriz $  \mathbf{A} \in \mathbb{H}^{n \times n} $ \'e diagonaliz\'avel se, e somente se, $ \rchi_A $ \'e diagonaliz\'avel.
+\end{corollary}
+\begin{proof}
+Se $ \mathbf{A} \in \mathbb{H}^{n \times n} $ \'e diagonaliz\'avel, ent\~ao \'e similar a uma matriz diagonal $ \Lambda \in \mathbb{C}^{n \times n}_{\qi} $ contendo seus autovalores padr\~ao. Do teorema \ref{th:diagonal}, segue que $ \rchi_A $ \'e similar a
+\begin{equation}
+\label{eq:Xlambda}
+\rchi_{\Lambda} =
+\begin{pmatrix}
+\Lambda & \mathbf{0}\\ 
+\mathbf{0} & \overline{\Lambda}
+\end{pmatrix},
+\end{equation}
+que tamb\'em \'e uma matriz diagonal. Portanto, $ \rchi_A $ \'e diagonaliz\'avel.
+
+Por outro lado, se $ \rchi_A $ \'e diagonaliz\'avel, ent\~ao \'e similar a uma matriz diagonal contendo os seus $ 2n $ autovalores, que aparecem em $ n $ pares complexos conjugados. Assim, sua matriz de autovalores pode ser escrita como (\ref{eq:Xlambda}), o que implica, pelo teorema \ref{th:diagonal}, que $ \mathbf{A} $ \'e similar a $ \Lambda $.
+\end{proof}
 
 \section{A transformada de Fourier quaterni\^onica}
 \label{sec:QFT}
@@ -543,28 +821,10 @@ de forma que, como foi feito $ \Vert \mathbf{v}_k \Vert_1 = 1 $, tem-se a equiva
 \end{equation}
 ou seja, componentes de frequ\^encia associadas a autovalores mais pr\'oximos do ponto $ |\lambda_{max}| $ no plano complexo s\~ao mais suaves e s\~ao, portanto, ditas de \emph{baixa frequ\^encia}. A Fig. \ref{fig:ordem_freq} ilustra esse ordenamento para as frequ\^encias de grafos, o que esclarece a leitura do espectro do sinal na Fig. \ref{fig:diff_struct_a_GSPA}, cuja matriz de adjac\^encia tem autovalores reais.
 
-%\begin{figure}
-%\centering
-%\includegraphics[width=0.35\linewidth]{Figures/showing_random_sensor_spectrum_directed_graph.pdf}
-%\caption{Grafo de sensores direcionado, com 100 v\'ertices, sem la\c cos ou m\'ultiplas arestas.}
-%\label{fig:directed_graph}
-%%	{\\ \small Fonte: o autor.}
-%\end{figure}
-%
-%\begin{figure}
-%\centering
-%\subfloat[]{
-%	\includegraphics[width=0.4\linewidth]{Figures/showing_random_sensor_spectrum_directed_zero_crossings_1D_edited.pdf}
-%}~
-%\subfloat[\label{fig:showing_random_sensor_spectrum_directed_b}]{
-%	\includegraphics[width=0.4\linewidth]{Figures/showing_random_sensor_spectrum_directed_TV_1D_edited.pdf}
-%}
-%\caption{(a) N\'umero de mudan\c cas de sinal e (b) varia\c c\~ao total dos autovetores $ (\mathbf{v}_i)_{i=0,\dots,N-1} $ da matriz $ \mathbf{A} $, ordenados de modo que os respectivos autovalores se disponham do mais pr\'oximo ao mais distante do ponto real $ |\lambda_{max}| $ no plano complexo.}
-%\label{fig:showing_random_sensor_spectrum_directed}
-%%	{\\ \small Fonte: o autor.}
-%\end{figure}
-%
-%Para verificar a consist\^encia desta no\c c\~ao de frequ\^encia, tomemos o grafo da Fig.~\ref{fig:directed_graph}. O n\'umero de mudan\c cas de sinal (n\'umero de arestas ligando v\'ertices com amostras de sinal distinto) e a varia\c c\~ao total $ TV_G $ de cada autovetor da matriz de adjac\^encia do grafo s\~ao mostrados na Fig.~\ref{fig:showing_random_sensor_spectrum_directed}. Ambas as m\'etricas visam quantificar a taxa de varia\c c\~ao de um sinal sobre o grafo, mas, uma vez que o n\'umero de mudan\c cas de sinal ignora as varia\c c\~oes que n\~ao cruzam o zero, a varia\c c\~ao total sobre grafos representa de forma mais fiel a medida de frequ\^encia em um sinal. A Fig.~\ref{fig:showing_random_sensor_spectrum_directed_b} mostra como $ TV_G(\mathbf{v}_k) $ cresce monotonicamente \`a medida que o respectivo autovalor de $ \mathbf{v}_k $, $ \lambda_k $, se afasta do ponto $ |\lambda_{max}| $ no plano complexo.
+
+
+\chapter{The fractional shift operator and its applications}
+\label{ch:fracGFT}
 
 
 \chapter[Fracionariza\c c\~ao da QDFT]{Fracionariza\c c\~ao da transformada discreta de Fourier quaterni\^onica}
@@ -1004,283 +1264,6 @@ The problem at hand, when applying GSP, will define the characteristics of the u
 
 As did Jiang et al. \cite{jiang2013frequency} when benefiting from using quaternion-valued adaptive filters to tackle the problem of wind profile prediction (3D signals of wind direction at each point in the Euclidian space), or Flamant et al. \cite{flamant2018complete} that created a framework for time-frequency analysis of bivariate signals using quaternions, the hypothesis of this thesis is that the study of GSP with quaternion values may reveal both theoretical and practical implications of great interest. Such generalization has the appeal to allow not only for the analysis of discrete-time three- or four-dimensional signals (as in quaternion discrete signal processing), but also for the exploration of interrelations that capture there higher dimensions (i.e. edge weights). The tools arising from the consequences of such investigation is from now on referred to as QGSP (quaternion graph signal processing).
 
-\section{On the theory of quaternion matrices}
-
-When analyzing the eigenstructure and subsequent fractionarization of the QDFT matrix, the eigendecomposition of the DFT and the eigenvector sharing served as a convenient shortcut. In order to build the results in QGSP, however, it is required to dive into more general properties of quaternion matrices. The symplectic decomposition, already presented in (\ref{eq:decomposicao}), plays an important role in that matter, specialy for its use in defining the complex\textit{ adjoint matrix}.
-
-\begin{definition}[Complex adjoint matrix \cite{zhang1997quaternions}]
-Given $ \mathbf{A} \in \mathbb{H}^{n \times n} $, with symplectic decomposition $ \mathbf{A}_1 + \mathbf{A}_2 \qj$, $ \mathbf{A}_1,\mathbf{A}_2 \in \mathbb{C}^{n \times n} $, its complex adjoint matrix is defined as
-\begin{equation}
-\rchi_{A} \overset{\Delta}{=}
-\begin{pmatrix}
-\mathbf{A}_1 & \mathbf{A}_2\\ 
-- \overline{\mathbf{A}}_2 & \overline{\mathbf{A}}_1
-\end{pmatrix}.
-\end{equation}
-\end{definition}
-
-In the following theorems, Zhang brings fundamental results for building QGSP.
-
-\begin{theorem}[Part of Theorem 4.2 in
-\cite{zhang1997quaternions}
-]
-\label{th:equiv01}
-Given the matrix $ \mathbf{A} \in \mathbb{H}^{n \times n} $, the following sentences are equivalent:
-
-\begin{itemize}[noitemsep]
-\item $ \rchi_{AB} = \rchi_{A} \rchi_{B} $,
-\item $ \rchi_{A^{-1}} = \rchi_{A}^{-1}$, if $ \mathbf{A}^{-1} $ exists,
-\item $ \rchi_{A}$ is unitary, hermitian or normal if and only if so is $ \mathbf{A} $.
-\end{itemize}
-
-\end{theorem}
-
-\begin{theorem}[Part of Theorem 4.3 in
-\cite{zhang1997quaternions}
-]
-\label{th:equiv02}
-Given the matrix $ \mathbf{A} \in \mathbb{H}^{n \times n} $, the following sentences are equivalent:
-
-\begin{itemize}[noitemsep]
-\item $\mathbf{A}$ is invertible.
-\item $\mathrm{det}(\rchi_A) \neq 0$, i.e. $\rchi_{A}$ is invertible.
-\end{itemize}
-
-\end{theorem}
-
-
-% Em \cite[Teoremas 4.2 e 4.3]{zhang1997quaternions}, Zhang traz alguns resultados interessantes da literatura a respeito de $ X_A $, dos quais cabe mencionar:
-% \begin{itemize}[noitemsep]
-% \item $ \rchi_{AB} = \rchi_{A} \rchi_{B} $,
-% \item $ \rchi_{A^{-1}} = \rchi_{A}^{-1}$, se $ \mathbf{A}^{-1} $ existir,
-% \item $ \rchi_{A}$ \'e unit\'aria, hermitiana ou normal se e somente se $ \mathbf{A} $ tamb\'em o for.
-% \end{itemize}
-
-A matriz complexa adjunta serve como uma representa\c c\~ao complexa da matriz quaterni\^onica e, diferente de outras representa\c c\~oes matriciais em $ \mathbb{C} $ ou $ \mathbb{R} $, esta permite estabelecer um v\'inculo entre o espectro de $ \rchi_{A} $ e o de $ \mathbf{A} $, como ser\'a discutido adiante.
-
-\subsection{Autovalores}
-
-Uma vez que a multiplica\c c\~ao sobre os quat\'ernios n\~ao \'e comutativa, faz-se necess\'ario distinguir os \emph{autovalores \`a esquerda} e os \emph{autovalores \`a direita} de uma matriz $ \mathbf{A} \in \mathbb{H}^{n \times n} $,
-\begin{align*}
-\mathbf{A} \mathbf{v} &= \mathbf{v} \lambda, \tag{autovalor \`a direita} \\
-\mathbf{A} \mathbf{v} &= \lambda \mathbf{v}.  \tag{autovalor \`a esquerda}
-\end{align*}
-
-Uma vez que o problema dos autovalores \`a direita foi mais compreendido do que daqueles \`a esquerda, e possui mais resultados \cite[Cap. 5]{zhang1997quaternions}, restringiremos a an\'alise aos autovalores \`a direita. Quando n\~ao for mencionado, estes ser\~ao chamados apenas de \emph{autovalores} da matriz quaterni\^onica.
-
-\'E importante mencionar que uma matriz quaterni\^onica possui um n\'umero \emph{finito} de autovalores se, e somente se, s\~ao todos reais. Do contr\'ario, cada autovalor pertence a uma classe de similaridade, segundo a transforma\c c\~ao $ \lambda_1 = q^{-1} \lambda_2 q $, contendo \emph{infinitos} outros quat\'ernios que tamb\'em s\~ao autovalores da matriz. Seja, por exemplo, o autovalor $ \lambda $ da matriz $ \mathbf{A} $, associado ao autovetor $ \mathbf{v} $. Ent\~ao,
-\begin{equation}
-\begin{aligned}
-\label{eq:similar}
-\mathbf{A} \mathbf{v} &= \mathbf{v} \lambda \\
-\mathbf{A} \mathbf{v} q &= \mathbf{v} \lambda q = \mathbf{v} q q^{-1} \lambda q \\
-\mathbf{A} (\mathbf{v} q) &= (\mathbf{v} q) q^{-1} \lambda q,
-\end{aligned}
-\end{equation}
-de modo que $ q^{-1} \lambda q $ \'e um autovalor associado ao autovetor $ \mathbf{v}q $, com $ q \in \mathbb{H}^\ast $.
-
-\subsection{Rotacionando autovalores}
-\label{subsec:rotacionando}
-
-Pretende-se aplicar a diagonaliza\c c\~ao de matrizes quaterni\^onicas no contexto da an\'alise espectral do operador de deslocamento sobre um grafo com pesos quaterni\^onicos. Neste caso, os seus autovalores poder\~ao ser interpretados como frequ\^encias. O problema do ordenamento destas frequ\^encias, bem definido para o caso de matrizes laplacianas ou de adjac\^encia reais, pode-se mostrar desafiador ao lidar com autovalores quaterni\^onicos\footnote{Mesmo ao se utilizar o racioc\'inio do teorema \ref{th:02}, da subse\c c\~ao \ref{subsec:autovetores_XA}, em que os autovalores s\~ao obtidos diretamente com valores complexos, \'e poss\'ivel que, em alguns problemas, tenha-se em m\~aos os autovalores quaterni\^onicos, caso em que o procedimento aqui descrito \'e \'util. De toda forma, a rota\c c\~ao de autovalores \'e uma ferramenta valiosa, sendo utilizada, por exemplo, na demonstra\c c\~ao do teorema \ref{th:02}.}.
-Uma hip\'otese a se analisar \'e que este ordenamento seja facilitado ao se encontrar, para cada autoclasse, o respectivo autovalor \emph{complexo}. Como feito em \cite[Eq. (4.8)]{de2002quaternioic}, trata-se de transformar a equa\c c\~ao de autovetor quaterni\^onica em outra equivalente, com autovalor complexo, a partir da rota\c c\~ao da parte imagin\'aria (\emph{rephasing}) de cada autovalor no espa\c co $ \qi, \qj, \qk $ at\'e alinh\'a-la com $ \qi $. Em suma, utilizando a propriedade de rota\c c\~ao no espa\c co $ \qV (\mathbb{H}) $ em (\ref{eq:rotacao}), parte-se de
-\begin{equation}
-\label{eq:01}
-\mathbf{A} \mathbf{v} = \mathbf{v} \lambda
-\end{equation}
-para chegar em
-\begin{equation}
-\label{eq:02}
-\mathbf{A} (\mathbf{v} q) = (\mathbf{v} q) q^{-1} \lambda q,
-\end{equation}
-com a restri\c c\~ao $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $.
-
-\begin{quotation}
-\begin{example}
-	\upshape
-	Consideremos, por exemplo, um caso em que $ \lambda = 3\qi + \qk $ e $ \mathbf{v} $ tem comprimento $ n=2 $,
-	\begin{equation}
-	%\label{key}
-	\mathbf{v} =\begin{pmatrix}
-	1 +  \qi\\
-	2 \qj + \qk
-	\end{pmatrix}.
-	\end{equation}
-	
-	A matriz quaterni\^onica $ \mathbf{A} $ que satisfaz
-	\begin{equation}
-	\label{eq:03}
-	\mathbf{A} \mathbf{v} = \mathbf{v} \lambda,
-	\end{equation}
-	com a restri\c c\~ao arbitr\'aria de possuir a primeira coluna igual a $ (1 \quad 1)^T $ \'e
-	\begin{equation}
-	%\label{key}
-	\mathbf{A} =
-	\begin{pmatrix}
-	1 & - \frac{1}{5} + \frac{3}{5} \qi + 2 \qj \\
-	1 & -3 \qi + \qj
-	\end{pmatrix}.
-	\end{equation}
-	
-	De posse das vari\'aveis da equa\c c\~ao (\ref{eq:01}), pode-se partir para ilustrar o procedimento de \emph{rephasing}, ou rota\c c\~ao da parte imagin\'aria, descrito em (\ref{eq:02}). A ideia \'e utilizar um quat\'ernio unit\'ario para rotacionar $ \lambda $ no espa\c co quaterni\^onico e, neste exemplo particular, rotacion\'a-lo no plano $ \qi \qk $ por um \^angulo $ \theta = \tan^{-1} \frac{1}{3} $ radianos em dire\c c\~ao ao eixo $ \qi $. Como ilustrado na Fig. \ref{fig:quat3ik}, o resultado esperado \'e um n\'umero $ z \in \mathbb{C}_{\qi} $.
-	
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.3\linewidth]{Figures/quaternion01.pdf}
-		\caption{Representa\c c\~ao de $ \lambda = 3\qi + \qk $ no plano $ \qi \qk $.}
-		\label{fig:quat3ik}
-	\end{figure}
-	
-%	Utilizaremos a propriedade de rota\c c\~ao da parte vetorial de quat\'ernios, em (\ref{eq:rotacao}).
-	Uma vez que o plano $ \qi \qk $ \'e ortogonal a $ \qj $ (lembrando que os tr\^es eixos s\~ao orientados positivamente), a rota\c c\~ao desejada neste plano, positivamente orientada em torno de $ \qj $ e obtida por inspe\c c\~ao da Fig. \ref{fig:quat3ik}, \'e realizada pelo quat\'ernio
-	\begin{equation}
-	\label{eq:04}
-	v = e^{\qj \alpha}, \quad 2\alpha = \theta = \tan^{-1} \frac{1}{3},
-	\end{equation}
-	utilizando o mapeamento $ \lambda \mapsto v \lambda v^{-1} $ em (\ref{eq:rotacao}).
-	
-	Uma vez que a transforma\c c\~ao desejada \'e $ \lambda \mapsto q^{-1} \lambda q $, ent\~ao
-	\begin{equation}
-	%\label{key}
-	q = v^{-1} = e^{- \qj \alpha} = e^{- \qj \frac{\theta}{2}}.
-	\end{equation}
-	
-	%It is a known property that ({\color{red}(retirado do artigo ``quat\'ernio rotation intuition'' do math.stack\-exchange, buscar melhor fonte!)}) ``if $ v = e^{\qmu \alpha} = \cos \alpha + \qmu \sin \alpha$, then the mapping $ x \mapsto v x v^{-1} $ will rotate purely imaginary quat\'ernios around the axis $ \mathbb{R} \qmu $ by the angle $ 2\alpha $ according to the right-hand rule''.
-	
-	Como forma de confer\^encia, encontremos o valor de $ \alpha $ que resulta em $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $. Como $ v = q^{-1} = \cos \alpha + \qj \sin \alpha $,
-	\begin{equation}
-	%\label{key}
-	\begin{aligned}
-	%\label{key}
-	q^{-1} \lambda &= (\cos \alpha + \qj \sin \alpha)(3 \qi + \qk)\\
-	&= \qi(3 \cos \alpha + \sin \alpha) + \qk(\cos \alpha - 3 \sin \alpha). \\
-	q^{-1} \lambda q &= [\qi(3 \cos \alpha + \sin \alpha) + \qk(\cos \alpha - 3 \sin \alpha)] (\cos \alpha - \qj \sin \alpha) \\
-	&= \qi (3 \cos 2\alpha + \sin 2\alpha) + \qk(\cos 2\alpha - 3 \sin 2\alpha).
-	\end{aligned}
-	\end{equation}
-	
-	Portanto, $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $ se e somente se
-	\begin{equation}
-	%\label{key}
-	\begin{aligned}\textbf{}
-	\cos 2\alpha - 3 \sin 2\alpha &= 0 \\
-	2\alpha &= \tan^{-1} \frac{1}{3},
-	\end{aligned}
-	\end{equation}
-	como inferido em (\ref{eq:04}).
-	
-Assim, o quat\'ernio puro unit\'ario $ q = e^{- \qj \alpha} $, $ \alpha = - \displaystyle \nicefrac{1}{2} \tan^{-1} \nicefrac{1}{3} $, \'e capaz de fazer $ q^{-1} \lambda q \in \mathbb{C}_{\qi}$, de modo que a equa\c c\~ao de autovalor em (\ref{eq:03}) pode ser reescrita como em (\ref{eq:02}),
-	\begin{equation}
-	%\label{key}
-	\mathbf{A} \underbrace{\begin{pmatrix}
-		cos \alpha + \qi \sin \alpha - \qj \sin \alpha - \qk \sin \alpha \\
-		2 \sin \alpha + \qi \sin \alpha + \qj 2 \cos \alpha + \qk \cos \alpha
-		\end{pmatrix}}_{= \mathbf{v} q} =
-	(\mathbf{v} q) \cdot \underbrace{\qi (3 \cos 2\alpha + \sin 2\alpha)}_{= q^{-1} \lambda q}.
-	%\underbrace{3.162 \qi}_{= \bar{u} q u}.
-	\end{equation}
-\end{example}
-\end{quotation}
-
-\subsection{Diagonalizabilidade}
-\label{subsec:autovetores_XA}
-
-Quanto ao problema de determinar se uma matriz quaterni\^onica \'e \emph{diagonaliz\'avel}, h\'a que se observar que, diferentemente do caso complexo, ter todos os autovalores distintos n\~ao \'e condi\c c\~ao suficiente para diagonalizabilidade. Tomemos o contra-exemplo dado por Zhang \cite[Exemplo 7.4]{zhang1997quaternions}, a matriz
-\begin{equation}
-\mathbf{A} =
-\begin{pmatrix}
-\qi & 1\\ 
-0 & \qj
-\end{pmatrix}.
-\end{equation}
-
-Embora possua autovalores distintos -- $ \qi $ e $ \qj $, pois s\~ao as entradas diagonais de uma matriz triangular --, os respectivos autovetores da matriz $ \mathbf{A} $ n\~ao formam um conjunto linearmente independente. Pode-se verificar, por exemplo, que um autovetor associado a $ \qi $ \'e $ (1, 0)^T $, enquanto um associado a $ \qj $ \'e $ (\qi + \qj, 0)^T $. A raz\~ao deles serem linearmente dependentes \'e o fato, mencionado anteriormente, de que para todo autovalor e autovetor $ \lambda $ e $ \mathbf{v} $ de uma matriz quaterni\^onica, tem-se $ q^{-1}\lambda q $ e $ \mathbf{v}q $ como outros autovalor e autovetor, com $ q \in \mathbb{H}^\ast $. Ou seja, dois autovalores \emph{similares} est\~ao sempre associados aos mesmos autovetores, a menos de um fator de escala. Por isso, quat\'ernios similares s\~ao ditos pertencentes \`a mesma \emph{autoclasse} \cite{de2000right}. Para que o conjunto de autovetores associados aos autovalores distintos de uma matriz quaterni\^onica sejam linearmente independentes, portanto, estes autovalores \textbf{n\~ao} podem ser similares.  Concluindo o exemplo dado, pode-se mostrar que $ \qi $ e $ \qj $ s\~ao similares: $ \qj = q \qi q^{-1} $, para $ q \in \{ a - a\qi - a\qj + a\qk \ | \ a\in \mathbb{R}^\ast \} $.
-
-O teorema \ref{th:02} relaciona a autodecomposi\c c\~ao de uma matriz e de sua complexa adjunta, fornecendo um princ\'ipio \'util para o estudo da autoestrutura de matrizes quaterni\^onicas.
-
-
-\begin{figure}
-\centering
-\includegraphics[width=0.6\linewidth]{Figures/complex_adjoint_eigvals_PT.pdf}
-\caption{\emph{Autovalores padrão} de uma matriz $ \mathbf{A} $ quaterni\^onica, indicados como um subconjunto dos autovalores de sua respectiva matriz complexa adjunta.}
-\end{figure}
-
-
-\begin{theorem}[\cite{zhang1997quaternions}]
-\label{th:02}
-Toda matriz $ A \in \mathbb{H}^{n \times n} $ tem exatamente $ n $ autovalores complexos
-%(\`a direita),
-%que s\~ao iguais aos autovalores de $ \rchi_A $, sua complexa adjunta,
-com parte imagin\'aria n\~ao-negativa. Estes s\~ao ditos os \emph{autovalores padr\~ao} de $ \mathbf{A} $ e s\~ao um subconjunto dos $ 2n $ autovalores de $ \rchi_A $.
-\end{theorem}
-
-\begin{proof}
-Como demonstrado no ap\^endice \ref{ch:AppendixA}, a partir da equa\c c\~ao de autovalor quaterni\^onica
-\begin{equation}
-\mathbf{A} \mathbf{v} = \mathbf{v} \lambda
-\end{equation}
-em que se pode assumir, sem perda de generalidade, que $ \lambda \in \mathbb{C} $, pode-se chegar \`a equa\c c\~ao equivalente
-\begin{equation}
-\begin{pmatrix}
-\mathbf{A}_1 & \mathbf{A}_2\\ 
-- \overline{\mathbf{A}}_2 & \overline{\mathbf{A}}_1
-\end{pmatrix}
-\begin{pmatrix}
-\mathbf{v}_1 \\ 
-- \overline{\mathbf{v}}_2
-\end{pmatrix} =
-\begin{pmatrix}
-\mathbf{v}_1 \\ 
-- \overline{\mathbf{v}}_2
-\end{pmatrix}
-\lambda,
-\end{equation}
-envolvendo apenas vari\'aveis complexas (i.~e. as componentes da decomposi\c c\~ao de simpl\'etica de $ \mathbf{A} $ e $ \mathbf{v} $). Uma vez que
-\begin{equation}
-\rchi_A = 
-\begin{pmatrix}
-\mathbf{A}_1 & \mathbf{A}_2\\ 
-- \overline{\mathbf{A}}_2 & \overline{\mathbf{A}}_1
-\end{pmatrix}
-\end{equation}
-\'e uma matriz complexa $ 2n \times 2n $, ela possui $ 2n $ autovalores complexos (distintos ou não). Segundo \cite[Teorema 5]{lee1948eigenvalues}, seus autovalores ocorrem na forma de $ n $ pares conjugados e, por isso, a matriz $ \mathbf{A} $ possui exatamente $ n $ autovalores complexos com parte imagin\'aria n\~ao-negativa.
-
-Os demais autovalores s\~ao redundantes. Seja $ q \in \mathbb{C}_{\qi}$ um destes autovalores. Podemos mostrar que $ q \sim \overline{q} $, pois obt\'em-se $ \overline{q} $ atrav\'es de uma rota\c c\~ao da parte imagin\'aria de $ q $ de 180$ ^\circ $ em torno do eixo $ \qj $. Utilizando o racioc\'inio exposto na subse\c c\~ao \ref{subsec:rotacionando}, com o quat\'ernio $ v = e^{\qj \frac{\pi}{2}} = \qj $ (logo $ v^{-1} = e^{- \qj \frac{\pi}{2}} = -\qj $) e o mapeamento $ q \mapsto v q v^{-1} $,
-\begin{equation}
-\begin{aligned}
-v q v^{-1} &= \qj (q_r + q_i \qi) (-\qj) = q_r - q_i \qj \qi \qj\\
-&= q_r + q_i \qi \qj \qj = q_r - q_i \qi = \overline{q}.
-\end{aligned}
-\end{equation}
-Como dois autovalores conjugados de $ \rchi_A $ s\~ao similares, eles pertencem \`a mesma autoclasse e apontam para o mesmo conjunto linearmente dependente de autovetores. Assim, pode-se tomar sempre aquele com parte imagin\'aria nula ou n\~ao-negativa, por conven\c c\~ao.
-\end{proof}
-
-O teorema a seguir \'e outro resultado fundamental relacionando a autoestrutura de uma matriz quaterni\^onica e a de sua complexa adjunta.
-
-\begin{theorem}[Teorema 7.4 em \cite{zhang1997quaternions}]
-\label{th:diagonal}
-Dadas as matrizes $ \mathbf{A}, \mathbf{B} \in \mathbb{H}^{n \times n} $, ent\~ao $ \mathbf{A} $ \'e similar a $ \mathbf{B} $ se, e somente se, $ X\rchi_A $ \'e similar a $ \rchi_B $.
-\end{theorem}
-
-\begin{corollary}
-Uma matriz $  \mathbf{A} \in \mathbb{H}^{n \times n} $ \'e diagonaliz\'avel se, e somente se, $ \rchi_A $ \'e diagonaliz\'avel.
-\end{corollary}
-\begin{proof}
-Se $ \mathbf{A} \in \mathbb{H}^{n \times n} $ \'e diagonaliz\'avel, ent\~ao \'e similar a uma matriz diagonal $ \Lambda \in \mathbb{C}^{n \times n}_{\qi} $ contendo seus autovalores padr\~ao. Do teorema \ref{th:diagonal}, segue que $ \rchi_A $ \'e similar a
-\begin{equation}
-\label{eq:Xlambda}
-\rchi_{\Lambda} =
-\begin{pmatrix}
-\Lambda & \mathbf{0}\\ 
-\mathbf{0} & \overline{\Lambda}
-\end{pmatrix},
-\end{equation}
-que tamb\'em \'e uma matriz diagonal. Portanto, $ \rchi_A $ \'e diagonaliz\'avel.
-
-Por outro lado, se $ \rchi_A $ \'e diagonaliz\'avel, ent\~ao \'e similar a uma matriz diagonal contendo os seus $ 2n $ autovalores, que aparecem em $ n $ pares complexos conjugados. Assim, sua matriz de autovalores pode ser escrita como (\ref{eq:Xlambda}), o que implica, pelo teorema \ref{th:diagonal}, que $ \mathbf{A} $ \'e similar a $ \Lambda $.
-\end{proof}
-
 \section{Laying the foundations for QGSP}
 
 \subsection{On the inversion of the eigenvector matrix}
@@ -1315,11 +1298,35 @@ $\mathbf{V}^{-1} \gets \mathrm{from\_complex\_adjoint}(\mathbf{U})$
 \end{algorithm}
 \end{center}
 
-%\section{Poss\'iveis aplica\c c\~oes de QGSP}
-%
-%Grafos de imagens RGBA, v\'ideos?
-%
-%Grafos com sinais tridimensionais, como de dire\c c\~ao de vento.
+\section{Example: denoising a quaternion graph signal via QLMS low-pass filtering}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.25\linewidth]{thesis/Figures/uk_graph.png}
+	\caption{Graph created using the cities in UK.}
+	\label{fig:uk_graph}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.55\linewidth]{thesis/Figures/uk_graph_kernel.png}
+	\caption{Test.}
+	\label{fig:uk_graph_kernel}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.55\linewidth]{thesis/Figures/uk_graph_kernel_noisy.png}
+	\caption{Test.}
+	\label{fig:uk_graph_kernel_noisy}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.55\linewidth]{thesis/Figures/uk_graph_filtered.png}
+	\caption{Test.}
+	\label{fig:uk_graph_filtered}
+\end{figure}
 
 \chapter[Considera\c c\~oes finais]{Considera\c c\~oes finais}
 \label{ch:others}
