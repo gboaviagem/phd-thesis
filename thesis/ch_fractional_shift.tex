@@ -1,67 +1,7 @@
-\documentclass{ieeeaccess}
-\usepackage{cite}
-\usepackage{amsmath,amssymb,amsfonts}
-\usepackage{graphicx,soul}
-\usepackage{textcomp,color,enumerate}
-
-\usepackage[caption=false,font=footnotesize]{subfig}
-\usepackage{hyperref}
-\usepackage{float}
-\usepackage{multirow}
-\usepackage{algorithm}
-\usepackage[noend]{algpseudocode}
-\usepackage[dvipsnames]{xcolor}
-
-\newtheorem{definition}{Definition}
-\newtheorem{example}{Example}
-\newtheorem{lemma}{Lemma}
-
-\newtheorem{theorem}{Theorem}
-\newtheorem{proposition}{Proposition}
-
-\def\x{{\mathbf x}}
-\def\L{{\cal L}}
-
-\graphicspath{{imgs/}}
-\DeclareGraphicsExtensions{.png}
-
-\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
-
-\begin{document}
-
-\history{Date of publication xxxx 00, 0000, date of current version xxxx 00, 0000.}
-\doi{10.1109/ACCESS.2017.DOI}
-
-\title{On the Fractionalization of the Shift Operator on Graphs}
-
-\author{\uppercase{Guilherme B. Ribeiro\authorrefmark{1}, Jos\'e R. de Oliveira Neto\authorrefmark{2}}, (Member, IEEE), \uppercase{and Juliano B. Lima\authorrefmark{1}}, (Senior Member, IEEE)}
-
-\address[1]{Department of Electronics and Systems, Federal University of Pernambuco, Recife 50740-550, Brazil}
-
-\address[2]{Department of Mechanical Engineering, Federal University of Pernambuco, Recife 50740-550, Brazil}
-
-\tfootnote{This work was supported in part by Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq) under grants 310142/2020-2 and 409543/2018-7, and by Coordena\c{c}\~ao de Aperfei\c{c}oamento de Pessoal de N\'ivel Superior (CAPES).}
-
-\markboth
-{Ribeiro \headeretal: On the Fractionalization of the Shift Operator on Graphs}
-{Ribeiro \headeretal: On the Fractionalization of the Shift Operator on Graphs}
-
-\corresp{Corresponding author: Juliano B. Lima (e-mail: juliano\_bandeira@ieee.org).}
-
-\begin{abstract}
-	The theory of graph signal processing has been established with the purpose of generalizing tools from classical digital signal processing to the cases where the signal domain can be modeled by an arbitrary graph. In this context, the present paper introduces the notion of fractional shift of signals on graphs, which is related to considering a non-integer power of the graph adjacency matrix. Among the results derived throughout this work, we prove that the referred fractional operator can be implemented as a linear and shift-invariant graph filter for any graph and verify its convergence to the classical fractional delay when a directed ring graph is considered. By means of a real-world example, we show that, using the proposed operator, graph filters that approximate an ideal filter better than those designed using the ordinary adjacency matrix can be obtained. An additional example dealing with noise removal from graph signals illustrates the gain provided by the mentioned filter design strategy.
-\end{abstract}
-
-\begin{keywords}
-Graph signal processing, fractional graph shift operator, graph filter design, noise removal.
-\end{keywords}
-
-\titlepgskip=-15pt
-
-\maketitle
+\chapter{The fractional graph shift operator and its applications}
 
 \section{Introduction}\label{sec:introduction}
-\IEEEPARstart{O}{ver} the last decade, theory and applications related to graph signal processing (GSP) have been widely developed and attracted the attention of several scholars~\cite{ortega2018,richard2018,ribeiro2018}. In short, GSP aims to extend concepts and operations of classical digital signal processing (DSP) to scenarios in which the signals lie over irregular domains. Such scenarios include, for instance, sensors arbitrarily positioned in a geographic region and measuring some climatological variable, points of a three-dimensional cloud representing some virtual object and its attributes, people linked according to their interests and proximity relationships in a social network and so on~\cite{chen2014,zhang2014,benzi2016,weiyu2018,saad2018,jiang2021,gama2019,liu2019,zhang2020,ferreira2020,zhang2021,xiao2021,sun2021}. To be more specific, among the issues related to the referred scenarios, one can cite segmentation and attribute compression of 3D point clouds~\cite{zhang2014,zhang2020}, stochastic filtering under asymmetric links in wireless sensor networks~\cite{saad2018}, community detection in social networks~\cite{zhang2021}, anomalous IoT sensor data detection~\cite{xiao2021} and traffic prediction via attention networks~\cite{sun2021}. It is intuitive that the mentioned examples can be modeled as graphs whose vertices are connected by edges inferred from a variety of influence or dependency criteria. This contrasts with the discrete-time domain, over which the samples of a signal are equidistantly placed and have left- and right-side immediate neighbors only; something similar happens in the case of digital images, where the pixels are arranged in a regular rectangular grid.
+Over the last decade, theory and applications related to graph signal processing (GSP) have been widely developed and attracted the attention of several scholars~\cite{ortega2018,richard2018,ribeiro2018}. In short, GSP aims to extend concepts and operations of classical digital signal processing (DSP) to scenarios in which the signals lie over irregular domains. Such scenarios include, for instance, sensors arbitrarily positioned in a geographic region and measuring some climatological variable, points of a three-dimensional cloud representing some virtual object and its attributes, people linked according to their interests and proximity relationships in a social network and so on~\cite{chen2014,zhang2014,benzi2016,weiyu2018,saad2018,jiang2021,gama2019,liu2019,zhang2020,ferreira2020,zhang2021,xiao2021,sun2021}. To be more specific, among the issues related to the referred scenarios, one can cite segmentation and attribute compression of 3D point clouds~\cite{zhang2014,zhang2020}, stochastic filtering under asymmetric links in wireless sensor networks~\cite{saad2018}, community detection in social networks~\cite{zhang2021}, anomalous IoT sensor data detection~\cite{xiao2021} and traffic prediction via attention networks~\cite{sun2021}. It is intuitive that the mentioned examples can be modeled as graphs whose vertices are connected by edges inferred from a variety of influence or dependency criteria. This contrasts with the discrete-time domain, over which the samples of a signal are equidistantly placed and have left- and right-side immediate neighbors only; something similar happens in the case of digital images, where the pixels are arranged in a regular rectangular grid.
 
 Two main GSP approaches have been consolidated throughout the last years. The first is based on the spectral graph theory and analyzes signals on undirected graphs with real and non-negative edge weights, by using the graph Laplacian to construct a basis for the signal space~\cite{shuman2013emerging}. The second comes from the algebraic signal processing and uses the weighted adjacency matrix $\mathbf{A}$ as elementary building block~\cite{puschel2008time,puschel2008space}; such an approach, which is adopted in this paper, allows to deal with signals defined over both directed and undirected graphs, and with real- and complex-valued edge weights~\cite{sandryhaila2014big}. \textcolor{black}{In any case, the aforementioned approaches have used $\mathbf{L}$ and $\mathbf{A}$ as elementary building blocks because, among other reasons, these matrices are well established in graph theory and allow some meaningful physical interpretation or some parallel with the classical DSP; while $\mathbf{A}$ can be viewed as a generalization of the discrete-time unit shift, $\mathbf{L}$ is a kind of discrete counterpart to the continuous Laplace-Beltrami (second order) derivative operator on a manifold~\cite{chung1997spectral,Coifman2005}.}
 
@@ -103,11 +43,11 @@ Graphs can be \emph{directed} or \emph{undirected}, depending on whether their e
 A particularly important graph is that shown in Fig.~\ref{fig:graphs}, the directed ring graph with edges having unitary weights. Such a graph can be used to model the discrete-time domain with length $N$ and periodic boundary conditions. Its adjacency matrix is given by
 %\begin{figure}%
 %	\centering
-%	\subfloat[\label{figa_graphs}]{{\includegraphics[width=0.45\linewidth]{Figuras/signal_ring_graph_white_border.pdf} }}\hspace{0.2cm}%
+%	\subfloat[\label{figa_graphs}]{{\includegraphics[width=0.45\linewidth]{Figures/signal_ring_graph_white_border.pdf} }}\hspace{0.2cm}%
 %	\qquad
-%	\subfloat[t][\label{figb_graphs}]{{\includegraphics[width=0.4\linewidth]{Figuras/signal_duher_graph.pdf} }}\\
-%	\subfloat[\label{figc_graphs}]{{\includegraphics[width=0.45\linewidth]{Figuras/image_graph.pdf} }}%
-%	\subfloat[\label{figd_graphs}]{{\includegraphics[width=0.4\linewidth]{Figuras/graph_temp_bulbo_seco_NE_00h_01Fev2012_cropped.pdf} }}%
+%	\subfloat[t][\label{figb_graphs}]{{\includegraphics[width=0.4\linewidth]{Figures/signal_duher_graph.pdf} }}\\
+%	\subfloat[\label{figc_graphs}]{{\includegraphics[width=0.45\linewidth]{Figures/image_graph.pdf} }}%
+%	\subfloat[\label{figd_graphs}]{{\includegraphics[width=0.4\linewidth]{Figures/graph_temp_bulbo_seco_NE_00h_01Fev2012_cropped.pdf} }}%
 %	\caption{Exemplos de representa\c{c}\~oes de sinais sobre (a) um grafo em anel direcionado, (b) um grafo de D\"{u}her n\~ao-direcionado, (c) um grafo n\~ao-direcionado em forma de rede retangular uniforme  e (d) um grafo formado por cidades do Nordeste brasileiro.}%
 %	\label{fig:graphs}%
 %	\vspace{-0.2cm}
@@ -150,7 +90,7 @@ The assumption on $char_{\mathbf{A}}(x)$ and $m_{\mathbf{A}}(x)$ in Theorem~\ref
 
 \begin{figure}[t!]
 	\centering
-\includegraphics[width=0.6\linewidth]{Figuras/signal_ring_graph_white_border.pdf}
+\includegraphics[width=0.6\linewidth]{Figures/signal_ring_graph_white_border.pdf}
 	\caption{A directed ring graph.}%
 	\label{fig:graphs}%
 	\vspace{-0.5cm}
@@ -207,14 +147,14 @@ h(\mathbf{J}) \widehat{\mathbf{x}},
 so that the frequency domain equation corresponding to filtering using $ \mathbf{H} $ is the multiplication by the matrix $ h(\mathbf{J}) $, which represents the frequency response of the filter $ \mathbf{H} $.
 
 \section{Fractional Shift on Graphs}\label{sec:fracshift}
-Since the unit shift of a graph signal can be defined as the product by the adjacency matrix of the graph on which it lies, in this work, we propose to define a fractional shift as the product by a non-integer power of $ \mathbf{A} $. Precisely, the signal $\mathbf{x}$ over the graph ${\cal G} = \{ \mathbf{A}, {\cal V} \}$, after being shifted by $a\in[0,1]$, is given by
+Since the unit shift of a graph signal can be defined as the product by the adjacency matrix of the graph on which it lies, in this work, we propose to define a fractional shift as the product by a non-integer power of $ \mathbf{A} $. Precisely, the signal $\mathbf{x}$ over the graph $\mathcal{G} = \{ \mathbf{A}, {\mathcal{V}} \}$, after being shifted by $a\in[0,1]$, is given by
 \begin{equation}
 \label{eq:def_frac_delay}
 \widetilde{\mathbf{x}}_a = \mathbf{A}^a \mathbf{x}.
 \end{equation}
 In what follows, we discuss aspects related to the computation of $\mathbf{A}^a$, the interpretation of its application to a graph signal and the consistency of the proposed operator with the classical DSP approach (ideal fractional delay filter).
 
-\subsection{Computation of $\mathbf{A}^{\MakeLowercase{a}}$}\label{subsec:comp}
+\subsection{Computation of $\mathbf{A}^{{a}}$}\label{subsec:comp}
 The computation of $\mathbf{A}^a$ can be well established by employing results from the theory of matrix functions~\cite{higham2008functions}. In this context, we are interested in evaluating the originally scalar function $f(t)=t^a$, $a\in\mathbb{R}$, but replacing $t$ with $\mathbf{A}$. The most direct way to formally define a function like this uses the Jordan canonical form. With this purpose,~(\ref{eq:gft_01}) is reconsidered; in this equation, the block diagonal matrix $\mathbf{J}$ can be written as
 \begin{equation}\label{eq:jcf}
     \mathbf{J}=\textrm{diag}(\mathbf{J}_1,\mathbf{J}_2,\ldots,\mathbf{J}_p),
@@ -281,14 +221,14 @@ $n=0,1,\ldots,N-1$. It can be shown that the inverse DFT of $ \widehat{\mathbf{h
 \begin{figure}[b]
 	\centering
 	\subfloat[\label{figa_frac_delay_directed}]{{
-			\includegraphics[width=0.40\linewidth]{Figuras/d170309_frac_delay_ring_visualization_V5_a.eps}
+			\includegraphics[width=0.40\linewidth]{Figures/d170309_frac_delay_ring_visualization_V5_a.eps}
 			}}
 	%	\vspace{-0.2cm}
 	\subfloat[\label{figb_frac_delay_directed}]{{
-			\includegraphics[width=0.40\linewidth]{Figuras/d170309_frac_delay_ring_visualization_V5_b.eps}
+			\includegraphics[width=0.40\linewidth]{Figures/d170309_frac_delay_ring_visualization_V5_b.eps}
 			}}\\
 	\subfloat[\label{figc_frac_delay_directed}]{{
-			\includegraphics[width=0.85\linewidth]{Figuras/d170309_frac_delay_ring_visualization_V5_c1.eps}
+			\includegraphics[width=0.85\linewidth]{Figures/d170309_frac_delay_ring_visualization_V5_c1.eps}
 			}}% 
 	\caption{Fractional shift by $a=0{.}3 $ of a sample of a signal on a directed ring graph with unit weights. (a) Original signal on a directed ring graph. (b) Graph in which the 5$\textsuperscript{th}$ sample delayed by $a=0{.}3 $ appears as an interpolated sample between the 4$\textsuperscript{th}$ and the 5$\textsuperscript{th}$ samples of the original signal. (c) Original discrete signal and the delayed sample.}
 	\label{fig:frac_delay_directed}
@@ -314,7 +254,7 @@ Finally, we draw attention to the fact that the signal to be shifted has to be b
 
 \begin{figure}[t!]
 	\centering
-\includegraphics[width=0.95\linewidth]{Figuras/signal_PE_V2_PT.pdf}
+\includegraphics[width=0.95\linewidth]{Figures/signal_PE_V2_PT.pdf}
 	\caption{Fractional shift of a signal, (originally) with $10$ non-zero samples, defined on a graph formed by $80$ cities of Pernambuco state, Brazil. Note that the shifted signal is similar to the original signal, if $ a $ is close to $0$, and similar to the unit-shifted signal, if $ a $ is close to $1$.}%
 	\label{fig:sinal_Pernambuco}%
 	\vspace{-0.2cm}
@@ -323,11 +263,11 @@ Finally, we draw attention to the fact that the signal to be shifted has to be b
 \begin{figure}[t!]
 	\centering
 	\subfloat[\label{figa_gibbs}]{{
-			\includegraphics[width=0.8\linewidth]{Figuras/d170309_frac_delay_ring_visualization_V2_no_gibbs.eps}
+			\includegraphics[width=0.8\linewidth]{Figures/d170309_frac_delay_ring_visualization_V2_no_gibbs.eps}
 			}}\\
 	%	\vspace{-0.2cm}
 	\subfloat[\label{figb_gibbs}]{{
-			\includegraphics[width=0.78\linewidth]{Figuras/frac_delay_ring_TESTS_gibbs_effect.eps}
+			\includegraphics[width=0.78\linewidth]{Figures/frac_delay_ring_TESTS_gibbs_effect.eps}
 			}}%
 	\caption{Fractional shift for a signal (a) without and (b) with abrupt variations (descontinuities).}%
 	\label{fig:frac_delay_gibbs}%
@@ -359,21 +299,21 @@ The same result is obtained for even $N$, starting from the second row of~(\ref{
 
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=0.81\linewidth]{Figuras/convergence_odd_N_V4.pdf}
+	\includegraphics[width=0.81\linewidth]{Figures/convergence_odd_N_V4.pdf}
 	\caption{Percent error (normalized by the energy of $ \mathbf{h}_{_{LPF}} $) of $ \mathbf{h}_a $ related to $ \mathbf{h}_{_{LPF}} $, for different (odd) values of $ N $ and the fractional shift parameter $ a $.}
 	\label{fig:convergence}
 \end{figure}
 
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=0.81\linewidth]{Figuras/convergence_even_N_real_part.pdf}
+	\includegraphics[width=0.81\linewidth]{Figures/convergence_even_N_real_part.pdf}
 	\caption{Relative mean error between $ \mathcal{R}e\{\mathbf{h}_a\} $ and $ \mathbf{h}_{_{LPF}} $ for $ N $ even, in terms of the fractional shift parameter $a$.}
 	\label{fig:convergence_even_N_real_part}
 \end{figure}
 
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=0.81\linewidth]{Figuras/convergence_even_N_abs_V2.pdf}
+	\includegraphics[width=0.81\linewidth]{Figures/convergence_even_N_abs_V2.pdf}
 	\caption{Modulus of the relative mean error between $ \mathbf{h}_a $ and $ \mathbf{h}_{_{LPF}} $ for $ N $ even, in terms of the fractional shift parameter $a$.}
 	\label{fig:convergence_even_N_abs}
 	\vspace{-0.3cm}
@@ -437,7 +377,7 @@ In any case, the results briefly presented above lead us to conclude that $\math
 \section{Numerical Results}\label{sec:num}
 In the last section, we have discussed the effect of applying a fractional shift to a graph signal and demonstrated that $\mathbf{A}^a$ admits a polynomial representation. In the first part of this section, we develop a small numerical example to illustrate how the referred representation can be obtained. Secondly, we consider a possibility that, for practical purposes, seems to allow better exploiting the potential for generalization of the proposed fractional operator: replacing $\mathbf{A}$ with $\mathbf{A}^a$ in~(\ref{eq:filtro}) when designing a graph filter. Naturally, the resulting filter, being a polynomial in $\mathbf{A}^a$, could also be expressed as a polynomial in $\mathbf{A}$ and, therefore, it is a LSI filter.
 
-\subsection{Example: Polynomial Representation of $\mathbf{A}^{\MakeLowercase{a}}$}\label{subsec:num1}
+\subsection{Example: Polynomial Representation of $\mathbf{A}^{a}$}\label{subsec:num1}
 The graph considered in this example is shown in Fig.~\ref{fig:polyrepres} and has adjacency matrix
 \begin{equation}\label{eq:ex001}
 %\setlength{\arraycolsep}{3pt}
@@ -506,7 +446,7 @@ the polynomial representation of $\mathbf{A}^{0.3}$.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.55\linewidth]{access/Figuras/graph_jordan.pdf}
+	\includegraphics[width=0.55\linewidth]{Figures/graph_jordan.pdf}
 	\caption{Directed graph used to illustrate how the corresponding fractional shift operator can be computed and represented in polynomial form.}
 	\label{fig:polyrepres}
 \end{figure}
@@ -569,7 +509,7 @@ Since one generally has $ N \geq L+1$, the system of equations~(\ref{eq:siseq2})
 
 Our proposal is to replace $\mathbf{A}$ with $\mathbf{A}^a$ in~(\ref{eq:filtro}). If this is performed, the only adjustment needed in the technique described above consists of replacing the eigenvalues $\lambda_i$ with their $a^{\text{th}}$ powers $\lambda_i^a$ in~(\ref{eq:syst01}). The effect of such a substitution is illustrated and evaluated in what follows.
 
-\subsection{Example: LS Approximation using $\mathbf{A}^{\MakeLowercase{a}}$}\label{subsec:lsi01}
+\subsection{Example: LS Approximation using $\mathbf{A}^{{a}}$}\label{subsec:lsi01}
 In this example, we consider a network formed by $230$ weather stations that measure daily temperature across the United States~\cite{data2011}. Such stations are represented by the vertices of an undirected graph whose edges have been established by using the $8$-nearest neighbor criterion.  The edge connecting vertices $v_n$ and $v_m$ is weighted according with
 \begin{equation}
     \mathbf{A}_{n,m}=\frac{e^{-d^2_{n,m}}}{\sqrt{\sum_{k\in\mathcal{N}_n}e^{-d^2_{n,k}}\sum_{\ell\in\mathcal{N}_m}e^{-d^2_{n,\ell}}}},
@@ -578,7 +518,7 @@ where $d_{n,m}$ denotes the geodesical distance between the $n^{\text{th}}$ and 
 
 \begin{figure}%
 	\centering
-\includegraphics[width=\linewidth]{Figuras/GNorm_estacoes_temperatura.pdf}
+\includegraphics[width=\linewidth]{Figures/GNorm_estacoes_temperatura.pdf}
 	\caption{Graph of a network formed by $230$ weather stations measuring the temperature across the United States. The snapshot of all measurements taken on February $1^{\text{st}}$, 2003 is the corresponding graph signal.}%
 	\label{fig:usa00}%
 	\vspace{0.14cm}
@@ -586,7 +526,7 @@ where $d_{n,m}$ denotes the geodesical distance between the $n^{\text{th}}$ and 
 
 \begin{figure}[ht!]%
 	\centering
-\includegraphics[width=0.88\linewidth]{Figuras/GNorm_estacoes_GFT_Temperatura.pdf}%\vspace{-0.1cm}
+\includegraphics[width=0.88\linewidth]{Figures/GNorm_estacoes_GFT_Temperatura.pdf}%\vspace{-0.1cm}
 	\caption{Magnitude of the graph Fourier transform of the signal in Fig~\ref{fig:usa00}. The graph frequencies correspond to the eigenvalues of $\mathbf{A}$; low (resp. high) graph frequencies are associated with higher (resp. lower) eigenvalues.}%
 	\label{fig:usa01}%
 	%\vspace{-0.2cm}
@@ -594,7 +534,7 @@ where $d_{n,m}$ denotes the geodesical distance between the $n^{\text{th}}$ and 
 
 \begin{figure}[ht!]
 	\centering
-\includegraphics[width=0.9\linewidth]{Figuras/ERROR_ordens_fracionarias.pdf}
+\includegraphics[width=0.9\linewidth]{Figures/ERROR_ordens_fracionarias.pdf}
 	\caption{Fractional parameters providing the minimum approximation errors, for different values of $L$, between the ideal LPF and the filter designed by using the fractional graph shift operator $\mathbf{A}^a$.}%
 	\label{fig:usa02}%
 	%\vspace{-0.5cm}
@@ -606,7 +546,7 @@ In Fig.~\ref{fig:usa04}, we can observe the ideal filter response superimposed o
 
 \begin{figure}[t!]
 	\centering
-\includegraphics[width=0.9\linewidth]{access/Figuras/ERROR_mse_min.pdf}
+\includegraphics[width=0.9\linewidth]{Figures/ERROR_mse_min.pdf}
 	\caption{Minimum approximation (mean squared) errors, for different values of $L$, between the ideal LPF and the filters designed by using the fractional graph shift operator $\mathbf{A}^a$ and the non-fractional operator $\mathbf{A}$.}%
 	\label{fig:usa03}%
 	%\vspace{-0.2cm}
@@ -614,7 +554,7 @@ In Fig.~\ref{fig:usa04}, we can observe the ideal filter response superimposed o
 
 \begin{figure}[t!]
 	\centering
-\includegraphics[width=0.88\linewidth]{access/Figuras/ERROR_estacoes_resposta_grau10.pdf}%\vspace{-0.4cm}
+\includegraphics[width=0.88\linewidth]{Figures/ERROR_estacoes_resposta_grau10.pdf}%\vspace{-0.4cm}
 	\caption{Ideal filter response superimposed on the responses obtained when $\mathbf{A}$ and $\mathbf{A}^a$, $a=0.855$, are used to design a filter with $L+1=10$ coefficients.}
 	\label{fig:usa04}%
 	%\vspace{-0.2cm}
@@ -629,30 +569,11 @@ In our experiment, we varied the aforementioned percentage from $1\%$ to $50\%$ 
 
 \begin{figure}[t!]
 	\centering
-\includegraphics[width=0.95\linewidth]{access/Figuras/ERROR_errobar_filtrados.pdf}
+\includegraphics[width=0.95\linewidth]{Figures/ERROR_errobar_filtrados.pdf}
 	\caption{Reconstruction (mean squared) errors after a noise removal procedure is performed by using graph filters with $L+1=10$ coefficients and designed from $\mathbf{A}$ and $\mathbf{A}^a$, $a=0.855$.}%
 	\label{fig:usa05}%
 	\vspace{-0.1cm}
 \end{figure}
 
-
-
 \section{Concluding Remarks}\label{sec:conc}
 In this paper, we have investigated the fractional shift of graph signals. The key-point for our developments is the fact that, in the GSP theory, the unit shift is defined from the adjacency matrix of a graph. Interpreting the fractional shift as a filtering operation, we demonstrated that, for ring graphs, its application produces the expected effect of approximating the classical ideal interpolating filter, exhibiting satisfactory results for band-limited signals. We have also shown that the referred fractional operator can be implemented as an LSI graph filter for arbitrary graphs and developed real-world examples that illustrated the benefits of using $\mathbf{A}^a$ to design graph filters for noise removal. Our current investigations include the study of the fractionalization of other operators on graphs (e.g., graph Fourier transform and Laplacian), other types of generalization for the same operators and further applications of the fractional graph shift. \textcolor{black}{In particular, we have been studying the use of $\mathbf{A}^a$ to design filters for anomaly detection on graphs (malfunctioning nodes in a sensor network, for instance) and evaluating the feasibility of introducing a kind of generalized degree index, so that long range interactions can be considered.}
-
-
-\bibliographystyle{IEEEtran}
-\bibliography{mybib}
-
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{access/Figuras/ribeiro.JPG}}]{Guilherme B. Ribeiro} was born in Brazil and received the B. Sc. degree in Electronic Engineering and the M. Sc. degree in Electrical Engineering both from the Federal University of Pernambuco (UFPE), in 2016 and 2018, respectively. He is currently a doctoral student at UFPE in the field of graph signal processing and his interests also include geometric algebra, data science and data visualization.
-\end{IEEEbiography}
-
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{access/Figuras/oliveiraneto}}]{Jos\'e R. de Oliveira Neto} was born in Brazil. He received the B.Sc., M.Sc., and Ph.D. degrees in electrical engineering from the Federal University of Pernambuco (UFPE), Brazil, in 2013, 2015, and 2019, respectively. He is currently an Assistant Professor with the Department of Mechanical Engineering, UFPE. His main research interests include digital signal processing, embedded systems, and hardware implementations.
-\end{IEEEbiography}
-
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{access/Figuras/lima}}]{Juliano B. Lima} was born in Brazil where he studied electrical engineering. He received the M.Sc. and Ph.D. degrees in electrical engineering from Federal University of Pernambuco (UFPE), Brazil, in 2004 and 2008, respectively. Since 2015, he has been a research productivity fellow awarded by the Conselho Nacional de Desenvolvimento Cient\'ifico e Tecnol\'ogico. He is currently an Associate Professor of the Department of Electronics and Systems at UFPE. His main research interests are in the field of discrete and number-theoretic transforms, and their applications in digital signal processing, communications and cryptography.
-\end{IEEEbiography}
-
-\EOD
-
-\end{document}
