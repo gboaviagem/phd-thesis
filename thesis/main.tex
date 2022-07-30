@@ -122,18 +122,18 @@
 % informações do PDF
 \makeatletter
 \hypersetup{
-     	%pagebackref=true,
-		pdftitle={\@title}, 
-		pdfauthor={\@author},
-    	pdfsubject={\imprimirpreambulo},
-	    pdfcreator={LaTeX with abnTeX2},
-		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
-		colorlinks=true,       		% false: boxed links; true: colored links
-    	linkcolor=blue,          	% color of internal links
-    	citecolor=blue,        		% color of links to bibliography
-    	filecolor=magenta,      		% color of file links
-		urlcolor=blue,
-		bookmarksdepth=4
+    %pagebackref=true,
+    pdftitle={\@title}, 
+    pdfauthor={\@author},
+    pdfsubject={\imprimirpreambulo},
+    pdfcreator={LaTeX with abnTeX2},
+    pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+    colorlinks=true,       		% false: boxed links; true: colored links
+    linkcolor=blue,          	% color of internal links
+    citecolor=blue,        		% color of links to bibliography
+    filecolor=magenta,      		% color of file links
+    urlcolor=blue,
+    bookmarksdepth=4
 }
 \makeatother
 % --- 
@@ -342,8 +342,7 @@
   \vspace*{\fill}
   \centering
   \noindent
-  \textit{Este trabalho é dedicado às crianças adultas que,\\
-  quando pequenas, sonharam em se tornar cientistas.} \vspace*{\fill}
+  \textit{\`A minha esposa, B\'arbara, e meus filhos, Rafael e Gianna.} \vspace*{\fill}
 \end{dedicatoria}
 
 \begin{agradecimentos}
@@ -360,22 +359,12 @@ Jean le Rond d'Alembert
 \end{epigrafe}
 % ---
 
-% ---
-% RESUMOS
-% ---
-
-% resumo em português
-\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
-\begin{resumo}
-A explora\c c\~ao de novas estruturas alg\'ebricas para representar sinais de dom\'inio discreto frequentemente revela novos avan\c cos te\'oricos e aplica\c c\~oes. Foi o que ocorreu com o uso de quat\'ernios para representar amostras de sinais tri- ou quadridimensionais, ou com o desenvolvimento de processamento de sinais sobre grafos para tratar sinais estruturados em rede. Nesta pesquisa, ainda em curso e sintetizada neste projeto de tese, foram investigadas oportunidades no campo de processamento de sinais quaterni\^onicos. Com foco nas propriedades de matrizes quaterni\^onicas e suas aplica\c c\~oes, buscou-se resultados em duas frentes: na generaliza\c c\~ao da transformada discreta de Fourier quaterni\^onica, investigando uma nova abordagem para sua fracionariza\c c\~ao, e na constru\c c\~ao da teoria de processamento de sinais sobre grafos com pesos quaterni\^onicos. A primeira linha de estudo gerou um novo m\'etodo para a constru\c c\~ao da transformada fracion\'aria, baseado na sua autoestrutura, juntamente com uma generaliza\c c\~ao multiparam\'etrica e uma proposta de algoritmo para cifragem de imagens coloridas. A pesquisa com grafos quaterni\^onicos resultou, at\'e o momento, na estrutura\c c\~ao do conhecimento sobre diagonaliza\c c\~ao de operadores lineares quaterni\^onicos. Os pr\'oximos passos buscar\~ao partir deste conhecimento para construir ferramentas de processamento de sinais sobre grafos com pesos quaterni\^onicos.
-
-\textbf{Palavras-chave}: quat\'ernios, transformada discreta de Fourier quaterni\^onica fracion\'aria, processamento de sinais sobre grafos, processamento de imagens coloridas.
-\end{resumo}
 %
 %% resumo em inglês
 \begin{resumo}[Abstract]
 \begin{otherlanguage*}{english}
-Exploring new algebraic structures to represent discrete-domain signals often reveals valuable insights and new applications. That was the case with the embedding of three- and four-dimensional signals into the quaternion space, or the development of graph signal processing to deal with network-like data. In this ongoing research, opportunities in the field of quaternion signal processing were investigated. Focusing on properties and applications of quaternion matrices, studies on two different directions were conducted: the generalization of the quaternion discrete Fourier transform (QDFT), in the sense of a new method for its fractionarization based on its eigenstructure, and the conception of a quaternion-valued branch of graph signal processing, in which the graph edge weights belong to a 4D hypercomplex space. In the first line of research, the eigenstructure of the QDFT was unveiled in the light of the eigendecomposition of its complex-valued counterpart, what led to a new method for fractionarization of the QDFT. Besides, a multi-parametric version was proposed, alongside its application on an algorithm for color image encription. Regarding the work on graphs with quaternion-valued weights, the studies so far have revealed the relevant results in the literature on quaternion matrix algebra, specially concerning the eigendecomposition of quaternion matrices. In the future work, it is expected to build upon these results to create a framework for processing graph-based signals with both samples and graph edge weights belonging to the quaternion space.
+% Exploring new algebraic structures to represent discrete-domain signals often reveals valuable insights and new applications. That was the case with the embedding of three- and four-dimensional signals into the quaternion space, or the development of graph signal processing to deal with network-like data. In this ongoing research, opportunities in the field of quaternion signal processing were investigated. Focusing on properties and applications of quaternion matrices, studies on two different directions were conducted: the generalization of the quaternion discrete Fourier transform (QDFT), in the sense of a new method for its fractionarization based on its eigenstructure, and the conception of a quaternion-valued branch of graph signal processing, in which the graph edge weights belong to a 4D hypercomplex space. In the first line of research, the eigenstructure of the QDFT was unveiled in the light of the eigendecomposition of its complex-valued counterpart, what led to a new method for fractionarization of the QDFT. Besides, a multi-parametric version was proposed, alongside its application on an algorithm for color image encription. Regarding the work on graphs with quaternion-valued weights, the studies so far have revealed the relevant results in the literature on quaternion matrix algebra, specially concerning the eigendecomposition of quaternion matrices. In the future work, it is expected to build upon these results to create a framework for processing graph-based signals with both samples and graph edge weights belonging to the quaternion space.
+Abstract.
 
 \vspace{\onelineskip}
 
