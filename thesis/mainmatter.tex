@@ -2,29 +2,38 @@
 
 Signal processing is a field which often interweaves pure mathematics and engineering. One of its concerns is the \textit{representation} of signals (functions) and how different representations may be explored to better manipulate such signals. The spectral analysis via Fourier and similar transforms, for instance, aims to project the signal onto a domain in which the energy support is more compact (compression), or in which some frequencies are easier to be removed (filtering), or yet in which some relevant features may be created (feature engineering for machine learning problems), among others \cite{oppenheim1999discrete, rabiner2010theory, graf2015features, vergin1999generalized}.
 
-One way to explore different signal representations is to alter the algebra over which it is defined. That is the case with numerical or arithmetic transforms \cite{blahut2010fast,pedrouzo2017number,chandra2014exact}, which deal only with finite fields instead of the usual complex (e.g. Fourier transform) or real fields (e.g. cosine transform). As the underlying algebra is extended, as going from $ \mathbb{R} $ to $ \mathbb{C} $, it is possible to process signals with more information per sample. Such was the motivation behind Sangwine's \cite{sangwine1996fourier} discrete version of a family of bidimensional transforms over the \textit{quaternions}, previously created by Ell \cite{ell1993quaternion}: exploit this class of hypercomplex numbers with four real components to perform holistic color image processing. Upon mapping each color channel inside a pixel into an imaginary component of a quaternion number, the color image may be processed as a single signal. Computationally, the spectral decomposition requires only two complex discrete Fourier transforms (DFTs), instead of three (one per color channel). Ever since, quaternion transforms have been employed not only on color image processing \cite{ell2007hypercomplex,chen2018quaternion,li2013quaternion,evans2000hypercomplex}, but also other ends such as bivariate signal analysis \cite{flamant2017spectral,flamant2017time,flamant2018complete}.
+One way to explore different signal representations is to alter the algebra over which it is defined. That is the case with numerical or arithmetic transforms \cite{blahut2010fast,pedrouzo2017number,chandra2014exact}, which deal only with finite fields instead of the usual complex (e.g. Fourier transform) or real fields (e.g. cosine transform). As the underlying algebra is extended, e.g. going from $ \mathbb{R} $ to $ \mathbb{C} $, it is possible to process signals with more information per sample. Such was the motivation behind Sangwine's \cite{sangwine1996fourier} discrete version of a family of bidimensional transforms over the \textit{quaternions}, previously created by Ell \cite{ell1993quaternion}: to exploit this class of hypercomplex numbers with four real components to perform holistic color image processing. Upon mapping each color channel inside a pixel into an imaginary component of a quaternion number, the color image may be processed as a single signal. Computationally, the spectral decomposition requires only two complex discrete Fourier transforms (DFTs), instead of three (one per color channel). Ever since, quaternion transforms have been employed not only on color image processing \cite{ell2007hypercomplex,chen2018quaternion,li2013quaternion,evans2000hypercomplex}, but also other ends such as bivariate signal analysis \cite{flamant2017spectral,flamant2017time,flamant2018complete}.
 
-Another option to modify the signal representation is to reinterpret its own \textit{domain}, as it happens in graph signal processing (GSP). This field, which emerged in the last decade, is concerned with extending the concepts of classical discrete signal processing (DSP) to the in which the signal samples reside in graph vertices. It approaches the classical case of discrete-time domain as being a path or ring graph (depending on the graph shift operator at hand, as will soon be clear) with equally weighted edges. The \textit{signal}, therefore, is a mapping from the vertex set to the real (or complex) numbers, and the fixed sampling frequency is represented as graph edges having the same weights (i.~e. as if the samples were at fixed ``distances'', one could say). GSP deals with the consequences of conecting more vertices in this graph, leaving the ring shape and creating an arbitrary network. Many definitions from classical DSP have already found their way into GSP, thanks to the contributions of many scholars who proposed ways to implement filtering \cite{sandryhaila2013filters}, linear transforms \cite{sandryhaila2013gft,sardellitti2017graph}, interpolation \cite{segarra2015interpolation}, sampling theorem on graphs \cite{wang2015generalized,chen2016signal,tsitsvero2016signals}, among others.
+Algebra extensions change the signal representation by looking at the signal \textit{samples} but, reminding the signal is nothing more than a function, one may also shift her attentino to the \textit{domain}. In fact, such reflection has led to the creation of graph signal processing (GSP). This field, which emerged in the last decade, is concerned with extending the concepts of classical discrete signal processing (DSP) to the in which the signal samples \textit{reside in graph vertices}. It approaches the classical case of discrete-time domain as being a path or ring graph (depending on the graph shift operator at hand, as will soon be clear) with equally weighted edges. The \textit{signal}, therefore, is a mapping from the vertex set to the real (or complex) numbers, and the fixed sampling frequency is represented as graph edges having the same weights (i.~e. as if the samples were at fixed ``distances'', one could say). GSP deals with the consequences of conecting more vertices in this graph, moving from the queue-shaped domaing into an arbitrary network. Many definitions from classical DSP have already found their way into GSP, thanks to the contributions of many scholars who proposed ways to implement filtering \cite{sandryhaila2013filters}, linear transforms \cite{sandryhaila2013gft,sardellitti2017graph}, interpolation \cite{segarra2015interpolation}, sampling theorem on graphs \cite{wang2015generalized,chen2016signal,tsitsvero2016signals}, among others.
 
-The endeavour to experiment with different algebras or domain topologies has primarily theoretical motivations, but often reveal new solutions to real world problems. Taking GSP for instance, its applications spread from coding \cite{su2017graph} and light-field image super resolution schemes \cite{rossi2017graph}, to regulatory genetic networks, in which graph-based methods improved three state-of-the-art network inference schemes \cite{pirayre2015brane,pirayre2017brane}, also reaching recommender systems, both collaborative filtering and content-based, using regularization of graph total variation \cite{benzi2016song}, semi-supervised learning through adaptive graph filters \cite{chen2014semi}, community detection using graph wavelets \cite{tremblay2014graph}, among others. The latter examples hint at the intersection between GSP and the fields of data science and machine learning -- well established and highly active, both in Academia and in industry --, to the point where we can join Benjamin Ricaud and say that \emph{Fourier could very well be, today, a data scientist} \cite{ricaud2019fourier}.
+The endeavour to experiment with different algebras or domain topologies has primarily theoretical motivations, but often reveal new solutions to real world problems. Taking GSP for instance, its applications spread from coding \cite{su2017graph} and light-field image super resolution schemes \cite{rossi2017graph}, to regulatory genetic networks, in which graph-based methods improved three state-of-the-art network inference schemes \cite{pirayre2015brane,pirayre2017brane}, also reaching recommender systems, both collaborative filtering and content-based, using regularization of graph total variation \cite{benzi2016song}, semi-supervised learning through adaptive graph filters \cite{chen2014semi}, community detection using graph wavelets \cite{tremblay2014graph}, among others. The latter examples hint at the intersection between GSP and the fields of data science and machine learning -- well established and highly active, both in Academia and industry --, to the point where we can join Benjamin Ricaud and say that \emph{Fourier could very well be, today, a data scientist} \cite{ricaud2019fourier}.
 
-Tal como GSP, o uso de quat\'ernios como blocos elementares para a representa\c c\~ao de sinais tem encontrado aplica\c c\~oes. Al\'em das j\'a citadas envolvendo imagens e sinais bivariados, seu uso em filtros adaptativos quaterni\^onicos encontrou utilidade na predi\c c\~ao de perfis de vento e em forma\c c\~ao de feixes adapt\'aveis de antenas dipolo \cite{jiang2014general}. H\'a ainda um estudo que mescla quat\'ernios e grafos \cite{zhang2019quaternion} -- o \'unico de que este autor tem conhecimento --, em que \emph{quaternion embeddings} s\~ao utilizados para obter uma representa\c c\~ao de baixa dimensionalidade das entidades e rela\c c\~oes em \emph{knowledge graphs} (entidades s\~ao conectadas por arestas de valor sem\^antico). Esse tipo de grafo \'e de grande import\^ancia em processamento de linguagem natural, estrutura\c c\~ao de conhecimento e problemas de busca, mas \'e geralmente coletado de forma incompleta, exigindo predi\c c\~ao de arestas. Nesta abordagem, os autores projetam as entidades num espa\c co de baixa dimensionalidade (i.e. calculam \emph{embeddings}) de valores quaterni\^onicos.
+As happened to GSP, the study of quaternion-valued signal processing has also found applications. Beyond the already mentioned use in manipulating color image and bivariate signals, the work on adaptive quaternion filters has been useful, for example, in wind profile prediction \cite{jiang2014general}. Or yet the remarkable union of graphs and quaternions in the work by \cite{zhang2019quaternion} -- the only one the author is aware of --, in which quaternion embeddings are used to form a low dimensional representation of entities and relations in knowledge graphs.
 
+In this context, the current thesis aims to tackle the following problem: is it possible to perform signal processing having quaternion-valued samples residing on graphs with quaternion-weighted edges? What limitations and new possibilites may arise when exploring what we may call \textit{quaternion graph signal processing} (QGSP)? That is the spark which ignited the studies and results presented in the following chapters.
+
+As will become clear to the reader, however, the pathway to the basis of QGSP was not a straight line. Sometimes what seemed to be dead ends emerged, and during the reflections upon ways to bypass them, other interesting results started to show themselves. For example, it was certain from the beginning that the problem of eigendecomposing quaternion matrices would be at the heart of QGSP, since the very definition of a graph signal spectrum requires the eigenvalues and eigenvectors of a graph shift operator (e.g. the adjacency matrix), which is a quaternion matrix. Since it took a while to make progress with general graph matrices, it seemed promising to investigate the quaternion discrete Fourier transform (QDFT); after all, ring graphs should have the graph Fourier transform (GFT) and the classical discrete Fourier transform (DFT) coinciding. By looking at the QDFT matrix, however, a new way to diagonalize it was found and a new multiparametric fractional QDFT was proposed. When shifting the focus to the graph domain, revisiting the study of graph shift operators and their spectral decomposition, interesting results regarding the fractional graph shift operator were discovered. For instance, this new operator acts as a graph filter, and its polynomial representation is determined, demonstrating that it can be implemented as a linear and shift-invariant (LSI) graph filter.
+
+This thesis is organized as follows. Chapter \ref{ch:fundamentos} brings a diverse set of concepts and results from the literature, providing the reader with a broad understanding of the quaternion algebra, quaternion and fractional transforms, and GSP, so as to follow easily the discussions to come.
+Chapter \ref{ch:FrGSO} presents the new fractional graph shift operator, commenting on its properties and applications.
+In Chapter \ref{ch:FrQDFT}, a study on the fractionalization of the QDFT is presented, with a new method being proposed, alongside a multiparametric version of the fractional-order transform.
+The foundations of QGSP are finally presented in Chapter \ref{ch:QGSP}, with discussions and a few applications with both toy and real world datasets.
+The thesis closes with concluding remarks and future works, in Chapter \ref{ch:conclusion}, and the Appendix \ref{ch:AppendixA}, demonstrating a relation between systems of quaternion and complex linear equations, useful for a central theorem presented in Chapter\ref{ch:fundamentos}.
 
 \section{Contributions}
+The contributions present in this thesis are:
 
 \begin{itemize}[noitemsep]
-    \item The discussion of the meaning of the fractional graph shift and its application on improving least-squares approximation of linear and shift-invariant ideal filters.
+    \item The proposition and discussion of the fractional graph shift and its application on improving least-squares approximation of linear and shift-invariant ideal filters.
     \item A novel approach to fractionalizing the quaternion discrete Fourier transform (QDFT)
-    \item The definition of a multi-parametric fractional QDFT and its application in a novel image encryption scheme.
+    \item The definition of a multiparametric fractional QDFT and its application in a novel image encryption scheme.
     \item The proposition of Quaternion Graph Signal Processing (QGSP), a new tool designed for specialized scenarios in which both the signal samples and their quantifiable relationship may be expressed as quaternions (thus having at most four dimensions or information sources).
     \item \texttt{gspx}\footnote{The library is available as an open repository: \texttt{\url{https://github.com/gboaviagem/gspx}}.}, an open-source Python library with implementation of the core concepts from QGSP.
 \end{itemize}
 
 \section{Publications}
 
-This work has so far produced two papers appearing on international journals and one in a global conference. The paper \emph{``Eigenstructure and fractionalization of the quaternion discrete Fourier transform''}, published on Optik, contains the results of Chapter \ref{ch:FrQDFT}. The paper \emph{``The Cosine Number Transform: A Graph Signal Processing Approach''}, presented in the 2019 edition of GlobalSIP, was created during attempts to further generalize GSP to other algebraic structures, in particular graphs with edhe weights in finite fields.
-
+This work has so far published two papers in international journals and one in a global conference. The paper \emph{``Eigenstructure and fractionalization of the quaternion discrete Fourier transform''}, published in Optik, contains the results of Chapter \ref{ch:FrQDFT}. The paper \emph{``The Cosine Number Transform: A Graph Signal Processing Approach''}, presented in the 2019 edition of GlobalSIP, was created during short attempts to further generalize GSP to other algebraic structures, in particular to graphs with edge weights in finite fields. However, as it has not evolved to more substantial findings and thus, although it stems from this work, it is not featured in this thesis.
 
 \begin{itemize}[noitemsep]
 \item Ribeiro, G. B., and Lima, J. B. ``Eigenstructure and fractionalization of the quaternion discrete Fourier transform.'' \emph{Optik} (2019): 163957. DOI: \href{https://doi.org/10.1016/j.ijleo.2019.163957}{10.1016/j.ijleo.2019.163957}
@@ -34,22 +43,18 @@ This work has so far produced two papers appearing on international journals and
 \item G. B. Ribeiro, J. R. D. O. Neto and J. B. Lima, ``On the Fractionalization of the Shift Operator on Graphs,'' in \emph{IEEE Access}, vol. 10, pp. 16468-16478, 2022, doi: \href{https://doi.org/10.1109/ACCESS.2022.3149755}{10.1109/ACCESS.2022.3149755}.
 \end{itemize}
 
-\section{Organization}
+% O escopo desta pesquisa orbita, essencialmente, a aplica\c c\~ao de matrizes quaterni\^onicas no contexto de processamento de sinais. Sejam matrizes de adjac\^encia de grafos, ou matrizes de transforma\c c\~oes lineares quaterni\^onicas, o entendimento de sua autoestrutura e a interpreta\c c\~ao correta de opera\c c\~oes que delas fazem uso s\~ao os fios condutores desta tese. O objetivo geral consiste em expandir as ferramentas da literatura em processamento de sinais quaterni\^onicos, particularmente aplicando a grafos de pesos quaterni\^onicos, e propor novas interpreta\c c\~oes e cen\'arios de aplica\c c\~ao.
 
-O escopo desta pesquisa orbita, essencialmente, a aplica\c c\~ao de matrizes quaterni\^onicas no contexto de processamento de sinais. Sejam matrizes de adjac\^encia de grafos, ou matrizes de transforma\c c\~oes lineares quaterni\^onicas, o entendimento de sua autoestrutura e a interpreta\c c\~ao correta de opera\c c\~oes que delas fazem uso s\~ao os fios condutores desta tese. O objetivo geral consiste em expandir as ferramentas da literatura em processamento de sinais quaterni\^onicos, particularmente aplicando a grafos de pesos quaterni\^onicos, e propor novas interpreta\c c\~oes e cen\'arios de aplica\c c\~ao.
-
-Os objetivos espec\'ificos a serem alcan\c cados s\~ao
-\begin{itemize}[noitemsep]
-\item o estudo da fracionariza\c c\~ao da transformada discreta de Fourier quaterni\^onica (QDFT, \emph{quaternion discrete Fourier transform}),
-\item expandindo o item anterior, pretende-se avan\c car no estudo de diagonaliza\c c\~ao de matrizes quaterni\^onicas e
-\item investigar cen\'arios modelados por grafos com pesos quaterni\^onicos, bem como as dificuldades alg\'ebricas ou computacionais oriundas da n\~ao-comutatividade dos quat\'ernios.
-\end{itemize}
-
-Este Projeto de Tese se divide da seguinte forma. No cap\'itulo \ref{ch:FrQDFT}, \'e apresentado um estudo sobre a fracionariza\c c\~ao da QDFT, no qual a autoestrutura desta transformada \'e explorada a partir daquela da DFT. O cap\'itulo \ref{ch:QGSP} traz as motiva\c c\~oes e desafios do processamento de sinais quaterni\^onicos sobre grafos, bem como uma colet\^anea de resultados da literatura pertinentes ao problema. No cap\'itulo \ref{ch:others}, as considera\c c\~oes finais e pr\'oximos passos s\~ao apresentados. O ap\^endice \ref{ch:AppendixA}, por fim, demonstra uma rela\c c\~ao entre sistemas de equa\c c\~oes quaterni\^onicas e complexas \'util para um teorema central apresentado no cap\'itulo \ref{ch:QGSP}.
+% Os objetivos espec\'ificos a serem alcan\c cados s\~ao
+% \begin{itemize}[noitemsep]
+% \item o estudo da fracionariza\c c\~ao da transformada discreta de Fourier quaterni\^onica (QDFT, \emph{quaternion discrete Fourier transform}),
+% \item expandindo o item anterior, pretende-se avan\c car no estudo de diagonaliza\c c\~ao de matrizes quaterni\^onicas e
+% \item investigar cen\'arios modelados por grafos com pesos quaterni\^onicos, bem como as dificuldades alg\'ebricas ou computacionais oriundas da n\~ao-comutatividade dos quat\'ernios.
+% \end{itemize}
 
 
-\chapter{Review of main literature topics}
-\label{ch:fundamentos}
+\chapter{On quaternion algebra and its Fourier transform}
+\label{ch:reviewQuat}
 
 \begin{quotation}
 \itshape
@@ -59,26 +64,25 @@ And here there dawned on me the notion that we must admit, in some sense, a four
 \end{quotation}
 
 
-Em 1833, aos 28 anos, Willian Rowan Hamilton apresentou \`a Academia Real Irlandesa (RIA, \emph{Royal Irish Academy}) um trabalho no qual n\'umeros complexos eram tratados como pares ordenados de n\'umeros reais, dadas as defini\c c\~oes apropriadas de opera\c c\~oes na \'algebra\footnote{Os resultados foram publicados em 1837, no artigo \emph{Theory of Conjugate Functions, or Algebraic Couples; with a Preliminary and Elementary Essay on Algebra as the Science of Pure Time} \cite{hamilton1837theory}.}. Nos anos seguintes, ele se esfor\c cou para estender o corpo dos complexos numa \'algebra de divis\~ao sobre triplas, mas percebeu que, por mais engenhosas que fossem suas tentativas, n\~ao obtinha uma \'algebra fechada sob multiplica\c c\~ao. Tomemos o seguinte exemplo \cite{santos2011algebra}: seja o conjunto $\mathbb{F} = \{ a + b \qi + c \qj  \ | \ (a, b, c) \in \mathbb{R}^3\}$, com $\qi^2 = \qj^2 = -1$ e $\qi \neq \qj$. Uma vez que $\qi, \qj \in \mathbb{F}$, ent\~ao existem $x, y, z \in \mathbb{R}$ tais que
+In 1833, at the age of 28, Willian Rowan Hamilton presented to the Royal Irish Academy (RIA) a work in which complex numbers were treated as ordered pairs of real numbers, given the appropriate definition of operations\footnote{Os resultados foram publicados em 1837, no artigo \emph{Theory of Conjugate Functions, or Algebraic Couples; with a Preliminary and Elementary Essay on Algebra as the Science of Pure Time} \cite{hamilton1837theory}.}. In the following years, he struggled to extend the complex field into a normed division algebra ober triples, but soon realized that, as much as his attempts were inventive, the resulting algebra was not closed under multiplication. We can see this through a simple example \cite{santos2011algebra}: let it be the set $\mathbb{F} = \{ a + b \qi + c \qj  \ | \ (a, b, c) \in \mathbb{R}^3\}$, with $\qi^2 = \qj^2 = -1$ and $\qi \neq \qj$. Since $\qi, \qj \in \mathbb{F}$, so there must exist $x, y, z \in \mathbb{R}$ so that
 \begin{equation}
 \qi \qj = x + y \qi + z \qj.
 \label{eq:demonstration01}
 \end{equation}
 
-Multiplicando por $\qi$ ambos os lados identidade,
+Multiplying by $\qi$ both sides of the equation,
 \begin{equation}
 \qi^2 \qj = \qi x + \qi^2 y + z (\qi \qj),
 \end{equation}
-e usando (\ref{eq:demonstration01}),
+and using (\ref{eq:demonstration01}) it yields,
 \begin{equation}
 - \qj = \qi x - y + z (x + y \qi + z \qj)
 \Rightarrow
-(zx - y) + \qi (x + zy) + \qj (z^2 + 1) = 0,
+(zx - y) + \qi (x + zy) + \qj (z^2 + 1) = 0.
 \end{equation}
-ou seja: $z \notin \mathbb{R}$ e $ \qi \qj \notin \mathbb{F} $, mostrando que tal estrutura alg\'ebrica n\~ao \'e fechada sob multiplica\c c\~ao.
+That is: $z \notin \mathbb{R}$ and $ \qi \qj \notin \mathbb{F} $, proving that such algebraic structure is not closed under multiplication.
 
-Somente em 1843, enquanto caminhava em dire\c c\~ao \`a RIA, Hamilton subitamente concebeu a estrutura quadridimensional necess\'aria para a extens\~ao buscada para os complexos, criando os \emph{quat\'ernios}. Tomado por j\'ubilo, p\^os-se a cravar sob a Broome Bridge, em Dublin, as equa\c c\~oes que relacionam os elementos da base can\^onica dos quat\'ernios\footnote{Pr\'oximo ao local em que outrora estiveram as equa\c c\~oes, a RIA fixou uma placa comemorativa em 1958, com a mesma inscri\c c\~ao.}. Esta cria\c c\~ao, vinda de um \emph{insight} em 1843, permeia parte consider\'avel deste projeto de tese.
-
+Only a decade later, in 1843, while walking by the roads in Dublin towards the RIA, ``an electric circuit seemed to close, and a spark flashed forth'', as he would say. He had conceived the four-dimensional structure required to the desired algebra, creating the quaternions. Moved by excitement, he craved on the stone below Broome Bridge, in Cabra (Dublin), the equations that define the relations between the canonical basis elements of quaternions\footnote{Close to the original site of the inscriptions, the RIA placed a commemorative plaque in 1958, with the same writings.}. This creation, made possible by an insight in 1843, permeates most of this work.
 
 Nas se\c c\~oes a seguir ser\~ao apresentadas as bases para compreens\~ao do trabalho desenvolvido no cap\'itulo \ref{ch:FrQDFT} e a proposta de estudo iniciada no cap\'itulo \ref{ch:QGSP}. Trata-se de fundamentos da \'algebra e do processamento de sinais sobre os quat\'ernios e, na \'ultima se\c c\~ao, de uma introdu\c c\~ao ao processamento de sinais sobre grafos.
 
@@ -647,7 +651,415 @@ Esta breve apresenta\c c\~ao da QDFT ilustra que
 
 Para uma introdu\c c\~ao completa aos quat\'ernios e sua aplica\c c\~ao ao processamento de sinais, recomenda-se \cite{zhang1997quaternions,ell2014quaternion,flamant2017time, jiang2014general}.
 
+\chapter{Fractional and graph Fourier transforms}
+
 \section{Fractional transforms}
+
+\section{Fundamentals of graph signal processing (from jcis paper)}
+
+Multivariate data defined over networks are nowadays ubiquitous, being constantly generated, stored and processed in the most diverse systems in engineering and technology. Measurements in a set of IoT sensors and mobile devices~\cite{alam2015toward,guo2016qos,ma2016non,yu2016novel}, number of citations in a scientific collaboration network or social media relations (\emph{collaboration graph}, or \emph{social graph})~\cite{chung2010graph} and interactions between individuals in a ecosystem (\emph{ecological networks})~\cite{golubski2016} are some examples of situations in which the acquired data are intimately related to the topology of the network over which they are defined.
+
+Such multivariate network-like systems are not only present in various applications, but are also systematically growing in number, as sensors become cheaper and smaller and concepts such as cloud storage/computing and Big Data consolidate, as indicated by the 2011 report from McKinsey Global Institute \cite{mckinsey2011big}. This document also states that the information acquired from the adequate processing of such massive networked data is a fundamental requisite for the companies to thrive from now on.
+
+Still another motivation that feeds the urge to study processing techniques for data defined over network-like domains, for example, is the growth of research on \emph{smart cities}, which takes advantage of the considerable information (that are or are yet to be) generated in cities to provide (or improve the) solutions  for many urban problems \cite{jain2014big}.
+
+All these examples share an important characteristic: the structure over which the data is defined may be modelled by a graph \cite{mei2016signal}, to which vertices are assigned the variables of interest, as depicted in Fig. \ref{fig:duher}. That is the context in which the field of \emph{graph signal processing} (GSP) was developed in the last decade, a theoretical framework aiming to generalize the classical signal processing methods and concepts to scenarios in which the signal is no more defined over a regular domain, but sits on a generally irregular structure, an arbitrary graph. The research is still very active and numerous contributions have been made, but two distinct frameworks consistently grew throughout the years and have been established as default mindsets when dealing with graph signals. The first one is based on algebraic signal processing and uses the graph adjacency matrix as elementary block. This approach imposes no restrictions regarding the graph being directed or undirected, and the edge weights are allowed to be negative or complex numbers~\cite{sandryhaila2014big}. The second framework draws ideas from spectral graph theory and analyzes signals defined only over undirected graphs with non-negative real edge weights, using the graph Laplacian matrix to build a basis for the signal space~\cite{shuman2013emerging}. Both approaches have particular characteristics which make each more appropriate than the other for some applications. In this paper, we intend to present an overview of the basic aspects concerning each framework and provide the reader with a good understanding of their basic concepts and tools.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{Figures/signal_duher_graph_2.pdf}
+	\caption{Example of signal defined over a graph. The height of the vertical bars indicate the value of the signal samples, which are indexed by the graph vertices. The graph edges capture similarity relations between samples. How could one define spectral analysis and processing techniques in such a signal domain?}
+	\label{fig:duher}
+\end{figure}
+
+\subsection{The challenge of graph-like domains}
+
+One of the reasons why GSP has been such a fertile field, allowing the birth of so many different problems and ideas, is that the definition of a signal over a graph leads to a series of obstacles even with fundamental concepts of signal processing. Let us use the simple but elucidating example given by Shuman \emph{et al.}~\cite{shuman2013emerging}, and consider the unit shift to the right of a discrete-time signal $ x[n] $, which is done in digital signal processing (DSP) by the simple variable substitution $ x[n-1] $. Good enough, but what does it mean to right-shift the signal in  Fig. \ref{fig:duher}, for example? Obviously the sense of right and left are meaningless for general graphs. On this problem, Shuman \emph{et al.} argue that a na\"ive choice would be to label the $ N $ graph vertices from $ v_0 $ to $ v_{N-1} $, so that the sample $ x[n] $ is assigned to vertex $ v_n $, for doing so would allow to define the shifted signal as the result of assigning $ x[n] $ to vertex $ v_{(n-1) \text{\,mod\,} N} $. Such an option, however, is not adequate, for its repeatability depends always on the way the vertices are labelled \cite{shuman2013emerging}. This example illustrates how a concept in DSP as simple as signal translation may deserve a cautious study in GSP.
+
+
+\section{Principles and definitions}
+\label{sec:II}
+The field of graph signal processing draws basic concepts from the classical theories of digital signal processing and graph theory, aiming to provide a cohesive and useful framework to tackle the aforementioned challenges. In this section, some of the main definitions found in this field are presented.
+
+
+\subsection{Graph theory: a brief terminology}
+
+A graph is commonly defined as the ordered pair  $ (\mathcal{V},\mathcal{E}) $, in which the set $ \mathcal{V} $ contains the so called graph \emph{vertices} and the set of \emph{edges} $ \mathcal{E} $ is a subset of $ \mathcal{V}^2 $ \cite{feofiloff2011introduccao}.  We will usually indicate by $ |\mathcal{V}| = N $\footnote{The set operator $ |\cdot| $ means the cardinality, or amount of elements, of the set.} and $ |\mathcal{E}| = E $ the number of vertices and edges of a graph, respectively. For our purposes it is convenient to represent a graph as the structure $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $, endowed with the (weighted) adjacency matrix $ \mathbf{A} $ which captures the vertex-to-vertex relations: if $ A_{i,j} \neq 0$, then there is an edge of weight $ A_{i,j} $ from the vertex $ v_j $ to $ v_i $. It is denoted by $ d_i^- $ the \emph{indegree} of vertex $ v_i $, consisting of the sum of weights of all incoming edges to vertex $ v_i $. Likewise, the \emph{outdegree} $ d^+_i $ is the sum of weights of edges departing from $ v_i $.
+
+A graph is called \emph{undirected} if and only if its adjacency matrix is symmetric, in which case it is defined the \emph{degree} of vertex $ v_i $ as $ d_i^- = d_i^+ = d_i $. In this case, a graph is said to be \emph{d-regular} whenever all graph vertices have degree $ d $\label{pag:regular}. If $ \mathbf{A} $ is asymmetric, however, the respective graph is \emph{directed} and its pictorial representation depicts the edges as arrows, to account for the unidirectional relation between adjacent vertices. Examples of directed and undirected graphs are shown in Fig. \ref{fig:example_graphs}.
+
+\begin{figure}
+	\centering
+	\subfloat[]{
+		\includegraphics[width=0.35\linewidth]{Figures/example_graph_01_math.pdf}
+	}~
+	\subfloat[\label{fig:example_graphs_b}]{
+		\includegraphics[width=0.35\linewidth]{Figures/example_graph_02_math.pdf}
+	}
+	\caption{Examples of (a) directed and (b) undirected graphs, defined over the same vertex set.}
+	\label{fig:example_graphs}
+\end{figure}
+
+The adjacency matrix is the building block for one of the two main frameworks of GSP, what will be covered soon, but another matrix of great importance, mainly in the branch of GSP originated from spectral graph theory, is the Laplacian matrix
+\begin{equation}
+%\label{key}
+\mathbf{L} = \mathbf{D} - \mathbf{A},
+\end{equation}
+with the \emph{degree matrix} $ \mathbf{D} $ being a diagonal matrix with the degree $ d_i $ as its $ i $-th entry. Depending on the context, $ \mathbf{D} $ may be taken as the indegree or outdegree matrix, although when the Laplacian matrix is used the graphs considered are more often undirected.
+
+A \emph{path} is a set of distinct edges (with the same orientation, if the graph is directed) linking distinct vertices. A \emph{cycle} is a path with equal starting and end points, and if a graph has a cycle it is called \emph{cyclic} (\emph{acyclic}, otherwise). If the cycle has only one edge, it is called a \emph{loop}. One refers to \emph{multiple edges} whenever a single pair of vertices is connected by two or more edges. An undirected graph is called \emph{simple} if it has no loops or multiple edges.
+
+A graph is said to be \emph{complete} if any two of its vertices are adjacent. Graph signal processing over such graphs may be extremely cumbersome, for the computational complexity of many of its techniques depends heavily on the number of graph edges. For most applications, it is desirable to have a small number of edges while keeping the graph \emph{connected}, i.~e. for any pair of vertices there exists a set of distinct edges (with the same orientation, if directed) connecting them without making a cycle.
+
+A graph is said to be \emph{unweighted} if all its edges have unit weight. A \emph{subgraph} of $ \mathcal{G} $ is a graph $ \mathcal{G}' = (\mathcal{V}', \mathbf{A}')$ with edge set $ \mathcal{E}' $, in which $ \mathcal{V}' \subset \mathcal{V} $ and $ \mathcal{E}' \subset \mathcal{E} $. A \emph{connected component} of $ \mathcal{G} $ is a connected subgraph $ \mathcal{G}' = (\mathcal{V}', \mathbf{A}')$ in which any vertex in $ \mathcal{V}' $ is linked exclusively to another vertex also in $ \mathcal{V}' $. This is illustrated by Fig. \ref{fig:example_graphs_b}, in which the graph has two connected components.
+
+\begin{figure}
+	\centering
+	\subfloat[\label{fig:k_hop_neighborhood_01}]{
+		\includegraphics[width=0.45\linewidth]{Figures/k_hop_neighborhood_01.pdf}
+	}~
+	%	\qquad
+	\subfloat[\label{fig:k_hop_neighborhood_02}]{
+		\includegraphics[width=0.45\linewidth]{Figures/k_hop_neighborhood_02.pdf}
+	}
+	%\hspace{0.2cm}%
+	\caption{(a) A graph and (b) the set of vertices $ \mathcal{N}(i,2) $ shown in red, with $ v_i $ being depicted in white. The edges linking $ v_i $ to the elements in $ \mathcal{N}(i,2) $ are also highlighted in red.}%
+	\label{fig:k_hop_neighborhood}%
+\end{figure}
+
+The \emph{neighbourhood} of a vertex $ v_i $ is the set $ \mathcal{N}_i $ of all vertices adjacent to $ v_i $. Sometimes it is useful as well to denote by $ \mathcal{N}(i,K) $ the set of vertices connected to $ v_i $ through a path of length $ K $ or less. This notion is represented in Fig. \ref{fig:k_hop_neighborhood}.
+
+The reader is encouraged to refer to this section whenever necessary. For a broader glossary with a solid introduction to graph theory, the authors recommend \cite{bondy2008graph,chung1997spectral}.
+
+
+\subsection{Defining a graph signal}
+
+A signal $ \mathbf{s} $ defined over $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $, with $ |\mathcal{V}| = N $, is a discrete-domain function mapping the graph vertex set to a scalar set, usually the complex or real numbers,
+\begin{equation}
+	%\label{key}
+	s: \ \mathcal{V} \rightarrow \mathbb{C} \ | \ s(v_i) = s_i,
+\end{equation}
+so that $ \mathbf{s} $ can be seen as a vector in $ \mathbb{C}^N $ \emph{indexed by the vertices of} $ \mathcal{G} $. Once the vertices $ \mathcal{V} = \{v_1, \dots, v_N\}$ are clearly labelled, it is not ambiguous to represent the signal as the column vector $ \mathbf{s} = (s_0 \ s_1 \ \dots \ s_{N-1})^T$, $ s_i \in \mathbb{C} $, $ 0 \leq i \leq N-1 $.
+
+\begin{figure*}
+	\centering
+	\subfloat[\label{figa_graphs}]{
+		\includegraphics[width=0.25\linewidth]{Figures/signal_ring_graph_white_border.pdf}
+	}
+	%		\hspace{0.2cm}%
+	%	\qquad
+	%	\subfloat[t][\label{figb_graphs}]{
+	%		\includegraphics[width=0.25\linewidth]{Figures/signal_duher_graph_2.pdf}
+	%	}
+	\subfloat[\label{figb_graphs}]{
+		\includegraphics[width=0.25\linewidth]{Figures/image_graph.pdf}
+	}%
+	\subfloat[\label{figd_graphs}]{
+		\includegraphics[width=0.3\linewidth]{Figures/temp_NE_stretched.pdf} }%
+	\caption{Examples of depictions of graph signals over (a) a directed ring graph, 
+		%	(b) um grafo de D\"{u}her n\~ao-direcionado,
+		(b) an undirected regular grid graph and (c) a graph of cities from the Brazilian Northeastern region, over which was defined a signal of temperature measurements from February 1\textsuperscript{st} of 2012, retrieved from the
+		\emph{Banco de Dados Meteorol\'ogicos para Ensino e Pesquisa} (BDMEP, freely translated as Meteorological Database for Teaching and Research), available at: \url{http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep}.}%
+	\label{fig:graphs}%
+	\vspace{-0.2cm}
+\end{figure*}
+
+%\footnote{Fonte: Banco de Dados Meteorol\'ogicos para Ensino e Pesquisa (BDMEP) do Instituto Nacional de Meteorologia. Acesso gratuito ap\'os cadastro, dispon\'ivel em: \url{http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep}.}
+
+Fig. \ref{fig:graphs} provides examples of graph signal representations, in which the vertex labelling is omitted for the sake of simplicity, as it will be assumed that the signal sample $ s_i $ is assigned to vertex $ v_i $. The signal values are indicated in two manners: either by writing down its numerical value next to the respective vertex, or by using a pseudocolor scale, the latter of which is the scheme adopted throughout this paper.
+
+%Por ora, o leitor pode ter-se indagado sobre a pr\'opria \emph{constru\c c\~ao} do grafo para o caso de sinais reais, como aquele obtido de medi\c c\~oes de temperatura na Fig. \ref{figd_graphs}, o que de fato n\~ao \'e uma quest\~ao trivial e ser\'a abordada na subse\c c\~ao a seguir.
+
+It is crucial to stress a certain graph which links GSP to the classical Discrete Signal Processing (DSP) theory: the directed ring graph, shown in Fig. \ref{figa_graphs}, which models the finite-length discrete-time domain. Its directed edges model the causality of time domain, whereas the feedback edge accounts for the boundary condition of periodicity imposed by the DFT analysis. Other signals that arise in practical applications have the respective graphs easily identified: the rectangular lattice in Fig. \ref{figb_graphs}, for example, models the digital image domain \cite{sandryhaila2012nearest}, and Fig. \ref{figd_graphs} shows an example of signal defined over a mesh network of sensors, with the edges weighted using the inverse of the euclidian distance, which arises in many scenarios such as IoT applications.
+
+\begin{figure*}
+	\centering
+	\begin{minipage}[c]{0.24\linewidth}
+		\subfloat[\label{fig:diff_struct_a}]{
+			\includegraphics[width=\linewidth]{Figures/ring_different_structure_01.pdf}
+		}
+	\end{minipage} %
+	\begin{minipage}[c]{0.24\linewidth}
+		\subfloat[\label{fig:diff_struct_c}]{
+			\includegraphics[width=\linewidth]{Figures/ring_different_structure_01_spectrum_EN.pdf}
+		}
+	\end{minipage}%
+	\begin{minipage}[c]{0.24\linewidth}
+		\subfloat[\label{fig:diff_struct_b}]{
+			\includegraphics[width=\linewidth]{Figures/ring_different_structure_02.pdf}
+		}~
+	\end{minipage}%
+	\begin{minipage}[c]{0.25\linewidth}
+		\subfloat[\label{fig:diff_struct_d}]{
+			\includegraphics[width=\linewidth]{Figures/ring_different_structure_02_spectrum_EN.pdf}
+		}
+	\end{minipage}%
+	\caption{The same signal was defined over similar graphs, one of them being (a) the undirected ring graph. In (b) and (d) are depicted the Fourier spectra according to GSP\textsubscript{L} (as defined in Subsection \ref{subsec:GFT_L}) of the signals in (a) and (c), respectively.}%
+	\label{fig:diff_struct}%
+	\vspace{-0.2cm}
+\end{figure*}
+
+The spectral characteristics of a signal depend heavily on the domain over which it is defined, but one does not need to acknowledge this in the context of DSP, for in this case the domains are always regular and uniform\footnote{One could argue that, in the theory of \emph{nonuniform sampling}, the signal is defined over an irregular domain, since the samples may be randomly spaced. Even in this case, however, the classical techniques still aim to \emph{recover} the signal so as to represent it in its usual -- and \emph{uniform} -- domain.
+%Even when considering \emph{nonuniform sampling}, theory in which one could argue the signal is defined over an irregular domain, since the samples may be randomly spaced, the classical techniques still aim to \emph{recover} the signal and represent it in a domain typically uniform.
+}.
+From the classical theory, the common understanding states that a signal has mostly low frequencies if adjacent samples have similar values, and high frequencies otherwise. When dealing with signals defined over graphs, it is clear that the adjacency relations depend on the graph topology, and therefore one may foresee that \emph{the same signal may present different spectra when defined over different graphs}. This intuition is visually confirmed (and will soon be mathematically proved) in Fig. \ref{fig:diff_struct}, which depicts a signal and its spectra when two different graphs are taken as a domain. The reader may notice that, in Fig. \ref{fig:diff_struct_b}, the samples with highest values are adjacent to the ones with small values, what causes bigger frequency components in this signal than in the one defined over the undirected ring graph in Fig. \ref{fig:diff_struct_a}.
+
+\subsection{Graph inference}
+\label{subsec:inferindo}
+
+Some contexts in which GSP is to be applied, to perform whatever signal processing technique is necessary, do not provide clear information on \emph{how the underlying graph is structured}. For example, let us suppose the temperature data (or any other data in fact) of some Brazilian Northeastern cities will be treated using GSP. How is one supposed to weight the graph edges, and before this, how does one decide which vertices to connect? Is the graph shown in Fig. \ref{figd_graphs} the only option? Clearly it is not. Although generally the problem of graph inference is complex, this type of geography-based graph has an adequate method topology estimation.
+
+The general ideia is that, if there is a clear metric to evaluate the \emph{expected} similarity between samples as a function of the available information regarding the respective vertices, then this metric may be used as the edge weight and a threshold is set so that any weight below this value causes the respective edge to be eliminated. In the case of vertices which have geodesic positions, the euclidian distance may be used as the metric because vertices that are closer together are \emph{expected} to have similar signal samples, and therefore the adjacency matrix of the underlying graph may have entries given by
+\begin{equation}
+\label{eq:weights}
+A_{ij} =
+\begin{cases}
+\displaystyle
+\exp \left(- \frac{\text{dist}^2(v_i, v_j)}{2 \theta^2}\right)& \text{ if } \text{dist}(v_i, v_j) < T \\ 
+0 & \text{ otherwise},
+\end{cases}
+\end{equation}
+as used in \cite{shuman2013emerging}. The choice of the parameters $ T $\footnote{$ T $ indicates a distance threshold above which we set the edge weight to zero, effectively leaving the vertices unlinked. This means that the distance between them is assumed to be too high for any significant interdependence to exist.} and $ \theta $ (standard deviation of the distribution), and of how to use the metric (in this case, inside a Gaussian distribution), are dictated by the application and by the analyst experience. 
+
+However, if there is an isolated vertex, far from the others, the use of (\ref{eq:weights}) may lead to a compromise between keeping the graph connected and obtaining a sparse adjacency matrix, since imposing connectivity to the graph in this case implies increasing $ T $, and therefore having many edges. To deal with this problem and still have a good representation of the underlying graph, one alternative is to connect a vertex to its $ K $ closest neighbours (setting $ K $ to an appropriate value, according to the context) and weight the edges using the Gaussian distribution in (\ref{eq:weights}).
+
+As previously discussed, these methods require an adequate metric to evaluate the expected similarity between samples in the graph vertex, but given the diverse areas in which graph signals may arise, estimating the topology of the  underlying graph constitutes a challenge of its own \cite{mei2016signal,Sardellitti2016}.
+
+\section{GSP\textsubscript{A}: graphs and algebraic signal processing}
+\label{sec:DSPG}
+
+In 2008, P\"uschel and Moura published their \emph{algebraic signal processing} (ASP) theory \cite{puschel2008time,puschel2008space}, which expands DSP by moving to an algebraic point of view: each signal processing theory is studied as a triple $ (\mathscr{A}, \mathscr{M}, \Phi) $ consisting of an algebra $ \mathscr{A} $ (a vector space endowed with multiplication between vectors), an $ \mathscr{A} $-module $ \mathscr{M} $ (a vector space over the same base field as $ \mathscr{A} $ which admits left-multiplication by elements of $ \mathscr{A} $) and a linear transformation $ \Phi $. $ \mathscr{A} $ is called the filter space, $ \mathscr{M} $ is the signal space and $ \Phi $ is the Fourier transform (homomorphism over $ \mathscr{M} $) associated to the structure.
+
+When these authors drew inspiration from ASP to develop their GSP theory, the starting point was necessarily to find (better, to define) the unit shift operator of graph signals, the reason being that such an operator in ASP is the building block of the algebra $ \mathscr{A} $ (as, for example, the unit delay $ z^{-1} $ is the building block for filters of discrete-time and finite-length signals $ \mathscr{A}  = \{ \sum_{\ell=0}^{N-1} h_\ell z^{-\ell} | h_\ell \in \mathbb{C} \}$). To do so, the shift of discrete-time signals, defined over directed ring graphs, was investigated.
+
+By inspection of the \emph{adjacency matrix} of the directed ring graph,
+\begin{equation}\label{eq:C}
+\mathbf{C} =
+\begin{bmatrix}
+&  &  &   1\\ 
+1 &  &   & \\ 
+&   \ddots &  & \\ 
+&  &   1 & 
+\end{bmatrix},
+\end{equation}
+it was noticed that the unit (circular) shift of discrete-time signals is precisely the left-multiplication by $ \mathbf{C} $, for given a discrete-time signal $ \mathbf{x} = (x_0 \ x_1 \ \dots \ x_{N-1})^T $,
+\begin{equation}\label{eq:unit_shift}
+\mathbf{C}\mathbf{x} =
+\begin{bmatrix}
+&  &  &   1\\ 
+1 &  &   & \\ 
+&   \ddots &  & \\ 
+&  &   1 & 
+\end{bmatrix}
+\begin{bmatrix}
+x_0 \\ x_1 \\ \vdots \\ x_{N-1}
+\end{bmatrix} =
+\begin{bmatrix}
+x_{N-1} \\ x_0 \\ \vdots \\ x_{N-2}
+\end{bmatrix} \overset{\Delta}{=} \mathbf{x}^{\langle 1 \rangle},
+\end{equation}
+and the generalization followed: \emph{the graph unit shift was defined as the left-multiplication by the graph adjacency matrix}. This is the reason why in this paper the branch of GSP developed by Sandryhaila, Moura and their peers is referred to as GSP\textsubscript{A}, to indicate the fundamental role of the matrix $ \mathbf{A} $.
+
+In other words, for a signal $ \mathbf{x} $ defined over the graph $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $, the adjacency matrix $ \mathbf{A} $ acts as a \emph{filter} which ``delays'' (i.~e. translates) $ \mathbf{x} $ by one unit, producing the delayed version represented hereinafter by $ \mathbf{x}^{\langle 1 \rangle} = \mathbf{A} \mathbf{x}$.
+
+\subsection{Graph filters}
+\label{subsec:filtros}
+
+Seeing the adjacency matrix as a filter suggested the general definition of \emph{graph filter} as any matrix $ \mathbf{H} \in \mathbb{C}^{N \times N} $ \cite{sandryhaila2013filters}, which preserves the necessary property that the output of a filter (i.~e. the matrix-vector product) is a signal (i.~e. a vector). Such a definition implies that \emph{linearity} is always valid for graph filters, since the distributivity of matrix multiplication with respect to matrix addition guarantees that
+\begin{equation}
+%\label{key}
+\mathbf{H} (\alpha_1 \mathbf{x}_1 + \alpha_2 \mathbf{x}_2) =  \alpha_1 \mathbf{H} \mathbf{x}_1 + \alpha_2 \mathbf{H}  \mathbf{x}_2.
+\end{equation}
+
+The next desirable property would be \emph{shift invariance}, analogous to the classical time invariance of DSP, and this means that filtering and shifting should commute. In other words, for a graph filter $ \mathbf{H} $ to be \emph{linear and shift invariant} (LSI) it is required that $ \mathbf{A} \mathbf{H} \mathbf{x} = \mathbf{H} \mathbf{A} \mathbf{x} \ \forall \mathbf{x}$, and therefore $ \mathbf{A} \mathbf{H} = \mathbf{H} \mathbf{A}$. Sandryhaila and Moura have shown \cite{sandryhaila2013discrete,sandryhaila2014big} that LSI filters can be represented as polynomials $ h(\cdot) $ evaluated over $ \mathbf{A} $,
+\begin{equation}
+\label{eq:filter_poly}
+h(\mathbf{A}) = \sum_{\ell=0}^{L-1} h_\ell \mathbf{A}^\ell,
+\end{equation}
+with $ L $ smaller than or equal to the degree of the minimal polynomial of $ \mathbf{A} $, i.~e. filters LSI are finite power series on the shift operator, exactly as happens in DSP, in which LTI filters have polynomial representations on $ z^{-1} $.
+
+%{\color{red}The representation given by (\ref{eq:filter_poly}) for LSI graph filters indicates how knowing the eigenstructure of the shift operator positively impacts filter design. This is not an available information for networks affected by stochastic changes, and to address such a problem Kruzick and Moura have studied optimal filter design criteria on random graphs
+%, by investigating deterministic approximations of the empirical spectral distribution of the random shift operators
+%\cite{kruzick2018filter}.}
+
+\subsection{Graph Fourier transform}
+
+The topic of spectral analysis is key in signal processing, and the authors of GSP\textsubscript{A} would certainly want to spend time reflecting upon how this would fit into their theory. The starting point was to look to the classical Fourier transform as the signal decomposition into a basis of eigenfunctions of the LTI filtering \cite{oppenheim1997signals}, as is indeed the basis of complex time exponentials. Then, the \emph{graph Fourier transform} (GFT) could be defined as the decomposition into a basis of eigenvectors of LSI filtering.
+
+Let us take the graph $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $, $ |\mathcal{V}| =N $. If $ \mathbf{A} $ is diagonalizable\footnote{If not, the reasoning may be replicated using the Jordan decomposition of $ \mathbf{A} $.}, then one may write
+\begin{equation}\label{eq:gft_01}
+\mathbf{A} = \mathbf{V} \mathbf{\Lambda} \mathbf{V}^{-1},
+\end{equation}
+in which $ \mathbf{V} $ contains the $ N $ eigenvectors of $ \mathbf{A} $ in its columns,
+\begin{equation}\label{eq:gft_02}
+\mathbf{V} = (\mathbf{v}_0 \ \mathbf{v}_1 \ \dots\ \mathbf{v}_{N-1}).
+\end{equation}
+
+Since LSI filters are polynomials in $ \mathbf{A} $, and since a matrix and its powers share the same set of eigenvectors, the columns of $ \mathbf{V} $ form a basis of vectors invariant to LSI filtering. Besides, given that the subspaces generated by the linearly independent eigenvectors of a same eigenvalue of $ \mathbf{A} $ are irreducible, have null intersection and the dimensions of all subspaces add to $ N $ \cite{sandryhaila2013gft}, $ \mathbf{V} $ provides a basis which is invariant to LSI filtering for the space of signals defined over $ \mathcal{G} $.
+
+Therefore, a signal $ \mathbf{x} $ may be decomposed into its components with respect to $ \mathbf{V} $ as
+\begin{align}\label{eq:GFT_inv}
+\mathbf{x} &= \widehat{x}_0 \mathbf{v}_0 + \dots + \widehat{x}_{N-1} \mathbf{v}_{N-1} \notag \\
+&= \mathbf{V} (\widehat{x}_0 \ \widehat{x}_1 \ \dots \ \widehat{x}_{N-1})^T \notag \\
+&= \mathbf{V} \widehat{\mathbf{x}},
+\end{align}
+and this is the synthesis equation of the GFT according to GSP\textsubscript{A}. The analysis equation follows,
+\begin{equation}\label{eq:GFT_fwd}
+\widehat{\mathbf{x}} = \mathbf{V}^{-1} \mathbf{x}.
+\end{equation}
+
+It has been emphasized that the directed ring graph is the link between GSP and DSP, because it models the discrete-time domain. This provides a way of checking how consistent with the classical theory are the proposed GSP tools. When investigating how the GFT would act upon discrete-time signals, one should first diagonalize the adjacency matrix $ \mathbf{C} $ of the directed ring graph, given by (\ref{eq:C}). Since it is circulant, it is known to be diagonalized by the DFT matrix $ \mathbf{F} $, with entries $ F_{n,k} = \exp \left( -j\frac{2 \pi}{N} nk \right) $, which contains in its \emph{rows} the DFT eigenvectors. The calculation of the characteristic polynomial of $ \mathbf{C} $,
+\begin{equation}
+%\label{key}
+p_{\mathbf{C}}(\lambda) = \text{det} (\lambda \mathbf{I} - \mathbf{C}) =
+\begin{vmatrix}
+\lambda &  &  &   -1\\ 
+-1 & \lambda &   & \\ 
+&   \ddots & \ddots & \\ 
+&  &   -1 & \lambda
+\end{vmatrix}
+=\lambda^N - 1,
+\end{equation}
+shows that its eigenvalues are the $ N $ complex roots of unity. Setting these eigenvalues as the entries of a diagonal matrix $ \mathbf{\Lambda}_{\mathbf{C}} $, the eigendecomposition of $ \mathbf{C} $ may be written as
+\begin{equation}\label{eq:diag_C}
+\mathbf{C} = \mathbf{F}^{-1} \mathbf{\Lambda}_{\mathbf{C}} \mathbf{F},
+\end{equation}
+and one can see that, in the case of directed ring graphs, the GFT and the DFT matrices \emph{coincide}, since $ \mathbf{V}^{-1} = \mathbf{F} $. This equivalence indicates a desirable consistency with the classical theory.
+
+\subsection{The frequency domain}
+
+The GFT in the sense of GSP\textsubscript{A} naturally suggests the interpretation of the adjacency matrix eigenvectors $ \mathbf{v}_i $ as ``frequency components'' associated to the ``graph frequencies'' given by the eigenvalues $ \lambda_i $, exactly as the Fourier component $ e^{-j \Omega t} $, in the continuous time domain $ t $, is associated to the frequency $ \Omega $. This subsection aims to provide the mathematical justification used by Sandryhaila and Moura \cite{sandryhaila2014frequency} to support this understanding, along with some of our own comments.
+
+%\begin{figure}
+%	\centering
+%	\subfloat[\label{fig:diff_struct_a_GSPA}]{
+%		\includegraphics[width=0.35\linewidth]{Figures/ring_different_structure_01_GSPA.pdf}
+%	}
+%	\subfloat[\label{fig:diff_struct_b_GSPA}]{
+%		\includegraphics[width=0.35\linewidth]{Figures/ring_different_structure_01_spectrum_GSPA.pdf}
+%	}
+%	\caption{(a) Sinal sobre um grafo em anel n\~ao-direcionado e (b) seu espectro em GSP\textsubscript{A}.}%
+%	\label{fig:diff_struct_GSPA}%
+%	\vspace{-0.2cm}
+%\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{minipage}[c]{0.5\linewidth}
+		\subfloat[\label{fig:diff_struct_a_GSPA}]{
+			\includegraphics[width=\linewidth]{Figures/ring_different_structure_01_GSPA.pdf}
+		}
+	\end{minipage}~
+	\begin{minipage}[c]{0.5\linewidth}
+		\subfloat[\label{fig:diff_struct_b_GSPA}]{
+			\includegraphics[width=\linewidth]{Figures/ring_different_structure_01_spectrum_GSPA_EN_2.pdf}
+		}
+	\end{minipage}%
+	\caption{(a) Signal defined over an undirected ring graph and (b) its spectrum in the GSP\textsubscript{A} sense, in which the frequency is considered to be the eigenvalues of the adjacency matrix.}%
+	\label{fig:diff_struct_GSPA}%
+	\vspace{-0.2cm}
+\end{figure}
+
+The reader may have noticed a curious consequence from what was previously stated: unless the minimal and characteristic polynomials of $ \mathbf{A} $ are equal, the same frequency may be associated to two or more linearly independent frequency components, as indeed was the case in the example of Fig. \ref{fig:diff_struct_GSPA}. Furthermore, this figure shows that although the signal seems to be smooth, its frequency components are mostly associated with eigenvalues of high magnitude, what is counter-intuitive and provides a motivation to define a clear criterion to distinguish high and low graph frequencies.
+
+The following mathematical reasoning consists of taking a metric which quantifies the expected signal smoothness, and use it to propose or confirm a notion of graph frequency. The metric used by Sandryhaila and Moura was the \emph{total variation}, taken from classical real analysis and defined for differentiable functions as \cite{rudin1987real,mallat1999wavelet}
+\begin{equation}
+%\label{key}
+\Vert f \Vert_V = \int_{-\infty}^{\infty} |f'(t)| \mathrm{d}t.
+\end{equation}
+
+For discrete domain functions $ f_N[n] $, the Riemman integral is replaced by first order differences,
+\begin{equation}
+%\label{key}
+\Vert f_N \Vert_V = \sum_p |f_N[n_p + 1] - f_N[n_p]|,
+\end{equation}
+which clearly quantifies the dissimilarity between contiguous values of the function $ f_N $. With this in mind, it was natural for Sandryhaila and Moura to use this metric in their mathematical formulation of frequency in GSP\textsubscript{A}, wherein they represented the total variation of a finite-length \emph{discrete-time signal} $ \mathbf{x} $ by
+\begin{equation}
+\label{eq:TV}
+TV(\mathbf{x}) = \sum_n | x_n - x_{n-1 \text{ mod } N}|.
+\end{equation}
+
+From (\ref{eq:unit_shift}), one can see that (\ref{eq:TV}) may be written in terms of the $ \ell_1 $-norm\footnote{Throughout this paper, the concepts of $ \ell_1 $- and $ \ell_2 $-norm will be frequently used. They are particular cases of the $ \ell_n $-norm of a vector $ \mathbf{x} \in \mathbb{C}^{N} $, defined as $ \Vert \mathbf{x}\Vert_n \overset{\Delta}{=} \left(\sum_{k=0}^{N-1} |x_k|^n\right)^{1/n} $.}
+as $ TV(\mathbf{x}) = \Vert \mathbf{x} - \mathbf{C x}\Vert_1 $, by using the directed ring graph adjacency matrix to perform the cyclic shift. From that point, the generalization consisted of using this expression and defining the \emph{total variation on graphs} of a signal $ \mathbf{s} $ defined over the graph $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $ as
+\begin{equation}
+%\label{key}
+TV_G(\mathbf{s}) \overset{\Delta}{=} \Vert \mathbf{s} - \mathbf{A}^{\text{norm}} \mathbf{s}\Vert_1,
+\end{equation}
+with $ \mathbf{A}^{\text{norm}} = |\lambda_{max}|^{-1}\mathbf{A} $ and $ \lambda_{max} $ being the eigenvalue of $ \mathbf{A} $ having the highest absolute value. The normalization of the adjacency matrix avoids the excessive magnification of the shifted signal \cite{sandryhaila2014frequency}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{Figures/graph_frequency_EN.pdf}
+	\caption{Frequency ordering of graph signals, from low to high frequencies, in the complex plane \cite{sandryhaila2014frequency}.}
+	\label{fig:ordem_freq}
+\end{figure}
+
+Let $ \mathbf{A} $ be diagonalizable as in (\ref{eq:gft_01}) with (possibly complex) eigenvalues ordered like so
+\begin{equation}
+\label{eq:eig_order}
+|\lambda_0| \leq |\lambda_1| \leq \dots \leq |\lambda_{N-1}| \overset{\Delta}{=} |\lambda_{max}|,
+\end{equation}
+associated to the eigenvectors $ (\mathbf{v}_i)_{i=0,\dots,N-1} $, scaled so that $ \Vert \mathbf{v}_i \Vert_1 = 1  \ \forall i$. Taking the total variation (on graphs) of the eigenvector $ \mathbf{v}_k $, one has
+\begin{align*}
+%\label{key}
+TV_G(\mathbf{v}_k) &= \Vert \mathbf{v}_k - \mathbf{A} \mathbf{v}_k \Vert_1  = \Vert\mathbf{v}_k - \frac{1}{|\lambda_{max}|} \lambda_k \mathbf{v}_k \Vert_1 \notag \\
+&= \left|1 - \frac{\lambda_k}{|\lambda_{max}|}\right| \Vert \mathbf{v}_k \Vert_1 = \Big| \lambda_k - |\lambda_{max}| \Big| \frac{\Vert \mathbf{v}_k \Vert_{1}}{|\lambda_{max}|}
+\end{align*}
+so that, since $ \Vert \mathbf{v}_k \Vert_1 = 1 $,
+\begin{equation}
+\label{eq:TV_ordering}
+\Big| \! \lambda_i  - \! |\lambda_{max}|\Big| \! \leq \! \Big|  \lambda_j  - \! |\lambda_{max}|\Big| \! \! \iff \! \! TV_G(\mathbf{v}_i) \leq TV_G(\mathbf{v}_j),
+\end{equation}
+i.~e. frequency components associated to eigenvalues closer to the real point $ |\lambda_{max}| $ in the complex plane are \emph{smoother} (because they have lower total variation), and therefore are said to be of \emph{low frequency}. Fig. \ref{fig:ordem_freq} illustrates this ordering for graph frequencies, what clarifies the spectrum of the signal in Fig. \ref{fig:diff_struct_a_GSPA} (notice that since the graph is undirected, its adjacency matrix is symmetric and the eigenvalues are real-valued).
+
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.6\linewidth]{Figures/showing_random_sensor_spectrum_directed_graph.pdf}
+%	\caption{Grafo de sensores direcionado, com 100 v\'ertices, sem la\c cos ou m\'ultiplas arestas.}
+%	\label{fig:directed_graph}
+%\end{figure}
+
+\begin{figure*}
+	\centering
+	\subfloat[\label{fig:directed_graph}]{
+			\includegraphics[width=0.33\linewidth]{Figures/showing_random_sensor_spectrum_directed_graph.pdf}
+		}
+	\subfloat[\label{fig:showing_random_sensor_spectrum_directed_b}]{
+		\includegraphics[width=0.33\linewidth]{Figures/showing_random_sensor_spectrum_directed_zero_crossings_1D_edited_EN.pdf}
+	}~
+	\subfloat[\label{fig:showing_random_sensor_spectrum_directed_c}]{
+		\includegraphics[width=0.33\linewidth]{Figures/showing_random_sensor_spectrum_directed_TV_1D_edited_EN.pdf}
+	}
+	\caption{(a) Directed sensor graph, with $ N=100 $ vertices and no loops or multiple edges. (b) Number of zero crossings and (b) total variation of the eigenvectors $ (\mathbf{v}_i)_{i=0,\dots,N-1} $ of the adjacency matrix $ \mathbf{A} $ of the graph in \emph{(a)}, ordered so that the respective eigenvalues appear from the closest to the farthest from the real point $ |\lambda_{max}| $ in the complex plane. That is, according to (\ref{eq:TV_ordering}) and Fig. \ref{fig:ordem_freq}, the eigenvectors are disposed in ascending order of frequency.}
+	\label{fig:showing_random_sensor_spectrum_directed}
+\end{figure*}
+
+Let us take the directed graph in Fig. \ref{fig:directed_graph} to try to verify the consistency of the notion of frequency just derived. For this, along with the total variation on graphs, also the number of zero crossings (i.~e. the number of edges connecting vertices with signal samples of different sign) will be used to \emph{quantify} frequency. This quantity is also related to frequency in classical theory: the more a discrete signal has contiguous samples with different sign, the higher are its frequency components. These two functions, the total variation on graphs and the number of zero crossings, were calculated for each of the adjacency matrix eigenvectors, and the result is shown in Fig. \ref{fig:showing_random_sensor_spectrum_directed}, in which the eigenvectors $ \mathbf{v}_k $ are ordered in such a way that the respective eigenvalues $ \lambda_k $ appear from the closest to the farthest from the real point $ |\lambda_{max}| $ in the complex plane. Both metrics have similar behaviour, but since the number of zero crossings is indifferent to graph signal variations which do not change sign, it was already expected to be less accurate as a figure of merit for frequency. It matters to highlight, however, how the adopted eigenvector ordering indeed implies an ascending frequency order, since both functions in Fig. \ref{fig:showing_random_sensor_spectrum_directed_b} and \ref{fig:showing_random_sensor_spectrum_directed_c} agree on the tendency of growth. More than that, $ TV_G(\mathbf{v}_k) $ grows \emph{monotonically}, as it should do according to (\ref{eq:TV_ordering}).
+
+%It can be seen that both metrics, which are expected to return higher values when having signals with higher frequencies as argument, have similar (but not \emph{equal}) behaviour when evaluated at the eigenvectors $ \mathbf{v}_i $, following what is suggested by (\ref{eq:TV_ordering}) and Fig. \ref{fig:ordem_freq}. However, one can find in Fig. \ref{fig:showing_random_sensor_spectrum_directed} pairs of eigenvectors in which the one expected to have higher frequency appears with lower total variation (notice that the eigenvectors, according to (\ref{eq:TV_ordering}), \emph{should be} in ascending order of frequency). Another curious fact we highlight is that, in both metrics, the eigenvector $ \mathbf{v}_{20} $ and some others have \emph{unexpectedly small values} of total variation and number of zero crossings, what is explicitly shown in Fig. \ref{fig:showing_random_sensor_spectrum_directed_TV_smallest}, in which the 12 smallest values of total variation are shown, among those obtained from all the eigenvectors of $ \mathbf{A} $, as a function of the associated eigenvalues: the eigenvalue with bigger magnitude, in fact, leads to null total variation of its respective eigenvector, but the second smaller total variation is obtained when $ \lambda=0 $. That was not yet fully understood, and further studies are needed to a complete comprehension of the notion of frequency in GSP\textsubscript{A}, and its validity under the metrics used previously.
+
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.65\linewidth]{Figures/showing_random_sensor_spectrum_directed_TV_smallest12_EN.pdf}
+%	\caption{The total variation of the adjacency matrix eigenvectors of the graph in Fig. \ref{fig:showing_random_sensor_spectrum_directed} was computed, and the 12 smallest values are shown in red. They are indexed in the horizontal axis by the respective eigenvectors, and the associated eigenvalues are shown in blue.}
+%	\label{fig:showing_random_sensor_spectrum_directed_TV_smallest}
+%%	\vspace{-0.5cm}
+%\end{figure}
+
+It is convenient to conclude this discussion on the graph frequency domain by referring to the frequency response of graph filters. The definition given in Subsection \ref{subsec:filtros} considers the action of a matrix on a signal $ \mathbf{x} $ in the vertex domain of the graph $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $. In order to understand how the filter acts in the GFT domain, hereinafter called frequency domain, one may use (\ref{eq:gft_01}) and the polynomial representation of LSI filters. Let us take the filter $ \mathbf{H} =\sum_{\ell=0}^{L} h_\ell \mathbf{A}^\ell $ and its output to the input $ \mathbf{x} $ given by
+\begin{align}\label{eq:resposta_freq_01}
+\mathbf{H} \mathbf{x} &= \sum_{\ell=0}^{L} h_\ell \mathbf{A}^\ell \mathbf{x} =
+\sum_{\ell=0}^{L} h_\ell \left(\mathbf{V} \mathbf{\Lambda} \mathbf{V}^{-1}\right)^\ell \mathbf{x} \notag \\
+&= \mathbf{V} \left(\sum_{\ell=0}^{L} h_\ell \mathbf{\Lambda}^\ell \right) \mathbf{V}^{-1} \mathbf{x}.
+\end{align}
+
+Taking the GFT of both sides of the last equation yields
+\begin{equation}\label{eq:resposta_freq_02}
+\mathbf{V}^{-1} \mathbf{H} \mathbf{x} =
+h(\mathbf{\Lambda}) \widehat{\mathbf{x}},
+\end{equation}
+which indicates that left-multiplication by $ \mathbf{H} $ (action of the filter in the vertex domain) is equivalent to the left-multiplication, in the frequency domain, by the matrix $ h(\mathbf{\Lambda}) $. In other words, $ h(\mathbf{\Lambda}) $ represents the frequency response of $ \mathbf{H} $.
+
 
 \section{Fundamentals of graph signal processing}
 \label{sec:GSPintro}
@@ -841,6 +1253,7 @@ ou seja, componentes de frequ\^encia associadas a autovalores mais pr\'oximos do
 
 
 \chapter{The fractional graph shift operator and its applications}
+\label{ch:FrGSO}
 
 Over the last decade, theory and applications related to graph signal processing (GSP) have been widely developed and attracted the attention of several scholars~\cite{ortega2018,richard2018,ribeiro2018}. In short, GSP aims to extend concepts and operations of classical digital signal processing (DSP) to scenarios in which the signals lie over irregular domains. Such scenarios include, for instance, sensors arbitrarily positioned in a geographic region and measuring some climatological variable, points of a three-dimensional cloud representing some virtual object and its attributes, people linked according to their interests and proximity relationships in a social network and so on~\cite{chen2014,zhang2014,benzi2016,weiyu2018,saad2018,jiang2021,gama2019,liu2019,zhang2020,ferreira2020,zhang2021,xiao2021,sun2021}. To be more specific, among the issues related to the referred scenarios, one can cite segmentation and attribute compression of 3D point clouds~\cite{zhang2014,zhang2020}, stochastic filtering under asymmetric links in wireless sensor networks~\cite{saad2018}, community detection in social networks~\cite{zhang2021}, anomalous IoT sensor data detection~\cite{xiao2021} and traffic prediction via attention networks~\cite{sun2021}. It is intuitive that the mentioned examples can be modeled as graphs whose vertices are connected by edges inferred from a variety of influence or dependency criteria. This contrasts with the discrete-time domain, over which the samples of a signal are equidistantly placed and have left- and right-side immediate neighbors only; something similar happens in the case of digital images, where the pixels are arranged in a regular rectangular grid.
 
@@ -860,7 +1273,7 @@ In what follows, the main contributions of this paper are listed:
 
 \item An analogy between the proposed graph fractional operator and that considered in the classical discrete-time case is established; our result suggests that, when a directed ring graph with $N$ vertices is considered, the response of the corresponding graph filter related to $\mathbf{A}^a$ converges to that of the classical fractional delay filter as $N$ grows.
 
-\item We determine the polynomial representation of $\mathbf{A}^a$ and, with that, we demonstrate that, for any graph, such a operator can be implemented as a linear and shift-invariant (LSI) graph filter.
+\item We determine the polynomial representation of $\mathbf{A}^a$ and, with that, we demonstrate that, for any graph, such an operator can be implemented as a linear and shift-invariant (LSI) graph filter.
 \end{itemize}
 
 This paper is organized as follows. Section~\ref{sec:revgsp} contains a concise review of graph signal processing foundations. In Section~\ref{sec:fracshift}, we introduce the concept of fractional shift on graphs and develop our contributions in detail: we address the computation of $\mathbf{A}^a$ in Subsection~\ref{subsec:comp}, discuss its interpretation in Subsection~\ref{subsec:interpret}, demonstrate its consistency with the ideal fractional delay filter in Subsection~\ref{subsec:consist} and determine its polynomial representation in Subsection~\ref{subsec:poly}. Section~\ref{sec:num} is devoted to numerical results related to the developed theory: we first present a small example regarding the polynomial representation of $\mathbf{A}^a$ in Subsection~\ref{subsec:num1}; we then consider a real-world graph signal (temperature measured by weather stations) and demonstrate that, using $\mathbf{A}^a$, we can obtain filters that  approximate an ideal filter (in the least-squares sense) better than those designed using $\mathbf{A}$ (Subsections~\ref{subsec:lsi} and~\ref{subsec:lsi01}); finally, this possibility is illustrated by means of an example involving the noise removal from the same graph signal (Subsection~\ref{subsec:lsi02}). The paper closes with concluding remarks in Section~\ref{sec:conc}.
@@ -1421,17 +1834,18 @@ In this paper, we have investigated the fractional shift of graph signals. The k
 
 
 \chapter{The fractional quaternion discrete Fourier transform and its applications}
+\label{ch:FrQDFT}
 
 Linear discrete transforms are building blocks for a multitude of techniques in the field of signal processing, being almost as important as they are diverse. Among the factors which distinguish one from the others, there is the algebraic structure over which they are defined, e.~g. a finite field and its extensions (such as in number-theoretic \cite{blahut2010fast,pedrouzo2017number,chandra2014exact,lima2013} and arithmetic \cite{knockaert1994generalized, rajapaksha2014vlsi} transforms), or the real and complex fields (as in the usual discrete Fourier transform). As the algebra is extended (for instance, from $ \mathbb{R} $ to $ \mathbb{C} $), it is possible to encode more information into each signal sample. Such was the motivation behind Sangwine's definition \cite{sangwine1996fourier} of discrete two-dimensional quaternion transforms, based on their continuous counterparts previously defined by Ell \cite{ell1993quaternion}: to apply these four-dimensional numbers --- the quaternions, an extension of the complex field --- to color image processing. Since then, quaternion transforms have been useful not only to image processing \cite{ell2007hypercomplex,chen2018quaternion,li2013quaternion,evans2000hypercomplex,silva2018}, but also to other fields, such as bivariate signal analysis \cite{flamant2017spectral,flamant2017time,flamant2018complete}.
 
 Fractional transforms are yet another class of tools of great use. The fractional Fourier transform has been applied to time-frequency analysis, compression, digital watermarking, filtering, encryption, let alone its utility in Optics \cite{bultheel2002shattered,figueiredo2018}. Regarding quaternion transforms, a couple of competent works have already addressed their fractionalization \cite{guanlei2008fractional, wei2013different, roopkumar2016quaternionic} and some applications have been proposed \cite{chen2018quaternion}. However, the authors are not aware of papers approaching fractional quaternion discrete transforms from an eigenstructure analysis point of view. This reasoning may unfold new theoretical insights and implementation techniques, and such is the motivation for this work.
 
-In this paper, the eigenstructure of the quaternion discrete Fourier transform (QDFT) matrix is investigated and shown to be closely related to that of the unitary discrete Fourier transform (DFT). This result offers an approach for defining the fractional version of the QDFT (referred to as FrQDFT). Following the central goal of defining the transform through eigendecomposition theory, a generalization is proposed in the form of a multiple-parameter fractional quaternion discrete Fourier transform (MFrQDFT). For illustrative purposes, this work proposes and briefly explores an encryption scheme for color images with opacity layer, fully harnessing the holistic processing of 4-layered 2D signals through the MFrQDFT.
+In this paper, the eigenstructure of the quaternion discrete Fourier transform (QDFT) matrix is investigated and shown to be closely related to that of the unitary discrete Fourier transform (DFT). This result offers an approach for defining the fractional version of the QDFT (referred to as FrQDFT). Following the central goal of defining the transform through eigendecomposition theory, a generalization is proposed in the form of a multiparametric fractional quaternion discrete Fourier transform (MFrQDFT). For illustrative purposes, this work proposes and briefly explores an encryption scheme for color images with opacity layer, fully harnessing the holistic processing of 4-layered 2D signals through the MFrQDFT.
 
 The proposed method for image encryption fits in the class of schemes that use linear transforms alongside non-linear blocks \cite{hsue2018enhancing}, to implement confusion and diffusion. The currently available methods in the state-of-the-art literature respond to a diverse range of needs, as fast implementation through parallel computing \cite{wang2019fast}, increased safety and robustness by using matrix semi-tensor product \cite{wang2020image} or one-time keys \cite{liu2010}, just to name a few examples. The main scope of this paper is not the encryption scheme \textit{per se}, but rather the FrQDFT eigenscructure and the MFrQDFT definition, the latter having the image encryption as a framework to showcase some of its possibilities. Nevertheless, the proposed encryption algorithm is described and evaluated to some extent. Although being an illustrative scenario, it stands on tools adopted currently by the literature. For example, the chosen method for key generation involved the use of chaotic maps, known to help achieving high bit sensibility and large key space. It follows works such as the one by Liu and Wang \cite{liu2011color}, which proposed a color image encryption scheme using two chaotic maps and one-time keying, aiming to achieve large key space and cycle lengths. Another work by Liu and Wang \cite{liu2012} employed a piecewise linear chaotic map and DNA encoding for ensuring the initial conditions of the encryption change according to the image, whereas Wang \textit{et al.} \cite{wang2010chaotic} used a Lorentz chaotic map and a perceptron model applied to image encryption. The proposed scheme uses a chaotic tent map to generate a pseudo-random sequence, from which the secret parameters are extracted.
 
 
-This paper is structured as follows. Section \ref{sec:autoestrutura} presents the usual definition of the QDFT and proves the central theorem of this work, regarding how the DFT and QDFT share symmetric eigenvectors; it closes with comments on the quaternion representation of color images with opacity layer. Section \ref{sec:FrQDFT} discusses the fractionalization of the QDFT from an eigenstructure point of view and demonstrates some properties purely based on matrix algebra. Section \ref{sec:multi} proposes a multiple-parameter extension of the fractional transform and presents an application involving encryption of color images with opacity layer. The main results are summarized in Section \ref{sec:conclusao}, and the paper closes with a brief Appendix on basic quaternion algebra.
+This paper is structured as follows. Section \ref{sec:autoestrutura} presents the usual definition of the QDFT and proves the central theorem of this work, regarding how the DFT and QDFT share symmetric eigenvectors; it closes with comments on the quaternion representation of color images with opacity layer. Section \ref{sec:FrQDFT} discusses the fractionalization of the QDFT from an eigenstructure point of view and demonstrates some properties purely based on matrix algebra. Section \ref{sec:multi} proposes a multiparametric extension of the fractional transform and presents an application involving encryption of color images with opacity layer. The main results are summarized in Section \ref{sec:conclusao}, and the paper closes with a brief Appendix on basic quaternion algebra.
 
 
 \section{Eigenstructure of the QDFT}
@@ -1731,11 +2145,11 @@ and, following the index additivity and the reduction to identity properties,
 
 Before proceeding, it matters to notice that other approaches have been used to define fractional transforms, specially suited for image encryption. Lima \textit{et al.} \cite{figueiredo2018} applied the generating matrix method to obtain eigenvectors --- in a fashion similar to this work --- and define multiorder reality-preserving discrete fractional transforms. Roopkumar \cite{roopkumar2016quaternionic}, on the other hand, defined a {continuous} one-dimensional quaternion fractional Fourier transform by using a reasoning similar to the symplectic decomposition of quaternions: adding together two traditional fractional Fourier operators with certain imaginary unit, with one of them multiplied by an orthogonal pure quaternion. None of the approaches, to the best of the authors knowledge, made use of eigenstructure analysis to define the FrQDFT and prove some of its properties.
 
-\section{The Multiple-parameter FrQDFT with Application to Color Image Encryption}
+\section{The multiparametric FrQDFT with Application to Color Image Encryption}
 \label{sec:multi}
-Frequently, fractional transforms are employed in both grayscale \cite{tao2010image} and color image \cite{kang2018reality, kang2018color} encryption. By setting the secret key to be the transform fractional order, alongside the use of multiple encryption or multiple-parameter transforms, one is able to create ciphers with sufficiently large key spaces and highly sensible to small key changes. This section presents an illustrative application of the FrQDFT, creating a holistic encryption scheme for PNG images based on the proposition of a multiple-parameter FrQDFT.
+Frequently, fractional transforms are employed in both grayscale \cite{tao2010image} and color image \cite{kang2018reality, kang2018color} encryption. By setting the secret key to be the transform fractional order, alongside the use of multiple encryption or multiparametric transforms, one is able to create ciphers with sufficiently large key spaces and highly sensible to small key changes. This section presents an illustrative application of the FrQDFT, creating a holistic encryption scheme for PNG images based on the proposition of a multiparametric FrQDFT.
 
-The definition of the multiple-parameter FrQDFT, referred to as MFrQDFT, consists of employing a different fractional order for each eigenvalue in $ \mathbf{\Gamma} $. The vector of fractional orders is represented by $ \mathbf{a} = [a_0, a_1, \dots, a_{N-1}] $. The MFrQDFT of a column vector $ \mathbf{v} $ is
+The definition of the multiparametric FrQDFT, referred to as MFrQDFT, consists of employing a different fractional order for each eigenvalue in $ \mathbf{\Gamma} $. The vector of fractional orders is represented by $ \mathbf{a} = [a_0, a_1, \dots, a_{N-1}] $. The MFrQDFT of a column vector $ \mathbf{v} $ is
 \begin{equation}
 \label{eq:MFrQDFT}
 \text{MFrQDFT}\{ \mathbf{v} \} = \mathbf{E} \mathbf{\Gamma^a} \mathbf{E}^T \mathbf{v} = \mathbf{F^a} \mathbf{v}.
@@ -1775,7 +2189,7 @@ with inverse transform obtained from the properties listed in Section \ref{sec:F
 
 \subsection{Encryption scheme using MFrQDFT}
 
-The chosen implementation for the PNG image encryption algorithm mixed a block of random-phase modulation (RPM, also called phase mask in \cite{chen2018multiple} and \cite{singh2008optical}) and multiple-parameter transform. As suggested by \cite{hsue2018enhancing}, a non-linear step of random power is also used. Fig. \ref{fig:cifragem} depicts the system building blocks.
+The chosen implementation for the PNG image encryption algorithm mixed a block of random-phase modulation (RPM, also called phase mask in \cite{chen2018multiple} and \cite{singh2008optical}) and multiparametric transform. As suggested by \cite{hsue2018enhancing}, a non-linear step of random power is also used. Fig. \ref{fig:cifragem} depicts the system building blocks.
 
 The plaintext image is initially converted into a quaternion matrix $ \mathbf{X} $, which is input to a 2-round processing with RPM $ + $ 2D-MFrQDFT. The random-phase modulation consists of element-wise multiplication by a matrix of random unit quaternions. This role is fulfilled by matrices $ \mathbf{A} $ and $ \mathbf{B} $ in Fig. \ref{fig:cifragem}. The \textit{inverse} RPM (in decryption) is achieved using the \textit{conjugate} of the matrix used during encryption.
 
@@ -1919,7 +2333,7 @@ Finally, as stated at the beginning of the paper, there are a multitude of studi
 \label{sec:conclusao}
 This paper investigated the eigenstructure of the quaternion discrete Fourier transform. Although quaternion matrix decomposition is a challenging topic, the problem for the QDFT was solved by proving that this transform and the DFT share symmetric eigenvectors, what allowed for the construction of an orthogonal eigenbasis of the QDFT, using Hermite--Gaussian-like DFT eigenvectors \cite{de2017discrete}. This result led to the definition of a fractional QDFT, which was proven to hold properties similar to those of the FrDFT, its complex-valued counterpart.
 
-The FrQDFT was further generalized by introducing the MFrQDFT, a multiple-parameter version. Exploring the 4D nature of quaternions, a holistic encryption scheme for color images with opacity layer was proposed, as an illustrative application of the 2D-MFrQDFT, and shown to provide satisfactorily large key space and key sensitivity, resistance to known-plaintext attack and ease of description and implementation. Future works could possibly expand this analysis and address whether some hypercomplex image moments, such as ternary radial harmonic Fourier moments and quaternion polar harmonic \cite{wang2019ternary,wang2018quaternion}, could be used for image encryption, eventually in specific scenarios and applications.
+The FrQDFT was further generalized by introducing the MFrQDFT, a multiparametric version. Exploring the 4D nature of quaternions, a holistic encryption scheme for color images with opacity layer was proposed, as an illustrative application of the 2D-MFrQDFT, and shown to provide satisfactorily large key space and key sensitivity, resistance to known-plaintext attack and ease of description and implementation. Future works could possibly expand this analysis and address whether some hypercomplex image moments, such as ternary radial harmonic Fourier moments and quaternion polar harmonic \cite{wang2019ternary,wang2018quaternion}, could be used for image encryption, eventually in specific scenarios and applications.
 
 \section{Acknowledgments}
 This work has been supported by CNPq (309598/2017-6, 409543/2018-7) and CAPES.
@@ -2055,8 +2469,8 @@ $\mathbf{V}^{-1} \gets \mathrm{from\_complex\_adjoint}(\mathbf{U})$
 	\label{fig:uk_graph_filtered}
 \end{figure}
 
-\chapter[Considera\c c\~oes finais]{Considera\c c\~oes finais}
-\label{ch:others}
+\chapter{Concluding remarks and future works}
+\label{ch:conclusion}
 
 Este projeto de tese prop\~oe-se a contribuir com o processamento de sinais quaterni\^onicos, em particular pelo estudo da autodecomposi\c c\~ao de matrizes quaterni\^onicas, sejam elas matrizes de transforma\c c\~oes lineares ou operadores de deslocamento sobre grafos com pesos quaterni\^onicos. O estudo da autoestrutura da QDFT levou a um novo m\'etodo para sua fracionariza\c c\~ao, juntamente com a proposta de uma vers\~ao multiparam\'etrica e um esquema de cifragem de imagens coloridas com camada de opacidade. A decomposi\c c\~ao de matrizes que servem como operadores de deslocamento para sinais sobre grafos deve ser revelada, em parte, pelos estudos conduzidos at\'e o momento, reunindo teoremas relacionando propriedades destas matrizes e de suas complexas adjuntas, bem como sobre a exist\^encia e similaridade entre autovalores de matrizes sobre os quat\'ernios.
 
