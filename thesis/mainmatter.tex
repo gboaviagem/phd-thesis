@@ -14,11 +14,11 @@ In this context, the current thesis aims to tackle the following problem: is it 
 
 As will become clear to the reader, however, the pathway to the basis of QGSP was not a straight line. Sometimes what seemed to be dead ends emerged, and during the reflections upon ways to bypass them, other interesting results started to show themselves. For example, it was certain from the beginning that the problem of eigendecomposing quaternion matrices would be at the heart of QGSP, since the very definition of a graph signal spectrum requires the eigenvalues and eigenvectors of a graph shift operator (e.g. the adjacency matrix), which is a quaternion matrix. Since it took a while to make progress with general graph matrices, it seemed promising to investigate the quaternion discrete Fourier transform (QDFT); after all, ring graphs should have the graph Fourier transform (GFT) and the classical discrete Fourier transform (DFT) coinciding. By looking at the QDFT matrix, however, a new way to diagonalize it was found and a new multiparametric fractional QDFT was proposed. When shifting the focus to the graph domain, revisiting the study of graph shift operators and their spectral decomposition, interesting results regarding the fractional graph shift operator were discovered. For instance, this new operator acts as a graph filter, and its polynomial representation is determined, demonstrating that it can be implemented as a linear and shift-invariant (LSI) graph filter.
 
-This thesis is organized as follows. Chapter \ref{ch:fundamentos} brings a diverse set of concepts and results from the literature, providing the reader with a broad understanding of the quaternion algebra, quaternion and fractional transforms, and GSP, so as to follow easily the discussions to come.
+This thesis is organized as follows. Chapters \ref{ch:reviewQuat} and \ref{ch:reviewGSP} brings a diverse set of concepts and results from the literature, providing the reader with a sufficient understanding of the quaternion algebra and quaternion Fourier transform (the former), and signal processing from the perspective of graph signals and fractional-order operators (the latter).
 Chapter \ref{ch:FrGSO} presents the new fractional graph shift operator, commenting on its properties and applications.
 In Chapter \ref{ch:FrQDFT}, a study on the fractionalization of the QDFT is presented, with a new method being proposed, alongside a multiparametric version of the fractional-order transform.
 The foundations of QGSP are finally presented in Chapter \ref{ch:QGSP}, with discussions and a few applications with both toy and real world datasets.
-The thesis closes with concluding remarks and future works, in Chapter \ref{ch:conclusion}, and the Appendix \ref{ch:AppendixA}, demonstrating a relation between systems of quaternion and complex linear equations, useful for a central theorem presented in Chapter\ref{ch:fundamentos}.
+The thesis closes with concluding remarks and future works, in Chapter \ref{ch:conclusion}, and the Appendix \ref{ch:AppendixA}, demonstrating a relation between systems of quaternion and complex linear equations, useful for a central theorem presented in Chapter \ref{ch:fundamentos}.
 
 \section{Contributions}
 The contributions present in this thesis are:
@@ -53,7 +53,7 @@ This work has so far published two papers in international journals and one in a
 % \end{itemize}
 
 
-\chapter{On quaternion algebra and its Fourier transform}
+\chapter{On the quaternion algebra and its Fourier transform}
 \label{ch:reviewQuat}
 
 \begin{quotation}
@@ -651,11 +651,12 @@ Esta breve apresenta\c c\~ao da QDFT ilustra que
 
 Para uma introdu\c c\~ao completa aos quat\'ernios e sua aplica\c c\~ao ao processamento de sinais, recomenda-se \cite{zhang1997quaternions,ell2014quaternion,flamant2017time, jiang2014general}.
 
-\chapter{Fractional and graph Fourier transforms}
+\chapter{On fractional and graph signal processing}
+\label{ch:reviewGSP}
 
 \section{Fractional transforms}
 
-\section{Fundamentals of graph signal processing (from jcis paper)}
+\section{Fundamentals of graph signal processing}
 
 Multivariate data defined over networks are nowadays ubiquitous, being constantly generated, stored and processed in the most diverse systems in engineering and technology. Measurements in a set of IoT sensors and mobile devices~\cite{alam2015toward,guo2016qos,ma2016non,yu2016novel}, number of citations in a scientific collaboration network or social media relations (\emph{collaboration graph}, or \emph{social graph})~\cite{chung2010graph} and interactions between individuals in a ecosystem (\emph{ecological networks})~\cite{golubski2016} are some examples of situations in which the acquired data are intimately related to the topology of the network over which they are defined.
 
@@ -667,7 +668,7 @@ All these examples share an important characteristic: the structure over which t
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\linewidth]{Figures/signal_duher_graph_2.pdf}
+	\includegraphics[width=0.25\linewidth]{Figures/signal_duher_graph_2.pdf}
 	\caption{Example of signal defined over a graph. The height of the vertical bars indicate the value of the signal samples, which are indexed by the graph vertices. The graph edges capture similarity relations between samples. How could one define spectral analysis and processing techniques in such a signal domain?}
 	\label{fig:duher}
 \end{figure}
@@ -691,10 +692,10 @@ A graph is called \emph{undirected} if and only if its adjacency matrix is symme
 \begin{figure}
 	\centering
 	\subfloat[]{
-		\includegraphics[width=0.35\linewidth]{Figures/example_graph_01_math.pdf}
+		\includegraphics[width=0.25\linewidth]{Figures/example_graph_01_math.pdf}
 	}~
 	\subfloat[\label{fig:example_graphs_b}]{
-		\includegraphics[width=0.35\linewidth]{Figures/example_graph_02_math.pdf}
+		\includegraphics[width=0.25\linewidth]{Figures/example_graph_02_math.pdf}
 	}
 	\caption{Examples of (a) directed and (b) undirected graphs, defined over the same vertex set.}
 	\label{fig:example_graphs}
@@ -716,11 +717,11 @@ A graph is said to be \emph{unweighted} if all its edges have unit weight. A \em
 \begin{figure}
 	\centering
 	\subfloat[\label{fig:k_hop_neighborhood_01}]{
-		\includegraphics[width=0.45\linewidth]{Figures/k_hop_neighborhood_01.pdf}
+		\includegraphics[width=0.25\linewidth]{Figures/k_hop_neighborhood_01.pdf}
 	}~
 	%	\qquad
 	\subfloat[\label{fig:k_hop_neighborhood_02}]{
-		\includegraphics[width=0.45\linewidth]{Figures/k_hop_neighborhood_02.pdf}
+		\includegraphics[width=0.25\linewidth]{Figures/k_hop_neighborhood_02.pdf}
 	}
 	%\hspace{0.2cm}%
 	\caption{(a) A graph and (b) the set of vertices $ \mathcal{N}(i,2) $ shown in red, with $ v_i $ being depicted in white. The edges linking $ v_i $ to the elements in $ \mathcal{N}(i,2) $ are also highlighted in red.}%
@@ -825,7 +826,7 @@ However, if there is an isolated vertex, far from the others, the use of (\ref{e
 
 As previously discussed, these methods require an adequate metric to evaluate the expected similarity between samples in the graph vertex, but given the diverse areas in which graph signals may arise, estimating the topology of the  underlying graph constitutes a challenge of its own \cite{mei2016signal,Sardellitti2016}.
 
-\section{GSP\textsubscript{A}: graphs and algebraic signal processing}
+\section{Formulating GSP based on the graph adjacency matrix}
 \label{sec:DSPG}
 
 In 2008, P\"uschel and Moura published their \emph{algebraic signal processing} (ASP) theory \cite{puschel2008time,puschel2008space}, which expands DSP by moving to an algebraic point of view: each signal processing theory is studied as a triple $ (\mathscr{A}, \mathscr{M}, \Phi) $ consisting of an algebra $ \mathscr{A} $ (a vector space endowed with multiplication between vectors), an $ \mathscr{A} $-module $ \mathscr{M} $ (a vector space over the same base field as $ \mathscr{A} $ which admits left-multiplication by elements of $ \mathscr{A} $) and a linear transformation $ \Phi $. $ \mathscr{A} $ is called the filter space, $ \mathscr{M} $ is the signal space and $ \Phi $ is the Fourier transform (homomorphism over $ \mathscr{M} $) associated to the structure.
@@ -1059,197 +1060,6 @@ Taking the GFT of both sides of the last equation yields
 h(\mathbf{\Lambda}) \widehat{\mathbf{x}},
 \end{equation}
 which indicates that left-multiplication by $ \mathbf{H} $ (action of the filter in the vertex domain) is equivalent to the left-multiplication, in the frequency domain, by the matrix $ h(\mathbf{\Lambda}) $. In other words, $ h(\mathbf{\Lambda}) $ represents the frequency response of $ \mathbf{H} $.
-
-
-\section{Fundamentals of graph signal processing}
-\label{sec:GSPintro}
-
-Em diversos contextos, os sinais de interesse est\~ao naturalmente definidos sobre uma estrutura em rede, modelada como um grafo. Sejam medi\c{c}\~oes em um conjunto de sensores e dispositivos de Internet das Coisas~\cite{alam2015toward,guo2016qos,ma2016non,yu2016novel}, informa\c c\~oes de posi\c c\~ao e cor sobre um \emph{mesh} 3D para computa\c c\~ao gr\'afica \cite{nguyen2014compression}, ou mesmo sinais de resson\^ancia magn\'etica funcional (fMRI, \emph{functional magnetic resonance imaging}) sobre redes cerebrais \cite{goldsberry2017brain,leonardi2013tight}, s\~ao todos exemplos de aplica\c c\~oes em que os dados obtidos est\~ao intimamente ligados \`a topologia da rede sobre a qual est\~ao definidos. Em todos estes cen\'arios, e muitos outros, GSP tem encontrado espa\c co para expandir a teoria e propor solu\c c\~oes. Nesta se\c c\~ao, pretende-se cobrir brevemente os fundamentos de GSP.
-
-
-Um sinal $ \mathbf{s} $ sobre um grafo $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $, com $ |\mathcal{V}| = N $, \'e definido como uma fun\c c\~ao discreta que mapeia $\mathcal{V}$ em um conjunto de grandezas escalares, usualmente os n\'umeros complexos ou reais,
-\begin{equation}
-%\label{key}
-s: \ \mathcal{V} \rightarrow \mathbb{C} \ | \ s(v_i) = s_i,
-\end{equation}
-de modo que um sinal definido sobre $ \mathcal{G} $ \'e um vetor em $ \mathbb{C}^N $ \emph{indexado pelos v\'ertices de} $ \mathcal{G} $. A matriz de adjac\^encia $ \mathbf{A} $ traz em sua entrada $ A_{ij} $ o peso da aresta indo de $ v_j $ para $ v_i $. Uma vez que se determina uma rotula\c c\~ao e ordem espec\'ifica para os elementos de $ \mathcal{V} = \{v_1, \dots, v_N\}$, n\~ao h\'a ambiguidade em representar o sinal como o vetor $ \mathbf{s} = (s_0 \ s_1 \ \dots \ s_{N-1})^T$, $ s_i \in \mathbb{C} $, $ 0 \leq i \leq N-1 $. Representa-se por $ \mathcal{S} $ o espa\c co de sinais definidos sobre um certo grafo $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $.
-
-A Fig.~\ref{fig:graphs} traz exemplos de representa\c c\~oes de sinais sobre grafos, nos quais a rotula\c c\~ao dos v\'ertices \'e impl\'icita (associa-se a amostra $ s_i $ ao v\'ertice $ v_i $). Os valores das amostras dos sinais podem ser indicados \emph{numericamente}, junto aos v\'ertices (Figs. \ref{figa_graphs} e \ref{figb_graphs}), ou por meio de uma escala de cores (Fig.~\ref{figd_graphs}). Ao longo desta se\c c\~ao, ser\'a priorizado o uso desta \'ultima representa\c{c}\~ao.%Por ora, o leitor pode ter-se indagado sobre a pr\'opria \emph{constru\c c\~ao} do grafo para o caso de sinais reais, como aquele obtido de medi\c c\~oes de temperatura na Fig. \ref{figd_graphs}, o que de fato n\~ao \'e uma quest\~ao trivial e ser\'a abordada na subse\c c\~ao a seguir.
-
-\begin{figure}
-	\centering
-	\subfloat[\label{figa_graphs}]{
-		\includegraphics[width=0.25\linewidth]{Figures/signal_ring_graph_white_border.pdf}
-	}
-	\subfloat[\label{figb_graphs}]{
-		\includegraphics[width=0.25\linewidth]{Figures/image_graph.pdf}
-	}%
-	\subfloat[\label{figd_graphs}]{
-		\includegraphics[width=0.26\linewidth]{Figures/temp_NE_stretched.pdf} }%
-	\caption{Representa\c{c}\~oes de sinais sobre (a) um grafo em anel direcionado, (b) um grafo em grade retangular uniforme  e (c) um grafo formado por cidades do Nordeste brasileiro.}%
-	\label{fig:graphs}%
-	%	\vspace{-0.9cm}
-	%	{\\ \small Fonte: o autor.}
-\end{figure}
-
-Um sinal de comprimento finito e de tempo discreto \'e modelado pelo grafo em anel direcionado (considera-se os pesos unit\'arios), como mostrado na Fig.~\ref{figa_graphs}: a no\c c\~ao de evolu\c c\~ao temporal \'e capturada pelas arestas direcionadas; a periodicidade imposta pelas condi\c c\~oes de fronteira da an\'alise de Fourier de tempo discreto \'e modelada pela aresta realimentando a \'ultima amostra \`a primeira. O grafo na Fig. \ref{figb_graphs} \'e um modelo para imagens digitais \cite{sandryhaila2012nearest} chamado \emph{nearest-neighbor}, em que a depend\^encia entre pixels \'e aproximada para existir apenas entre vizinhos, e o grafo na Fig. \ref{figd_graphs} \'e um exemplo de grafo de rede de sensores\footnote{Quando n\~ao \'e especificado em contr\'ario, chama-se \emph{grafo de (rede de) sensores} um grafo conectado com v\'ertices distribu\'idos uniformemente numa regi\~ao do espa\c co euclidiano bidimensional.}, com pesos das arestas dados pelo inverso da dist\^ancia euclidiana, sobre o qual definiu-se o sinal da temperatura \`a meia-noite de 01 de fevereiro de 2012 em cidades do Nordeste brasileiro\footnote{Fonte: Banco de Dados Meteorol\'ogicos para Ensino e Pesquisa (BDMEP) do Instituto Nacional de Meteorologia. Acesso gratuito, dispon\'ivel em: \url{http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep}}.
-
-As caracter\'isticas espectrais de um sinal dependem fortemente do dom\'inio sobre o qual ele \'e definido. %, mas n\~ao faz sentido reconhecer essa depend\^encia em Processamento Cl\'assico de Sinais porque nele trabalha-se apenas com dom\'inios regulares e uniformes\footnote{Mesmo quando se aborda \emph{amostragem n\~ao-uniforme}, as t\'ecnicas desenvolvidas ainda visam \`a \emph{recupera\c{c}\~ao} do sinal em um dom\'inio -- de tempo -- tipicamente regular.}.
-Em geral, diz-se que um sinal cont\'em majoritariamente baixas frequ\^encias se amostras \emph{adjacentes} t\^em valores \emph{pr\'oximos}, e altas frequ\^encias se t\^em valores \emph{d\'ispares}. Considerando sinais definidos sobre grafos, fica evidente que a no\c c\~ao de amostras adjacentes depende da topologia do grafo em quest\~ao, e portanto \emph{um mesmo sinal pode apresentar espectros distintos se definido sobre grafos diferentes}. 
-%A Fig. \ref{fig:diff_struct} confirma essa intui\c c\~ao, apresentando o espectro de um sinal segundo a base de autovetores da matriz Laplaciana do grafo, para dois grafos distintos; na Fig. \ref{fig:diff_struct_b}, as amostras de maior valor s\~ao adjacentes \`aquelas de menor valor, o que causa componentes de maior frequ\^encia do que se o grafo usado como dom\'inio fosse um anel a pesos constantes (Fig. \ref{fig:diff_struct_a}).
-
-%Em 2006, P\"uschel e Moura publicaram sua teoria de processamento alg\'ebrico de sinais (ASP, do ingl\^es \emph{algebraic signal processing}) \cite{moura2006algebraic}. A descrição de sinais e filtros do ponto de vista alg\'ebrico \'e intencionalmente abstrata e gen\'erica: tanto os filtros como os sinais s\~ao simplesmente elementos de espa\c cos vetoriais dotados de multiplica\c c\~ao e distributividade. Especificamente, o espa\c co de filtros \'e uma \emph{\'algebra}, sobre a qual toma-se um \emph{m\'odulo} para ser o espa\c co de sinais. Uma descri\c c\~ao detalhada sobre ASP foge ao escopo deste cap\'itulo, mas o leitor interessado pode tirar bastante proveito dos trabalhos originais de P\"uschel e Moura \cite{puschel2008time,puschel2008space}.
-%
-%O aspecto de ASP que levou ao processamento sobre grafos, o que de fato nos interessa diretamente, \'e que o espa\c co de filtros \'e \emph{gerado} pelo operador de atraso unit\'ario de sinais. Um exemplo tornar\'a a afirma\c c\~ao menos obscura: seja a \'algebra polinomial $ \mathbb{C}[x] / (x^N - 1) $, ou $ {A}  = \{ \sum_{\ell=0}^{N-1} a_\ell x^\ell | a_\ell \in \mathbb{C} \}$, que consiste em todos os polin\^omios de coeficientes complexos com grau menor do que $ N $, dotados da adi\c c\~ao e multiplica\c c\~ao polinomiais usuais, m\'odulo $ x^N - 1 $. \'E comum representar sinais e filtros de tempo discreto e comprimento $ N $ como elementos de $ {A}  $, caso em que a convolu\c c\~ao c\'iclica torna-se a simples multiplica\c c\~ao polinomial modular. Por exemplo, o sinal $ \mathbf{s}_1 = (0 \ \ 2 \ \ 1 \ \ 0) $ \'e representado por $ s_1(x) = x^2 + 2x $, e sua vers\~ao deslocada de uma unidade, $ \mathbf{s}_2 = (0 \ \ 0 \ \ 2 \ \ 1) $, \'e dada por $ s_2(x) = x^3 + 2x^2 $. Fica claro que, neste caso, o filtro de atraso unit\'ario \'e $ d(x) = x $, cujas pot\^encias \emph{geram} a base $ (1, x, x^2, \dots, x^{N-1}) $ para o espa\c co de filtros. Esta rela\c c\~ao se mant\'em para qualquer \'algebra em ASP; portanto, Moura certamente concluiu que, ao definir um operador de deslocamento unit\'ario para sinais sobre grafos, isto daria in\'icio \`a constru\c c\~ao da teoria de GSP.
-
-Um conceito fundamental em GSP \'e o de operador de deslocamento. Trata-se de uma matriz quadrada $ S $ extra\'ida a partir do grafo $ \mathcal{G} $, tal que $ S_{ji} $ somente pode ser n\~ao-nulo se $ i = j $ ou $ (v_i, v_j) $ for uma aresta de peso n\~ao-nulo de $ \mathcal{G} $ \cite{segarra2015interpolation}. Escolhas usuais para $ S $ s\~ao a matriz de adjac\^encia \cite{sandryhaila2014big} e a Laplaciana \cite{shuman2013emerging}, embora outras op\c c\~oes existam (e.g. \cite{girault2015translation, dees2019unitary}), a depender de qual propriedade se deseje. O restante da se\c c\~ao tomar\'a a matriz de adjac\^encia como operador de deslocamento, por ser aquele que mais claramente transmite a no\c c\~ao de atraso unit\'ario do sinal no grafo. Pode-se ver que a multiplica\c c\~ao de um sinal $ \mathbf{x} $ \`a esquerda por $ \mathbf{A} $ faz com que cada amostra $ x_i $ seja redistribu\'ida para os v\'ertices vizinhos, ponderada pelo peso das arestas que saem do v\'ertice $ i $:
-\begin{equation}
-y_j = \sum_{i=0}^{N-1} A_{ij} x_i.
-\end{equation}
-
-O conceito fica ainda mais claro ao se tomar o grafo em anel direcionado com pesos unit\'arios, modelo para o dom\'inio de tempo discreto (Fig. \ref{figa_graphs}). Pode-se ver que sua matriz de adjac\^encia,
-\begin{equation}\label{eq:C}
-\mathbf{C} =
-\left[\renewcommand{\arraystretch}{0.65}\begin{array}{cccc}
-&  &  &   1\\ 
-1 &  &   & \\ 
-&   \ddots &  & \\ 
-&  &   1 & 
-\end{array}\right],
-\end{equation}
-\noindent realiza precisamente o papel de atraso num sinal de tempo discreto. Ou seja, se um sinal $ \mathbf{s} = (s_1 \ s_2 \ \dots \ s_N)^T $ definido em um grafo em anel \'e multiplicado \`a  esquerda por $ \mathbf{C} $, tem-se
-\begin{equation}\label{eq:graph_shift_C}
-\mathbf{s}^{\langle 1 \rangle} = \mathbf{C} \mathbf{s},
-\end{equation}
-com $ \mathbf{s}^{\langle 1 \rangle} = (s_N \ s_1 \ \dots \ s_{N-1})^T $.
-Para um sinal $ \mathbf{x} $ sobre um grafo qualquer $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $, $ \mathbf{A} $ age como um \emph{filtro} de atraso (ou deslocamento) sobre $ \mathbf{x} $, e a vers\~ao deslocada deste sinal \'e representada por $ \mathbf{x}^{\langle 1 \rangle} = \mathbf{A} \mathbf{x}$.
-
-%e a opera\c c\~ao de deslocamento do sinal,
-%\begin{equation}
-%%\label{key}
-%\widetilde{\mathbf{x}} = \mathbf{A} \mathbf{x} \Rightarrow \widetilde{x}_i = \sum_{j=0}^{N-1} A_{i,j} x_j,
-%\end{equation}
-%significa substituir o valor em cada v\'ertice do grafo pela soma dos valores adjacentes, ponderada pelos pesos das arestas incidentes. No dom\'inio do tempo discreto, o deslocamento \'e a mera transfer\^encia c\'iclica de valor das amostras porque o grafo subjacente \'e em anel a pesos constantes (Fig. \ref{figa_graphs}).
-
-\subsection{Filtros sobre grafos}
-\label{subsec:filtros}
-
-Observar a matriz de adjac\^encia como um filtro levou \`a defini\c c\~ao de um filtro de sinais sobre grafos como sendo qualquer matriz $ \mathbf{H} \in \mathbb{C}^{N \times N} $ \cite{sandryhaila2013filters}, visto que o produto matriz-vetor sempre resulta num vetor (ou \emph{filtro} $ \times $ \emph{sinal} $ = $ \emph{sinal}). Isso implica que os filtros sobre grafos s\~ao sempre lineares, uma vez que a distributividade da multiplica\c c\~ao em rela\c c\~ao \`a adi\c c\~ao matricial garante que
-\begin{equation}
-%\label{key}
-\mathbf{H} (\alpha_1 \mathbf{x}_1 + \alpha_2 \mathbf{x}_2) =  \alpha_1 \mathbf{H} \mathbf{x}_1 + \alpha_2 \mathbf{H}  \mathbf{x}_2.
-\end{equation}
-
-A propriedade de invari\^ancia no tempo (ou ao deslocamento) requer que $ \mathbf{A} \mathbf{H} \mathbf{x} = \mathbf{H} \mathbf{A} \mathbf{x} {,} \ \forall \mathbf{x}$. Uma classe de filtros que sempre obedece a esse requisito s\~ao aqueles na forma de um polin\^omio $ h(\cdot) $ avaliado em $ \mathbf{A} $,
-\begin{equation}
-\label{eq:filter_poly}
-h(\mathbf{A}) = \sum_{\ell=0}^{L-1} h_\ell \mathbf{A}^\ell,
-\end{equation}
-com $ L$ menor ou igual ao grau do polin\^omio m\'inimo $ m_\mathbf{A} $ de $ \mathbf{A}$~\cite{sandryhaila2013discrete,sandryhaila2014big}. Assim, estes filtros LSI s\~ao uma s\'erie de pot\^encias finita no operador de deslocamento, exatamente como ocorre em processamento cl\'assico de sinais de tempo discreto, em que os filtros LTI t\^em representa\c c\~ao em termos de polin\^omios em $ z^{-1} $, pela transformada Z. A menos que dito em contr\'ario, ser\'a utilizado o termo ``filtro LSI`` como sin\^onimo para um filtro como (\ref{eq:filter_poly}).
-
-\subsection{A transformada de Fourier sobre grafos}
-
-Uma vez que a transformada de Fourier de um sinal \'e a sua proje\c{c}\~ao em uma base de fun\c{c}\~oes invariantes \`a  filtragem linear e invariante no tempo (LTI, do ingl\^es \emph{linear and time-invariant}) \cite{oppenheim1997signals}, em GSP define-se a transformada de Fourier sobre grafos (GFT, do ingl\^es \emph{graph Fourier transform}) como a decomposi\c{c}\~ao de um sinal em termos de uma base de autovetores do operador de deslocamento --- e, portanto, autovetores da filtragem LSI~\cite{sandryhaila2013gft}.
-
-Seja $ \mathbf{A} $ a matriz de adjac\^encia de um grafo de $ N $ v\'ertices. Se $ \mathbf{A} $ for diagonaliz\'avel, tem-se\footnote{Se $\mathbf{A}$ n\~ao for diagonaliz\'avel, o racioc\'inio pode ser repetido utilizando-se a forma can\^onica de Jordan.}
-\begin{equation}\label{eq:gft_01}
-\mathbf{A} = \mathbf{V} \mathbf{\Lambda} \mathbf{V}^{-1},
-\end{equation}
-em que $ \mathbf{V} $ cont\'em os $ N $ autovetores de $ \mathbf{A} $ em suas colunas, isto \'e,
-\begin{equation}\label{eq:gft_02}
-\mathbf{V} = (\mathbf{v}_0 \ \mathbf{v}_1 \ \dots\ \mathbf{v}_{N-1}).
-\end{equation}
-
-Como filtros LSI s\~ao polin\^omios em $ \mathbf{A} $, as colunas de $ \mathbf{V} $ formam uma base de vetores invariantes \`a  filtragem LSI
-%. Somando a isto o fato de que os subespa\c{c}os gerados pelos autovetores de um mesmo autovalor de $ \mathbf{A} $ s\~ao irredut\'iveis, t\^em interse\c{c}\~ao nula e suas dimens\~oes somam $ N $ \cite{sandryhaila2013gft}, $ \mathbf{V} $ fornece uma base invariante \`a  filtragem LSI
-para o espa\c{c}o de sinais $ \mathcal{S} $ sobre o grafo com matriz de adjac\^encia $ \mathbf{A} $. Desta forma, um sinal $ \mathbf{x} \in \mathcal{S} $ pode ser decomposto em suas componentes na base $ \mathbf{V} $ como
-\begin{align}\label{eq:GFT_inv}
-\mathbf{x} &= \widehat{x}_0 \mathbf{v}_0 + \dots + \widehat{x}_{N-1} \mathbf{v}_{N-1} = \mathbf{V} (\widehat{x}_0 \ \widehat{x}_1 \ \dots \ \widehat{x}_{N-1})^T \notag \\
-&= \mathbf{V} \widehat{\mathbf{x}},
-\end{align}
-e esta \'e definida como a equa\c{c}\~ao de s\'intese da \emph{transformada de Fourier sobre grafos}. A equa\c{c}\~ao de an\'alise da GFT \'e, portanto,
-\begin{equation}\label{eq:GFT_fwd}
-\widehat{\mathbf{x}} = \mathbf{V}^{-1} \mathbf{x}.
-\end{equation}
-
-Para sinais de tempo discreto, foi assinalado que seu dom\'inio \'e modelado como um grafo com matriz de adjac\^encia $ \mathbf{C} $ em~(\ref{eq:C}). Como $ \mathbf{C} $ \'e circulante, ela \'e diagonalizada pela matriz da transformada discreta de Fourier (DFT, do ingl\^es \emph{discrete Fourier transform}), dada por $ \mathbf{F} $, $ F_{n,k} = \exp \left( -\jmath\frac{2 \pi}{N} nk \right) $. Assim, pode-se escrever%, que cont\'em em suas linhas os autovetores da DFT. Atrav\'es do polin\^omio caracter\'istico de $ \mathbf{C} $,
-%\begin{equation}
-%\label{key}
-%p_{\mathbf{C}}(\lambda) = \text{det} (\lambda \mathbf{I} - \mathbf{C}) =
-%\begin{vmatrix}
-%\lambda &  &  &   -1\\ 
-%-1 & \lambda &   & \\ 
-%&   \ddots & \ddots & \\ 
-%&  &   -1 & \lambda
-%\end{vmatrix}
-%=\lambda^N - 1,
-%\end{equation}
-%mostra-se que seus autovalores s\~ao as $ N $ ra\'izes da unidade. Assim, a diagonaliza\c c\~ao da matriz $ \mathbf{C} $ pela matriz da DFT \'e escrita como
-\begin{equation}\label{eq:diag_C}
-\mathbf{C} = \mathbf{F}^{-1} \mathbf{\Lambda}_{\mathbf{C}} \mathbf{F},
-\end{equation}
-em que $\mathbf{\Lambda}_{\mathbf{C}}$ \'e uma matriz diagonal com os autovalores de $\mathbf{C}$. V\^e-se que a matriz da GFT, para grafos em anel, \'e $ \mathbf{V}^{-1} = \mathbf{F} $, o que resulta na desej\'avel propriedade de que a GFT de sinais de tempo discreto coincide com a  DFT, demonstrando consist\^encia com a teoria cl\'assica.
-
-\subsection{O dom\'inio da frequ\^encia}
-
-A defini\c c\~ao empregada para a GFT sugere interpretar os autovetores $ \mathbf{v}_i $ da matriz de adjac\^encia como as ``componentes de frequ\^encia'' associadas \`as \emph{frequ\^encias de grafo} representadas pelos autovalores $ \lambda_i $ (como a componente de Fourier $ {\text{e}}^{-\jmath \Omega t} $, no dom\'inio do tempo cont\'inuo $ t $, \'e associada \`a frequ\^encia $ \Omega $). A menos que os polin\^omios caracter\'istico e m\'inimo de $ \mathbf{A} $ sejam iguais, uma mesma frequ\^encia estar\'a associada a duas ou mais componentes linearmente independentes, como ocorreu com o sinal na Fig. \ref{fig:diff_struct_GSPA}. Na mesma figura, nota-se que, embora o sinal seja visualmente suave, seu espectro possui componentes associadas a autovalores de grande magnitude, o que levanta a quest\~ao de definir um crit\'erio coerente para se falar em \emph{altas} e \emph{baixas} frequ\^encias de sinais sobre grafos.
-
-
-\begin{figure}
-\centering
-\begin{minipage}[c]{0.3\linewidth}
-	\subfloat[\label{fig:diff_struct_a_GSPA}]{
-		\includegraphics[width=\linewidth]{Figures/ring_different_structure_01_GSPA_larger.pdf}
-	}
-\end{minipage} %
-\begin{minipage}[c]{0.27\linewidth}
-	\subfloat[\label{fig:diff_struct_b_GSPA}]{
-		\includegraphics[width=\linewidth]{Figures/ring_different_structure_01_spectrum_GSPA_PT_2.pdf}
-	}
-\end{minipage}%
-\caption{(a) Sinal sobre um grafo em anel n\~ao-direcionado e (b) seu espectro em GSP\textsubscript{A}.}%
-\label{fig:diff_struct_GSPA}%
-%	\vspace{-0.2cm}
-%	{\\ \small Fonte: o autor.}
-\end{figure}
-
-Para fundamentar matematicamente a no\c c\~ao de frequ\^encia no contexto de GSP, partiu-se de uma m\'etrica usual para sinais de tempo discreto: a \emph{varia\c c\~ao total}, que calcula a soma das diferen\c cas entre amostras adjacentes de um sinal e, portanto, assume valores maiores para sinais de maior frequ\^encia. Sua express\~ao matem\'atica, para certo sinal de comprimento finito $ \mathbf{x} = (x_0 \ \ x_1 \ \ \dots \ \ x_{N-1}) $, \'e
-\begin{equation}
-\label{eq:TV}
-TV(\mathbf{x}) = \sum_{n=0}^{N-1} | x_n - x_{n-1 \text{ mod } N}|.
-\end{equation}
-
-De (\ref{eq:C}) e (\ref{eq:graph_shift_C}), v\^e-se que (\ref{eq:TV}) pode ser reescrita em termos da norma $ \ell_1 $\footnote{A norma $ \ell_1 $ \'e um caso particular da norma $ \ell_p $ de um vetor $ \mathbf{x} \in \mathbb{C}^{N} $, definida como $ \Vert \mathbf{x}\Vert_p \overset{\Delta}{=} \left(\sum_{k=0}^{N-1} |x_k|^p\right)^{1/p} $. Quando n\~ao for explicitamente indicado, a nota\c c\~ao sem subscrito $ \Vert \cdot \Vert $ indica a norma $ \ell_2 $.} como $ TV(\mathbf{x}) = \Vert \mathbf{x} - \mathbf{C x}\Vert_1 $, utilizando a matriz de adjac\^encia do grafo em anel para realizar o deslocamento c\'iclico do sinal. Assim, uma generaliza\c{c}\~ao da fun\c c\~ao $ TV(\cdot) $ para sinais definidos sobre grafos quaisquer, i.~e., a \emph{varia\c c\~ao total sobre grafos} para um sinal $ \mathbf{s} $ sobre o grafo $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $, foi definida como
-\begin{equation}
-\label{eq:var_total}
-TV_G(\mathbf{s}) \overset{\Delta}{=} \Vert \mathbf{s} - \mathbf{A}^{\text{\emph{norm}}} \mathbf{s}\Vert_1,
-\end{equation}
-com $ \mathbf{A}^{\text{\emph{norm}}} = |\lambda_{max}|^{-1}\mathbf{A} $ e $ \lambda_{max} $ o autovalor de $ \mathbf{A} $ com maior m\'odulo. A normaliza\c c\~ao de $ \mathbf{A} $ visa evitar a magnifica\c c\~ao excessiva das amostras do sinal deslocado \cite{sandryhaila2014frequency}.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.35\linewidth]{Figures/graph_frequency.pdf}
-	\caption{Ordenamento das frequ\^encias de sinais sobre grafos, de baixa para alta, no plano complexo. Fonte: adaptado de \cite{sandryhaila2014frequency}.}
-	\label{fig:ordem_freq}
-	%	{\\ \small Fonte: adaptado de \cite{sandryhaila2014frequency}.}
-\end{figure}
-
-Seja $ \mathbf{A} $ diagonaliz\'avel e com autovalores (possivelmente complexos) ordenados tais que
-\begin{equation}
-\label{eq:eig_order}
-|\lambda_0| \leq |\lambda_1| \leq \dots \leq |\lambda_{N-1}| \overset{\Delta}{=} |\lambda_{max}|,
-\end{equation}
-associados aos autovetores $ (\mathbf{v}_i)_{i=0,\dots,N-1} $ escolhidos de modo que $ \Vert \mathbf{v}_k \Vert_1 = 1 $. Tomando a varia\c c\~ao total de um autovetor $ \mathbf{v}_k $ associado a $ \lambda_k $, tem-se
-\begin{align*}
-%\label{key}
-TV_G(\mathbf{v}_k) &= \Vert \mathbf{v}_k - \mathbf{A} \mathbf{v}_k \Vert_1  = \Vert\mathbf{v}_k - \frac{1}{|\lambda_{max}|} \lambda_k \mathbf{v}_k \Vert_1 = \left|1 - \frac{\lambda_k}{|\lambda_{max}|}\right| \Vert \mathbf{v}_k \Vert_1 = \Big| \lambda_k - |\lambda_{max}| \Big| \frac{\Vert \mathbf{v}_k \Vert_{1}}{|\lambda_{max}|}
-\end{align*}
-de forma que, como foi feito $ \Vert \mathbf{v}_k \Vert_1 = 1 $, tem-se a equival\^encia
-\begin{equation}
-\label{eq:TV_ordering}
-\Big|  \lambda_i - |\lambda_{max}|\Big| \leq \Big|  \lambda_j - |\lambda_{max}|\Big| \iff TV_G(\mathbf{v}_i) \leq TV_G(\mathbf{v}_j),
-\end{equation}
-ou seja, componentes de frequ\^encia associadas a autovalores mais pr\'oximos do ponto $ |\lambda_{max}| $ no plano complexo s\~ao mais suaves e s\~ao, portanto, ditas de \emph{baixa frequ\^encia}. A Fig. \ref{fig:ordem_freq} ilustra esse ordenamento para as frequ\^encias de grafos, o que esclarece a leitura do espectro do sinal na Fig. \ref{fig:diff_struct_a_GSPA}, cuja matriz de adjac\^encia tem autovalores reais.
 
 
 \chapter{The fractional graph shift operator and its applications}
@@ -2385,7 +2195,7 @@ from which follows that any unit pure quaternion is a square root of unity. This
 % \label{fig:duher}
 % \end{figure}
 
-Section \ref{sec:GSPintro} presented the motivation and fundamentals of graph signal processing, while Chapter THIS delved into the exploration of a fractional graph shift. The current chapter will extend even more the borders of the field.
+In Chapter \ref{ch:reviewGSP} it was presented the motivation and fundamentals of graph signal processing, while Chapter \ref{ch:FrGSO} delved into the exploration of a fractional graph shift. The current chapter will extend even more the borders of the field.
 
 The problem at hand, when applying GSP, will define the characteristics of the underlying graph, e.g. whether using real or complex edge weights, directed or undirected graphs. The exploration of new algebras for the edge weights, however, open new possibilities for tools and applications, similarly to what happened in electrical engineering when modeling electric signals using complex-valued functions. The engineers were able to explore with variables that, carrying two sources of information (amplitude and phase), have proven more suitable to the visualization and manipulation of harmonic functions than if only real-valued functions were employed. That was also the reasoning of Ortoloni and Uncini \cite{ortolani2016quaternion}, when they proposed the study of discrete-time signal processing with \emph{quaternion-valued} samples.
 
