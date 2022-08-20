@@ -4,7 +4,7 @@ Signal processing is a field which often interweaves pure mathematics and engine
 
 One way to explore different signal representations is to alter the algebra over which it is defined. That is the case with numerical or arithmetic transforms \cite{blahut2010fast,pedrouzo2017number,chandra2014exact}, which deal only with finite fields instead of the usual complex (e.g. Fourier transform) or real fields (e.g. cosine transform). As the underlying algebra is extended, e.g. going from $ \mathbb{R} $ to $ \mathbb{C} $, it is possible to process signals with more information per sample. Such was the motivation behind Sangwine's \cite{sangwine1996fourier} discrete version of a family of bidimensional transforms over the \textit{quaternions}, previously created by Ell \cite{ell1993quaternion}: to exploit this class of hypercomplex numbers with four real components to perform holistic color image processing. Upon mapping each color channel inside a pixel into an imaginary component of a quaternion number, the color image may be processed as a single signal. Computationally, the spectral decomposition requires only two complex discrete Fourier transforms (DFTs), instead of three (one per color channel). Ever since, quaternion transforms have been employed not only on color image processing \cite{ell2007hypercomplex,chen2018quaternion,li2013quaternion,evans2000hypercomplex}, but also other ends such as bivariate signal analysis \cite{flamant2017spectral,flamant2017time,flamant2018complete}.
 
-Algebra extensions change the signal representation by looking at the signal \textit{samples} but, reminding the signal is nothing more than a function, one may also shift her attentino to the \textit{domain}. In fact, such reflection has led to the creation of graph signal processing (GSP). This field, which emerged in the last decade, is concerned with extending the concepts of classical discrete signal processing (DSP) to the in which the signal samples \textit{reside in graph vertices}. It approaches the classical case of discrete-time domain as being a path or ring graph (depending on the graph shift operator at hand, as will soon be clear) with equally weighted edges. The \textit{signal}, therefore, is a mapping from the vertex set to the real (or complex) numbers, and the fixed sampling frequency is represented as graph edges having the same weights (i.~e. as if the samples were at fixed ``distances'', one could say). GSP deals with the consequences of conecting more vertices in this graph, moving from the queue-shaped domaing into an arbitrary network. Many definitions from classical DSP have already found their way into GSP, thanks to the contributions of many scholars who proposed ways to implement filtering \cite{sandryhaila2013filters}, linear transforms \cite{sandryhaila2013gft,sardellitti2017graph}, interpolation \cite{segarra2015interpolation}, sampling theorem on graphs \cite{wang2015generalized,chen2016signal,tsitsvero2016signals}, among others.
+Algebra extensions change the signal representation by looking at the signal \textit{samples} but, reminding the signal is nothing more than a function, one may also shift the attention to the \textit{domain}. In fact, such reflection has led to the creation of graph signal processing (GSP). This field, which emerged in the last decade, is concerned with extending the concepts of classical discrete signal processing (DSP) to the in which the signal samples \textit{reside in graph vertices}. It approaches the classical case of discrete-time domain as being a path or ring graph (depending on the graph shift operator at hand, as will soon be clear) with equally weighted edges. The \textit{signal}, therefore, is a mapping from the vertex set to the real (or complex) numbers, and the fixed sampling frequency is represented as graph edges having the same weights (i.~e. as if the samples were at fixed ``distances'', one could say). GSP deals with the consequences of conecting more vertices in this graph, moving from the queue-shaped domaing into an arbitrary network. Many definitions from classical DSP have already found their way into GSP, thanks to the contributions of many scholars who proposed ways to implement filtering \cite{sandryhaila2013filters}, linear transforms \cite{sandryhaila2013gft,sardellitti2017graph}, interpolation \cite{segarra2015interpolation}, sampling theorem on graphs \cite{wang2015generalized,chen2016signal,tsitsvero2016signals}, among others.
 
 The endeavour to experiment with different algebras or domain topologies has primarily theoretical motivations, but often reveal new solutions to real world problems. Taking GSP for instance, its applications spread from coding \cite{su2017graph} and light-field image super resolution schemes \cite{rossi2017graph}, to regulatory genetic networks, in which graph-based methods improved three state-of-the-art network inference schemes \cite{pirayre2015brane,pirayre2017brane}, also reaching recommender systems, both collaborative filtering and content-based, using regularization of graph total variation \cite{benzi2016song}, semi-supervised learning through adaptive graph filters \cite{chen2014semi}, community detection using graph wavelets \cite{tremblay2014graph}, among others. The latter examples hint at the intersection between GSP and the fields of data science and machine learning -- well established and highly active, both in Academia and industry --, to the point where we can join Benjamin Ricaud and say that \emph{Fourier could very well be, today, a data scientist} \cite{ricaud2019fourier}.
 
@@ -14,14 +14,16 @@ In this context, the current thesis aims to tackle the following problem: is it 
 
 As will become clear to the reader, however, the pathway to the basis of QGSP was not a straight line. Sometimes what seemed to be dead ends emerged, and during the reflections upon ways to bypass them, other interesting results started to show themselves. For example, it was certain from the beginning that the problem of eigendecomposing quaternion matrices would be at the heart of QGSP, since the very definition of a graph signal spectrum requires the eigenvalues and eigenvectors of a graph shift operator (e.g. the adjacency matrix), which is a quaternion matrix. Since it took a while to make progress with general graph matrices, it seemed promising to investigate the quaternion discrete Fourier transform (QDFT); after all, ring graphs should have the graph Fourier transform (GFT) and the classical discrete Fourier transform (DFT) coinciding. By looking at the QDFT matrix, however, a new way to diagonalize it was found and a new multiparametric fractional QDFT was proposed. When shifting the focus to the graph domain, revisiting the study of graph shift operators and their spectral decomposition, interesting results regarding the fractional graph shift operator were discovered. For instance, this new operator acts as a graph filter, and its polynomial representation is determined, demonstrating that it can be implemented as a linear and shift-invariant (LSI) graph filter.
 
-This thesis is organized as follows. Chapters \ref{ch:reviewQuat} and \ref{ch:reviewGSP} brings a diverse set of concepts and results from the literature, providing the reader with a sufficient understanding of the quaternion algebra and quaternion Fourier transform (the former), and signal processing from the perspective of graph signals and fractional-order operators (the latter).
+\section{Organization}
+
+This thesis is organized as follows. Chapters \ref{ch:reviewQuat} and \ref{ch:reviewGSP} bring a diverse set of concepts and results from the literature, providing the reader with a sufficient understanding of the quaternion algebra and quaternion Fourier transform (the former), and signal processing from the perspective of graph signals and fractional-order operators (the latter).
 Chapter \ref{ch:FrGSO} presents the new fractional graph shift operator, commenting on its properties and applications.
 In Chapter \ref{ch:FrQDFT}, a study on the fractionalization of the QDFT is presented, with a new method being proposed, alongside a multiparametric version of the fractional-order transform.
-The foundations of QGSP are finally presented in Chapter \ref{ch:QGSP}, with discussions and a few applications with both toy and real world datasets.
-The thesis closes with concluding remarks and future works, in Chapter \ref{ch:conclusion}, and the Appendix \ref{ch:AppendixA}, demonstrating a relation between systems of quaternion and complex linear equations, useful for a central theorem presented in Chapter \ref{ch:fundamentos}.
+The foundations of QGSP are finally presented in Chapter \ref{ch:QGSP}, with discussions and a few applications with both toy \red{(verify if I still managed to create the toy examples)} and real world datasets.
+The thesis closes with concluding remarks and future works, in Chapter \ref{ch:conclusion}. The Appendix \ref{ch:AppendixA} leads the reader through the demonstration of a relation between systems of quaternion and complex linear equations \red{(reescrever?)}, useful for a central theorem presented in Chapter \ref{ch:reviewQuat}.
 
 \section{Contributions}
-The contributions present in this thesis are:
+The contributions presented in this thesis are:
 
 \begin{itemize}[noitemsep]
     \item The proposition and discussion of the fractional graph shift and its application on improving least-squares approximation of linear and shift-invariant ideal filters.
@@ -33,14 +35,19 @@ The contributions present in this thesis are:
 
 \section{Publications}
 
-This work has so far published two papers in international journals and one in a global conference. The paper \emph{``Eigenstructure and fractionalization of the quaternion discrete Fourier transform''}, published in Optik, contains the results of Chapter \ref{ch:FrQDFT}. The paper \emph{``The Cosine Number Transform: A Graph Signal Processing Approach''}, presented in the 2019 edition of GlobalSIP, was created during short attempts to further generalize GSP to other algebraic structures, in particular to graphs with edge weights in finite fields. However, as it has not evolved to more substantial findings and thus, although it stems from this work, it is not featured in this thesis.
+This work has so far published two papers in international journals, one in a global conference, and a book. The paper \textit{``Eigenstructure and fractionalization of the quaternion discrete Fourier transform''}, published in Optik, contains the results of Chapter \ref{ch:FrQDFT}. The 10th volume of IEEE Access received the work \textit{``On the Fractionalization of the Shift Operator on Graphs''}, containing the results of Chapter \ref{ch:FrGSO}. As the understanding of GSP matured during the doctorate research, the author contributed with some chapters of the book ``Processamento de Sinais sobre Grafos: Fundamentos e Aplica{\c c}{\~o}es'', published in the \textit{Notas em Matem\'atica Aplicada} series from the Brazilian society \textit{Sociedade Brasileira de Matemática Aplicada e Computacional (SBMAC)}.
+
+The paper \emph{``The Cosine Number Transform: A Graph Signal Processing Approach''}, presented in the 2019 edition of GlobalSIP, was created during short attempts to further generalize GSP to other algebraic structures, in particular to graphs with edge weights in finite fields. However, it has not evolved to more substantial findings and thus, although it stems from this work, it is not featured in this thesis. The full references of the mentioned publications are:
 
 \begin{itemize}[noitemsep]
-\item Ribeiro, G. B., and Lima, J. B. ``Eigenstructure and fractionalization of the quaternion discrete Fourier transform.'' \emph{Optik} (2019): 163957. DOI: \href{https://doi.org/10.1016/j.ijleo.2019.163957}{10.1016/j.ijleo.2019.163957}
+% Citing in MLA Format, extracted from Google Scholar.
+\item Ribeiro, Guilherme and Lima, Juliano. ``The Cosine Number Transform: A Graph Signal Processing Approach''. \textit{2019 IEEE Global Conference on Signal and Information Processing (GlobalSIP)}. IEEE, 2019. DOI: \href{https://doi.org/10.1109/GlobalSIP45357.2019.8969165}{10.1109/GlobalSIP45357.2019.8969165}
 
-\item Ribeiro, G. B., and Lima, J. B. ``The Cosine Number Transform: A Graph Signal Processing Approach''. 2019 IEEE Global Conference on Signal and Information Processing (GlobalSIP) (pp. 1-5). IEEE. DOI: \href{https://doi.org/10.1109/GlobalSIP45357.2019.8969165}{10.1109/GlobalSIP45357.2019.8969165}
+\item Ribeiro, Guilherme B., and Lima, Juliano B. ``Eigenstructure and fractionalization of the quaternion discrete Fourier transform''. \textit{Optik} 208 (2020): 163957. DOI: \href{https://doi.org/10.1016/j.ijleo.2019.163957}{10.1016/j.ijleo.2019.163957}.
 
-\item G. B. Ribeiro, J. R. D. O. Neto and J. B. Lima, ``On the Fractionalization of the Shift Operator on Graphs,'' in \emph{IEEE Access}, vol. 10, pp. 16468-16478, 2022, doi: \href{https://doi.org/10.1109/ACCESS.2022.3149755}{10.1109/ACCESS.2022.3149755}.
+\item Ribeiro, Guilherme B., José R. De Oliveira Neto, and Lima, Juliano B. ``On the Fractionalization of the Shift Operator on Graphs''. \textit{IEEE Access} 10 (2022): 16468-16478. DOI: \href{https://doi.org/10.1109/ACCESS.2022.3149755}{10.1109/ACCESS.2022.3149755}.
+
+\item Lima, Juliano, et al. \textit{Processamento de Sinais sobre Grafos: Fundamentos e Aplica{\c c}{\~o}es}. Notas em Matem\'atica Aplicada, v. 92. Sociedade Brasileira de Matemática Aplicada e Computacional (SBMAC), 2022.
 \end{itemize}
 
 % O escopo desta pesquisa orbita, essencialmente, a aplica\c c\~ao de matrizes quaterni\^onicas no contexto de processamento de sinais. Sejam matrizes de adjac\^encia de grafos, ou matrizes de transforma\c c\~oes lineares quaterni\^onicas, o entendimento de sua autoestrutura e a interpreta\c c\~ao correta de opera\c c\~oes que delas fazem uso s\~ao os fios condutores desta tese. O objetivo geral consiste em expandir as ferramentas da literatura em processamento de sinais quaterni\^onicos, particularmente aplicando a grafos de pesos quaterni\^onicos, e propor novas interpreta\c c\~oes e cen\'arios de aplica\c c\~ao.
@@ -53,7 +60,7 @@ This work has so far published two papers in international journals and one in a
 % \end{itemize}
 
 
-\chapter{On the quaternion algebra and its Fourier transform}
+\chapter{A review on quaternion algebra and its Fourier transform}
 \label{ch:reviewQuat}
 
 \begin{quotation}
@@ -82,9 +89,7 @@ and using (\ref{eq:demonstration01}) it yields,
 \end{equation}
 That is: $z \notin \mathbb{R}$ and $ \qi \qj \notin \mathbb{F} $, proving that such algebraic structure is not closed under multiplication.
 
-Only a decade later, in 1843, while walking by the roads in Dublin towards the RIA, ``an electric circuit seemed to close, and a spark flashed forth'', as he would say. He had conceived the four-dimensional structure required to the desired algebra, creating the quaternions. Moved by excitement, he craved on the stone below Broome Bridge, in Cabra (Dublin), the equations that define the relations between the canonical basis elements of quaternions\footnote{Close to the original site of the inscriptions, the RIA placed a commemorative plaque in 1958, with the same writings.}. This creation, made possible by an insight in 1843, permeates most of this work.
-
-Nas se\c c\~oes a seguir ser\~ao apresentadas as bases para compreens\~ao do trabalho desenvolvido no cap\'itulo \ref{ch:FrQDFT} e a proposta de estudo iniciada no cap\'itulo \ref{ch:QGSP}. Trata-se de fundamentos da \'algebra e do processamento de sinais sobre os quat\'ernios e, na \'ultima se\c c\~ao, de uma introdu\c c\~ao ao processamento de sinais sobre grafos.
+Only a decade later, in 1843, while walking by the roads in Dublin towards the RIA, ``an electric circuit seemed to close, and a spark flashed forth'', as he would say. He had conceived the four-dimensional structure required to the desired algebra, creating the quaternions. Moved by excitement, he craved on the stone below Broome Bridge, in Cabra (Dublin), the equations that define the relations between the canonical basis elements of quaternions\footnote{Close to the original site of the inscriptions, the RIA placed a commemorative plaque in 1958, with the same writings.}. This creation, made possible by an insight in 1843, is found accross most of this work. The following sections lead the reader through the foundations of quaternion algebra and quaternion signal processing.
 
 
 \section{Introduction to the quaternion algebra}
@@ -94,7 +99,7 @@ Quaternions are numbers $q \in \mathbb{H}$ in the form
 q = a + b\qi + c\qj + d\qk,
 \label{eq:q}
 \end{equation}
-in which $a, b, c, d \in \mathbb{R}$ and the fundamental relations hold:
+in which $a, b, c, d \in \mathbb{R}$, holding true the fundamental relations:
 \begin{equation}
 \label{eq:fund_rel}
 \begin{aligned}
@@ -102,7 +107,7 @@ in which $a, b, c, d \in \mathbb{R}$ and the fundamental relations hold:
 \end{aligned}
 \end{equation}
 
-As regras de multiplica\c c\~ao entre $ \qi $, $ \qj $ e $ \qk $ seguem de (\ref{eq:fund_rel}) e s\~ao semelhantes \`aquelas no produto vetorial entre vetores ortonormais da base can\^onica de $ \mathbb{R}^3 $: o produto de dois deles resulta no terceiro, sendo o sinal definido pela ordem dos operandos. Por exemplo, para encontrar o resultado de $ \qi \qj $ pode-se partir de (\ref{eq:fund_rel}) e fazer
+The multiplication rules between  $ \qi $, $ \qj $ and $ \qk $ follow directly from (\ref{eq:fund_rel}), resembling those between orthonormal basis vectors from $ \mathbb{R}^3 $: the product between two of them yields the third, the sign being determined from the operands order. For instance, to find the result of $ \qi \qj $ one may start from (\ref{eq:fund_rel}) and write
 \begin{equation}
 \begin{aligned}
 \qi \qj \qk &= -1 \\
@@ -110,7 +115,7 @@ As regras de multiplica\c c\~ao entre $ \qi $, $ \qj $ e $ \qk $ seguem de (\ref
 \qi \qj &= \qk.
 \end{aligned}
 \end{equation}
-De forma semelhante, para encontrar $ \qj \qi $,
+Similarly, to find $ \qj \qi $,
 \begin{equation}
 \begin{aligned}
 \qi \qj \qk &= -1 \\
@@ -120,7 +125,7 @@ De forma semelhante, para encontrar $ \qj \qi $,
 - \qk &=  \qj \qi. \\
 \end{aligned}
 \end{equation}
-A Figura \ref{fig:quatmult} ilustra a ordem em que, multiplicando uma unidade por uma outra, obt\'em-se a terceira com sinal positivo. A grande consequ\^encia, portanto, de (\ref{eq:fund_rel}), \'e que o produto entre quat\'ernios \emph{n\~ao \'e comutativo}. De fato, trata-se da primeira \'algebra de divis\~ao n\~ao-comutativa da hist\'oria \cite{kleiner2007history}.
+Figure \ref{fig:quatmult} depicts the order in which the product between two elements of the canonical basis yields the third, with positive sign. The most relevant consequence, therefore, of (\ref{eq:fund_rel}), is that the quaternion product is \textit{non commutative}. In fact, it is the first non-commutative normed division algebra in history \cite{kleiner2007history}.
 
 \begin{figure}
 	\centering
@@ -316,20 +321,18 @@ Given the matrix $ \mathbf{A} \in \mathbb{H}^{n \times n} $, the following sente
 % \item $ \rchi_{A^{-1}} = \rchi_{A}^{-1}$, se $ \mathbf{A}^{-1} $ existir,
 % \item $ \rchi_{A}$ \'e unit\'aria, hermitiana ou normal se e somente se $ \mathbf{A} $ tamb\'em o for.
 % \end{itemize}
+Differently from other representations of quaternion matrices in $ \mathbb{C} $ or $ \mathbb{R} $, the complex adjoint allows to establish an important relation between the spectra of $ \rchi_{A} $ and $ \mathbf{A} $, as will soon be discussed.
 
-A matriz complexa adjunta serve como uma representa\c c\~ao complexa da matriz quaterni\^onica e, diferente de outras representa\c c\~oes matriciais em $ \mathbb{C} $ ou $ \mathbb{R} $, esta permite estabelecer um v\'inculo entre o espectro de $ \rchi_{A} $ e o de $ \mathbf{A} $, como ser\'a discutido adiante.
-
-\subsection{Autovalores}
-
-Uma vez que a multiplica\c c\~ao sobre os quat\'ernios n\~ao \'e comutativa, faz-se necess\'ario distinguir os \emph{autovalores \`a esquerda} e os \emph{autovalores \`a direita} de uma matriz $ \mathbf{A} \in \mathbb{H}^{n \times n} $,
+\subsection{Eigenvalues}
+Since quaternion multiplication is non-commutative, it is necessary to distinguish between \textit{left} and \textit{right} eigenvalues of a given matrix $ \mathbf{A} \in \mathbb{H}^{n \times n} $,
 \begin{align*}
-\mathbf{A} \mathbf{v} &= \mathbf{v} \lambda, \tag{autovalor \`a direita} \\
-\mathbf{A} \mathbf{v} &= \lambda \mathbf{v}.  \tag{autovalor \`a esquerda}
+\mathbf{A} \mathbf{v} &= \mathbf{v} \lambda, \tag{right} \\
+\mathbf{A} \mathbf{v} &= \lambda \mathbf{v}.  \tag{left}
 \end{align*}
 
-Uma vez que o problema dos autovalores \`a direita foi mais compreendido do que daqueles \`a esquerda, e possui mais resultados \cite[Cap. 5]{zhang1997quaternions}, restringiremos a an\'alise aos autovalores \`a direita. Quando n\~ao for mencionado, estes ser\~ao chamados apenas de \emph{autovalores} da matriz quaterni\^onica.
+We will restrict this discussion mostly to right eigenvalues, since they hold a broader set of results in literature \cite[Cap. 5]{zhang1997quaternions} and are, for that matter, a safer point of support when developing QGSP. When not explicitly mentioned, the right eigenvalues will simply be referred to as \textit{eigenvalues} of the quaternion matrix.
 
-\'E importante mencionar que uma matriz quaterni\^onica possui um n\'umero \emph{finito} de autovalores se, e somente se, s\~ao todos reais. Do contr\'ario, cada autovalor pertence a uma classe de similaridade, segundo a transforma\c c\~ao $ \lambda_1 = q^{-1} \lambda_2 q $, contendo \emph{infinitos} outros quat\'ernios que tamb\'em s\~ao autovalores da matriz. Seja, por exemplo, o autovalor $ \lambda $ da matriz $ \mathbf{A} $, associado ao autovetor $ \mathbf{v} $. Ent\~ao,
+It matters to highlight the fact that a quaternion matrix possesses a \textit{finite} number of eigenvalues if and only if they are all real-valued. Otherwise, each of them will belong to a similarity class, according to the transformation $ \lambda_1 = q^{-1} \lambda_2 q $, containing \textit{infinite} quaternions which are also eigenvalues of the same matrix. Let $ \lambda $ be, for instance, an eigenvalue of the matrix $ \mathbf{A} $ associated with the eigenvector $ \mathbf{v} $. That is,
 \begin{equation}
 \begin{aligned}
 \label{eq:similar}
@@ -338,9 +341,9 @@ Uma vez que o problema dos autovalores \`a direita foi mais compreendido do que 
 \mathbf{A} (\mathbf{v} q) &= (\mathbf{v} q) q^{-1} \lambda q,
 \end{aligned}
 \end{equation}
-de modo que $ q^{-1} \lambda q $ \'e um autovalor associado ao autovetor $ \mathbf{v}q $, com $ q \in \mathbb{H}^\ast $.
+so that $ q^{-1} \lambda q $ is an eigenvalue associated with the eigenvector $ \mathbf{v}q $, with $ q \in \mathbb{H}^\ast $.
 
-\subsection{Rotacionando autovalores}
+\subsection{Rotating eigenvalues}
 \label{subsec:rotacionando}
 
 Pretende-se aplicar a diagonaliza\c c\~ao de matrizes quaterni\^onicas no contexto da an\'alise espectral do operador de deslocamento sobre um grafo com pesos quaterni\^onicos. Neste caso, os seus autovalores poder\~ao ser interpretados como frequ\^encias. O problema do ordenamento destas frequ\^encias, bem definido para o caso de matrizes laplacianas ou de adjac\^encia reais, pode-se mostrar desafiador ao lidar com autovalores quaterni\^onicos\footnote{Mesmo ao se utilizar o racioc\'inio do teorema \ref{th:02}, da subse\c c\~ao \ref{subsec:autovetores_XA}, em que os autovalores s\~ao obtidos diretamente com valores complexos, \'e poss\'ivel que, em alguns problemas, tenha-se em m\~aos os autovalores quaterni\^onicos, caso em que o procedimento aqui descrito \'e \'util. De toda forma, a rota\c c\~ao de autovalores \'e uma ferramenta valiosa, sendo utilizada, por exemplo, na demonstra\c c\~ao do teorema \ref{th:02}.}.
@@ -651,7 +654,7 @@ Esta breve apresenta\c c\~ao da QDFT ilustra que
 
 Para uma introdu\c c\~ao completa aos quat\'ernios e sua aplica\c c\~ao ao processamento de sinais, recomenda-se \cite{zhang1997quaternions,ell2014quaternion,flamant2017time, jiang2014general}.
 
-\chapter{On fractional and graph signal processing}
+\chapter{A review on fractional transforms and graph signal processing (avaliar)}
 \label{ch:reviewGSP}
 
 \section{Fractional transforms}
@@ -946,12 +949,12 @@ The GFT in the sense of GSP\textsubscript{A} naturally suggests the interpretati
 
 \begin{figure}
 	\centering
-	\begin{minipage}[c]{0.5\linewidth}
+	\begin{minipage}[c]{0.25\linewidth}
 		\subfloat[\label{fig:diff_struct_a_GSPA}]{
 			\includegraphics[width=\linewidth]{Figures/ring_different_structure_01_GSPA.pdf}
 		}
 	\end{minipage}~
-	\begin{minipage}[c]{0.5\linewidth}
+	\begin{minipage}[c]{0.25\linewidth}
 		\subfloat[\label{fig:diff_struct_b_GSPA}]{
 			\includegraphics[width=\linewidth]{Figures/ring_different_structure_01_spectrum_GSPA_EN_2.pdf}
 		}
@@ -990,7 +993,7 @@ with $ \mathbf{A}^{\text{norm}} = |\lambda_{max}|^{-1}\mathbf{A} $ and $ \lambda
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\linewidth]{Figures/graph_frequency_EN.pdf}
+	\includegraphics[width=0.35\linewidth]{Figures/graph_frequency_EN.pdf}
 	\caption{Frequency ordering of graph signals, from low to high frequencies, in the complex plane \cite{sandryhaila2014frequency}.}
 	\label{fig:ordem_freq}
 \end{figure}
@@ -2183,41 +2186,30 @@ from which follows that any unit pure quaternion is a square root of unity. This
 \chapter{Quaternion graph signal processing}
 \label{ch:QGSP}
 
-% Numerous studies in the last decade have contributed to establish graph signal processing as a fruitful and promising field of research. Sharing the main aim of generalizing principles and techniques of classical signal processing to the context of network-based signal domain~\cite{ortega2018graph}, two main approaches have risen through the recent years and they constitute the root of GSP. The first one --- that presented in section \ref{sec:GSPintro} --- stems from algebraic signal processing, using the weighted adjacency matrix and elementary block. This approach deals with signals defined on both directed and undirected graphs, with both real- and complex-valued edge weights~\cite{sandryhaila2014big}. The second one is based on spectral graph theory and focuses only on signals defined on undirected graphs with real-valued edge weights, using the graph Laplacian matrix to build the signal space~\cite{shuman2013emerging}.
+The application of GSP as a tool to transform graph-based data, as the reader may recall, leaves some characteristics of the underlying graph to be determined by the very problem at hand. That is, whether one must consider real or complex edge weights, directed or undirected graphs, whether loops or multiple edges shall be allowed, all of these modeling choices arise from the data and the relations within. This creates the oportunity to investigate what choices for graph characteristics have so far been left untouched, and what implications they may bring with them.
 
-% Recent formulations of GSP have unified the two by stating that, regardless of the graph matrix at hand (Laplacian, adjacency, and others \cite{chen2018shift, dees2019unitary}), all GSP tools emerge from the choice of unit graph shift operator. Similarly to classical DSP, the shift operator generates the eigenbasis of linear and shift invariant filters ("linear and time invariant", in the discrete-time domain).
-% As shown in section \ref{sec:GSPintro}, the eigendecomposition of this operator plays a central role in GSP.
+This Chapter focuses on one of these potential modeling choices. In Chapter \ref{ch:reviewGSP} it was presented the motivation and fundamentals of graph signal processing, while Chapter \ref{ch:FrGSO} delved into the exploration of a fractional graph shift. The following pages will attempt to further extend the borders of GSP by pondering the problem of signal processing on graphs with quaternion-valued edge weights, referred to as \textit{quaternion graph signal processing}.
 
-% \begin{figure}
-% \centering
-% \includegraphics[width=0.3\linewidth]{Figures/signal_duher_graph_2.pdf}
-% \caption{Example of graph signal. The graph edges capture similarity or interdependency relationship between samples. What new possibilities are created when the edges carry quaternion weights? Source: the author.}
-% \label{fig:duher}
-% \end{figure}
-
-In Chapter \ref{ch:reviewGSP} it was presented the motivation and fundamentals of graph signal processing, while Chapter \ref{ch:FrGSO} delved into the exploration of a fractional graph shift. The current chapter will extend even more the borders of the field.
-
-The problem at hand, when applying GSP, will define the characteristics of the underlying graph, e.g. whether using real or complex edge weights, directed or undirected graphs. The exploration of new algebras for the edge weights, however, open new possibilities for tools and applications, similarly to what happened in electrical engineering when modeling electric signals using complex-valued functions. The engineers were able to explore with variables that, carrying two sources of information (amplitude and phase), have proven more suitable to the visualization and manipulation of harmonic functions than if only real-valued functions were employed. That was also the reasoning of Ortoloni and Uncini \cite{ortolani2016quaternion}, when they proposed the study of discrete-time signal processing with \emph{quaternion-valued} samples.
-
-As did Jiang et al. \cite{jiang2013frequency} when benefiting from using quaternion-valued adaptive filters to tackle the problem of wind profile prediction (3D signals of wind direction at each point in the Euclidian space), or Flamant et al. \cite{flamant2018complete} that created a framework for time-frequency analysis of bivariate signals using quaternions, the hypothesis of this thesis is that the study of GSP with quaternion values may reveal both theoretical and practical implications of great interest. Such generalization has the appeal to allow not only for the analysis of discrete-time three- or four-dimensional signals (as in quaternion discrete signal processing), but also for the exploration of interrelations that capture there higher dimensions (i.e. edge weights). The tools arising from the consequences of such investigation is from now on referred to as QGSP (quaternion graph signal processing).
+\red{Pesquisar sobre dados reais que sugiram grafos e sinais quaternionicos?}
 
 \section{Laying the foundations for QGSP}
 
-We will define QGSP simply as the development and application of GSP tools to the context of quaternion-valued signals and graph edge weights. That is, we extend the usual complex-valued case to
+Since QGSP is the development and application of GSP tools to the context of quaternion-valued signals and graph edge weights, it starts by extending the usual definition of graph signal from the complex-valued case to
 
 \begin{align}\label{eq:qgsp_defs}
 \mathcal{G} &= \{\mathcal{V}, \mathbf{A}\}  \ | \ \mathbf{A} \in \mathbb{H}^{n \times n}, \notag \\
-s: &\ \mathcal{V} \rightarrow \mathbb{H}^{n \times 1} \ | \ s(v_i) = s_i,
+s: &\ \mathcal{V} \rightarrow \mathbb{H}^{n \times 1} \ | \ s(v_i) = s_i.
 \end{align}
 
-As such, a few milestones were set to be conquered in order to fully establish QGSP:
-\begin{itemize}
-\item An algorithm to compute the direct and inverse (quaternion) graph Fourier transforms,
-\item A definition of frequency ordering,
-\item A method to design filters tailored to certain problems.
+Not surprisingly, it is remarkably easy to write down the above equations, changing from $\mathbb{C}$ to $\mathbb{H}$. As such, a few milestones were set to be conquered in order to fully establish QGSP:
+\begin{itemize}[noitemsep]
+\item an algorithm to compute the direct and inverse (quaternion) graph Fourier transforms,
+\item a definition of frequency ordering,
+\item a method to design filters tailored to certain problems.
 \end{itemize}
 
-\subsection{On the inversion of the eigenvector matrix}
+\subsection{The quaternion graph Fourier transform}
+The 
 
 The inversion of quaternion matrices have been tackled by many researchers, yielding a few algorithms aiming at solving it. \red{(INSERT REFERENCES)} All seemed too costly to practical use in medium to large graphs. Based on theorems \ref{th:equiv01} and \ref{th:equiv02},
 the algorithm \ref{alg:qinv} is proposed to provide a reasonable balance between processing speed and broad applicability.
