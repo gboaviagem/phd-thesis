@@ -37,7 +37,7 @@ The contributions presented in this thesis are:
 
 This work has so far published two papers in international journals, one in a global conference, and a book. The paper \textit{``Eigenstructure and fractionalization of the quaternion discrete Fourier transform''}, published in Optik, contains the results of Chapter \ref{ch:FrQDFT}. The 10th volume of IEEE Access received the work \textit{``On the Fractionalization of the Shift Operator on Graphs''}, containing the results of Chapter \ref{ch:FrGSO}. As the understanding of GSP matured during the doctorate research, the author contributed with some chapters of the book ``Processamento de Sinais sobre Grafos: Fundamentos e Aplica{\c c}{\~o}es'', published in the \textit{Notas em Matem\'atica Aplicada} series from the Brazilian society \textit{Sociedade Brasileira de Matemática Aplicada e Computacional (SBMAC)}.
 
-The paper \emph{``The Cosine Number Transform: A Graph Signal Processing Approach''}, presented in the 2019 edition of GlobalSIP, was created during short attempts to further generalize GSP to other algebraic structures, in particular to graphs with edge weights in finite fields. However, it has not evolved to more substantial findings and thus, although it stems from this work, it is not featured in this thesis. The full references of the mentioned publications are:
+The paper \emph{``The Cosine Number Transform: A Graph Signal Processing Approach''}, presented in the 2019 edition of GlobalSIP, was created during short attempts to further generalize GSP to other algebraic structures, in particular to graphs with edge weights in finite fields. However, it has not evolved into more substantial findings and thus, although it stems from this work, it is not featured in this thesis. The full references of the mentioned publications are:
 
 \begin{itemize}[noitemsep]
 % Citing in MLA Format, extracted from Google Scholar.
@@ -71,7 +71,7 @@ And here there dawned on me the notion that we must admit, in some sense, a four
 \end{quotation}
 
 
-In 1833, at the age of 28, Willian Rowan Hamilton presented to the Royal Irish Academy (RIA) a work in which complex numbers were treated as ordered pairs of real numbers, given the appropriate definition of operations\footnote{Os resultados foram publicados em 1837, no artigo \emph{Theory of Conjugate Functions, or Algebraic Couples; with a Preliminary and Elementary Essay on Algebra as the Science of Pure Time} \cite{hamilton1837theory}.}. In the following years, he struggled to extend the complex field into a normed division algebra ober triples, but soon realized that, as much as his attempts were inventive, the resulting algebra was not closed under multiplication. We can see this through a simple example \cite{santos2011algebra}: let it be the set $\mathbb{F} = \{ a + b \qi + c \qj  \ | \ (a, b, c) \in \mathbb{R}^3\}$, with $\qi^2 = \qj^2 = -1$ and $\qi \neq \qj$. Since $\qi, \qj \in \mathbb{F}$, so there must exist $x, y, z \in \mathbb{R}$ so that
+In 1833, at the age of 28, Willian Rowan Hamilton presented to the Royal Irish Academy (RIA) a work in which complex numbers were treated as ordered pairs of real numbers, given the appropriate definition of operations\footnote{The results were published in 1837, in the paper \emph{Theory of Conjugate Functions, or Algebraic Couples; with a Preliminary and Elementary Essay on Algebra as the Science of Pure Time} \cite{hamilton1837theory}.}. In the following years, he struggled to extend the complex field into a normed division algebra ober triples, but soon realized that, as much as his attempts were inventive, the resulting algebra was not closed under multiplication. We can see this through a simple example \cite{santos2011algebra}: let it be the set $\mathbb{F} = \{ a + b \qi + c \qj  \ | \ (a, b, c) \in \mathbb{R}^3\}$, with $\qi^2 = \qj^2 = -1$ and $\qi \neq \qj$. Since $\qi, \qj \in \mathbb{F}$, so there must exist $x, y, z \in \mathbb{R}$ so that
 \begin{equation}
 \qi \qj = x + y \qi + z \qj.
 \label{eq:demonstration01}
@@ -272,9 +272,10 @@ produz a rota\c c\~ao da parte vetorial (imagin\'aria) de $ x $ em torno do eixo
 
 \section{On the theory of quaternion matrices}
 
-When analyzing the eigenstructure and subsequent fractionarization of the QDFT matrix, the eigendecomposition of the DFT and the eigenvector sharing served as a convenient shortcut. In order to build the results in QGSP, however, it is required to dive into more general properties of quaternion matrices. The symplectic decomposition, already presented in (\ref{eq:decomposicao}), plays an important role in that matter, specialy for its use in defining the complex\textit{ adjoint matrix}.
+When analyzing the eigenstructure and subsequent fractionarization of the QDFT matrix, the eigendecomposition of the DFT and the eigenvector sharing served as a convenient shortcut. In order to build the results in QGSP, however, it is required to dive into more general properties of quaternion matrices. The symplectic decomposition, already presented in (\ref{eq:decomposicao}), plays an important role in that matter, specialy for its use in defining the \textit{complex adjoint matrix}.
 
 \begin{definition}[Complex adjoint matrix \cite{zhang1997quaternions}]
+\label{def:complexadjoint}
 Given $ \mathbf{A} \in \mathbb{H}^{n \times n} $, with symplectic decomposition $ \mathbf{A}_1 + \mathbf{A}_2 \qj$, $ \mathbf{A}_1,\mathbf{A}_2 \in \mathbb{C}^{n \times n} $, its complex adjoint matrix is defined as
 \begin{equation}
 \rchi_{A} \overset{\Delta}{=}
@@ -486,6 +487,7 @@ Como demonstrado no ap\^endice \ref{ch:AppendixA}, a partir da equa\c c\~ao de a
 \end{equation}
 em que se pode assumir, sem perda de generalidade, que $ \lambda \in \mathbb{C} $, pode-se chegar \`a equa\c c\~ao equivalente
 \begin{equation}
+\label{eq:eigvalueequation}
 \begin{pmatrix}
 \mathbf{A}_1 & \mathbf{A}_2\\ 
 - \overline{\mathbf{A}}_2 & \overline{\mathbf{A}}_1
@@ -528,6 +530,7 @@ Dadas as matrizes $ \mathbf{A}, \mathbf{B} \in \mathbb{H}^{n \times n} $, ent\~a
 \end{theorem}
 
 \begin{corollary}
+\label{cor:diagonalizable}
 Uma matriz $  \mathbf{A} \in \mathbb{H}^{n \times n} $ \'e diagonaliz\'avel se, e somente se, $ \rchi_A $ \'e diagonaliz\'avel.
 \end{corollary}
 \begin{proof}
@@ -882,10 +885,6 @@ h(\mathbf{A}) = \sum_{\ell=0}^{L-1} h_\ell \mathbf{A}^\ell,
 \end{equation}
 with $ L $ smaller than or equal to the degree of the minimal polynomial of $ \mathbf{A} $, i.~e. filters LSI are finite power series on the shift operator, exactly as happens in DSP, in which LTI filters have polynomial representations on $ z^{-1} $.
 
-%{\color{red}The representation given by (\ref{eq:filter_poly}) for LSI graph filters indicates how knowing the eigenstructure of the shift operator positively impacts filter design. This is not an available information for networks affected by stochastic changes, and to address such a problem Kruzick and Moura have studied optimal filter design criteria on random graphs
-%, by investigating deterministic approximations of the empirical spectral distribution of the random shift operators
-%\cite{kruzick2018filter}.}
-
 \subsection{Graph Fourier transform}
 
 The topic of spectral analysis is key in signal processing, and the authors of GSP\textsubscript{A} would certainly want to spend time reflecting upon how this would fit into their theory. The starting point was to look to the classical Fourier transform as the signal decomposition into a basis of eigenfunctions of the LTI filtering \cite{oppenheim1997signals}, as is indeed the basis of complex time exponentials. Then, the \emph{graph Fourier transform} (GFT) could be defined as the decomposition into a basis of eigenvectors of LSI filtering.
@@ -986,7 +985,7 @@ TV(\mathbf{x}) = \sum_n | x_n - x_{n-1 \text{ mod } N}|.
 From (\ref{eq:unit_shift}), one can see that (\ref{eq:TV}) may be written in terms of the $ \ell_1 $-norm\footnote{Throughout this paper, the concepts of $ \ell_1 $- and $ \ell_2 $-norm will be frequently used. They are particular cases of the $ \ell_n $-norm of a vector $ \mathbf{x} \in \mathbb{C}^{N} $, defined as $ \Vert \mathbf{x}\Vert_n \overset{\Delta}{=} \left(\sum_{k=0}^{N-1} |x_k|^n\right)^{1/n} $.}
 as $ TV(\mathbf{x}) = \Vert \mathbf{x} - \mathbf{C x}\Vert_1 $, by using the directed ring graph adjacency matrix to perform the cyclic shift. From that point, the generalization consisted of using this expression and defining the \emph{total variation on graphs} of a signal $ \mathbf{s} $ defined over the graph $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $ as
 \begin{equation}
-%\label{key}
+\label{eq:tv_graphs}
 TV_G(\mathbf{s}) \overset{\Delta}{=} \Vert \mathbf{s} - \mathbf{A}^{\text{norm}} \mathbf{s}\Vert_1,
 \end{equation}
 with $ \mathbf{A}^{\text{norm}} = |\lambda_{max}|^{-1}\mathbf{A} $ and $ \lambda_{max} $ being the eigenvalue of $ \mathbf{A} $ having the highest absolute value. The normalization of the adjacency matrix avoids the excessive magnification of the shifted signal \cite{sandryhaila2014frequency}.
@@ -2148,40 +2147,6 @@ This paper investigated the eigenstructure of the quaternion discrete Fourier tr
 
 The FrQDFT was further generalized by introducing the MFrQDFT, a multiparametric version. Exploring the 4D nature of quaternions, a holistic encryption scheme for color images with opacity layer was proposed, as an illustrative application of the 2D-MFrQDFT, and shown to provide satisfactorily large key space and key sensitivity, resistance to known-plaintext attack and ease of description and implementation. Future works could possibly expand this analysis and address whether some hypercomplex image moments, such as ternary radial harmonic Fourier moments and quaternion polar harmonic \cite{wang2019ternary,wang2018quaternion}, could be used for image encryption, eventually in specific scenarios and applications.
 
-\section{Acknowledgments}
-This work has been supported by CNPq (309598/2017-6, 409543/2018-7) and CAPES.
-
-%
-\section*{Appendix}
-%\subsection{Brief introduction to the quaternion algebra}
-
-The quaternions form an associative division ring invented by William Hamilton in 1843 \cite{hamilton1848xi}, as the first non-commutative algebra in history. It consists of the set  $ \mathbb{H} $ of numbers $ q = a + b \qi + c \qj + d \qk $, with $ a,b,c,d \in \mathbb{R} $ and $ \qi^2 = \qj^2 = \qk^2 = -1 $, along with usual multiplication and addition. The product between imaginary units $ \qi,\qj,\qk $, however, follow the rule in Fig. \ref{fig:quatmult}, e.~g. $ \qk \qi = \qj $ and $ \qk \qj = -\qi $. As a result, quaternion multiplication is non-commutative.
-
-The real and vector parts of a quaternion $ q = a + b \qi + c \qj + d \qk $ are defined as $ \mathcal{S}(q) = a $ and $ \mathcal{V}(q) = b \qi + c \qj + d \qk $. A quaternion $ v $ is said to be \textit{pure} if and only if $ \mathcal{S}(v) = 0 $; it is a \textit{unit quaternion} whenever $ |v| \overset{\Delta}{=} \sqrt{a^2 + b^2 + c^2 + d^2} = 1 $. The conjugation of $ q $ is $ \bar{q} \overset{\Delta}{=} \mathcal{S}(q) - \mathcal{V}(q) $. There is an Euler form for quaternions, similar to the known complex case, given by
-\begin{equation}
-\label{eq:euler}
-q = |q| e^{\qmu \theta} = |q|\cos \theta + |q|\qmu \sin \theta,
-\end{equation}
-where $ \qmu = \mu_1 \qi + \mu_2 \qj + \mu_3 \qk$ is a unit pure quaternion. If one computes $ \qmu^2 $, the result will be
-\begin{equation}
-%\label{key}
-\begin{aligned}
-\qmu^2 & = (\mu_1 \qi + \mu_2 \qj + \mu_3 \qk) (\mu_1 \qi + \mu_2 \qj + \mu_3 \qk) \\
-& = -\mu_1^2 + \cancel{\mu_1\mu_2 \qk} - \cancel{\mu_1\mu_3 \qj} \\
-& \quad - \mu_2^2 - \cancel{\mu_2\mu_1 \qk} + \cancel{\mu_2\mu_3 \qi} \\
-& \quad -\mu_3^2 - \cancel{\mu_3\mu_1 \qj} - \cancel{\mu_3\mu_2 \qi} \\
-&= -1,
-\end{aligned}
-\end{equation}
-from which follows that any unit pure quaternion is a square root of unity. This property justifies the isomorphism between the set $ \mathbb{C}_{\qi} $ of complex numbers $ a + b\qi $ and the set $ \mathbb{C}_{\qmu} \subset \mathbb{H}$ of quaternions $ a + b\qmu $, which have vector part parallel to $ \qmu $. For a thorough introduction to quaternions and their application to signal processing, the reader may refer to \cite{zhang1997quaternions,ell2014quaternion,flamant2017time}.
-
-\begin{figure}
-\centering
-\includegraphics[width=5cm]{Figures/quaternion_multiplication.pdf}
-\caption{Diagram illustrating the multiplication rule between quaternion imaginary units $ \qi $, $ \qj $ and $ \qk $.}
-\label{fig:quatmult}
-\end{figure}
-
 
 \chapter{Quaternion graph signal processing}
 \label{ch:QGSP}
@@ -2195,22 +2160,51 @@ This Chapter focuses on one of these potential modeling choices. In Chapter \ref
 \section{Laying the foundations for QGSP}
 
 Since QGSP is the development and application of GSP tools to the context of quaternion-valued signals and graph edge weights, it starts by extending the usual definition of graph signal from the complex-valued case to
-
 \begin{align}\label{eq:qgsp_defs}
 \mathcal{G} &= \{\mathcal{V}, \mathbf{A}\}  \ | \ \mathbf{A} \in \mathbb{H}^{n \times n}, \notag \\
 s: &\ \mathcal{V} \rightarrow \mathbb{H}^{n \times 1} \ | \ s(v_i) = s_i.
 \end{align}
+Not surprisingly, writing down the mathematical definitions above is easy enough. The challenges lie in the consequences: what does it mean to have a smooth quaternion graph signal? Does the well known benefit of quaternion signal processing, namely holistic manipulation of multiple channels of information, tranfer to graph signal processing? How is one able to design LSI filters in QGSP?
 
-Not surprisingly, it is remarkably easy to write down the above equations, changing from $\mathbb{C}$ to $\mathbb{H}$. As such, a few milestones were set to be conquered in order to fully establish QGSP:
+In order to properly address these questions and establish the foundations of QGSP, a few milestones were set to be conquered:
 \begin{itemize}[noitemsep]
 \item an algorithm to compute the direct and inverse (quaternion) graph Fourier transforms,
 \item a definition of frequency ordering,
 \item a method to design filters tailored to certain problems.
 \end{itemize}
 
-\subsection{The quaternion graph Fourier transform}
-The 
+\subsection{Eigendecomposing the shift operator}
+At the very center of vertex-frequency analysis in GSP lies the definition that a basis of eigenvectors of the chosen graph shift operator act as Fourier components for the space of graph signals. This can be directly translated to QGSP, after taking into account the results presented in Chapter \ref{ch:reviewQuat}, regarding diagonalization of quaternion matrices.
 
+\begin{definition}
+Given the graph $\mathcal{G} = \{\mathcal{V}, \mathbf{A}\}  $,  with adjacency matrix $ \mathbf{A} \in \mathbb{H}^{n \times n}$, the \textit{quaternion graph Fourier transform} (QGFT) is the projection of a graph signal onto the eigenspace of $\mathbf{A}$.
+\end{definition}
+
+The first step to reach the QGFT is, therefore, the generation of a basis of (possibly generalized) eigenvectors of the adjacency matrix. This work has dealt only with the case of diagonalizable graph matrices, but the use of the Jordan canonical form is an option for non-diagonalizable shift operators \cite{Longxuan1996}.
+
+On one hand, from the Corollary \ref{cor:diagonalizable} it is known that the diagonalizability of an adjacency matrix $\mathbf{A}$ both implies and requires that of its complex adjoint matrix $\rchi_A$. Let us write $\mathbf{A} = \mathbf{V} \mathbf{\Lambda} \mathbf{V}^{-1}$. On the other hand, Theorem \ref{th:02} guarantees that the eigenvalues of the adjacency matrix can be taken as half the ones of its complex adjoint matrix. More specifically, they can be taken as the union of the set of eigenvalues with positive imaginary part (recall they are complex-valued) and the set of half the eigenvalues with null imaginary part.
+
+However, once the desired eigenvalues from $\rchi_A$ have been defined, how does one assemble $\mathbf{V}$ out of the eigenvectors of $\rchi_A$? That is answered by Equation (\ref{eq:eigvalueequation}), which is rewritten below for convenience:
+\begin{equation*}
+\begin{pmatrix}
+\mathbf{A}_1 & \mathbf{A}_2\\ 
+- \overline{\mathbf{A}}_2 & \overline{\mathbf{A}}_1
+\end{pmatrix}
+\begin{pmatrix}
+\mathbf{v}_1 \\ 
+- \overline{\mathbf{v}}_2
+\end{pmatrix} =
+\begin{pmatrix}
+\mathbf{v}_1 \\ 
+- \overline{\mathbf{v}}_2
+\end{pmatrix}
+\lambda.
+\end{equation*}
+On the left-hand side of the equation, we find $\rchi_A$ and one of its eigenvectors, which is written in terms of the symplectic decomposition of a quaternionic column vector $\mathbf{v} = \mathbf{v}_1 + \mathbf{v}_2 \qj$. As it turns out, $\mathbf{v}$ is precisely the eigenvector of $\mathbf{A}$ associated to the eigenvalue $\lambda$. This is proven in Appendix \ref{ch:AppendixA} and constitutes a minor contribution of this thesis.
+
+So far we are able to obtain $\mathbf{V}$ from $\mathbf{A}$, using the complex adjoint form to solve the quaternion diagonalization handling only complex-valued matrices. However, the question of how to get $\mathbf{V}^{-1}$, if it exists, poses itself imediately. After all, the direct QGFT must have the shift operator's eigenvectors as \textit{rows} of the transform matrix, since the graph signals are represented as column vectors. Besides, the QGFT must be invertible, so regardless of the representation of graph signals, one must be able to compute the inverse of $\mathbf{V}$. Let us address this point.
+
+\subsection{Inversion of the eigenvector matrix}
 The inversion of quaternion matrices have been tackled by many researchers, yielding a few algorithms aiming at solving it. \red{(INSERT REFERENCES)} All seemed too costly to practical use in medium to large graphs. Based on theorems \ref{th:equiv01} and \ref{th:equiv02},
 the algorithm \ref{alg:qinv} is proposed to provide a reasonable balance between processing speed and broad applicability.
 
@@ -2221,27 +2215,52 @@ The reasoning goes as follows. According to theorem \ref{th:equiv02}, a necessar
 \end{equation}
 letting $\mathbf{I}_{m \times m}$ be the identity matrix of order $m$\footnote{For simplicity, this notation is slightly loose, representing both a complex- and a quaternion-valued identity matrix, since in both cases their entries have zero-valued or zero-normed imaginary parts.}.
 
-\begin{center}
+\newcommand{\algorithmspacing}{0.5}
 \begin{algorithm}
-\caption{Inversion of quaternion matrices.}\label{alg:qinv}
-\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
-\Input{$\mathbf{V} \in \mathbb{H}^{n \times n}$}
-\Output{$\mathbf{V}^{-1}$ ou None (vazio).}
-$\rchi_{V} \gets \mathrm{complex\_adjoint(\mathbf{V})}$\;
+\label{alg:qinv}
+Compute the inverse of a quaternion-valued matrix, if a sufficient condition for its existence is met:
+\vspace*{-\algorithmspacing\baselineskip}
+\begin{leftbar}
+\noindent\textbf{\upshape Input:} $\mathbf{V} \in \mathbb{H}^{n \times n}$. \textbf{\upshape Output:} $\mathbf{V}^{-1}$ or {\upshape None}.
 
-\If{$\mathrm{det}(\rchi_{V}) = 0$}{\Return None}
-
-$\mathbf{U} \gets \mathrm{inverse(\rchi_{V})}$
-
-\If{\textup{\textbf{not}} $\mathrm{has\_complex\_adjoint\_form}(\mathbf{U})$}{\Return None}
-
-$\mathbf{V}^{-1} \gets \mathrm{from\_complex\_adjoint}(\mathbf{U})$
-
-\Return $\mathbf{V}^{-1}$
+\begin{algorithmic}[1]
+\State $\rchi_V \gets \mathrm{to\_complex\_adjoint}(\mathbf{V})$
+\If{$\det(\rchi_V) = 0$} 
+    \State \Return {\upshape None}
+\Else
+    \State $\mathbf{U} \gets \mathrm{inverse}(\rchi_V)$
+    \If{$\mathbf{not} \ \mathrm{has\_complex\_adjoint\_form}(\mathbf{U})$}
+        \State \Return {\upshape None}
+    \Else
+        \State $\mathbf{V}^{-1} \gets \mathrm{from\_complex\_adjoint}(\mathbf{U})$
+        \State \Return $\mathbf{V}^{-1}$
+    \EndIf
+\EndIf
+\end{algorithmic}
+\end{leftbar}
+\vspace*{-\algorithmspacing\baselineskip}
+\noindent These functions were used in the algorithm to improve readability:
+\vspace*{-\algorithmspacing\baselineskip}
+\begin{itemize}[noitemsep]
+\item $\mathrm{to\_complex\_adjoint}$: converts a quaternion matrix to its complex adjoint form.
+\item $\mathrm{from\_complex\_adjoint}$: converts a complex adjoint matrix to its quaternion-valued form.
+\item $\mathrm{inverse}$: computes the inverse of a complex-valued matrix.
+\item $\mathrm{has\_complex\_adjoint\_form}$: checks if the matrix has the complex adjoint form, i.~e. is a block matrix as the one in Definition \ref{def:complexadjoint}.
+\end{itemize}
 \end{algorithm}
-\end{center}
 
-\section{Example: denoising a quaternion graph signal via QLMS low-pass filtering}
+At this point, all steps required to generate the QGFT, assuming the graph adjacency matrix is diagonalizable, have been addressed. However, the transform still remains of little use until a clear definition of frequency ordering is presented, otherwise the lack of sense of low and high frequencies make the signal spectrum meaningless.
+
+Fortunately, thanks to the fact that the quaternions form a \textit{normed algebra}, one may use the total variation as a metric for signal difference, or distance. Similarly to what was defined in GSP, in (\ref{eq:tv_graphs}), in QGSP the frequency of a quaternion graph signal $\mathbf{s}$ is measured by its graph total variation,
+\begin{equation}
+\label{eq:tv_graphs_q}
+TV_G(\mathbf{s}) \overset{\Delta}{=} \Vert \mathbf{A} \mathbf{s} - \mathbf{s}\Vert_2 = \sqrt{(\mathbf{A} \mathbf{s} - \mathbf{s})^H (\mathbf{A} \mathbf{s} - \mathbf{s})}.
+\end{equation}
+\red{(em GSP eu usei l1-norm, mas no gspx eu usei l2-norm. Quais as consequencias?)}
+
+In order to interpret the spectrum domain, the eigenvalues are sorted in ascending order of their respective eigenvector total variation: this sorts the frequency from lowest to highest.
+
+\subsection{Example: spectral analysis of quaternion graph signal}
 
 \begin{figure}
 	\centering
@@ -2250,26 +2269,32 @@ $\mathbf{V}^{-1} \gets \mathrm{from\_complex\_adjoint}(\mathbf{U})$
 	\label{fig:uk_graph}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.55\linewidth]{thesis/Figures/uk_graph_kernel.png}
-	\caption{Test.}
-	\label{fig:uk_graph_kernel}
-\end{figure}
+\section{On the existence of a class of graphs with diagonalizable adjacency matrix}
+\begin{equation}
+\begin{aligned}
+R (A_1 + A_2 R) = - \bar{A_2} + \bar{A_1} R \\
+R (A_1 - \bar{A_1}) + R^2 A_2 + \bar{A_2} = 0.
+\end{aligned}
+\end{equation}
+Let us slice the space of possible solutions $R$, restricting ourselves to the case where $A_1 + A_2 R = 0$:
+\begin{equation}
+\begin{aligned}
+- \bar{A_2} + \bar{A_1} R = 0 \\
+R = \bar{A_1}^{-1} \bar{A_2}
+\end{aligned}
+\end{equation}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.55\linewidth]{thesis/Figures/uk_graph_kernel_noisy.png}
-	\caption{Test.}
-	\label{fig:uk_graph_kernel_noisy}
-\end{figure}
+Now let $X$ be a solution to the equation:
+\begin{equation}
+\begin{aligned}
+(A_1 + A_2 R)X - X(\bar{A_1} - R A_2) = - A_2 \\
+(A_1 + A_2 \bar{A_1}^{-1} \bar{A_2})X - X(\bar{A_1} - \bar{A_1}^{-1} \bar{A_2} A_2) = - A_2
+\end{aligned}
+\end{equation}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.55\linewidth]{thesis/Figures/uk_graph_filtered.png}
-	\caption{Test.}
-	\label{fig:uk_graph_filtered}
-\end{figure}
+\section{Filter design via QLMS optimization}
+
+\section{Example: denoising a quaternion graph signal via QLMS low-pass filtering}
 
 \chapter{Concluding remarks and future works}
 \label{ch:conclusion}
