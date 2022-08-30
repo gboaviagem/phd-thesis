@@ -2320,6 +2320,22 @@ With the quaternion-valued adjacency matrix $\mathbf{A}$ at hand, it was verifie
 	\label{fig:uk_graph_tv}
 \end{figure}
 
+One may define a quaternion graph signal as being composed by the four last columns of weather data in UK towns (see Table \ref{tab:02}). That is, each sample corresponds to the quaternion with components $(1, \qi, \qj, \qk)$ respectively equal to humidity, pressure, temperature and wind speed in the given town. The slace disparity between components is removed by scaling each column to be within range $[0, 1]$. A way of visualizing the graph signal is to plot the graph with each node color defined by its quaternion sample: the components $(\qi, \qj, \qk)$ dictate the RGB color channels, whereas the scalar part of the quaternion defined the node alpha value (opacity). Figure \ref{fig:uk_qgsp_graphsig} depicts this form of signal visualization.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.3\linewidth]{thesis/Figures/uk_qgsp_graphsig.pdf}
+	\caption{Quaternion graph signal, visualized in the vertex domain.}
+	\label{fig:uk_qgsp_graphsig}
+\end{figure}
+
+Complementary to the vertex-domain visualization is the spectrum of the signal. After simply computing the QGFT,
+\begin{equation}
+% \label{}
+\widehat{\mathbf{s}} = \mathbf{V}^{-1} \mathbf{s},
+\end{equation}
+the signal frequency components are shown in Figure \ref{fig:uk_qgsp_spectrumsig}. On
+
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{thesis/Figures/uk_qgsp_spectrumsig.pdf}
@@ -2329,6 +2345,53 @@ With the quaternion-valued adjacency matrix $\mathbf{A}$ at hand, it was verifie
 
 
 \section{On the existence of a class of graphs with diagonalizable adjacency matrix}
+A relevant topic of discussion, when laying the foundations for QGSP, is to ponder the question on the existence of a class of graphs with diagonalizable shift operators. It is a reasonable point of investigation, since in classical GSP one can confidently take advantage of some classes of graphs to make sure the shift operator is diagonalizable beforehand, which saves time and effort. Some examples are undirected graphs and ring graphs.
+
+But the reader may quickly see that undirected quaternion graphs do not possess necessarily a diagonalizable adjacency matrix. Indeed, the fact that $\mathbf{A}$ is symmetric has no effect of proving the diagonalizability of its complex adjoint,
+\begin{equation}
+\begin{pmatrix}
+\mathbf{A}_1 & \mathbf{A}_2\\ 
+- \overline{\mathbf{A}}_2 & \overline{\mathbf{A}}_1
+\end{pmatrix}.
+\end{equation}
+
+A promising thread may be found, however, in the work \textit{Block diagonalization and eigenvalues}, by Eisenfeld \cite{eisenfeld1976block}, from which the following theorem is taken.
+
+\begin{theorem}[Theorem 3.2 \cite{eisenfeld1976block}]
+Let $\mathbf{M}$ be the $n \times n$ complex-valued block matrix
+\begin{equation}
+\begin{pmatrix}
+\mathbf{E} & \mathbf{F}\\ 
+\mathbf{G} & \mathbf{H}
+\end{pmatrix},
+\end{equation}
+with entries defined on a generic algebra $\mathcal{A}$ and $\mathbf{E}$ and $\mathbf{H}$ having respective orders $p \times p$ and $q \times q$, $p + q = n$.
+
+Now let $\mathbf{R}_1$ be a solution to the equation
+\begin{equation}
+\mathbf{R} (\mathbf{E} + \mathbf{F} \mathbf{R}) =
+\mathbf{G} + \mathbf{H} \mathbf{R},
+\end{equation}
+and let $\mathbf{X}$ be a root of the linear equation,
+\begin{equation}
+(\mathbf{E} + \mathbf{F} \mathbf{R}_1) \mathbf{X} - \mathbf{X} (\mathbf{H} - \mathbf{R}_1 \mathbf{F}) = - \mathbf{F}.
+\end{equation}
+Then,
+\begin{equation}
+\mathbf{M} = \mathbf{W}
+\begin{pmatrix}
+\mathbf{E} + \mathbf{F} \mathbf{R}_1 & \mathbf{0}_{pq}\\ 
+\mathbf{0}_{qp} & \mathbf{H} -  \mathbf{R}_1 \mathbf{F}
+\end{pmatrix}, \qquad
+\mathbf{W} = 
+\begin{pmatrix}
+\mathbf{I}_p & \mathbf{X}\\ 
+\mathbf{R}_{1} & \mathbf{R}_{1} \mathbf{X} + \mathbf{I}_{q}.
+\end{pmatrix}
+\end{equation}
+\end{theorem}
+
+\red{(n\~ao consegui muita evolu\c c\~ao daqui. Ignorar resto da subse\c c\~ao.)}
 \begin{equation}
 \begin{aligned}
 R (A_1 + A_2 R) = - \bar{A_2} + \bar{A_1} R \\
