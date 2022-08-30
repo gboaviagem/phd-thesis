@@ -30,7 +30,7 @@ The contributions presented in this thesis are:
     \item A novel approach to fractionalizing the quaternion discrete Fourier transform (QDFT)
     \item The definition of a multiparametric fractional QDFT and its application in a novel image encryption scheme.
     \item The proposition of Quaternion Graph Signal Processing (QGSP), a new tool designed for specialized scenarios in which both the signal samples and their quantifiable relationship may be expressed as quaternions (thus having at most four dimensions or information sources).
-    \item \texttt{gspx}\footnote{The library is available as an open repository: \texttt{\url{https://github.com/gboaviagem/gspx}}.}, an open-source Python library with implementation of the core concepts from QGSP.
+    \item \texttt{gspx}\footnote{The library is available as an open repository: \url{https://github.com/gboaviagem/gspx}.}, an open-source Python library with implementation of the core concepts from QGSP.
 \end{itemize}
 
 \section{Publications}
@@ -814,7 +814,7 @@ From the classical theory, the common understanding states that a signal has mos
 \subsection{Graph inference}
 \label{subsec:inferindo}
 
-Some contexts in which GSP is to be applied, to perform whatever signal processing technique is necessary, do not provide clear information on \emph{how the underlying graph is structured}. For example, let us suppose the temperature data (or any other data in fact) of some Brazilian Northeastern cities will be treated using GSP. How is one supposed to weight the graph edges, and before this, how does one decide which vertices to connect? Is the graph shown in Fig. \ref{figd_graphs} the only option? Clearly it is not. Although generally the problem of graph inference is complex, this type of geography-based graph has an adequate method topology estimation.
+Some contexts in which GSP is to be applied, to perform whatever signal processing technique is necessary, do not provide clear information on \emph{how the underlying graph is structured}. For example, let us suppose the temperature data (or any other data in fact) of some Brazilian Northeastern cities will be treated using GSP. How is one supposed to weight the graph edges, and before this, how does one decide which vertices to connect? Is the graph shown in Fig. \ref{figd_graphs} the only option? Clearly not. Although generally the problem of graph inference is complex, this type of geography-based graph has an adequate method topology estimation.
 
 The general ideia is that, if there is a clear metric to evaluate the \emph{expected} similarity between samples as a function of the available information regarding the respective vertices, then this metric may be used as the edge weight and a threshold is set so that any weight below this value causes the respective edge to be eliminated. In the case of vertices which have geodesic positions, the euclidian distance may be used as the metric because vertices that are closer together are \emph{expected} to have similar signal samples, and therefore the adjacency matrix of the underlying graph may have entries given by
 \begin{equation}
@@ -2200,7 +2200,7 @@ However, once the desired eigenvalues from $\rchi_A$ have been defined, how does
 \end{pmatrix}
 \lambda.
 \end{equation*}
-On the left-hand side of the equation, we find $\rchi_A$ and one of its eigenvectors, which is written in terms of the symplectic decomposition of a quaternionic column vector $\mathbf{v} = \mathbf{v}_1 + \mathbf{v}_2 \qj$. As it turns out, $\mathbf{v}$ is precisely the eigenvector of $\mathbf{A}$ associated to the eigenvalue $\lambda$. This is proven in Appendix \ref{ch:AppendixA} and constitutes a minor contribution of this thesis.
+On the left-hand side of the equation, we find $\rchi_A$ and one of its eigenvectors, which is written in terms of the symplectic decomposition of a quaternionic column vector $\mathbf{v} = \mathbf{v}_1 + \mathbf{v}_2 \qj$. As it turns out, $\mathbf{v}$ is precisely the eigenvector of $\mathbf{A}$ associated to the eigenvalue $\lambda$. This is proven in Appendix \ref{ch:AppendixA} and constitutes a minor contribution of this thesis. The answer to the question raised a few lines above, to sum up, is that once one has the chosen eigenvalues of $\rchi_A$, it is possible to assemble $\mathbf{V} \in \mathbb{H}^{n \times n}$ out of the respective eigenvectors of $\rchi_A$ by simply spliting these $2n$-long eigenvectors into two $n$-long halves: the first half corresponds to $\mathbf{v}_1$ (the simplex part of the eigenvector $\mathbf{v}$), while the second half is $- \overline{\mathbf{v}}_2$ (with $\mathbf{v}_2$ being the perplex part of $\mathbf{v}$).
 
 So far we are able to obtain $\mathbf{V}$ from $\mathbf{A}$, using the complex adjoint form to solve the quaternion diagonalization handling only complex-valued matrices. However, the question of how to get $\mathbf{V}^{-1}$, if it exists, poses itself imediately. After all, the direct QGFT must have the shift operator's eigenvectors as \textit{rows} of the transform matrix, since the graph signals are represented as column vectors. Besides, the QGFT must be invertible, so regardless of the representation of graph signals, one must be able to compute the inverse of $\mathbf{V}$. Let us address this point.
 
@@ -2262,11 +2262,62 @@ In order to interpret the spectrum domain, the eigenvalues are sorted in ascendi
 
 \subsection{Example: spectral analysis of quaternion graph signal}
 
+Let us walk through an example on spectral analysis with real-world data using QGSP\footnote{All computations in this chapter were performed using \texttt{gspx}, an open-source Python package dedicated to implement the core concepts and tools of QGSP. It constitutes a contribution of this thesis and is available at \url{https://github.com/gboaviagem/gspx}.}. The graph signal will be generated using UK towns' weather data, specifically humidity, atmospheric pressure, temperature and wind speed. The data was fetched from the Open Weather Map API\footnote{The API is accessible, as of August 2022, at the address \url{https://home.openweathermap.org/}.}, in April 20th 2022, at approximately 13:00 GMT. The latitude and longitude values of UK towns originate from the LatLong.Net database\footnote{Accessible, as of August 2022, at the address \url{https://www.latlong.net/category/towns-235-55.html}.}.
+
 \begin{figure}
 	\centering
-	\includegraphics[width=0.25\linewidth]{thesis/Figures/uk_graph.png}
+	\includegraphics[width=0.3\linewidth]{thesis/Figures/uk_qgsp_graph.png}
 	\caption{Graph created using the cities in UK.}
 	\label{fig:uk_graph}
+\end{figure}
+
+The graph was created using a nearest-neighbors approach, as in (\ref{eq:weights}), since the nodes possess a clear relation to geographic location. The edge weights were defined using the following steps:
+\begin{itemize}[noitemsep]
+\item Compute a real-valued nearest-neighbors adjacency matrix based on the latitude and longitude of UK towns (graph nodes), using the ten closest neighbors to each graph node. At this point, the real-valued edge weights correspond to the euclidian distances between nearby towns \textit{i} and \textit{j}, represented by ${d}(i, j)$.
+\item For each pair of connected nodes from the real-weighted graph in the previous step, compute the \textbf{absolute difference} in \textit{humidity}, \textit{temperature} and \textit{wind speed}, represented respectively by ${h}(i, j)$, ${t}(i, j)$ and ${w}(i, j)$.
+\item For each pair of connected nodes, create the quaternion $q(i, j) = {d}(i, j) + \qi {h}(i, j) + \qj {t}(i, j) + \qk {w}(i, j)$ and set as edge weight the value
+\begin{equation}
+% \label{eq:}
+\mathbf{A}_{i, j} = \exp^{-1} \left(\frac{q}{\theta} \right).
+\end{equation}
+For the current example, it was chosen $\theta = 0.5$.
+\end{itemize}
+Figure \ref{fig:uk_graph} depicts a representation of the UK Town Graph, with quaternion-valued edge weights. A total of 177 towns were used, and the reader may find the full dataset at \url{https://github.com/gboaviagem/gspx/blob/main/resources/uk_weather_at_20Apr202213pm.gz}. The first few rows, so it becomes clear how the data is organized, are displayed in Table \ref{tab:02}.
+
+\begin{table}
+\center
+\captionof{table}{Sample of the dataset containing UK towns' weather data.}
+\label{tab:02}
+\begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} cccc}
+\toprule
+& \textbf{town} & \textbf{latitude} & \textbf{longitude} & \textbf{humidity (\%)} \\
+\midrule
+1 & Troon, Scotland & 55.540001 & -4.66 & 55\\
+2 & St.Asaph, Wales & 53.257999 & -3.442 & 59\\
+3 & Stirling, Scotland & 56.1166 & -3.9369 & 53\\
+4 & Welling, Bexley, London & 51.4566 & 0.1056 & 39 \\
+5 & Bonnybridge, Scotland & 56.003227 & -3.888634 & 50\\
+\midrule
+\end{tabular*}
+\begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} cccc}
+& \textbf{pressure (hPa)} & \textbf{temp (K)} & \textbf{wind speed (m/s)} & \textbf{wind degrees} \\
+\midrule
+1 & 1018 & 289.19 & 3.6 & 220 \\
+2 & 1017 & 288.49 & 3.71 & 99 \\
+3 & 1018 & 288.15 & 3.72 & 114 \\
+4 & 1014 & 290.09 & 8.23 & 80 \\
+5 & 1018 & 288.0 & 3.53 & 106 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+With the quaternion-valued adjacency matrix $\mathbf{A}$ at hand, it was verified that this graph shift operator was diagonalizable and the direct ($\mathbf{V}^{-1}$) and inverse ($\mathbf{V}$) QGFT matrices were computed. Figure \ref{fig:uk_graph_tv} shows the total variation of the eigenvectors associated with the adjacency matrix eigenvalues.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_qgsp_tv.png}
+	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
+	\label{fig:uk_graph_tv}
 \end{figure}
 
 \section{On the existence of a class of graphs with diagonalizable adjacency matrix}
