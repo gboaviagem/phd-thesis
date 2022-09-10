@@ -4,7 +4,7 @@ Signal processing is a field which often interweaves pure mathematics and engine
 
 One way to explore different signal representations is to alter the algebra over which it is defined. That is the case with numerical or arithmetic transforms \cite{blahut2010fast,pedrouzo2017number,chandra2014exact}, which deal only with finite fields instead of the usual complex (e.g. Fourier transform) or real fields (e.g. cosine transform). As the underlying algebra is extended, e.g. going from $ \mathbb{R} $ to $ \mathbb{C} $, it is possible to process signals with more information per sample. Such was the motivation behind Sangwine's \cite{sangwine1996fourier} discrete version of a family of bidimensional transforms over the \textit{quaternions}, previously created by Ell \cite{ell1993quaternion}: to exploit this class of hypercomplex numbers with four real components to perform holistic color image processing. Upon mapping each color channel inside a pixel into an imaginary component of a quaternion number, the color image may be processed as a single signal. Computationally, the spectral decomposition requires only two complex discrete Fourier transforms (DFTs), instead of three (one per color channel). Ever since, quaternion transforms have been employed not only on color image processing \cite{ell2007hypercomplex,chen2018quaternion,li2013quaternion,evans2000hypercomplex}, but also other ends such as bivariate signal analysis \cite{flamant2017spectral,flamant2017time,flamant2018complete}.
 
-Algebra extensions change the signal representation by looking at the signal \textit{samples} but, reminding the signal is nothing more than a function, one may also shift the attention to the \textit{domain}. In fact, such reflection has led to the creation of graph signal processing (GSP). This field, which emerged in the last decade, is concerned with extending the concepts of classical discrete signal processing (DSP) to the in which the signal samples \textit{reside in graph vertices}. It approaches the classical case of discrete-time domain as being a path or ring graph (depending on the graph shift operator at hand, as will soon be clear) with equally weighted edges. The \textit{signal}, therefore, is a mapping from the vertex set to the real (or complex) numbers, and the fixed sampling frequency is represented as graph edges having the same weights (i.~e. as if the samples were at fixed ``distances'', one could say). GSP deals with the consequences of conecting more vertices in this graph, moving from the queue-shaped domaing into an arbitrary network. Many definitions from classical DSP have already found their way into GSP, thanks to the contributions of many scholars who proposed ways to implement filtering \cite{sandryhaila2013filters}, linear transforms \cite{sandryhaila2013gft,sardellitti2017graph}, interpolation \cite{segarra2015interpolation}, sampling theorem on graphs \cite{wang2015generalized,chen2016signal,tsitsvero2016signals}, among others.
+Algebra extensions change the signal representation by looking at the signal \textit{samples} but, reminding the signal is nothing more than a function, one may also shift the attention to the \textit{domain}. In fact, such reflection has led to the creation of graph signal processing (GSP). This field, which emerged in the last decade, is concerned with extending the concepts of classical discrete signal processing (DSP) to the in which the signal samples \textit{reside in graph vertices}. It approaches the classical case of discrete-time domain as being a path or ring graph -- depending on the graph shift operator (GSO) at hand, as will soon be clear -- with equally weighted edges. The \textit{signal}, therefore, is a mapping from the vertex set to the real (or complex) numbers, and the fixed sampling frequency is represented as graph edges having the same weights (i.~e. as if the samples were at fixed ``distances'', one could say). GSP deals with the consequences of conecting more vertices in this graph, moving from the queue-shaped domaing into an arbitrary network. Many definitions from classical DSP have already found their way into GSP, thanks to the contributions of many scholars who proposed ways to implement filtering \cite{sandryhaila2013filters}, linear transforms \cite{sandryhaila2013gft,sardellitti2017graph}, interpolation \cite{segarra2015interpolation}, sampling theorem on graphs \cite{wang2015generalized,chen2016signal,tsitsvero2016signals}, among others.
 
 The endeavour to experiment with different algebras or domain topologies has primarily theoretical motivations, but often reveal new solutions to real world problems. Taking GSP for instance, its applications spread from coding \cite{su2017graph} and light-field image super resolution schemes \cite{rossi2017graph}, to regulatory genetic networks, in which graph-based methods improved three state-of-the-art network inference schemes \cite{pirayre2015brane,pirayre2017brane}, also reaching recommender systems, both collaborative filtering and content-based, using regularization of graph total variation \cite{benzi2016song}, semi-supervised learning through adaptive graph filters \cite{chen2014semi}, community detection using graph wavelets \cite{tremblay2014graph}, among others. The latter examples hint at the intersection between GSP and the fields of data science and machine learning -- well established and highly active, both in Academia and industry --, to the point where we can join Benjamin Ricaud and say that \emph{Fourier could very well be, today, a data scientist} \cite{ricaud2019fourier}.
 
@@ -12,7 +12,7 @@ As happened to GSP, the study of quaternion-valued signal processing has also fo
 
 In this context, the current thesis aims to tackle the following problem: is it possible to perform signal processing having quaternion-valued samples residing on graphs with quaternion-weighted edges? What limitations and new possibilites may arise when exploring what we may call \textit{quaternion graph signal processing} (QGSP)? That is the spark which ignited the studies and results presented in the following chapters.
 
-As will become clear to the reader, however, the pathway to the basis of QGSP was not a straight line. Sometimes what seemed to be dead ends emerged, and during the reflections upon ways to bypass them, other interesting results started to show themselves. For example, it was certain from the beginning that the problem of eigendecomposing quaternion matrices would be at the heart of QGSP, since the very definition of a graph signal spectrum requires the eigenvalues and eigenvectors of a graph shift operator (e.g. the adjacency matrix), which is a quaternion matrix. Since it took a while to make progress with general graph matrices, it seemed promising to investigate the quaternion discrete Fourier transform (QDFT); after all, ring graphs should have the graph Fourier transform (GFT) and the classical discrete Fourier transform (DFT) coinciding. By looking at the QDFT matrix, however, a new way to diagonalize it was found and a new multiparametric fractional QDFT was proposed. When shifting the focus to the graph domain, revisiting the study of graph shift operators and their spectral decomposition, interesting results regarding the fractional graph shift operator were discovered. For instance, this new operator acts as a graph filter, and its polynomial representation is determined, demonstrating that it can be implemented as a linear and shift-invariant (LSI) graph filter.
+As will become clear to the reader, however, the pathway to the basis of QGSP was not a straight line. Sometimes what seemed to be dead ends emerged, and during the reflections upon ways to bypass them, other interesting results started to show themselves. For example, it was certain from the beginning that the problem of eigendecomposing quaternion matrices would be at the heart of QGSP, since the very definition of a graph signal spectrum requires the eigenvalues and eigenvectors of a GSO (e.g. the adjacency matrix), which is a quaternion matrix. Since it took a while to make progress with general graph matrices, it seemed promising to investigate the quaternion discrete Fourier transform (QDFT); after all, ring graphs should have the graph Fourier transform (GFT) and the classical discrete Fourier transform (DFT) coinciding. By looking at the QDFT matrix, however, a new way to diagonalize it was found and a new multiparametric fractional QDFT was proposed. When shifting the focus to the graph domain, revisiting the study of graph shift operators and their spectral decomposition, interesting results regarding the fractional GSO were discovered. For instance, this new operator acts as a graph filter, and its polynomial representation is determined, demonstrating that it can be implemented as a linear and shift-invariant (LSI) graph filter.
 
 \section{Organization}
 
@@ -297,7 +297,7 @@ Given the matrix $ \mathbf{A} \in \mathbb{H}^{n \times n} $, the following sente
 \begin{itemize}[noitemsep]
 \item $ \rchi_{AB} = \rchi_{A} \rchi_{B} $,
 \item $ \rchi_{A^{-1}} = \rchi_{A}^{-1}$, if $ \mathbf{A}^{-1} $ exists,
-\item $ \rchi_{A}$ is unitary, hermitian or normal if and only if so is $ \mathbf{A} $.
+\item $ \rchi_{A}$ is unitary, Hermitian or normal if and only if so is $ \mathbf{A} $.
 \end{itemize}
 
 \end{theorem}
@@ -320,7 +320,7 @@ Given the matrix $ \mathbf{A} \in \mathbb{H}^{n \times n} $, the following sente
 % \begin{itemize}[noitemsep]
 % \item $ \rchi_{AB} = \rchi_{A} \rchi_{B} $,
 % \item $ \rchi_{A^{-1}} = \rchi_{A}^{-1}$, se $ \mathbf{A}^{-1} $ existir,
-% \item $ \rchi_{A}$ \'e unit\'aria, hermitiana ou normal se e somente se $ \mathbf{A} $ tamb\'em o for.
+% \item $ \rchi_{A}$ \'e unit\'aria, Hermitiana ou normal se e somente se $ \mathbf{A} $ tamb\'em o for.
 % \end{itemize}
 Differently from other representations of quaternion matrices in $ \mathbb{C} $ or $ \mathbb{R} $, the complex adjoint allows to establish an important relation between the spectra of $ \rchi_{A} $ and $ \mathbf{A} $, as will soon be discussed.
 
@@ -2311,7 +2311,7 @@ Figure \ref{fig:uk_graph} depicts a representation of the UK Town Graph, with qu
 \end{tabular*}
 \end{table}
 
-With the quaternion-valued adjacency matrix $\mathbf{A}$ at hand, it was verified that this graph shift operator was diagonalizable and the direct ($\mathbf{V}^{-1}$) and inverse ($\mathbf{V}$) QGFT matrices were computed. Figure \ref{fig:uk_graph_tv} shows the total variation of the eigenvectors associated with the adjacency matrix eigenvalues.
+With the quaternion-valued adjacency matrix $\mathbf{A}$ at hand, it was verified that this quaternion graph shift operator (QGSO) was diagonalizable and the direct ($\mathbf{V}^{-1}$) and inverse ($\mathbf{V}$) QGFT matrices were computed. Figure \ref{fig:uk_graph_tv} shows the total variation of the eigenvectors associated with the adjacency matrix eigenvalues.
 
 \begin{figure}
 	\centering
@@ -2329,25 +2329,29 @@ One may define a quaternion graph signal as being composed by the four last colu
 	\label{fig:uk_qgsp_graphsig}
 \end{figure}
 
-Complementary to the vertex-domain visualization is the spectrum of the signal. After simply computing the QGFT,
+Complementary to the vertex-domain visualization is the spectrum of the signal. This is obtained by the direct QGFT,
 \begin{equation}
 % \label{}
 \widehat{\mathbf{s}} = \mathbf{V}^{-1} \mathbf{s},
 \end{equation}
-the signal frequency components are shown in Figure \ref{fig:uk_qgsp_spectrumsig}. On
+and the signal frequency components are shown in Figure \ref{fig:uk_qgsp_spectrumsig}. Figure \ref{fig:uk_qgsp_spectrumsig_abs} provides the reader with a more concise view, making clear this signal has energy concentrated in middle frequencies.
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{thesis/Figures/uk_qgsp_spectrumsig.pdf}
-	\caption{Spectrum of the graph signal.}
-	\label{fig:uk_qgsp_spectrumsig}
-\end{figure}
+\begin{figure*}
+\centering
+\subfloat[\label{fig:uk_qgsp_spectrumsig}]{
+\includegraphics[width=0.7\linewidth]{thesis/Figures/uk_qgsp_spectrumsig.pdf}
+}\\
+\subfloat[\label{fig:uk_qgsp_spectrumsig_abs}]{
+\includegraphics[width=0.7\linewidth]{thesis/Figures/uk_qgsp_spectrumsig_abs.pdf}
+}
+\caption{(a) Spectrum of the graph signal, depicted with (a) splitted components and (b) only with the absolute value.}
+\end{figure*}
 
 
 \section{On the existence of a class of graphs with diagonalizable adjacency matrix}
-A relevant topic of discussion, when laying the foundations for QGSP, is to ponder the question on the existence of a class of graphs with diagonalizable shift operators. It is a reasonable point of investigation, since in classical GSP one can confidently take advantage of some classes of graphs to make sure the shift operator is diagonalizable beforehand, which saves time and effort. Some examples are undirected graphs and ring graphs.
+A relevant topic of discussion, when laying the foundations for QGSP, is to ponder the question on the existence of a class of graphs with diagonalizable shift operators. It is a reasonable point of investigation, since in classical GSP one can confidently take advantage of some classes of graphs to make sure the shift operator is diagonalizable beforehand, which saves time and effort. Some examples are undirected real-weighted graphs and directed ring graphs with equal edge weights.
 
-But the reader may quickly see that undirected quaternion graphs do not possess necessarily a diagonalizable adjacency matrix. Indeed, the fact that $\mathbf{A}$ is symmetric has no effect of proving the diagonalizability of its complex adjoint,
+The reader may notice that undirected quaternion graphs do not possess necessarily a diagonalizable adjacency matrix. Indeed, the fact that $\mathbf{A}$ is symmetric has no effect of proving the diagonalizability of its complex adjoint,
 \begin{equation}
 \begin{pmatrix}
 \mathbf{A}_1 & \mathbf{A}_2\\ 
@@ -2355,6 +2359,61 @@ But the reader may quickly see that undirected quaternion graphs do not possess 
 \end{pmatrix}.
 \end{equation}
 
+The subjacent reason as to why undirected real-weighted graphs have diagonalizable adjacency matrices is that these real-valued matrices are symmetric, or more generally \textit{normal}, i.~e. they commute with (because are equal to) their transpose. In the case of complex-valued matrices, being normal (i.~e. commuting with their Hermitian transpose) also suffices for proving their diagonalizability. So, in order to find quaternion graphs analogous to undirected real-weighted graphs, in the sense of having a sufficient condition for diagonalizable shift operators, their adjacency matrix must possess \textit{normal} complex adjoint matrices. Fortunately, Theorem \ref{th:equiv01} states the condition:
+ $ \rchi_{A}$ is normal ($ \rchi_{A}^H \rchi_{A} = \rchi_{A} \rchi_{A}^H $) or Hermitian ($\rchi_{A}^H = \rchi_{A}$) if and only if so is $ \mathbf{A}$.
+ 
+ Zhang claims the proof of Theorem \ref{th:equiv01} is by direct verification, but let us go through a way to visualize part of the proof within the context of GSP.
+ 
+\begin{proof}
+The part of the Theorem about to be verified is: \emph{is it true that Hermitian quaternion-valued matrices have Hermitian complex adjoints?} Equivalently,
+\begin{equation}
+\mathbf{A}^H = \mathbf{A}, \ \mathbf{A} \in \mathbb{H}^{n \times n} \Rightarrow
+\rchi_{A}^H = \rchi_{A}, \ \rchi_{A} \in \mathbb{C}^{2n \times 2n}?
+\end{equation}
+\end{proof}
+
+\subsection{Does a Hermitian QGSO have unitary eigenvector matrix?}
+
+At this point, an important observation must be made. It is known that every Hermitian complex matrix is diagonalizable by a unitary matrix. In other words, if $\mathbf{M} \in \mathbb{C}^{n \times n}$ and $\mathbf{M} = \mathbf{M}^H$, then there exists a complex matrix $\mathbf{U}$ and a diagonal matrix $\mathbf{\Gamma}$ so that $\mathbf{M} = \mathbf{U} \mathbf{\Gamma} \mathbf{U}^{-1}$ and $\mathbf{U}^{-1} = \mathbf{U}^H$. However, despite the fact one can guarantee that a Hermitian QGSO has a Hermitian complex adjoint matrix, \textit{it is not true that its eigenvector matrix is unitary}.
+
+Let $\mathbf{A}$ be a Hermitian (hence diagonalizable) quaternion adjacency matrix, therefore $\mathbf{A} \mathbf{V} = \mathbf{V} \mathbf{\Lambda}$. Since $\rchi_{A}$ is complex-valued and Hermitian, its eigenvector matrix (let us say, $\mathbf{\Phi}$) is unitary and we may write $\rchi_{A} = \mathbf{\Phi} \mathbf{\Gamma} \mathbf{\Phi}^H$. Each column $\mathbf{\qphi}$ in $\mathbf{\Phi}$, the reader may recall, is written is terms of the simplex and perplex parts (which are complex-valued) of the respective column $\mathbf{v}$ in $\mathbf{V}$:
+\begin{equation}
+\mathbf{\qphi}^{(n)} = 
+\begin{pmatrix}
+\mathbf{v}^{(n)}_1 \\ 
+- \overline{\mathbf{v}}^{(n)}_2
+\end{pmatrix}.
+\end{equation}
+
+Since $\mathbf{\Phi}$ is unitary,
+\begin{equation}
+\label{eq:phi_hermitian}
+\begin{aligned}
+{\mathbf{\qphi}^{(n)}}^H \mathbf{\qphi}^{(n)} = 1 \\
+\Big({\mathbf{v}^{(n)}_1}^H \quad - {\mathbf{v}^{(n)}_2}^T \Big)
+\begin{pmatrix}
+\mathbf{v}^{(n)}_1 \\ 
+- \overline{\mathbf{v}}^{(n)}_2
+\end{pmatrix} = 1 \\
+{\mathbf{v}^{(n)}_1}^H \mathbf{v}^{(n)}_1 + {\mathbf{v}^{(n)}_2}^T \overline{\mathbf{v}}^{(n)}_2 = 1.
+\end{aligned}
+\end{equation}
+
+Now, does the final equality in (\ref{eq:phi_hermitian}) imply that ${\mathbf{v}^{(n)}}^H \mathbf{v}^{(n)} = 1$? If so, this would make the quaternion-valued eigenvector matrix $\mathbf{V}$ unitary. Let us drop the superscript $n$ temporarily, to clean the notation during the following lines. Since $\mathbf{v} = \mathbf{v}_1 + \mathbf{v}_2 \qj$,
+\begin{equation}
+\begin{aligned}
+\mathbf{v}^H \mathbf{v} &= (\mathbf{v}^H_1 - \mathbf{v}^T_2 \qj) (\mathbf{v}_1 + \mathbf{v}_2 \qj) \\
+&= \mathbf{v}^H_1 \mathbf{v}_1 + \mathbf{v}^H_1 \mathbf{v}_2 \qj
+- \mathbf{v}_2^T \qj \mathbf{v}_2 \qj \\
+&= \underbrace{\mathbf{v}_1^H \mathbf{v}_1 + \mathbf{v}_2^T \overline{\mathbf{v}}_2}_{= 1} +
+(\mathbf{v}^H_1 \mathbf{v}_2 + \mathbf{v}_2^T \mathbf{v}_1) \qj \\
+&= 1 + (\mathbf{v}^H_1 \mathbf{v}_2 + \mathbf{v}_2^T \mathbf{v}_1) \qj.
+\end{aligned}
+\end{equation}
+
+That is, unless the complex adjoint eigenvector $\mathbf{\qphi}^{(n)} = \big( \mathbf{v}^{(n)}_1 \quad - \overline{\mathbf{v}}^{(n)}_2 \big)^T$ satisfies the additional constraint ${\mathbf{v}^{(n)}}^H_1 {\mathbf{v}^{(n)}}_2 + {\mathbf{v}^{(n)}}_2^T {\mathbf{v}^{(n)}}_1 = 0$, a Hermitian QGSO \textit{does not have} a unitary eigenvector matrix. As a practical consequence, the inverse eigenvector matrix cannot be computed simply by taking its complex conjugate, and an invertibility test must be performed before trying to compute the QGFT matrix.
+
+\subsection{A more general sufficient condition}
 A promising thread may be found, however, in the work \textit{Block diagonalization and eigenvalues}, by Eisenfeld \cite{eisenfeld1976block}, from which the following theorem is taken.
 
 \begin{theorem}[Theorem 3.2 \cite{eisenfeld1976block}]
