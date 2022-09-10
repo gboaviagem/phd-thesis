@@ -134,6 +134,15 @@ Figure \ref{fig:quatmult} depicts the order in which the product between two ele
 	\label{fig:quatmult}
 \end{figure}
 
+The exploration of the quaternion multiplication rules gives rise to a useful property, related to complex numbers and elements from the quaternion canonical basis. In particular, the product between $\qj$ and any number $x = a + b \qi \in \mathbb{C}$ satisfies $\qj x = \overline{x} \qj$, since
+\begin{equation}
+\label{eq:commutej}
+\begin{aligned}
+\qj x &= \qj (x_r + x_i \qi) = x_r \qj + x_i \qj \qi = x_r \qj - x_i \qi \qj \\
+&= (x_r - x_i \qi) \qj = \overline{x} \qj.
+\end{aligned}
+\end{equation}
+
 % Moreover, $\qi$, $\qj$ and $\qk$ behave under the usual product in the same way the orthonormal base of $\mathbb{R}^3$ does with respect to the cross product, i.e. 
 
 % \begin{equation}
@@ -2266,7 +2275,7 @@ Let us walk through an example on spectral analysis with real-world data using Q
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.3\linewidth]{thesis/Figures/uk_qgsp_graph.pdf}
+	\includegraphics[width=0.75\linewidth]{thesis/Figures/us_counties_graph.pdf}
 	\caption{Graph created using the cities in UK.}
 	\label{fig:uk_graph}
 \end{figure}
@@ -2315,9 +2324,16 @@ With the quaternion-valued adjacency matrix $\mathbf{A}$ at hand, it was verifie
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\linewidth]{thesis/Figures/uk_qgsp_tv.pdf}
+	\includegraphics[width=0.6\linewidth]{thesis/Figures/us_counties_qgsp_tv1.pdf}
 	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
-	\label{fig:uk_graph_tv}
+	\label{fig:graph_tv_1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth]{thesis/Figures/us_counties_qgsp_tv.pdf}
+	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
+	\label{fig:graph_tv_2}
 \end{figure}
 
 One may define a quaternion graph signal as being composed by the four last columns of weather data in UK towns (see Table \ref{tab:02}). That is, each sample corresponds to the quaternion with components $(1, \qi, \qj, \qk)$ respectively equal to humidity, pressure, temperature and wind speed in the given town. The slace disparity between components is removed by scaling each column to be within range $[0, 1]$. A way of visualizing the graph signal is to plot the graph with each node color defined by its quaternion sample: the components $(\qi, \qj, \qk)$ dictate the RGB color channels, whereas the scalar part of the quaternion defined the node alpha value (opacity). Figure \ref{fig:uk_qgsp_graphsig} depicts this form of signal visualization.
@@ -2404,14 +2420,14 @@ Now, does the final equality in (\ref{eq:phi_hermitian}) imply that ${\mathbf{v}
 \begin{aligned}
 \mathbf{v}^H \mathbf{v} &= (\mathbf{v}^H_1 - \mathbf{v}^T_2 \qj) (\mathbf{v}_1 + \mathbf{v}_2 \qj) \\
 &= \mathbf{v}^H_1 \mathbf{v}_1 + \mathbf{v}^H_1 \mathbf{v}_2 \qj
-- \mathbf{v}_2^T \qj \mathbf{v}_2 \qj \\
+- \underbrace{\mathbf{v}^T_2 \qj \mathbf{v}_1}_{\mathbf{v}^T_2 \overline{\mathbf{v}}_1 \qj} - \underbrace{\mathbf{v}_2^T \qj \mathbf{v}_2 \qj}_{- \mathbf{v}_2^T \overline{\mathbf{v}}_2} \\
 &= \underbrace{\mathbf{v}_1^H \mathbf{v}_1 + \mathbf{v}_2^T \overline{\mathbf{v}}_2}_{= 1} +
-(\mathbf{v}^H_1 \mathbf{v}_2 + \mathbf{v}_2^T \mathbf{v}_1) \qj \\
-&= 1 + (\mathbf{v}^H_1 \mathbf{v}_2 + \mathbf{v}_2^T \mathbf{v}_1) \qj.
+(\mathbf{v}^H_1 \mathbf{v}_2 - \mathbf{v}_2^T \overline{\mathbf{v}}_1) \qj \\
+&= 1 + (\mathbf{v}^H_1 \mathbf{v}_2 - \mathbf{v}_2^T \overline{\mathbf{v}}_1) \qj.
 \end{aligned}
 \end{equation}
 
-That is, unless the complex adjoint eigenvector $\mathbf{\qphi}^{(n)} = \big( \mathbf{v}^{(n)}_1 \quad - \overline{\mathbf{v}}^{(n)}_2 \big)^T$ satisfies the additional constraint ${\mathbf{v}^{(n)}}^H_1 {\mathbf{v}^{(n)}}_2 + {\mathbf{v}^{(n)}}_2^T {\mathbf{v}^{(n)}}_1 = 0$, a Hermitian QGSO \textit{does not have} a unitary eigenvector matrix. As a practical consequence, the inverse eigenvector matrix cannot be computed simply by taking its complex conjugate, and an invertibility test must be performed before trying to compute the QGFT matrix.
+That is, unless the complex adjoint eigenvector $\mathbf{\qphi}^{(n)} = \big( \mathbf{v}^{(n)}_1 \quad - \overline{\mathbf{v}}^{(n)}_2 \big)^T$ satisfies the additional constraint ${\mathbf{v}^{(n)}}^H_1 {\mathbf{v}^{(n)}}_2 - {\mathbf{v}^{(n)}}_2^T {\overline{\mathbf{v}}^{(n)}}_1 = 0$, a Hermitian QGSO \textit{does not have} a unitary eigenvector matrix. As a practical consequence, the inverse eigenvector matrix cannot be computed simply by taking its complex conjugate, and an invertibility test must be performed before trying to compute the QGFT matrix.
 
 \subsection{A more general sufficient condition}
 A promising thread may be found, however, in the work \textit{Block diagonalization and eigenvalues}, by Eisenfeld \cite{eisenfeld1976block}, from which the following theorem is taken.
