@@ -2275,8 +2275,8 @@ Let us walk through an example on spectral analysis with real-world data using Q
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\linewidth]{thesis/Figures/us_counties_graph.pdf}
-	\caption{Graph created using the cities in UK.}
+	\includegraphics[width=0.75\linewidth]{thesis/Figures/uk_qgsp_graph.pdf}
+	\caption{Graph created using the towns in England.}
 	\label{fig:uk_graph}
 \end{figure}
 
@@ -2324,16 +2324,51 @@ With the quaternion-valued adjacency matrix $\mathbf{A}$ at hand, it was verifie
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.6\linewidth]{thesis/Figures/us_counties_qgsp_tv1.pdf}
+	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_qgsp_sig.pdf}
+	\caption{Each component of the quaternion graph signal.}
+	% \label{fig:graph_tv_1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_qgsp_tv1.pdf}
 	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
 	\label{fig:graph_tv_1}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.6\linewidth]{thesis/Figures/us_counties_qgsp_tv.pdf}
+	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_qgsp_spectrumsig_norm1.pdf}
+	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
+	% \label{fig:graph_tv_1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_ss1_abs.pdf}
+	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
+	% \label{fig:graph_tv_1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_qgsp_tv2.pdf}
 	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
 	\label{fig:graph_tv_2}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_qgsp_spectrumsig_norm2.pdf}
+	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
+	% \label{fig:graph_tv_1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_ss2_abs.pdf}
+	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
+	% \label{fig:graph_tv_1}
 \end{figure}
 
 One may define a quaternion graph signal as being composed by the four last columns of weather data in UK towns (see Table \ref{tab:02}). That is, each sample corresponds to the quaternion with components $(1, \qi, \qj, \qk)$ respectively equal to humidity, pressure, temperature and wind speed in the given town. The slace disparity between components is removed by scaling each column to be within range $[0, 1]$. A way of visualizing the graph signal is to plot the graph with each node color defined by its quaternion sample: the components $(\qi, \qj, \qk)$ dictate the RGB color channels, whereas the scalar part of the quaternion defined the node alpha value (opacity). Figure \ref{fig:uk_qgsp_graphsig} depicts this form of signal visualization.
