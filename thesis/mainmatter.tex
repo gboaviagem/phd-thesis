@@ -938,7 +938,7 @@ shows that its eigenvalues are the $ N $ complex roots of unity. Setting these e
 \end{equation}
 and one can see that, in the case of directed ring graphs, the GFT and the DFT matrices \emph{coincide}, since $ \mathbf{V}^{-1} = \mathbf{F} $. This equivalence indicates a desirable consistency with the classical theory.
 
-\subsection{The frequency domain}
+ \subsection{The frequency domain}
 
 The GFT in the sense of GSP\textsubscript{A} naturally suggests the interpretation of the adjacency matrix eigenvectors $ \mathbf{v}_i $ as ``frequency components'' associated to the ``graph frequencies'' given by the eigenvalues $ \lambda_i $, exactly as the Fourier component $ e^{-j \Omega t} $, in the continuous time domain $ t $, is associated to the frequency $ \Omega $. This subsection aims to provide the mathematical justification used by Sandryhaila and Moura \cite{sandryhaila2014frequency} to support this understanding, along with some of our own comments.
 
@@ -1165,7 +1165,7 @@ The assumption on $char_{\mathbf{A}}(x)$ and $m_{\mathbf{A}}(x)$ in Theorem~\ref
 
 \begin{figure}[t!]
 	\centering
-\includegraphics[width=0.6\linewidth]{Figures/signal_ring_graph_white_border.pdf}
+\includegraphics[width=0.3\linewidth]{Figures/signal_ring_graph_white_border.pdf}
 	\caption{A directed ring graph.}%
 	\label{fig:graphs}%
 	\vspace{-0.5cm}
@@ -2275,7 +2275,7 @@ Let us walk through an example on spectral analysis with real-world data using Q
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\linewidth]{thesis/Figures/uk_qgsp_graph.pdf}
+	\includegraphics[width=0.3\linewidth]{thesis/Figures/uk_qgsp_graph.pdf}
 	\caption{Graph created using the towns in England.}
 	\label{fig:uk_graph}
 \end{figure}
@@ -2463,6 +2463,70 @@ Now, does the final equality in (\ref{eq:phi_hermitian}) imply that ${\mathbf{v}
 \end{equation}
 
 That is, unless the complex adjoint eigenvector $\mathbf{\qphi}^{(n)} = \big( \mathbf{v}^{(n)}_1 \quad - \overline{\mathbf{v}}^{(n)}_2 \big)^T$ satisfies the additional constraint ${\mathbf{v}^{(n)}}^H_1 {\mathbf{v}^{(n)}}_2 - {\mathbf{v}^{(n)}}_2^T {\overline{\mathbf{v}}^{(n)}}_1 = 0$, a Hermitian QGSO \textit{does not have} a unitary eigenvector matrix. As a practical consequence, the inverse eigenvector matrix cannot be computed simply by taking its complex conjugate, and an invertibility test must be performed before trying to compute the QGFT matrix.
+
+% In fact, the eigenvector matrix may even be degenerate, as the following example demonstrates.
+\red{(But I have not found a single counterexample! Is the additional constraint always met?)}
+
+\begin{example}
+Let the graph in Figure \ref{fig:degenerate_qgft_graph} have the following adjacency matrix,
+\begin{equation}
+\mathbf{A} = \begin{pmatrix}
+0 & 0 & 0 & 7 -4 \qi -8 \qj -9 \qk & 7 + 6 \qi + 7 \qj + 8 \qk\\ 
+0 & 0 & 0 & 0 & 8 + 3 \qi + 7 \qk \\ 
+0 & 0 & 0 & 0 & 7 \qi + 7 \qj + \qk\\ 
+7 + 4\qi + 8 \qj + 9 \qk & 0 & 0 & 0 & 7 + 2\qi + 2 \qj + 1 \qk\\ 
+7 -6 \qi -7 \qj -8 \qk & 8 -3 \qi -7 \qk & -7 \qi -7 \qj -1 \qk & 7 -2 \qi -2 \qj -1 \qk & 0
+\end{pmatrix}.
+\end{equation}
+
+As expected, since $ \mathbf{A}$ is Hermitian, so it is its complex adjoint:
+\begin{equation}
+\small
+\rchi_A = 
+\begin{pmatrix}
+  0 &  0 &  0 &  7 - 4  \qi &  7 + 6  \qi &  0 &  0 &  0 & -8 - 9 \qi & 7 + 8 \qi \\
+ 0 &  0 &  0 &  0 &  8 + 3  \qi &  0 &  0 &  0 &  0 & 0 + 7 \qi \\
+ 0 &  0 &  0 &  0 &  0 + 7  \qi &  0 &  0 &  0 &  0 & 7 + 1 \qi \\
+ 7 + 4  \qi &  0 &  0 &  0 &  7 + 2  \qi &  8 + 9  \qi &  0 &  0 &  0 & 2 + 1 \qi \\
+ 7 - 6  \qi &  8 - 3  \qi &  0 - 7  \qi &  7 - 2  \qi &  0 & -7 - 8  \qi &  0 - 7  \qi & -7 - 1  \qi & -2 - 1 \qi & 0 \\
+-0 & -0 & -0 &  8 - 9  \qi & -7 + 8  \qi &  0 &  0 &  0 &  7 + 4 \qi & 7 - 6 \qi \\
+-0 & -0 & -0 & -0 & -0 + 7  \qi &  0 &  0 &  0 &  0 & 8 - 3 \qi \\
+-0 & -0 & -0 & -0 & -7 + 1  \qi &  0 &  0 &  0 &  0 & 0 - 7 \qi \\
+-8 + 9  \qi & -0 & -0 & -0 & -2 + 1  \qi &  7 - 4  \qi &  0 &  0 &  0 & 7 - 2 \qi \\
+ 7 - 8  \qi & -0 - 7  \qi &  7 - 1  \qi &  2 - 1  \qi & -0 &  7 + 6  \qi &  8 + 3  \qi &  0 + 7  \qi &  7 + 2 \qi & 0
+\end{pmatrix}.
+\end{equation}
+
+Since the matrix $\rchi_A$ is complex-valued and Hermitian, it is diagonalizable by a unitary matrix $\mathbf{\Phi}$.
+
+\begin{equation}
+\begin{aligned}
+\small
+\mathbf{V} = \left(\begin{matrix}
+0.4 & 0.610 +0.06\qj +0.04\qk & 0 \\
+0.300 -0.1\qi -0.09\qj -0.1\qk & -0.130 +0.16\qi +0.14\qj +0.17\qk & -0.300 +0.06\qi -0.16\qj +0.61\qk \\
+0.290 -0.1\qi -0.09\qj -0.1\qk & -0.130 +0.16\qi +0.13\qj +0.17\qk & 0.300 -0.06\qi +0.17\qj -0.63\qk \\
+0.190 -0.21\qi -0.19\qj -0.2\qk & -0.440 -0.22\qi -0.26\qj -0.27\qk & 0 \\
+0.000 +0.39\qi +0.38\qj +0.4\qk & -0.140 -0.1\qi -0.11\qj -0.13\qk & 0 \\
+\end{matrix}\right. \\
+\small
+\left.\begin{matrix}
+-0.410 -0.270\qj -0.120\qk & 0.460-0.030\qj -0.040\qk \\
+0.150 +0.09\qi +0.290\qj +0.320\qk & 0.280 +0.05\qi +0.040\qj +0.020\qk \\
+0.150 +0.09\qi +0.280\qj +0.310\qk & 0.280 +0.05\qi +0.040\qj +0.020\qk \\
+0.140 -0.16\qi -0.210\qj -0.410\qk & 0.400 +0.15\qi +0.140\qj +0.100\qk \\
+0.240 -0.03\qi +0.100\qj -0.010\qk & 0.430 -0.24\qi -0.300\qj -0.280\qk \\
+\end{matrix}\right)
+\end{aligned}
+\end{equation}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.3\linewidth]{thesis/Figures/degenerate_qgft_graph.pdf}
+\caption{Caption}
+\label{fig:degenerate_qgft_graph}
+\end{figure}
+\end{example}
 
 \subsection{A more general sufficient condition}
 A promising thread may be found, however, in the work \textit{Block diagonalization and eigenvalues}, by Eisenfeld \cite{eisenfeld1976block}, from which the following theorem is taken.
