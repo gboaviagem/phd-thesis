@@ -59,6 +59,13 @@ The paper \emph{``The Cosine Number Transform: A Graph Signal Processing Approac
 % \item investigar cen\'arios modelados por grafos com pesos quaterni\^onicos, bem como as dificuldades alg\'ebricas ou computacionais oriundas da n\~ao-comutatividade dos quat\'ernios.
 % \end{itemize}
 
+\section{Notation}
+The use of symbols is a great way to communicate ideas concisely. However, instead of improving communication, they may make it cumbersome or even not communicate at all if the reader is not adequately familiar with them. Let us go through the main notation in this thesis, to avoid confusion instead of clarity.
+
+Simple numbers, either real-, complex- or quaternion-valued, are represented in italics, as in $q$. Numerical sets (and the related fields or skew-fields) are denoted using blackboard bold face (such as $\mathbb{R}$). Vectors and matrices are written with bold face: the former with lower case ($\mathbf{v} \in \mathbb{R}^{n}$), and the latter with upper case ($\mathbf{V} \in \mathbb{R}^{n \times n}$).
+
+The function $\mathrm{diag}(\cdot)$ has context-dependent meaning: when the argument is a matrix, it returns the main diagonal as a column vector; whereas when it is a vector, it produces a diagonal matrix with this vector in its main diagonal.
+
 
 \chapter{A review on quaternion algebra and its Fourier transform}
 \label{ch:reviewQuat}
@@ -125,16 +132,16 @@ Similarly, to find $ \qj \qi $,
 - \qk &=  \qj \qi. \\
 \end{aligned}
 \end{equation}
-Figure \ref{fig:quatmult} depicts the order in which the product between two elements of the canonical basis yields the third, with positive sign. The most relevant consequence, therefore, of (\ref{eq:fund_rel}), is that the quaternion product is \textit{non commutative}. In fact, it is the first non-commutative normed division algebra in history \cite{kleiner2007history}.
+Figure \ref{fig:quatmult} depicts the order in which the product between two elements of the canonical basis yields the third, with positive sign. The most relevant consequence, therefore, of (\ref{eq:fund_rel}), is that the quaternion product is \textit{noncommutative}. In fact, it is the first noncommutative normed division algebra in history \cite{kleiner2007history}.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.2\linewidth]{Figures/quaternion_multiplication.pdf}
-	\caption{Diagrama ilustrando a regra de multiplica\c c\~ao entre as unidades imagin\'arias $ \qi $, $ \qj $ e $ \qk $.}
+	\caption{Illustration of the multiplicatione rule between the imaginary units $ \qi $, $ \qj $ e $ \qk $.}
 	\label{fig:quatmult}
 \end{figure}
 
-The exploration of the quaternion multiplication rules gives rise to a useful property, related to complex numbers and elements from the quaternion canonical basis. In particular, the product between $\qj$ and any number $x = a + b \qi \in \mathbb{C}$ satisfies $\qj x = \overline{x} \qj$, since
+The exploration of the quaternion multiplication rules gives rise to a useful property, related to products between complex numbers and elements from the quaternion canonical basis. In particular, the product between $\qj$ and any complex number $x = a + b \qi , \ a, b \in \mathbb{R}$, satisfies $\qj x = \overline{x} \qj$, since
 \begin{equation}
 \label{eq:commutej}
 \begin{aligned}
@@ -142,31 +149,18 @@ The exploration of the quaternion multiplication rules gives rise to a useful pr
 &= (x_r - x_i \qi) \qj = \overline{x} \qj.
 \end{aligned}
 \end{equation}
+This will come up a couple of times during manipulations in this thesis.
 
-% Moreover, $\qi$, $\qj$ and $\qk$ behave under the usual product in the same way the orthonormal base of $\mathbb{R}^3$ does with respect to the cross product, i.e. 
-
-% \begin{equation}
-% \mu_1 \mu_2 = \mu_3
-% \end{equation}
-
-% \noindent if and only if $(\mu_1, \mu_2, \mu_3)$ is a cyclical permutation of $(\qi, \qj, \qk)$ and
-
-% \begin{equation}
-% \mu_1 \mu_2 = -\mu_3
-% \end{equation}
-
-% \noindent otherwise.
-
-Pode-se compreender $\qi, \qj$ e $\qk$ como unidades imagin\'arias ortogonais, gerando o espa\c co (tridimensional) das \emph{partes imagin\'arias} dos quat\'ernios,
+The elements $\qi, \qj$ e $\qk$ may be perceived as orthogonal imaginary units, generating the 3D space of quaternion \textit{imaginary parts},
 \begin{equation}
 \qV (q) = b\qi + c\qj + d\qk.
 \end{equation}
-A \emph{parte real} de um quat\'ernio \emph{q} \'e, naturalmente, definida como
+The \emph{real part} of a quaternion \emph{q} is defined as
 \begin{equation}
 S(q) = a.
 \end{equation}
 
-A parte imagin\'aria \'e comumente tamb\'em chamada de \emph{parte vetorial}, enquanto a parte real pode ser referida como \emph{parte escalar}. Um quat\'ernio com parte real nula \'e dito \emph{puro} --- o conjunto dos quais pode ser representado por $\qV(\mathbb{H})$ ---, e pode-se definir o produto vetorial entre quat\'ernios puros em analogia \`aquele usado em $\mathbb{R}^3$, i.e se $v_1 = b_1\qi + c_1\qj + d_1\qk$ e $v_2 = b_2\qi + c_2\qj + d_2\qk$, ent\~ao
+The imaginary part is usually referred to as \textit{vector part}, while the real part may also be called \textit{scalar part}. A quaternion with null real part is said to be \textit{pure} --- the set of which is represented by $\qV(\mathbb{H})$. The product between pure quaternions may be written similarly to that between $\mathbb{R}^3$ vectors, i.~e. if $v_1 = b_1\qi + c_1\qj + d_1\qk$ and $v_2 = b_2\qi + c_2\qj + d_2\qk$, then
 \begin{equation}
 v_1 \times v_2 = 
 \begin{vmatrix}
@@ -176,23 +170,25 @@ b_2 & c_2 & d_2
 \end{vmatrix}.
 \end{equation}
 
-Pela semelhan\c ca entre o conjunto $ \mathbb{R}^3 $, munido do produto vetorial, e o conjunto dos quat\'ernios puros, munido do produto vetorial entre quat\'ernios, eventualmente iremos nos referir a $\qi, \qj$ e $\qk$ como \emph{eixos}. O termo invoca a interpreta\c c\~ao destas unidades imagin\'arias como sendo eixos coordenados do espa\c co tridimensional de quat\'ernios puros.
+Based on the similarity between the $ \mathbb{R}^3 $ set, equipped with the cross product, and the set of pure quaternions, equipped with their quaternion product, it is usual to refer to $\qi, \qj$ and $\qk$ as \emph{axis}. The term references the interpretation of theses imaginary units as being coordinate axis in the 3D space of pure quaternions.
 
-A analogia com as opera\c c\~oes vetoriais em $\mathbb{R}^3$ aplica-se tamb\'em \`a defini\c c\~ao de produto interno entre quat\'ernios puros $v_1 = b_1\qi + c_1\qj + d_1\qk$ e $v_2 = b_2\qi + c_2\qj + d_2\qk$, a saber,
+The analogy with the $\mathbb{R}^3$ vector operations also extends to the definition of inner product between pure quaternions $v_1 = b_1\qi + c_1\qj + d_1\qk$ and $v_2 = b_2\qi + c_2\qj + d_2\qk$:
 \begin{equation}
 \langle v_1, v_2 \rangle =
 b_1 b_2 + c_1 c_2 + d_1 d_2.
 \end{equation}
 
-A soma e o produto entre quat\'ernios permitem a distributividade (do produto em rela\c c\~ao \`a soma) e a associatividade, bastando respeitar as rela\c c\~oes em (\ref{eq:fund_rel}). Ou seja, se $q_1 = a_1 + b_1\qi + c_1\qj + d_1\qk$ e $q_2 = a_2 +  b_2\qi + c_2\qj + d_2\qk$, ent\~ao a soma \'e simplesmente dada por
+The quaternion multiplication distributes over quaternion addition
+% this english sentence is right: https://en.wikipedia.org/wiki/Distributive_property
+and is also associative. That is, if $q_1 = a_1 + b_1\qi + c_1\qj + d_1\qk$ and $q_2 = a_2 +  b_2\qi + c_2\qj + d_2\qk$, then their sum is simply
 \begin{equation}
 q_1 + q_2 = (a_1 + a_2) + (b_1 + b_2)\qi + (c_1 + c_2)\qj + (d_1 + d_2)\qk,
 \end{equation}
-enquanto o produto \'e
+whereas their product is
 \begin{equation}
 \label{eq:q_prod}
 \begin{aligned}
-q_1 q_2 = &  \ (a_1 + b_1\qi + c_1\qj + d_1\qk) (a_2 +  b_2\qi + c_2\qj + d_2\qk)  \\ 
+q_1 q_2 = &  \ (a_1 + b_1\qi + c_1\qj + d_1\qk) (a_2 +  b_2\qi + c_2\qj + d_2\qk)  \\
 = & \ (a_1 a_2 - b_1 b_2 - c_1 c_2 - d_1 d_2)  \\
 & + \qi (b_1 a_2 + a_1 b_2 - d_1 c_2 + c_1 d_2)  \\
 & + \qj (c_1 a_2 + d_1 b_2 + a_1 c_2 - b_1 d_2)  \\
@@ -200,7 +196,7 @@ q_1 q_2 = &  \ (a_1 + b_1\qi + c_1\qj + d_1\qk) (a_2 +  b_2\qi + c_2\qj + d_2\qk
 \end{aligned}
 \end{equation}
 
-Finalmente, pode-se notar que o produto entre quat\'ernios em  (\ref{eq:q_prod}) pode ser escrito em termos das partes escalar e vetorial, como
+Finally, it is possible to write the quaternion product in (\ref{eq:q_prod}) as a function of the operands scalar and vector parts,
 \begin{equation}
 \label{eq:prod_vectors}
 \begin{aligned}
@@ -208,57 +204,63 @@ q_1 q_2 = & \ S(q_1)S(q_2) - \langle\qV(q_1), \qV(q_2)\rangle \\
 & + S(q_1) \qV(q_2) + S(q_2)\qV(q_1) + \qV(q_1) \times \qV(q_2).
 \end{aligned}
 \end{equation}
-Da falta de comutatividade no produto vetorial, v\^e-se nesta equa\c c\~ao mais uma demonstra\c c\~ao de que o produto entre quat\'ernios \'e n\~ao-comutativo.
+The lack of commutativity in the cross product is another demonstration of the fact that quaternion multiplication is noncommutative.
 
-A conjuga\c c\~ao de um quat\'ernio $ q $, assim como nos complexos, \'e obtida pela troca de sinal de sua parte vetorial, $ \bar{q} \overset{\Delta}{=} S(q) - V(q) $. A defini\c c\~ao de norma, por sua vez, assemelha-se \`a de vetores em $ \mathbb{R}^4 $: $ |q| \overset{\Delta}{=} \sqrt{a^2 + b^2 + c^2 + d^2} $. Do exposto, e de (\ref{eq:prod_vectors}), percebe-se que $ |q|^2 = \bar{q} q = q \bar{q} $. Um quat\'ernio \'e \emph{unit\'ario} se $ |q| = 1 $, e o inverso de um quat\'ernio \'e encontrado em termos de seu conjugado e norma atrav\'es de
+Quaternion conjugation, as defined in the complex numbers, is obtained changing the sign of the imaginary part: $ \bar{q} \overset{\Delta}{=} S(q) - V(q) $. The quaternion \textit{norm} is defined as $\Vert q \Vert \overset{\Delta}{=} a^2 + b^2 + c^2 + d^2 = q \bar{q} = \bar{q} q$, whereas the \textit{modulus} of $q$ \cite{ell2014quaternion} is
 \begin{equation}
-q^{-1} = \frac{\bar{q}}{|q|^2}.
+\label{eq:modulusq}
+|q| \overset{\Delta}{=} \sqrt{a^2 + b^2 + c^2 + d^2} = \Vert q \Vert^{\nicefrac{1}{2}}.
 \end{equation}
 
-Da analogia entre os quat\'ernios puros e os elementos de $ \mathbb{R}^3 $, \'e natural falar em \emph{perpendicularidade} entre quat\'ernios puros. Dados $ \qmu,  \qnu \in \qV(\mathbb{H})$, percebe-se que s\~ao \emph{ortogonais} (i.~e. est\~ao associados a vetores ortogonais de $ \mathbb{R}^3 $) --- escreve-se $ \qmu \perp \qnu $ --- se e somente se
+A \textit{unit} quaternion has, by definition, unit norm, and the norm definition also leads to the quaternion multiplicative inverse,
+\begin{equation}
+q^{-1} = \frac{\bar{q}}{\Vert q \Vert}.
+\end{equation}
+
+From the analogy between pure quaternions and the elements in $ \mathbb{R}^3 $, the idea of perpendicularity between pure quaternions presents itself naturally. Given $ \qmu,  \qnu \in \qV(\mathbb{H})$, they are said orthogonal --- we write $ \qmu \perp \qnu $ --- if and only if
 \begin{equation}
 S(\qmu \qnu) = \langle \qmu, \qnu \rangle = 0.
 \tag{$ \iff \qmu \perp \qnu $}
 \end{equation}
-Uma vez que, para dois quat\'ernios puros, unit\'arios e ortogonais $ \qmu $ e $ \qnu $, tem-se de (\ref{eq:prod_vectors}) que $ \qmu \qnu  = \qmu \times \qnu$, ent\~ao $ \qmu \qnu \perp \qmu $ e $ \qmu \qnu \perp \qnu $. Como $ (\qmu, \qnu, \qmu \qnu) $ \'e uma tripla de quat\'ernios puros, unit\'arios e ortogonais, eles formam uma base para $ \qV (\mathbb{H}) $. \'E poss\'ivel, portanto, reescrever (\ref{eq:q}) como
+For two orthogonal unit pure quaternions $ \qmu $ and $ \qnu $, it follows from (\ref{eq:prod_vectors}) that $ \qmu \qnu  = \qmu \times \qnu$, therefore $ \qmu \qnu \perp \qmu $ and $ \qmu \qnu \perp \qnu $. Since $ (\qmu, \qnu, \qmu \qnu) $ is a triplet of orthogonal pure unit quaternions, they form a basis for $ \qV (\mathbb{H}) $. Hence it is possible to rewrite (\ref{eq:q}) as
 \begin{equation}
 \label{eq:quat_generalizado}
 q = a + b'\qmu + c'\qnu + d'\qmu \qnu,
 \end{equation}
 $a, b', c', d' \in \mathbb{R}$,
-que representa um \emph{quat\'ernio generalizado}. Os ditos \emph{quat\'ernios de Hamilton} s\~ao aqueles escritos em termos da base can\^onica $ (1, \qi, \qj, \qk) $.
+which represents the so called \emph{generalized quaternion}. The \emph{classical Hamiltonian quaternions} are those written in terms of the canonical basis $ (1, \qi, \qj, \qk) $.
 
 
-Al\'em da forma cartesiana em (\ref{eq:q}), os quat\'ernios permitem dois tipos de formas polares. A \emph{forma de Euler} \cite{ell2014quaternion} de um quat\'ernio \'e comumente expressa como
+Besides the cartesian representation (\ref{eq:q}), quaternions allow the so called \emph{Euler form} \cite{ell2014quaternion}, a polar representation commonly expressed as
 \begin{equation}
 \label{eq:euler}
 q = |q| e^{\qmu \theta} = |q|\cos \theta + |q|\qmu \sen \theta,
 \end{equation}
-em que $ \qmu $ \'e um quat\'ernio puro unit\'ario, paralelo \`a parte vetorial de $ q $.
+in which $ \qmu $ is a pure unit quaternions, parallel to the vector part of $ q $.
 
-Outra forma polar encontrada na literatura \cite{flamant2017time} \'e
-\begin{equation}
-q = |q| \exp (\qi \theta) \exp (-\qk \chi) \exp (\qj \varphi),
-\end{equation}
-em que os par\^ametros de fase, chamados de \^angulos de Euler, s\~ao \emph{quase unicamente} definidos sob o intervalo $ (\theta, \chi, \varphi) \in [-\pi/2, \pi/2] \times [-\pi/4, \pi/4] \times [-\pi, \pi[ $. Quando $ \chi = \pm \pi/4 $, o que equivale ao fen\^omeno do \emph{gimbal lock}, a fase do quat\'ernio n\~ao \'e bem definida.
+% Outra forma polar encontrada na literatura \cite{flamant2017time} \'e
+% \begin{equation}
+% q = |q| \exp (\qi \theta) \exp (-\qk \chi) \exp (\qj \varphi),
+% \end{equation}
+% em que os par\^ametros de fase, chamados de \^angulos de Euler, s\~ao \emph{quase unicamente} definidos sob o intervalo $ (\theta, \chi, \varphi) \in [-\pi/2, \pi/2] \times [-\pi/4, \pi/4] \times [-\pi, \pi[ $. Quando $ \chi = \pm \pi/4 $, o que equivale ao fen\^omeno do \emph{gimbal lock}, a fase do quat\'ernio n\~ao \'e bem definida.
 
-Como consequ\^encia de (\ref{eq:euler}), \'e importante notar que todo quat\'ernio unit\'ario puro \'e uma raiz quadrada da unidade. Seja, por exemplo, o quat\'ernio unit\'ario puro $ \mathbf{\nu} $. De (\ref{eq:euler}),
+As a remarkable consequence of (\ref{eq:euler}), it follows that every pure unit quaternion is a square root of unity. For instance, let $ \mathbf{\nu} $ be a unit pure quaternion. From (\ref{eq:euler}),
 \begin{equation}
 %\label{key}
 \mathbf{\nu} = |\mathbf{\nu}| e^{\mathbf{\nu} \theta},
 \end{equation}
-mas como $ |\mathbf{\nu}| = 1 $, ent\~ao
+but since $ |\mathbf{\nu}| = 1 $, then
 \begin{equation}
 %\label{key}
 \mathbf{\nu} = e^{\mathbf{\nu} \theta} \Rightarrow \theta = \pi,
 \end{equation}
-portanto,
+hence,
 \begin{equation}
 %\label{key}
 \mathbf{\nu}^2 = \left( e^{\mathbf{\nu}\pi} \right)^2 = e^{\mathbf{\nu} 2\pi} = 1.
 \end{equation}
 
-Esta propriedade de todo quat\'ernio puro unit\'ario $ \qmu $ leva ao fato de que os n\'umeros da forma $ a + \qmu b  $ formam um conjunto isomorfo aos n\'umeros complexos. Por esta raz\~ao, representaremos este conjunto por $ \mathbb{C}_{\qmu} \overset{\Delta}{=} \{ a + \qmu b \ |\  a, b \in \mathbb{R} \}$ ($ \mathbb{C}_{\qi} $ indica, portanto, o conjunto usual dos complexos).
+This property leads to the conclusion that numbers such as $ a + \qmu b  $ form an isomorphism with the complex numbers. For this reason, the set composed by such numbers is represented by $ \mathbb{C}_{\qmu} \overset{\Delta}{=} \{ a + \qmu b \ |\  a, b \in \mathbb{R} \}$ ($ \mathbb{C}_{\qi} $ indica, portanto, o conjunto usual dos complexos).
 
 Todo quat\'ernio $ q = a + b\qi + c\qj + d\qk \in \mathbb{H} $ pode ser representado segundo sua \emph{decomposi\c c\~ao simpl\'etica},
 \begin{equation}
@@ -334,7 +336,7 @@ Given the matrix $ \mathbf{A} \in \mathbb{H}^{n \times n} $, the following sente
 Differently from other representations of quaternion matrices in $ \mathbb{C} $ or $ \mathbb{R} $, the complex adjoint allows to establish an important relation between the spectra of $ \rchi_{A} $ and $ \mathbf{A} $, as will soon be discussed.
 
 \subsection{Eigenvalues}
-Since quaternion multiplication is non-commutative, it is necessary to distinguish between \textit{left} and \textit{right} eigenvalues of a given matrix $ \mathbf{A} \in \mathbb{H}^{n \times n} $,
+Since quaternion multiplication is noncommutative, it is necessary to distinguish between \textit{left} and \textit{right} eigenvalues of a given matrix $ \mathbf{A} \in \mathbb{H}^{n \times n} $,
 \begin{align*}
 \mathbf{A} \mathbf{v} &= \mathbf{v} \lambda, \tag{right} \\
 \mathbf{A} \mathbf{v} &= \lambda \mathbf{v}.  \tag{left}
@@ -483,10 +485,7 @@ O teorema \ref{th:02} relaciona a autodecomposi\c c\~ao de uma matriz e de sua c
 
 \begin{theorem}[\cite{zhang1997quaternions}]
 \label{th:02}
-Toda matriz $ A \in \mathbb{H}^{n \times n} $ tem exatamente $ n $ autovalores complexos
-%(\`a direita),
-%que s\~ao iguais aos autovalores de $ \rchi_A $, sua complexa adjunta,
-com parte imagin\'aria n\~ao-negativa. Estes s\~ao ditos os \emph{autovalores padr\~ao} de $ \mathbf{A} $ e s\~ao um subconjunto dos $ 2n $ autovalores de $ \rchi_A $.
+Every matrix $ A \in \mathbb{H}^{n \times n} $ has exactly $ n $ right eigenvalues which are complex numbers with nonnegative imaginary parts. These are called the \textbf{standard eigenvalues} of $ \mathbf{A} $ and are a subset of the $ 2n $ eigenvalues of $ \rchi_A $.
 \end{theorem}
 
 \begin{proof}
@@ -1820,7 +1819,7 @@ An application free from this inconvenience is the analysis of color images with
 \text{2D-QDFT}\{\mathbf{X} \} = \mathbf{F} \mathbf{X} \mathbf{F}^T.
 \end{equation}
 
-One should notice that the transformation in (\ref{eq:2DQDFT}) does \textit{not} consist on the successive application of the \textit{same} QDFT to the rows and columns of matrix $ \mathbf{X} $. Due to the non-commutative nature of quaternion multiplication, as it was previously mentioned, different transforms are obtained when choosing between left- or right-multiplications, even though the transform axis is kept unchanged. The operation in (\ref{eq:2DQDFT}) performs a \textit{left} QDFT on the columns and a \textit{right} QDFT on the rows, as it is clear from (\ref{eq:2DQDFT-01}). A 2D-QDFT consisting of the \textit{same} transformation applied in both dimensions must use multiplications with the same orientation, e.~g.
+One should notice that the transformation in (\ref{eq:2DQDFT}) does \textit{not} consist on the successive application of the \textit{same} QDFT to the rows and columns of matrix $ \mathbf{X} $. Due to the noncommutative nature of quaternion multiplication, as it was previously mentioned, different transforms are obtained when choosing between left- or right-multiplications, even though the transform axis is kept unchanged. The operation in (\ref{eq:2DQDFT}) performs a \textit{left} QDFT on the columns and a \textit{right} QDFT on the rows, as it is clear from (\ref{eq:2DQDFT-01}). A 2D-QDFT consisting of the \textit{same} transformation applied in both dimensions must use multiplications with the same orientation, e.~g.
 \begin{equation}
 \label{eq:2DQDFTv2}
 \mathbf{F} \left( \mathbf{F}\mathbf{X}^T \right)^T.
@@ -2213,7 +2212,7 @@ On the left-hand side of the equation, we find $\rchi_A$ and one of its eigenvec
 
 So far we are able to obtain $\mathbf{V}$ from $\mathbf{A}$, using the complex adjoint form to solve the quaternion diagonalization handling only complex-valued matrices. However, the question of how to get $\mathbf{V}^{-1}$, if it exists, poses itself imediately. After all, the direct QGFT must have the shift operator's eigenvectors as \textit{rows} of the transform matrix, since the graph signals are represented as column vectors. Besides, the QGFT must be invertible, so regardless of the representation of graph signals, one must be able to compute the inverse of $\mathbf{V}$. Let us address this point.
 
-\subsection{Inversion of the eigenvector matrix}
+\subsection{Inversion of the eigenvector matrix and frequency ordering}
 The inversion of quaternion matrices have been tackled by many researchers, yielding a few algorithms aiming at solving it. \red{(INSERT REFERENCES)} All seemed too costly to practical use in medium to large graphs. Based on theorems \ref{th:equiv01} and \ref{th:equiv02},
 the algorithm \ref{alg:qinv} is proposed to provide a reasonable balance between processing speed and broad applicability.
 
@@ -2260,146 +2259,45 @@ Compute the inverse of a quaternion-valued matrix, if a sufficient condition for
 
 At this point, all steps required to generate the QGFT, assuming the graph adjacency matrix is diagonalizable, have been addressed. However, the transform still remains of little use until a clear definition of frequency ordering is presented, otherwise the lack of sense of low and high frequencies make the signal spectrum meaningless.
 
-Fortunately, thanks to the fact that the quaternions form a \textit{normed algebra}, one may use the total variation as a metric for signal difference, or distance. Similarly to what was defined in GSP, in (\ref{eq:tv_graphs}), in QGSP the frequency of a quaternion graph signal $\mathbf{s}$ is measured by its graph total variation,
+Since the quaternions form a normed algebra --- and the reader may refer back to (\ref{eq:modulusq}) --- it is natural to borrow from classical GSP the definition of the graph total variation as a \textit{metric} for frequency. In fact, even the elegant property of frequency ordering in the complex plane follows from GSP to QGSP. Let us see why.
+
+Let $ \mathbf{A} \in \mathbb{H}^{n \times n}$ be diagonalizable, with standard eigenvalues ordered like so
 \begin{equation}
-\label{eq:tv_graphs_q}
-TV_G(\mathbf{s}) \overset{\Delta}{=} \Vert \mathbf{A} \mathbf{s} - \mathbf{s}\Vert_2 = \sqrt{(\mathbf{A} \mathbf{s} - \mathbf{s})^H (\mathbf{A} \mathbf{s} - \mathbf{s})}.
+\label{eq:eig_order_q}
+|\lambda_0| \leq |\lambda_1| \leq \dots \leq |\lambda_{N-1}| \overset{\Delta}{=} |\lambda_{max}|,
 \end{equation}
-\red{(em GSP eu usei l1-norm, mas no gspx eu usei l2-norm. Quais as consequencias?)}
-
-In order to interpret the spectrum domain, the eigenvalues are sorted in ascending order of their respective eigenvector total variation: this sorts the frequency from lowest to highest.
-
-\subsection{Example: spectral analysis of quaternion graph signal}
-
-Let us walk through an example on spectral analysis with real-world data using QGSP\footnote{All computations in this chapter were performed using \texttt{gspx}, an open-source Python package dedicated to implement the core concepts and tools of QGSP. It constitutes a contribution of this thesis and is available at \url{https://github.com/gboaviagem/gspx}.}. The graph signal will be generated using UK towns' weather data, specifically humidity, atmospheric pressure, temperature and wind speed. The data was fetched from the Open Weather Map API\footnote{The API is accessible, as of August 2022, at the address \url{https://home.openweathermap.org/}.}, in April 20th 2022, at approximately 13:00 GMT. The latitude and longitude values of UK towns originate from the LatLong.Net database\footnote{Accessible, as of August 2022, at the address \url{https://www.latlong.net/category/towns-235-55.html}.}.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.3\linewidth]{thesis/Figures/uk_qgsp_graph.pdf}
-	\caption{Graph created using the towns in England.}
-	\label{fig:uk_graph}
-\end{figure}
-
-The graph was created using a nearest-neighbors approach, as in (\ref{eq:weights}), since the nodes possess a clear relation to geographic location. The edge weights were defined using the following steps:
-\begin{itemize}[noitemsep]
-\item Compute a real-valued nearest-neighbors adjacency matrix based on the latitude and longitude of UK towns (graph nodes), using the ten closest neighbors to each graph node. At this point, the real-valued edge weights correspond to the euclidian distances between nearby towns \textit{i} and \textit{j}, represented by ${d}(i, j)$.
-\item For each pair of connected nodes from the real-weighted graph in the previous step, compute the \textbf{absolute difference} in \textit{humidity}, \textit{temperature} and \textit{wind speed}, represented respectively by ${h}(i, j)$, ${t}(i, j)$ and ${w}(i, j)$.
-\item For each pair of connected nodes, create the quaternion $q(i, j) = {d}(i, j) + \qi {h}(i, j) + \qj {t}(i, j) + \qk {w}(i, j)$ and set as edge weight the value
+associated to the eigenvectors $ (\mathbf{v}_i)_{i=0,\dots,n-1} $.
+Now, let us notice that the graph total variation, defined in (\ref{eq:tv_graphs}), does not have to use $ \ell_1 $-norm for it to quantify the notion of frequency. In fact, let us use the general $ \ell_p $-norm for a moment, with $p \geq 1$, represented as $ \Vert \mathbf{v}\Vert_p \overset{\Delta}{=} \left(\sum_{k=0}^{n-1} |v_k|^p\right)^{1/p} $, for $\mathbf{v} \in \mathbb{H}^n$, and define the graph total variation of the graph signal $\mathbf{s}$ as
 \begin{equation}
-% \label{eq:}
-\mathbf{A}_{i, j} = \exp^{-1} \left(\frac{q}{\theta} \right).
+\label{eq:tv_graphsq}
+TV_{G, p}(\mathbf{s}) \overset{\Delta}{=} \left\Vert \mathbf{s} - \frac{1}{|\lambda_{max}|}\mathbf{A} \mathbf{s} \right\Vert_p.
 \end{equation}
-For the current example, it was chosen $\theta = 0.5$.
-\end{itemize}
-Figure \ref{fig:uk_graph} depicts a representation of the UK Town Graph, with quaternion-valued edge weights. A total of 177 towns were used, and the reader may find the full dataset at \url{https://github.com/gboaviagem/gspx/blob/main/resources/uk_weather_at_20Apr202213pm.gz}. The first few rows, so it becomes clear how the data is organized, are displayed in Table \ref{tab:02}.
 
-\begin{table}
-\center
-\captionof{table}{Sample of the dataset containing UK towns' weather data.}
-\label{tab:02}
-\begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} cccc}
-\toprule
-& \textbf{town} & \textbf{latitude} & \textbf{longitude} & \textbf{humidity (\%)} \\
-\midrule
-1 & Troon, Scotland & 55.540001 & -4.66 & 55\\
-2 & St.Asaph, Wales & 53.257999 & -3.442 & 59\\
-3 & Stirling, Scotland & 56.1166 & -3.9369 & 53\\
-4 & Welling, Bexley, London & 51.4566 & 0.1056 & 39 \\
-5 & Bonnybridge, Scotland & 56.003227 & -3.888634 & 50\\
-\midrule
-\end{tabular*}
-\begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} cccc}
-& \textbf{pressure (hPa)} & \textbf{temp (K)} & \textbf{wind speed (m/s)} & \textbf{wind degrees} \\
-\midrule
-1 & 1018 & 289.19 & 3.6 & 220 \\
-2 & 1017 & 288.49 & 3.71 & 99 \\
-3 & 1018 & 288.15 & 3.72 & 114 \\
-4 & 1014 & 290.09 & 8.23 & 80 \\
-5 & 1018 & 288.0 & 3.53 & 106 \\
-\bottomrule
-\end{tabular*}
-\end{table}
+If we take the important step of scaling the eigenvectors $\mathbf{v}_i$ so they have unit $\ell_p$-norm, i.~e. making $\Vert \mathbf{v}_i\Vert_p = 1$, then the associative and distributive properties of quaternion multiplication allow us to do
 
-With the quaternion-valued adjacency matrix $\mathbf{A}$ at hand, it was verified that this quaternion graph shift operator (QGSO) was diagonalizable and the direct ($\mathbf{V}^{-1}$) and inverse ($\mathbf{V}$) QGFT matrices were computed. Figure \ref{fig:uk_graph_tv} shows the total variation of the eigenvectors associated with the adjacency matrix eigenvalues.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_qgsp_sig.pdf}
-	\caption{Each component of the quaternion graph signal.}
-	% \label{fig:graph_tv_1}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_qgsp_tv1.pdf}
-	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
-	\label{fig:graph_tv_1}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_qgsp_spectrumsig_norm1.pdf}
-	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
-	% \label{fig:graph_tv_1}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_ss1_abs.pdf}
-	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
-	% \label{fig:graph_tv_1}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_qgsp_tv2.pdf}
-	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
-	\label{fig:graph_tv_2}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_qgsp_spectrumsig_norm2.pdf}
-	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
-	% \label{fig:graph_tv_1}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_ss2_abs.pdf}
-	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
-	% \label{fig:graph_tv_1}
-\end{figure}
-
-One may define a quaternion graph signal as being composed by the four last columns of weather data in UK towns (see Table \ref{tab:02}). That is, each sample corresponds to the quaternion with components $(1, \qi, \qj, \qk)$ respectively equal to humidity, pressure, temperature and wind speed in the given town. The slace disparity between components is removed by scaling each column to be within range $[0, 1]$. A way of visualizing the graph signal is to plot the graph with each node color defined by its quaternion sample: the components $(\qi, \qj, \qk)$ dictate the RGB color channels, whereas the scalar part of the quaternion defined the node alpha value (opacity). Figure \ref{fig:uk_qgsp_graphsig} depicts this form of signal visualization.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.3\linewidth]{thesis/Figures/uk_qgsp_graphsig.pdf}
-	\caption{Quaternion graph signal, visualized in the vertex domain.}
-	\label{fig:uk_qgsp_graphsig}
-\end{figure}
-
-Complementary to the vertex-domain visualization is the spectrum of the signal. This is obtained by the direct QGFT,
 \begin{equation}
-% \label{}
-\widehat{\mathbf{s}} = \mathbf{V}^{-1} \mathbf{s},
+\begin{aligned}
+TV_{G, p}(\mathbf{v}_k) &=
+\left\Vert \mathbf{v}_k - \frac{1}{|\lambda_{max}|} \mathbf{A} \mathbf{v}_k \right\Vert_p =
+\left\Vert\mathbf{v}_k - \mathbf{v}_k \frac{1}{|\lambda_{max}|} \lambda_k \right\Vert_p \\
+&= \left\Vert\mathbf{v}_k \left( 1 -  \frac{1}{|\lambda_{max}|} \lambda_k \right) \right\Vert_p \\
+&=
+\underbrace{\Vert \mathbf{v}_k \Vert_p}_{= 1} \left|1 - \frac{\lambda_k}{|\lambda_{max}|}\right| = \Big| \lambda_k - |\lambda_{max}| \Big| \frac{1}{|\lambda_{max}|}.
+\end{aligned}
 \end{equation}
-and the signal frequency components are shown in Figure \ref{fig:uk_qgsp_spectrumsig}. Figure \ref{fig:uk_qgsp_spectrumsig_abs} provides the reader with a more concise view, making clear this signal has energy concentrated in middle frequencies.
+% Since $(1 -  \nicefrac{1}{|\lambda_{max}|} \lambda_k)$ is just a constant complex factor that multiplies each entry in the vector $\mathbf{v}_k$, its modulus may be taken out of the sum in the $\ell_p$-norm computation,
+What leads to exactly the same frequency ordering obtained in the classical GSP derivation,
+\begin{equation}
+\label{eq:TV_ordering_q}
+\Big| \! \lambda_i  - \! |\lambda_{max}|\Big| \! \leq \! \Big|  \lambda_j  - \! |\lambda_{max}|\Big| \! \! \iff \! \! TV_{G, p}(\mathbf{v}_i) \leq TV_{G, p}(\mathbf{v}_j).
+\end{equation}
 
-\begin{figure*}
-\centering
-\subfloat[\label{fig:uk_qgsp_spectrumsig}]{
-\includegraphics[width=0.7\linewidth]{thesis/Figures/uk_qgsp_spectrumsig.pdf}
-}\\
-\subfloat[\label{fig:uk_qgsp_spectrumsig_abs}]{
-\includegraphics[width=0.7\linewidth]{thesis/Figures/uk_qgsp_spectrumsig_abs.pdf}
-}
-\caption{(a) Spectrum of the graph signal, depicted with (a) splitted components and (b) only with the absolute value.}
-\end{figure*}
+In other words, once the eigenvectors are individually \textit{normalized}, i.~e. scaled to have unit $\ell_p$-norm, then the farther an eigenvalue lies from the point $|\lambda_{max}|$ in the real line of the complex plane, the greater is its eigenvector graph total variation $TV_{G, p}$. By definition, it means the greater is the frequency it represents. Besides, notice how the scaling implies that the value of $TV_{G, p}$ depends solely on the eigenvalues, not on $p$.
 
+In order to interpret the spectrum domain, the eigenvalues are sorted in ascending order of their respective eigenvector total variation: this sorts the frequency from lowest to highest. When not explicitly mentioned, it is assumed a value of $p = 1$ for all occurrences of $\ell_p$-norm.
 
-\section{On the existence of a class of graphs with diagonalizable adjacency matrix}
+\subsection{On the existence of a class of graphs with diagonalizable adjacency matrix}
+
 A relevant topic of discussion, when laying the foundations for QGSP, is to ponder the question on the existence of a class of graphs with diagonalizable shift operators. It is a reasonable point of investigation, since in classical GSP one can confidently take advantage of some classes of graphs to make sure the shift operator is diagonalizable beforehand, which saves time and effort. Some examples are undirected real-weighted graphs and directed ring graphs with equal edge weights.
 
 The reader may notice that undirected quaternion graphs do not possess necessarily a diagonalizable adjacency matrix. Indeed, the fact that $\mathbf{A}$ is symmetric has no effect of proving the diagonalizability of its complex adjoint,
@@ -2425,7 +2323,7 @@ The part of the Theorem about to be verified is: \emph{is it true that Hermitian
 
 \subsection{Does a Hermitian QGSO have unitary eigenvector matrix?}
 
-At this point, an important observation must be made. It is known that every Hermitian complex matrix is diagonalizable by a unitary matrix. In other words, if $\mathbf{M} \in \mathbb{C}^{n \times n}$ and $\mathbf{M} = \mathbf{M}^H$, then there exists a complex matrix $\mathbf{U}$ and a diagonal matrix $\mathbf{\Gamma}$ so that $\mathbf{M} = \mathbf{U} \mathbf{\Gamma} \mathbf{U}^{-1}$ and $\mathbf{U}^{-1} = \mathbf{U}^H$. However, despite the fact one can guarantee that a Hermitian QGSO has a Hermitian complex adjoint matrix, \textit{it is not true that its eigenvector matrix is unitary}.
+It is known that every Hermitian complex matrix is diagonalizable by a unitary matrix. In other words, if $\mathbf{M} \in \mathbb{C}^{n \times n}$ and $\mathbf{M} = \mathbf{M}^H$, then there exists a complex matrix $\mathbf{U}$ and a diagonal matrix $\mathbf{\Gamma}$ so that $\mathbf{M} = \mathbf{U} \mathbf{\Gamma} \mathbf{U}^{-1}$ and $\mathbf{U}^{-1} = \mathbf{U}^H$. However, despite the fact one can guarantee that a Hermitian QGSO has a Hermitian complex adjoint matrix, \textit{it is not true that its eigenvector matrix is necessarily unitary}.
 
 Let $\mathbf{A}$ be a Hermitian (hence diagonalizable) quaternion adjacency matrix, therefore $\mathbf{A} \mathbf{V} = \mathbf{V} \mathbf{\Lambda}$. Since $\rchi_{A}$ is complex-valued and Hermitian, its eigenvector matrix (let us say, $\mathbf{\Phi}$) is unitary and we may write $\rchi_{A} = \mathbf{\Phi} \mathbf{\Gamma} \mathbf{\Phi}^H$. Each column $\mathbf{\qphi}$ in $\mathbf{\Phi}$, the reader may recall, is written is terms of the simplex and perplex parts (which are complex-valued) of the respective column $\mathbf{v}$ in $\mathbf{V}$:
 \begin{equation}
@@ -2467,15 +2365,17 @@ That is, unless the complex adjoint eigenvector $\mathbf{\qphi}^{(n)} = \big( \m
 % In fact, the eigenvector matrix may even be degenerate, as the following example demonstrates.
 \red{(But I have not found a single counterexample! Is the additional constraint always met?)}
 
-\begin{example}
+\subsection{Numerical example: computing the QGFT matrix}
+
 Let the graph in Figure \ref{fig:degenerate_qgft_graph} have the following adjacency matrix,
 \begin{equation}
+\small
 \mathbf{A} = \begin{pmatrix}
-0 & 0 & 0 & 7 -4 \qi -8 \qj -9 \qk & 7 + 6 \qi + 7 \qj + 8 \qk\\ 
-0 & 0 & 0 & 0 & 8 + 3 \qi + 7 \qk \\ 
-0 & 0 & 0 & 0 & 7 \qi + 7 \qj + \qk\\ 
-7 + 4\qi + 8 \qj + 9 \qk & 0 & 0 & 0 & 7 + 2\qi + 2 \qj + 1 \qk\\ 
-7 -6 \qi -7 \qj -8 \qk & 8 -3 \qi -7 \qk & -7 \qi -7 \qj -1 \qk & 7 -2 \qi -2 \qj -1 \qk & 0
+0 & 0 & 0 & 1 -7\qi -5\qj -1\qk & 6 +3\qi +7\qj +4\qk \\
+0 & 0 & 0 & 0 & 6 +9\qi +2\qj +6\qk \\
+0 & 0 & 0 & 0 & 7 +4\qi +3\qj +7\qk \\
+1 +7\qi +5\qj +1\qk & 0 & 0 & 0 & 7 +2\qi +5\qj +4\qk \\
+6 -3\qi -7\qj -4\qk & 6 -9\qi -2\qj -6\qk & 7 -4\qi -3\qj -7\qk & 7 -2\qi -5\qj -4\qk & 0 \\
 \end{pmatrix}.
 \end{equation}
 
@@ -2484,113 +2384,139 @@ As expected, since $ \mathbf{A}$ is Hermitian, so it is its complex adjoint:
 \small
 \rchi_A = 
 \begin{pmatrix}
-  0 &  0 &  0 &  7 - 4  \qi &  7 + 6  \qi &  0 &  0 &  0 & -8 - 9 \qi & 7 + 8 \qi \\
- 0 &  0 &  0 &  0 &  8 + 3  \qi &  0 &  0 &  0 &  0 & 0 + 7 \qi \\
- 0 &  0 &  0 &  0 &  0 + 7  \qi &  0 &  0 &  0 &  0 & 7 + 1 \qi \\
- 7 + 4  \qi &  0 &  0 &  0 &  7 + 2  \qi &  8 + 9  \qi &  0 &  0 &  0 & 2 + 1 \qi \\
- 7 - 6  \qi &  8 - 3  \qi &  0 - 7  \qi &  7 - 2  \qi &  0 & -7 - 8  \qi &  0 - 7  \qi & -7 - 1  \qi & -2 - 1 \qi & 0 \\
--0 & -0 & -0 &  8 - 9  \qi & -7 + 8  \qi &  0 &  0 &  0 &  7 + 4 \qi & 7 - 6 \qi \\
--0 & -0 & -0 & -0 & -0 + 7  \qi &  0 &  0 &  0 &  0 & 8 - 3 \qi \\
--0 & -0 & -0 & -0 & -7 + 1  \qi &  0 &  0 &  0 &  0 & 0 - 7 \qi \\
--8 + 9  \qi & -0 & -0 & -0 & -2 + 1  \qi &  7 - 4  \qi &  0 &  0 &  0 & 7 - 2 \qi \\
- 7 - 8  \qi & -0 - 7  \qi &  7 - 1  \qi &  2 - 1  \qi & -0 &  7 + 6  \qi &  8 + 3  \qi &  0 + 7  \qi &  7 + 2 \qi & 0
+0 &  0 &  0 &  1 -7 \qi &  6 +3 \qi &  0 &  0 & 0 & -5 -1 \qi &  7 +4 \qi \\
+0 &  0 &  0 &  0 &  6 +9 \qi &  0 &  0 & 0 &  0 &  2 +6 \qi \\
+0 &  0 &  0 &  0 &  7 +4 \qi &  0 &  0 & 0 &  0 &  3 +7 \qi \\
+1 +7 \qi &  0 &  0 &  0 &  7 +2 \qi &  5 +1 \qi &  0 & 0 &  0 &  5 +4 \qi \\
+6 -3 \qi &  6 -9 \qi &  7 -4 \qi &  7 -2 \qi &  0 & -7 -4 \qi & -2 -6 \qi & -3 -7 \qi & -5 -4 \qi &  0 \\
+0 & 0 & 0 &  5 -1 \qi & -7 +4 \qi &  0 &  0 & 0 &  1 +7 \qi &  6 -3 \qi \\
+0 & 0 & 0 & 0 & -2 +6 \qi &  0 &  0 & 0 &  0 &  6 -9 \qi \\
+0 & 0 & 0 & 0 & -3 +7 \qi &  0 &  0 & 0 &  0 &  7 -4 \qi \\
+-5 +1 \qi & 0 & 0 & 0 & -5 +4 \qi &  1 -7 \qi &  0 & 0 &  0 &  7 -2 \qi \\
+7 -4 \qi &  2 -6 \qi &  3 -7 \qi &  5 -4 \qi & 0 &  6 +3 \qi &  6 +9 \qi & 7 +4 \qi &  7 +2 \qi &  0
 \end{pmatrix}.
 \end{equation}
 
-Since the matrix $\rchi_A$ is complex-valued and Hermitian, it is diagonalizable by a unitary matrix $\mathbf{\Phi}$.
-
+Since the matrix $\rchi_A$ is complex-valued and Hermitian, it is diagonalizable by a unitary matrix $\mathbf{\Phi}$. The eigenvalues of $\rchi_A$ are all real-valued and appear in pairs:
 \begin{equation}
-\begin{aligned}
-\small
-\mathbf{V} = \left(\begin{matrix}
-0.4 & 0.610 +0.06\qj +0.04\qk & 0 \\
-0.300 -0.1\qi -0.09\qj -0.1\qk & -0.130 +0.16\qi +0.14\qj +0.17\qk & -0.300 +0.06\qi -0.16\qj +0.61\qk \\
-0.290 -0.1\qi -0.09\qj -0.1\qk & -0.130 +0.16\qi +0.13\qj +0.17\qk & 0.300 -0.06\qi +0.17\qj -0.63\qk \\
-0.190 -0.21\qi -0.19\qj -0.2\qk & -0.440 -0.22\qi -0.26\qj -0.27\qk & 0 \\
-0.000 +0.39\qi +0.38\qj +0.4\qk & -0.140 -0.1\qi -0.11\qj -0.13\qk & 0 \\
-\end{matrix}\right. \\
-\small
-\left.\begin{matrix}
--0.410 -0.270\qj -0.120\qk & 0.460-0.030\qj -0.040\qk \\
-0.150 +0.09\qi +0.290\qj +0.320\qk & 0.280 +0.05\qi +0.040\qj +0.020\qk \\
-0.150 +0.09\qi +0.280\qj +0.310\qk & 0.280 +0.05\qi +0.040\qj +0.020\qk \\
-0.140 -0.16\qi -0.210\qj -0.410\qk & 0.400 +0.15\qi +0.140\qj +0.100\qk \\
-0.240 -0.03\qi +0.100\qj -0.010\qk & 0.430 -0.24\qi -0.300\qj -0.280\qk \\
-\end{matrix}\right)
-\end{aligned}
+\mathrm{diag}(\mathbf{\Gamma}) = \begin{pmatrix}
+-22.83570384 \\
+-22.83570384 \\
+-6.34920255 \\
+-6.34920255 \\
+0 \\
+0 \\
+6.45799327 \\
+6.45799327 \\
+22.72691312 \\
+22.72691312 \\
+\end{pmatrix}.
 \end{equation}
+The next step is to take half the eigenvalues of $\rchi_A$ (the ones with positive imaginary part, plus half the real-valued ones) to obtain the standard eigenvalues of $\mathbf{A}$ and the respective eigenvectors. It is important to take one eigenvalue for each pair, to avoid picking eigenvectors from the same eigenspace. Therefore, $\mathrm{diag}(\mathbf{A}) = (-22.83570384, -6.34920255, 0, 6.45799327, 22.72691312)^T$.
+
+\begin{landscape}
+The chosen eigenvalues will determine the eigenvectors of $\rchi_A$ used to assemble those from $\mathbf{A}$. The resulting eigenvector matrix (with rounded rounded, to fit the page) is
+\begin{equation*}
+\footnotesize
+\mathbf{V} = \left(\begin{matrix}
+-0.24  -0.27\qj +0.16\qk & 0.59  -0.02\qj +0.04\qk & 0  & -0.02  -0.52\qj -0.28\qk & -0.040  +0.38\qj +0.03\qk \\
+-0.17 -0.19\qi -0.22\qj +0.17\qk & -0.31 +0.13\qi +0.09\qj +0.16\qk & -0.410 +0.24\qi +0.39\qj -0.23\qk  & -0.05 +0.01\qi -0.12\qj +0.35\qk & -0.010 +0.05\qi +0.20\qj +0.31\qk \\
+-0.25 -0.12\qi -0.11\qj +0.13\qk & -0.21 +0.14\qi +0.20\qj +0.09\qk & 0.190 -0.40\qi -0.48\qj +0.37\qk  & -0.1 -0.04\qi +0.01\qj +0.31\qk & 0.010 -0.05\qi +0.26\qj +0.21\qk \\
+-0.26 +0.01\qi +0.04\qj +0.25\qk & -0.25 -0.48\qi -0.25\qj -0.06\qk & 0  & 0.36 -0.13\qi +0.30\qj -0.36\qk & -0.110 -0.03\qi +0.27\qj +0.21\qk \\
+0.31 +0.18\qi -0.25\qj -0.52\qk & -0.02 -0.15\qi -0.07\qj -0.09\qk & 0  & 0.07 -0.04\qi +0.10\qj +0.14\qk & 0.380 +0.14\qi +0.55\qj +0.04\qk \\
+\end{matrix}\right)
+\end{equation*}
+
+This matrix passes the inversibility test, since its determinant is $\mathrm{det}(\mathbf{V}) = \mathrm{det}(\rchi_V) = 1 \neq 0$. Not only that, the matrix is also unitary, since the product $\mathbf{V} \mathbf{V}^H$ yields an identity matrix. Therefore, the QGFT matrix is promptly determined.
+
+Figure \ref{fig:simple_example_tv} closes the example, depicting the graph total variation for each normalized eigenvector. The values of $TV_{G, p}$ are \textit{(2, 1.2780384 , 1, 0.71719754, 0.00476406)}, and remain the same as $p$ is changed, following the commentary after (\ref{eq:TV_ordering_q}).
+
+\begin{figure}
+\centering
+\includegraphics[width=0.35\linewidth]{thesis/Figures/simple_example_tv.pdf}
+\caption{Graph total variation of the normalized eigenvectors, as a function of their respective eigenvalues.}
+\label{fig:simple_example_tv}
+\end{figure}
+
+\end{landscape}
 
 \begin{figure}
 \centering
 \includegraphics[width=0.3\linewidth]{thesis/Figures/degenerate_qgft_graph.pdf}
-\caption{Caption}
+\caption{Graph used in the numerical example. The edges are represented by double-headed arrows to indicate the adjacency matrix is not symmetrical.}
 \label{fig:degenerate_qgft_graph}
 \end{figure}
-\end{example}
 
-\subsection{A more general sufficient condition}
-A promising thread may be found, however, in the work \textit{Block diagonalization and eigenvalues}, by Eisenfeld \cite{eisenfeld1976block}, from which the following theorem is taken.
 
-\begin{theorem}[Theorem 3.2 \cite{eisenfeld1976block}]
-Let $\mathbf{M}$ be the $n \times n$ complex-valued block matrix
-\begin{equation}
-\begin{pmatrix}
-\mathbf{E} & \mathbf{F}\\ 
-\mathbf{G} & \mathbf{H}
-\end{pmatrix},
-\end{equation}
-with entries defined on a generic algebra $\mathcal{A}$ and $\mathbf{E}$ and $\mathbf{H}$ having respective orders $p \times p$ and $q \times q$, $p + q = n$.
+% \section{A more general sufficient condition}
+% A promising thread may be found, however, in the work \textit{Block diagonalization and eigenvalues}, by Eisenfeld \cite{eisenfeld1976block}, from which the following theorem is taken.
 
-Now let $\mathbf{R}_1$ be a solution to the equation
-\begin{equation}
-\mathbf{R} (\mathbf{E} + \mathbf{F} \mathbf{R}) =
-\mathbf{G} + \mathbf{H} \mathbf{R},
-\end{equation}
-and let $\mathbf{X}$ be a root of the linear equation,
-\begin{equation}
-(\mathbf{E} + \mathbf{F} \mathbf{R}_1) \mathbf{X} - \mathbf{X} (\mathbf{H} - \mathbf{R}_1 \mathbf{F}) = - \mathbf{F}.
-\end{equation}
-Then,
-\begin{equation}
-\mathbf{M} = \mathbf{W}
-\begin{pmatrix}
-\mathbf{E} + \mathbf{F} \mathbf{R}_1 & \mathbf{0}_{pq}\\ 
-\mathbf{0}_{qp} & \mathbf{H} -  \mathbf{R}_1 \mathbf{F}
-\end{pmatrix}, \qquad
-\mathbf{W} = 
-\begin{pmatrix}
-\mathbf{I}_p & \mathbf{X}\\ 
-\mathbf{R}_{1} & \mathbf{R}_{1} \mathbf{X} + \mathbf{I}_{q}.
-\end{pmatrix}
-\end{equation}
-\end{theorem}
+% \begin{theorem}[Theorem 3.2 \cite{eisenfeld1976block}]
+% Let $\mathbf{M}$ be the $n \times n$ complex-valued block matrix
+% \begin{equation}
+% \begin{pmatrix}
+% \mathbf{E} & \mathbf{F}\\ 
+% \mathbf{G} & \mathbf{H}
+% \end{pmatrix},
+% \end{equation}
+% with entries defined on a generic algebra $\mathcal{A}$ and $\mathbf{E}$ and $\mathbf{H}$ having respective orders $p \times p$ and $q \times q$, $p + q = n$.
 
-\red{(n\~ao consegui muita evolu\c c\~ao daqui. Ignorar resto da subse\c c\~ao.)}
-\begin{equation}
-\begin{aligned}
-R (A_1 + A_2 R) = - \bar{A_2} + \bar{A_1} R \\
-R (A_1 - \bar{A_1}) + R^2 A_2 + \bar{A_2} = 0.
-\end{aligned}
-\end{equation}
-Let us slice the space of possible solutions $R$, restricting ourselves to the case where $A_1 + A_2 R = 0$:
-\begin{equation}
-\begin{aligned}
-- \bar{A_2} + \bar{A_1} R = 0 \\
-R = \bar{A_1}^{-1} \bar{A_2}
-\end{aligned}
-\end{equation}
+% Now let $\mathbf{R}_1$ be a solution to the equation
+% \begin{equation}
+% \mathbf{R} (\mathbf{E} + \mathbf{F} \mathbf{R}) =
+% \mathbf{G} + \mathbf{H} \mathbf{R},
+% \end{equation}
+% and let $\mathbf{X}$ be a root of the linear equation,
+% \begin{equation}
+% (\mathbf{E} + \mathbf{F} \mathbf{R}_1) \mathbf{X} - \mathbf{X} (\mathbf{H} - \mathbf{R}_1 \mathbf{F}) = - \mathbf{F}.
+% \end{equation}
+% Then,
+% \begin{equation}
+% \mathbf{M} = \mathbf{W}
+% \begin{pmatrix}
+% \mathbf{E} + \mathbf{F} \mathbf{R}_1 & \mathbf{0}_{pq}\\ 
+% \mathbf{0}_{qp} & \mathbf{H} -  \mathbf{R}_1 \mathbf{F}
+% \end{pmatrix}, \qquad
+% \mathbf{W} = 
+% \begin{pmatrix}
+% \mathbf{I}_p & \mathbf{X}\\ 
+% \mathbf{R}_{1} & \mathbf{R}_{1} \mathbf{X} + \mathbf{I}_{q}.
+% \end{pmatrix}
+% \end{equation}
+% \end{theorem}
 
-Now let $X$ be a solution to the equation:
-\begin{equation}
-\begin{aligned}
-(A_1 + A_2 R)X - X(\bar{A_1} - R A_2) = - A_2 \\
-(A_1 + A_2 \bar{A_1}^{-1} \bar{A_2})X - X(\bar{A_1} - \bar{A_1}^{-1} \bar{A_2} A_2) = - A_2
-\end{aligned}
-\end{equation}
+% \red{(n\~ao consegui muita evolu\c c\~ao daqui. Ignorar resto da subse\c c\~ao.)}
+% \begin{equation}
+% \begin{aligned}
+% R (A_1 + A_2 R) = - \bar{A_2} + \bar{A_1} R \\
+% R (A_1 - \bar{A_1}) + R^2 A_2 + \bar{A_2} = 0.
+% \end{aligned}
+% \end{equation}
+% Let us slice the space of possible solutions $R$, restricting ourselves to the case where $A_1 + A_2 R = 0$:
+% \begin{equation}
+% \begin{aligned}
+% - \bar{A_2} + \bar{A_1} R = 0 \\
+% R = \bar{A_1}^{-1} \bar{A_2}
+% \end{aligned}
+% \end{equation}
+
+% Now let $X$ be a solution to the equation:
+% \begin{equation}
+% \begin{aligned}
+% (A_1 + A_2 R)X - X(\bar{A_1} - R A_2) = - A_2 \\
+% (A_1 + A_2 \bar{A_1}^{-1} \bar{A_2})X - X(\bar{A_1} - \bar{A_1}^{-1} \bar{A_2} A_2) = - A_2
+% \end{aligned}
+% \end{equation}
 
 \section{Filter design via QLMS optimization}
+\red{Explain here how we performed filter design using QLMS.}
 
-\section{Example: denoising a quaternion graph signal via QLMS low-pass filtering}
+\section{Examples}
+
+This section is devoted to experimenting with QGSP in real-world datasets, tackling topics such as graph inference, spectral analysis, compression and denoising. All computations in this chapter were performed using \texttt{gspx}, an open-source Python package dedicated to implement the core concepts and tools of QGSP. It constitutes a contribution of this thesis and is available at \url{https://github.com/gboaviagem/gspx}.
+
+\input{thesis/example_uk}
+\input{thesis/example_usa}
 
 \chapter{Concluding remarks and future works}
 \label{ch:conclusion}
