@@ -1,6 +1,8 @@
 \subsection{Spectral analysis and compression of quaternion graph signal}
 
-For this example, let us move away from the UK graph and consider a problem with a much larger network. We select 1000 of the United States (US) counties and, . Using their geographic coordinates, a simple nearest-neighbors approach may be used to infer the underlying undirected graph, as depicted in Figure \ref{fig:us_graph}. In order to define a quaternion-valued signal over this graph using real-world data, we propose taking four variables from the same context or problem and assigning each to a quaternion component. The \textit{ad hoc} constraint of having the variables picked from similar areas is an attempt to make the quaternion graph signal meaningful, so each sample makes sense as a whole.
+For this example, let us move away from the UK graph and consider a problem with a larger network. Let us select 1000 of the United States (US) counties and create a simple nearest-neighbors graph out of their geographic coordinates. The resulting undirected graph is depicted in Figure \ref{fig:us_graph}. It consists of 1000 vertices and 4158 edges, and, as it happens with nearest-neighbors graphs, it has a single connected component. The edge weights are not addressed at this point, rather this example tailors the weights to fit nicely the quaternion graph signal.
+
+In order to define a quaternion-valued signal over this graph using real-world data, we propose taking four variables from the same context or problem and assigning each to a quaternion component. The \textit{ad hoc} constraint of having the variables picked from similar areas is an attempt to make the quaternion graph signal meaningful, so each sample makes sense as a whole.
 
 \begin{figure}
 \centering
@@ -9,7 +11,7 @@ For this example, let us move away from the UK graph and consider a problem with
 \label{fig:us_graph}
 \end{figure}
 
-For this example, the data was taken from OpenIntro, a non-profit organization focused on spreading high-quality open-source publications. The full dataset\footnote{Avaiable at \url{https://www.openintro.org/data/?data=county_complete}, accessed in October 2022.} comprises 188 variables for each of the 3142 US counties, but only the four sociodemographic indicators were used:
+For this example, the data was taken from OpenIntro, a non-profit organization focused on spreading high-quality open-source publications. The full dataset\footnote{Avaiable at \url{https://www.openintro.org/data/?data=county_complete}, accessed in October 2022.} comprises 188 variables for each of the 3142 US counties, but only the following four sociodemographic indicators were used:
 \begin{itemize}[noitemsep]
     \item \textbf{bachelors\_2017}: percent of population that earned a bachelor's degree in 2017.
     \item \textbf{median\_household\_income\_2017}: median household income as of 2017.
