@@ -238,12 +238,6 @@ q = |q| e^{\qmu \theta} = |q|\cos \theta + |q|\qmu \sen \theta,
 \end{equation}
 in which $ \qmu $ is a pure unit quaternions, parallel to the vector part of $ q $.
 
-% Outra forma polar encontrada na literatura \cite{flamant2017time} \'e
-% \begin{equation}
-% q = |q| \exp (\qi \theta) \exp (-\qk \chi) \exp (\qj \varphi),
-% \end{equation}
-% em que os par\^ametros de fase, chamados de \^angulos de Euler, s\~ao \emph{quase unicamente} definidos sob o intervalo $ (\theta, \chi, \varphi) \in [-\pi/2, \pi/2] \times [-\pi/4, \pi/4] \times [-\pi, \pi[ $. Quando $ \chi = \pm \pi/4 $, o que equivale ao fen\^omeno do \emph{gimbal lock}, a fase do quat\'ernio n\~ao \'e bem definida.
-
 As a remarkable consequence of (\ref{eq:euler}), it follows that every pure unit quaternion is a square root of unity. For instance, let $ \mathbf{\nu} $ be a unit pure quaternion. From (\ref{eq:euler}),
 \begin{equation}
 %\label{key}
@@ -260,18 +254,18 @@ hence,
 \mathbf{\nu}^2 = \left( e^{\mathbf{\nu}\pi} \right)^2 = e^{\mathbf{\nu} 2\pi} = 1.
 \end{equation}
 
-This property leads to the conclusion that numbers such as $ a + \qmu b  $ form an isomorphism with the complex numbers. For this reason, the set composed by such numbers is represented by $ \mathbb{C}_{\qmu} \overset{\Delta}{=} \{ a + \qmu b \ |\  a, b \in \mathbb{R} \}$ ($ \mathbb{C}_{\qi} $ indica, portanto, o conjunto usual dos complexos).
+This property leads to the conclusion that numbers such as $ a + \qmu b  $ form an isomorphism with the complex numbers. For this reason, the set composed by such numbers is represented by $ \mathbb{C}_{\qmu} \overset{\Delta}{=} \{ a + \qmu b \ |\  a, b \in \mathbb{R} \}$ (hence $ \mathbb{C}_{\qi} $ indicates the usual set of complex numbers).
 
-Todo quat\'ernio $ q = a + b\qi + c\qj + d\qk \in \mathbb{H} $ pode ser representado segundo sua \emph{decomposi\c c\~ao simpl\'etica},
+Another crucial representation of quaternion numbers is called \emph{symplectic decomposition}. Every quaternion $ q = a + b\qi + c\qj + d\qk \in \mathbb{H} $ can be represented as
 \begin{equation}
 q = q^{(s)} + q^{(p)} \qj, \quad q^{(s)}, q^{(p)} \in \mathbb{C}_{\qi},
 \end{equation}
-em que $ q^{(s)} = a + b\qi $ e $ q^{(p)} = c + d\qi $ s\~ao frequentemente chamados de parte \emph{simplex} e \emph{perplex}, respectivamente. Perceba que essas duas componentes s\~ao n\'umeros complexos usuais. De forma geral, a decomposi\c c\~ao pode ser feita ao longo de um eixo diferente de $ \qi $: sejam $ \qmu $ e $ \qnu $ quat\'ernios puros unit\'arios e \emph{ortogonais}, ent\~ao o quat\'ernio $ q $ pode ser decomposto como
+in which the complex numbers $ q^{(s)} = a + b\qi $ and $ q^{(p)} = c + d\qi $ are commonly named \emph{simplex} and \emph{perplex} parts, respectively. In general, the decomposition does not need to take $\qi$ as reference axis. Take for example $ \qmu $ and $ \qnu $ as arbitrary orthogonal unit pure quaternions, hence any quaternion $ q $ may be decomposed as
 \begin{equation}
 \label{eq:decomposicao}
 q = q^{(s)} + q^{(p)} \qnu, \quad q^{(s)}, q^{(p)} \in \mathbb{C}_{\qmu}.
 \end{equation}
-Esta decomposi\c c\~ao tem grande import\^ancia no c\'alculo da QDFT (se\c c\~ao \ref{sec:QFT}) e na an\'alise de matrizes quaterni\^onicas (ca\'itulo \ref{ch:QGSP}).
+That is a hugely important tool when it comes to computing the QDFT (see Section \ref{sec:QFT}) and handling quaternion matrices (cf. Chapter \ref{ch:QGSP}).
 
 Dois quat\'ernios $ q $ e $ r $ s\~ao ditos \emph{similares} se existe um quat\'ernio n\~ao-nulo $ v $ tal que $ v^{-1}q v = r $. Neste caso, pode-se escrever $ q \sim r $. A similaridade \'e uma rela\c c\~ao de equival\^encia entre quat\'ernios \cite{zhang1997quaternions}, e pode-se notar que todos os elementos de uma mesma classe de equival\^encia possuem a mesma norma, pois $ |v^{-1}q v| = |v^{-1}| \cdot |q| \cdot |v| = |q| $. Importa mencionar uma valiosa propriedade das transforma\c c\~oes de similaridade entre quat\'ernios, respons\'avel por sua grande aplica\c c\~ao na mec\^anica e na ind\'ustria da computa\c c\~ao gr\'afica. Trata-se da opera\c c\~ao de rota\c c\~ao no espa\c co 3D: dados $ v,x \in \mathbb{H} $, $ v = |v| e^{\qmu \alpha}$, a transforma\c c\~ao de similaridade
 \begin{equation}
