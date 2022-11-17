@@ -267,12 +267,12 @@ q = q^{(s)} + q^{(p)} \qnu, \quad q^{(s)}, q^{(p)} \in \mathbb{C}_{\qmu}.
 \end{equation}
 That is a hugely important tool when it comes to computing the QDFT (see Section \ref{sec:QFT}) and handling quaternion matrices (cf. Chapter \ref{ch:QGSP}).
 
-Dois quat\'ernios $ q $ e $ r $ s\~ao ditos \emph{similares} se existe um quat\'ernio n\~ao-nulo $ v $ tal que $ v^{-1}q v = r $. Neste caso, pode-se escrever $ q \sim r $. A similaridade \'e uma rela\c c\~ao de equival\^encia entre quat\'ernios \cite{zhang1997quaternions}, e pode-se notar que todos os elementos de uma mesma classe de equival\^encia possuem a mesma norma, pois $ |v^{-1}q v| = |v^{-1}| \cdot |q| \cdot |v| = |q| $. Importa mencionar uma valiosa propriedade das transforma\c c\~oes de similaridade entre quat\'ernios, respons\'avel por sua grande aplica\c c\~ao na mec\^anica e na ind\'ustria da computa\c c\~ao gr\'afica. Trata-se da opera\c c\~ao de rota\c c\~ao no espa\c co 3D: dados $ v,x \in \mathbb{H} $, $ v = |v| e^{\qmu \alpha}$, a transforma\c c\~ao de similaridade
+Two quaternions $ q $ and $ r $ are said to be \emph{similar} if it exists a non-zero quaternion $ v $ such that $ v^{-1}q v = r $. In this case, one can write $ q \sim r $. Similarity between quaternions constitutes an equivalence relation \cite{zhang1997quaternions}, and all elements from a same similarity class possess the same norm, since $ |v^{-1}q v| = |v^{-1}| \cdot |q| \cdot |v| = |q| $. It matters to notice that an important property of quaternion similarity transformations, that which justifies its great use in mechanics and graphics computing industry, is its characteristic of easy 3D rotation. Given $ v,x \in \mathbb{H} $, $ v = |v| e^{\qmu \alpha}$, the similarity transformation
 \begin{equation}
 \label{eq:rotacao}
 \phi_v(x) = v x v^{-1}
 \end{equation}
-produz a rota\c c\~ao da parte vetorial (imagin\'aria) de $ x $ em torno do eixo $ \qmu $ (que tem a mesma dire\c c\~ao da parte vetorial de $ v $) de um \^angulo $ 2\alpha $ \cite{ward2012quaternions}, seguindo a regra da m\~ao direita.
+produces the rotation of the vector part of $x$ along the axis $ \qmu $ (which is parallel to the vector part of $v$) through an angle $ 2\alpha $ \cite{ward2012quaternions}, following the right-hand rule.
 
 
 \section{On the theory of quaternion matrices}
