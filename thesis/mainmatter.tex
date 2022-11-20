@@ -267,12 +267,122 @@ q = q^{(s)} + q^{(p)} \qnu, \quad q^{(s)}, q^{(p)} \in \mathbb{C}_{\qmu}.
 \end{equation}
 That is a hugely important tool when it comes to computing the QDFT (see Section \ref{sec:QFT}) and handling quaternion matrices (cf. Chapter \ref{ch:QGSP}).
 
-Two quaternions $ q $ and $ r $ are said to be \emph{similar} if it exists a non-zero quaternion $ v $ such that $ v^{-1}q v = r $. In this case, one can write $ q \sim r $. Similarity between quaternions constitutes an equivalence relation \cite{zhang1997quaternions}, and all elements from a same similarity class possess the same norm, since $ |v^{-1}q v| = |v^{-1}| \cdot |q| \cdot |v| = |q| $. It matters to notice that an important property of quaternion similarity transformations, that which justifies its great use in mechanics and graphics computing industry, is its characteristic of easy 3D rotation. Given $ v,x \in \mathbb{H} $, $ v = |v| e^{\qmu \alpha}$, the similarity transformation
+\subsection{Quaternion similarity and rotation}
+\label{subsec:rotacionando}
+Two quaternions $ q $ and $ r $ are said to be \emph{similar} if it exists a non-zero quaternion $ v $ such that $ v^{-1}q v = r $. In this case, one can write $ q \sim r $. Similarity between quaternions constitutes an equivalence relation \cite{zhang1997quaternions}, and all elements from a same similarity class possess the same norm, since $ |v^{-1}q v| = |v^{-1}| \cdot |q| \cdot |v| = |q| $.
+
+It matters to notice that an important property of quaternion similarity transformations, which justifies its great use in mechanics and graphics computing industry, is that it constitutesa rotation on the $\qi \qj \qk$ space. Given $ v,x \in \mathbb{H} $, $ v = |v| e^{\qmu \alpha}$, the similarity transformation
 \begin{equation}
 \label{eq:rotacao}
 \phi_v(x) = v x v^{-1}
 \end{equation}
 produces the rotation of the vector part of $x$ along the axis $ \qmu $ (which is parallel to the vector part of $v$) through an angle $ 2\alpha $ \cite{ward2012quaternions}, following the right-hand rule.
+
+Our goal when studying the diagonalization of quaternion matrices is to enable us to perform spectral analysis of graph shift operators in graphs with quaternion-valued edge weights. In this case, the eigenvalues play the role of graph frequencies and, as such, it is important to be able to sort them from lowest to highest frequency.
+
+The spectral analysis of graph shift operators in graphs with quaternion-valued edge weights necessarily involves 
+
+% Pretende-se aplicar a diagonaliza\c c\~ao de matrizes quaterni\^onicas no contexto da an\'alise espectral do operador de deslocamento sobre um grafo com pesos quaterni\^onicos. Neste caso, os seus autovalores poder\~ao ser interpretados como frequ\^encias. O problema do ordenamento destas frequ\^encias, bem definido para o caso de matrizes laplacianas ou de adjac\^encia reais, pode-se mostrar desafiador ao lidar com autovalores quaterni\^onicos\footnote{Mesmo ao se utilizar o racioc\'inio do teorema \ref{th:02}, da subse\c c\~ao \ref{subsec:autovetores_XA}, em que os autovalores s\~ao obtidos diretamente com valores complexos, \'e poss\'ivel que, em alguns problemas, tenha-se em m\~aos os autovalores quaterni\^onicos, caso em que o procedimento aqui descrito \'e \'util. De toda forma, a rota\c c\~ao de autovalores \'e uma ferramenta valiosa, sendo utilizada, por exemplo, na demonstra\c c\~ao do teorema \ref{th:02}.}.
+
+Uma hip\'otese a se analisar \'e que este ordenamento seja facilitado ao se encontrar, para cada autoclasse, o respectivo autovalor \emph{complexo}. Como feito em \cite[Eq. (4.8)]{de2002quaternioic}, trata-se de transformar a equa\c c\~ao de autovetor quaterni\^onica em outra equivalente, com autovalor complexo, a partir da rota\c c\~ao da parte imagin\'aria (\emph{rephasing}) de cada autovalor no espa\c co $ \qi, \qj, \qk $ at\'e alinh\'a-la com $ \qi $. Em suma, utilizando a propriedade de rota\c c\~ao no espa\c co $ \qV (\mathbb{H}) $ em (\ref{eq:rotacao}), parte-se de
+\begin{equation}
+\label{eq:01}
+\mathbf{A} \mathbf{v} = \mathbf{v} \lambda
+\end{equation}
+para chegar em
+\begin{equation}
+\label{eq:02}
+\mathbf{A} (\mathbf{v} q) = (\mathbf{v} q) q^{-1} \lambda q,
+\end{equation}
+com a restri\c c\~ao $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $.
+
+\begin{quotation}
+\begin{example}
+	\upshape
+	Consideremos, por exemplo, um caso em que $ \lambda = 3\qi + \qk $ e $ \mathbf{v} $ tem comprimento $ n=2 $,
+	\begin{equation}
+	%\label{key}
+	\mathbf{v} =\begin{pmatrix}
+	1 +  \qi\\
+	2 \qj + \qk
+	\end{pmatrix}.
+	\end{equation}
+	
+	A matriz quaterni\^onica $ \mathbf{A} $ que satisfaz
+	\begin{equation}
+	\label{eq:03}
+	\mathbf{A} \mathbf{v} = \mathbf{v} \lambda,
+	\end{equation}
+	com a restri\c c\~ao arbitr\'aria de possuir a primeira coluna igual a $ (1 \quad 1)^T $ \'e
+	\begin{equation}
+	%\label{key}
+	\mathbf{A} =
+	\begin{pmatrix}
+	1 & - \frac{1}{5} + \frac{3}{5} \qi + 2 \qj \\
+	1 & -3 \qi + \qj
+	\end{pmatrix}.
+	\end{equation}
+	
+	De posse das vari\'aveis da equa\c c\~ao (\ref{eq:01}), pode-se partir para ilustrar o procedimento de \emph{rephasing}, ou rota\c c\~ao da parte imagin\'aria, descrito em (\ref{eq:02}). A ideia \'e utilizar um quat\'ernio unit\'ario para rotacionar $ \lambda $ no espa\c co quaterni\^onico e, neste exemplo particular, rotacion\'a-lo no plano $ \qi \qk $ por um \^angulo $ \theta = \tan^{-1} \frac{1}{3} $ radianos em dire\c c\~ao ao eixo $ \qi $. Como ilustrado na Fig. \ref{fig:quat3ik}, o resultado esperado \'e um n\'umero $ z \in \mathbb{C}_{\qi} $.
+	
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.3\linewidth]{Figures/quaternion01.pdf}
+		\caption{Representa\c c\~ao de $ \lambda = 3\qi + \qk $ no plano $ \qi \qk $.}
+		\label{fig:quat3ik}
+	\end{figure}
+	
+%	Utilizaremos a propriedade de rota\c c\~ao da parte vetorial de quat\'ernios, em (\ref{eq:rotacao}).
+	Uma vez que o plano $ \qi \qk $ \'e ortogonal a $ \qj $ (lembrando que os tr\^es eixos s\~ao orientados positivamente), a rota\c c\~ao desejada neste plano, positivamente orientada em torno de $ \qj $ e obtida por inspe\c c\~ao da Fig. \ref{fig:quat3ik}, \'e realizada pelo quat\'ernio
+	\begin{equation}
+	\label{eq:04}
+	v = e^{\qj \alpha}, \quad 2\alpha = \theta = \tan^{-1} \frac{1}{3},
+	\end{equation}
+	utilizando o mapeamento $ \lambda \mapsto v \lambda v^{-1} $ em (\ref{eq:rotacao}).
+	
+	Uma vez que a transforma\c c\~ao desejada \'e $ \lambda \mapsto q^{-1} \lambda q $, ent\~ao
+	\begin{equation}
+	%\label{key}
+	q = v^{-1} = e^{- \qj \alpha} = e^{- \qj \frac{\theta}{2}}.
+	\end{equation}
+	
+	%It is a known property that ({\color{red}(retirado do artigo ``quat\'ernio rotation intuition'' do math.stack\-exchange, buscar melhor fonte!)}) ``if $ v = e^{\qmu \alpha} = \cos \alpha + \qmu \sin \alpha$, then the mapping $ x \mapsto v x v^{-1} $ will rotate purely imaginary quat\'ernios around the axis $ \mathbb{R} \qmu $ by the angle $ 2\alpha $ according to the right-hand rule''.
+	
+	Como forma de confer\^encia, encontremos o valor de $ \alpha $ que resulta em $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $. Como $ v = q^{-1} = \cos \alpha + \qj \sin \alpha $,
+	\begin{equation}
+	%\label{key}
+	\begin{aligned}
+	%\label{key}
+	q^{-1} \lambda &= (\cos \alpha + \qj \sin \alpha)(3 \qi + \qk)\\
+	&= \qi(3 \cos \alpha + \sin \alpha) + \qk(\cos \alpha - 3 \sin \alpha). \\
+	q^{-1} \lambda q &= [\qi(3 \cos \alpha + \sin \alpha) + \qk(\cos \alpha - 3 \sin \alpha)] (\cos \alpha - \qj \sin \alpha) \\
+	&= \qi (3 \cos 2\alpha + \sin 2\alpha) + \qk(\cos 2\alpha - 3 \sin 2\alpha).
+	\end{aligned}
+	\end{equation}
+	
+	Portanto, $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $ se e somente se
+	\begin{equation}
+	%\label{key}
+	\begin{aligned}\textbf{}
+	\cos 2\alpha - 3 \sin 2\alpha &= 0 \\
+	2\alpha &= \tan^{-1} \frac{1}{3},
+	\end{aligned}
+	\end{equation}
+	como inferido em (\ref{eq:04}).
+	
+Assim, o quat\'ernio puro unit\'ario $ q = e^{- \qj \alpha} $, $ \alpha = - \displaystyle \nicefrac{1}{2} \tan^{-1} \nicefrac{1}{3} $, \'e capaz de fazer $ q^{-1} \lambda q \in \mathbb{C}_{\qi}$, de modo que a equa\c c\~ao de autovalor em (\ref{eq:03}) pode ser reescrita como em (\ref{eq:02}),
+	\begin{equation}
+	%\label{key}
+	\mathbf{A} \underbrace{\begin{pmatrix}
+		cos \alpha + \qi \sin \alpha - \qj \sin \alpha - \qk \sin \alpha \\
+		2 \sin \alpha + \qi \sin \alpha + \qj 2 \cos \alpha + \qk \cos \alpha
+		\end{pmatrix}}_{= \mathbf{v} q} =
+	(\mathbf{v} q) \cdot \underbrace{\qi (3 \cos 2\alpha + \sin 2\alpha)}_{= q^{-1} \lambda q}.
+	%\underbrace{3.162 \qi}_{= \bar{u} q u}.
+	\end{equation}
+\end{example}
+\end{quotation}
 
 
 \section{On the theory of quaternion matrices}
@@ -341,111 +451,6 @@ It matters to highlight the fact that a quaternion matrix possesses a \textit{fi
 \end{aligned}
 \end{equation}
 so that $ q^{-1} \lambda q $ is an eigenvalue associated with the eigenvector $ \mathbf{v}q $, with $ q \in \mathbb{H}^\ast $.
-
-% \subsection{Rotating eigenvalues}
-% \label{subsec:rotacionando}
-% The goal aimed when studying diagonalization of quaternion matrices is to enable and enlighten the spectral analysis of graph shift operators in graphs with quaternion-valued edge weights. In this case, the eigenvalues play the role of graph frequencies and, as such, it is important to be able to sort them from lowest to highest frequencies.
-
-% Pretende-se aplicar a diagonaliza\c c\~ao de matrizes quaterni\^onicas no contexto da an\'alise espectral do operador de deslocamento sobre um grafo com pesos quaterni\^onicos. Neste caso, os seus autovalores poder\~ao ser interpretados como frequ\^encias. O problema do ordenamento destas frequ\^encias, bem definido para o caso de matrizes laplacianas ou de adjac\^encia reais, pode-se mostrar desafiador ao lidar com autovalores quaterni\^onicos\footnote{Mesmo ao se utilizar o racioc\'inio do teorema \ref{th:02}, da subse\c c\~ao \ref{subsec:autovetores_XA}, em que os autovalores s\~ao obtidos diretamente com valores complexos, \'e poss\'ivel que, em alguns problemas, tenha-se em m\~aos os autovalores quaterni\^onicos, caso em que o procedimento aqui descrito \'e \'util. De toda forma, a rota\c c\~ao de autovalores \'e uma ferramenta valiosa, sendo utilizada, por exemplo, na demonstra\c c\~ao do teorema \ref{th:02}.}.
-% Uma hip\'otese a se analisar \'e que este ordenamento seja facilitado ao se encontrar, para cada autoclasse, o respectivo autovalor \emph{complexo}. Como feito em \cite[Eq. (4.8)]{de2002quaternioic}, trata-se de transformar a equa\c c\~ao de autovetor quaterni\^onica em outra equivalente, com autovalor complexo, a partir da rota\c c\~ao da parte imagin\'aria (\emph{rephasing}) de cada autovalor no espa\c co $ \qi, \qj, \qk $ at\'e alinh\'a-la com $ \qi $. Em suma, utilizando a propriedade de rota\c c\~ao no espa\c co $ \qV (\mathbb{H}) $ em (\ref{eq:rotacao}), parte-se de
-% \begin{equation}
-% \label{eq:01}
-% \mathbf{A} \mathbf{v} = \mathbf{v} \lambda
-% \end{equation}
-% para chegar em
-% \begin{equation}
-% \label{eq:02}
-% \mathbf{A} (\mathbf{v} q) = (\mathbf{v} q) q^{-1} \lambda q,
-% \end{equation}
-% com a restri\c c\~ao $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $.
-
-% \begin{quotation}
-% \begin{example}
-% 	\upshape
-% 	Consideremos, por exemplo, um caso em que $ \lambda = 3\qi + \qk $ e $ \mathbf{v} $ tem comprimento $ n=2 $,
-% 	\begin{equation}
-% 	%\label{key}
-% 	\mathbf{v} =\begin{pmatrix}
-% 	1 +  \qi\\
-% 	2 \qj + \qk
-% 	\end{pmatrix}.
-% 	\end{equation}
-	
-% 	A matriz quaterni\^onica $ \mathbf{A} $ que satisfaz
-% 	\begin{equation}
-% 	\label{eq:03}
-% 	\mathbf{A} \mathbf{v} = \mathbf{v} \lambda,
-% 	\end{equation}
-% 	com a restri\c c\~ao arbitr\'aria de possuir a primeira coluna igual a $ (1 \quad 1)^T $ \'e
-% 	\begin{equation}
-% 	%\label{key}
-% 	\mathbf{A} =
-% 	\begin{pmatrix}
-% 	1 & - \frac{1}{5} + \frac{3}{5} \qi + 2 \qj \\
-% 	1 & -3 \qi + \qj
-% 	\end{pmatrix}.
-% 	\end{equation}
-	
-% 	De posse das vari\'aveis da equa\c c\~ao (\ref{eq:01}), pode-se partir para ilustrar o procedimento de \emph{rephasing}, ou rota\c c\~ao da parte imagin\'aria, descrito em (\ref{eq:02}). A ideia \'e utilizar um quat\'ernio unit\'ario para rotacionar $ \lambda $ no espa\c co quaterni\^onico e, neste exemplo particular, rotacion\'a-lo no plano $ \qi \qk $ por um \^angulo $ \theta = \tan^{-1} \frac{1}{3} $ radianos em dire\c c\~ao ao eixo $ \qi $. Como ilustrado na Fig. \ref{fig:quat3ik}, o resultado esperado \'e um n\'umero $ z \in \mathbb{C}_{\qi} $.
-	
-	
-% 	\begin{figure}
-% 		\centering
-% 		\includegraphics[width=0.3\linewidth]{Figures/quaternion01.pdf}
-% 		\caption{Representa\c c\~ao de $ \lambda = 3\qi + \qk $ no plano $ \qi \qk $.}
-% 		\label{fig:quat3ik}
-% 	\end{figure}
-	
-% %	Utilizaremos a propriedade de rota\c c\~ao da parte vetorial de quat\'ernios, em (\ref{eq:rotacao}).
-% 	Uma vez que o plano $ \qi \qk $ \'e ortogonal a $ \qj $ (lembrando que os tr\^es eixos s\~ao orientados positivamente), a rota\c c\~ao desejada neste plano, positivamente orientada em torno de $ \qj $ e obtida por inspe\c c\~ao da Fig. \ref{fig:quat3ik}, \'e realizada pelo quat\'ernio
-% 	\begin{equation}
-% 	\label{eq:04}
-% 	v = e^{\qj \alpha}, \quad 2\alpha = \theta = \tan^{-1} \frac{1}{3},
-% 	\end{equation}
-% 	utilizando o mapeamento $ \lambda \mapsto v \lambda v^{-1} $ em (\ref{eq:rotacao}).
-	
-% 	Uma vez que a transforma\c c\~ao desejada \'e $ \lambda \mapsto q^{-1} \lambda q $, ent\~ao
-% 	\begin{equation}
-% 	%\label{key}
-% 	q = v^{-1} = e^{- \qj \alpha} = e^{- \qj \frac{\theta}{2}}.
-% 	\end{equation}
-	
-% 	%It is a known property that ({\color{red}(retirado do artigo ``quat\'ernio rotation intuition'' do math.stack\-exchange, buscar melhor fonte!)}) ``if $ v = e^{\qmu \alpha} = \cos \alpha + \qmu \sin \alpha$, then the mapping $ x \mapsto v x v^{-1} $ will rotate purely imaginary quat\'ernios around the axis $ \mathbb{R} \qmu $ by the angle $ 2\alpha $ according to the right-hand rule''.
-	
-% 	Como forma de confer\^encia, encontremos o valor de $ \alpha $ que resulta em $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $. Como $ v = q^{-1} = \cos \alpha + \qj \sin \alpha $,
-% 	\begin{equation}
-% 	%\label{key}
-% 	\begin{aligned}
-% 	%\label{key}
-% 	q^{-1} \lambda &= (\cos \alpha + \qj \sin \alpha)(3 \qi + \qk)\\
-% 	&= \qi(3 \cos \alpha + \sin \alpha) + \qk(\cos \alpha - 3 \sin \alpha). \\
-% 	q^{-1} \lambda q &= [\qi(3 \cos \alpha + \sin \alpha) + \qk(\cos \alpha - 3 \sin \alpha)] (\cos \alpha - \qj \sin \alpha) \\
-% 	&= \qi (3 \cos 2\alpha + \sin 2\alpha) + \qk(\cos 2\alpha - 3 \sin 2\alpha).
-% 	\end{aligned}
-% 	\end{equation}
-	
-% 	Portanto, $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $ se e somente se
-% 	\begin{equation}
-% 	%\label{key}
-% 	\begin{aligned}\textbf{}
-% 	\cos 2\alpha - 3 \sin 2\alpha &= 0 \\
-% 	2\alpha &= \tan^{-1} \frac{1}{3},
-% 	\end{aligned}
-% 	\end{equation}
-% 	como inferido em (\ref{eq:04}).
-	
-% Assim, o quat\'ernio puro unit\'ario $ q = e^{- \qj \alpha} $, $ \alpha = - \displaystyle \nicefrac{1}{2} \tan^{-1} \nicefrac{1}{3} $, \'e capaz de fazer $ q^{-1} \lambda q \in \mathbb{C}_{\qi}$, de modo que a equa\c c\~ao de autovalor em (\ref{eq:03}) pode ser reescrita como em (\ref{eq:02}),
-% 	\begin{equation}
-% 	%\label{key}
-% 	\mathbf{A} \underbrace{\begin{pmatrix}
-% 		cos \alpha + \qi \sin \alpha - \qj \sin \alpha - \qk \sin \alpha \\
-% 		2 \sin \alpha + \qi \sin \alpha + \qj 2 \cos \alpha + \qk \cos \alpha
-% 		\end{pmatrix}}_{= \mathbf{v} q} =
-% 	(\mathbf{v} q) \cdot \underbrace{\qi (3 \cos 2\alpha + \sin 2\alpha)}_{= q^{-1} \lambda q}.
-% 	%\underbrace{3.162 \qi}_{= \bar{u} q u}.
-% 	\end{equation}
-% \end{example}
-% \end{quotation}
 
 \subsection{Diagonalizability}
 \label{subsec:autovetores_XA}
