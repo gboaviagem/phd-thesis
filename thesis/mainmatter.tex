@@ -238,20 +238,20 @@ q = |q| e^{\qmu \theta} = |q|\cos \theta + |q|\qmu \sen \theta,
 \end{equation}
 in which $ \qmu $ is a pure unit quaternions, parallel to the vector part of $ q $.
 
-As a remarkable consequence of (\ref{eq:euler}), it follows that every pure unit quaternion is a square root of unity. For instance, let $ \mathbf{\nu} $ be a unit pure quaternion. From (\ref{eq:euler}),
+As a remarkable consequence of (\ref{eq:euler}), it follows that every pure unit quaternion is a square root of $-1$. For instance, let $ \qnu $ be a unit pure quaternion. From (\ref{eq:euler}),
 \begin{equation}
 %\label{key}
-\mathbf{\nu} = |\mathbf{\nu}| e^{\mathbf{\nu} \theta},
+\qnu = |\qnu| e^{\qnu \theta},
 \end{equation}
-but since $ |\mathbf{\nu}| = 1 $, then
+but since $ |\qnu| = 1 $, then
 \begin{equation}
 %\label{key}
-\mathbf{\nu} = e^{\mathbf{\nu} \theta} \Rightarrow \theta = \pi,
+\qnu = e^{\qnu \theta}  = \cos \theta + \qnu \sen \theta \Rightarrow \theta = \frac{\pi}{2},
 \end{equation}
 hence,
 \begin{equation}
 %\label{key}
-\mathbf{\nu}^2 = \left( e^{\mathbf{\nu}\pi} \right)^2 = e^{\mathbf{\nu} 2\pi} = 1.
+\qnu^2 = \left( e^{ \qnu \frac{\pi}{2}} \right)^2 = e^{\qnu \pi} = \cos \pi + \qnu \sen \pi = -1.
 \end{equation}
 
 This property leads to the conclusion that numbers such as $ a + \qmu b  $ form an isomorphism with the complex numbers. For this reason, the set composed by such numbers is represented by $ \mathbb{C}_{\qmu} \overset{\Delta}{=} \{ a + \qmu b \ |\  a, b \in \mathbb{R} \}$ (hence $ \mathbb{C}_{\qi} $ indicates the usual set of complex numbers).
@@ -271,116 +271,102 @@ That is a hugely important tool when it comes to computing the QDFT (see Section
 \label{subsec:rotacionando}
 Two quaternions $ q $ and $ r $ are said to be \emph{similar} if it exists a non-zero quaternion $ v $ such that $ v^{-1}q v = r $. In this case, one can write $ q \sim r $. Similarity between quaternions constitutes an equivalence relation \cite{zhang1997quaternions}, and all elements from a same similarity class possess the same norm, since $ |v^{-1}q v| = |v^{-1}| \cdot |q| \cdot |v| = |q| $.
 
-It matters to notice that an important property of quaternion similarity transformations, which justifies its great use in mechanics and graphics computing industry, is that it constitutesa rotation on the $\qi \qj \qk$ space. Given $ v,x \in \mathbb{H} $, $ v = |v| e^{\qmu \alpha}$, the similarity transformation
+It matters to notice that an important property of quaternion similarity transformations, which justifies its great use in mechanics and graphics computing industry, is that it performs a rotation on the $\qi \qj \qk$ space. Given $ v,x \in \mathbb{H} $, $ v = |v| e^{\qmu \alpha}$, the similarity transformation
 \begin{equation}
 \label{eq:rotacao}
 \phi_v(x) = v x v^{-1}
 \end{equation}
-produces the rotation of the vector part of $x$ along the axis $ \qmu $ (which is parallel to the vector part of $v$) through an angle $ 2\alpha $ \cite{ward2012quaternions}, following the right-hand rule.
+produces the rotation of the vector part of $x$ along the axis $ \qmu $ (which is parallel to the vector part of $v$) through an angle $ 2\alpha $ \cite{ward2012quaternions}, following the right-hand rule. Let us illustrate this property with an example.
 
-Our goal when studying the diagonalization of quaternion matrices is to enable us to perform spectral analysis of graph shift operators in graphs with quaternion-valued edge weights. In this case, the eigenvalues play the role of graph frequencies and, as such, it is important to be able to sort them from lowest to highest frequency.
-
-The spectral analysis of graph shift operators in graphs with quaternion-valued edge weights necessarily involves 
-
-% Pretende-se aplicar a diagonaliza\c c\~ao de matrizes quaterni\^onicas no contexto da an\'alise espectral do operador de deslocamento sobre um grafo com pesos quaterni\^onicos. Neste caso, os seus autovalores poder\~ao ser interpretados como frequ\^encias. O problema do ordenamento destas frequ\^encias, bem definido para o caso de matrizes laplacianas ou de adjac\^encia reais, pode-se mostrar desafiador ao lidar com autovalores quaterni\^onicos\footnote{Mesmo ao se utilizar o racioc\'inio do teorema \ref{th:02}, da subse\c c\~ao \ref{subsec:autovetores_XA}, em que os autovalores s\~ao obtidos diretamente com valores complexos, \'e poss\'ivel que, em alguns problemas, tenha-se em m\~aos os autovalores quaterni\^onicos, caso em que o procedimento aqui descrito \'e \'util. De toda forma, a rota\c c\~ao de autovalores \'e uma ferramenta valiosa, sendo utilizada, por exemplo, na demonstra\c c\~ao do teorema \ref{th:02}.}.
-
-Uma hip\'otese a se analisar \'e que este ordenamento seja facilitado ao se encontrar, para cada autoclasse, o respectivo autovalor \emph{complexo}. Como feito em \cite[Eq. (4.8)]{de2002quaternioic}, trata-se de transformar a equa\c c\~ao de autovetor quaterni\^onica em outra equivalente, com autovalor complexo, a partir da rota\c c\~ao da parte imagin\'aria (\emph{rephasing}) de cada autovalor no espa\c co $ \qi, \qj, \qk $ at\'e alinh\'a-la com $ \qi $. Em suma, utilizando a propriedade de rota\c c\~ao no espa\c co $ \qV (\mathbb{H}) $ em (\ref{eq:rotacao}), parte-se de
-\begin{equation}
-\label{eq:01}
-\mathbf{A} \mathbf{v} = \mathbf{v} \lambda
-\end{equation}
-para chegar em
-\begin{equation}
-\label{eq:02}
-\mathbf{A} (\mathbf{v} q) = (\mathbf{v} q) q^{-1} \lambda q,
-\end{equation}
-com a restri\c c\~ao $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $.
-
+\vspace{-2em}
 \begin{quotation}
 \begin{example}
-	\upshape
-	Consideremos, por exemplo, um caso em que $ \lambda = 3\qi + \qk $ e $ \mathbf{v} $ tem comprimento $ n=2 $,
-	\begin{equation}
-	%\label{key}
-	\mathbf{v} =\begin{pmatrix}
-	1 +  \qi\\
-	2 \qj + \qk
-	\end{pmatrix}.
-	\end{equation}
-	
-	A matriz quaterni\^onica $ \mathbf{A} $ que satisfaz
-	\begin{equation}
-	\label{eq:03}
-	\mathbf{A} \mathbf{v} = \mathbf{v} \lambda,
-	\end{equation}
-	com a restri\c c\~ao arbitr\'aria de possuir a primeira coluna igual a $ (1 \quad 1)^T $ \'e
-	\begin{equation}
-	%\label{key}
-	\mathbf{A} =
-	\begin{pmatrix}
-	1 & - \frac{1}{5} + \frac{3}{5} \qi + 2 \qj \\
-	1 & -3 \qi + \qj
-	\end{pmatrix}.
-	\end{equation}
-	
-	De posse das vari\'aveis da equa\c c\~ao (\ref{eq:01}), pode-se partir para ilustrar o procedimento de \emph{rephasing}, ou rota\c c\~ao da parte imagin\'aria, descrito em (\ref{eq:02}). A ideia \'e utilizar um quat\'ernio unit\'ario para rotacionar $ \lambda $ no espa\c co quaterni\^onico e, neste exemplo particular, rotacion\'a-lo no plano $ \qi \qk $ por um \^angulo $ \theta = \tan^{-1} \frac{1}{3} $ radianos em dire\c c\~ao ao eixo $ \qi $. Como ilustrado na Fig. \ref{fig:quat3ik}, o resultado esperado \'e um n\'umero $ z \in \mathbb{C}_{\qi} $.
-	
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.3\linewidth]{Figures/quaternion01.pdf}
-		\caption{Representa\c c\~ao de $ \lambda = 3\qi + \qk $ no plano $ \qi \qk $.}
-		\label{fig:quat3ik}
-	\end{figure}
-	
-%	Utilizaremos a propriedade de rota\c c\~ao da parte vetorial de quat\'ernios, em (\ref{eq:rotacao}).
-	Uma vez que o plano $ \qi \qk $ \'e ortogonal a $ \qj $ (lembrando que os tr\^es eixos s\~ao orientados positivamente), a rota\c c\~ao desejada neste plano, positivamente orientada em torno de $ \qj $ e obtida por inspe\c c\~ao da Fig. \ref{fig:quat3ik}, \'e realizada pelo quat\'ernio
-	\begin{equation}
-	\label{eq:04}
-	v = e^{\qj \alpha}, \quad 2\alpha = \theta = \tan^{-1} \frac{1}{3},
-	\end{equation}
-	utilizando o mapeamento $ \lambda \mapsto v \lambda v^{-1} $ em (\ref{eq:rotacao}).
-	
-	Uma vez que a transforma\c c\~ao desejada \'e $ \lambda \mapsto q^{-1} \lambda q $, ent\~ao
-	\begin{equation}
-	%\label{key}
-	q = v^{-1} = e^{- \qj \alpha} = e^{- \qj \frac{\theta}{2}}.
-	\end{equation}
-	
-	%It is a known property that ({\color{red}(retirado do artigo ``quat\'ernio rotation intuition'' do math.stack\-exchange, buscar melhor fonte!)}) ``if $ v = e^{\qmu \alpha} = \cos \alpha + \qmu \sin \alpha$, then the mapping $ x \mapsto v x v^{-1} $ will rotate purely imaginary quat\'ernios around the axis $ \mathbb{R} \qmu $ by the angle $ 2\alpha $ according to the right-hand rule''.
-	
-	Como forma de confer\^encia, encontremos o valor de $ \alpha $ que resulta em $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $. Como $ v = q^{-1} = \cos \alpha + \qj \sin \alpha $,
-	\begin{equation}
-	%\label{key}
-	\begin{aligned}
-	%\label{key}
-	q^{-1} \lambda &= (\cos \alpha + \qj \sin \alpha)(3 \qi + \qk)\\
-	&= \qi(3 \cos \alpha + \sin \alpha) + \qk(\cos \alpha - 3 \sin \alpha). \\
-	q^{-1} \lambda q &= [\qi(3 \cos \alpha + \sin \alpha) + \qk(\cos \alpha - 3 \sin \alpha)] (\cos \alpha - \qj \sin \alpha) \\
-	&= \qi (3 \cos 2\alpha + \sin 2\alpha) + \qk(\cos 2\alpha - 3 \sin 2\alpha).
-	\end{aligned}
-	\end{equation}
-	
-	Portanto, $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $ se e somente se
-	\begin{equation}
-	%\label{key}
-	\begin{aligned}\textbf{}
-	\cos 2\alpha - 3 \sin 2\alpha &= 0 \\
-	2\alpha &= \tan^{-1} \frac{1}{3},
-	\end{aligned}
-	\end{equation}
-	como inferido em (\ref{eq:04}).
-	
-Assim, o quat\'ernio puro unit\'ario $ q = e^{- \qj \alpha} $, $ \alpha = - \displaystyle \nicefrac{1}{2} \tan^{-1} \nicefrac{1}{3} $, \'e capaz de fazer $ q^{-1} \lambda q \in \mathbb{C}_{\qi}$, de modo que a equa\c c\~ao de autovalor em (\ref{eq:03}) pode ser reescrita como em (\ref{eq:02}),
-	\begin{equation}
-	%\label{key}
-	\mathbf{A} \underbrace{\begin{pmatrix}
-		cos \alpha + \qi \sin \alpha - \qj \sin \alpha - \qk \sin \alpha \\
-		2 \sin \alpha + \qi \sin \alpha + \qj 2 \cos \alpha + \qk \cos \alpha
-		\end{pmatrix}}_{= \mathbf{v} q} =
-	(\mathbf{v} q) \cdot \underbrace{\qi (3 \cos 2\alpha + \sin 2\alpha)}_{= q^{-1} \lambda q}.
-	%\underbrace{3.162 \qi}_{= \bar{u} q u}.
-	\end{equation}
+\label{example:01}
+\upshape
+Let $ \lambda = 3\qi + \qk $ and
+\begin{equation}
+%\label{key}
+\mathbf{v} =\begin{pmatrix}
+1 +  \qi\\
+2 \qj + \qk
+\end{pmatrix}
+\end{equation}
+be, respectively, an eigenvalue and its eigenvector of a matrix $\mathbf{A} \in \mathbb{H}^{2 \times 2}$. The eigenvalue problem over the quaternions will be introduced in the next section, so let us not consider its details for now. It suffices to know that $\lambda$, $\mathbf{A}$ and $\mathbf{v}$ satisfy the equation
+\begin{equation}
+\label{eq:03}
+\mathbf{A} \mathbf{v} = \mathbf{v} \lambda.
+\end{equation}
+
+Let us restrict the first column of $\mathbf{A}$ to be equal to $ (1 \quad 1)^T $, so that the the matrix is now fully determined,
+\begin{equation}
+%\label{key}
+\mathbf{A} =
+\begin{pmatrix}
+1 & - \frac{1}{5} + \frac{3}{5} \qi + 2 \qj \\
+1 & -3 \qi + \qj
+\end{pmatrix}.
+\end{equation}
+
+Given an invertible quaternion $q$, the equation may be rewritten as
+\begin{equation}
+\label{eq:rewritten}
+\mathbf{A} (\mathbf{v} q) = (\mathbf{v} q) q^{-1} \lambda q,
+\end{equation}
+which presents the similarity transformation $q^{-1} \lambda q$. Since similar quaternions differ only by a rotation of their vector parts, it is clearly possible to find a quaternion $q$ so that the vector part of $q^{-1} \lambda q$ is parallel to $\qi$ --- that is, $q^{-1} \lambda q$ is a complex number. Let us go through that process.
+
+Since the vector part of $\lambda$ belongs to the $ \qi \qk $ plane, the idea is to use (\ref{eq:rotacao}) to rotate $\lambda$ along the $\qj$ axis (orthogonal to the rotation plane) by an angle of $ \theta = \tan^{-1} \frac{1}{3} $ radians, towards $ \qi $ (see Fig. \ref{fig:quat3ik}). The required quaternion to enable such rotation is, therefore,
+\begin{equation}
+\label{eq:04}
+v = e^{\qj \alpha}, \quad 2\alpha = \theta = \tan^{-1} \frac{1}{3},
+\end{equation}
+using the mapping $ \lambda \mapsto v \lambda v^{-1} $ in (\ref{eq:rotacao}).
+
+\begin{figure}
+\centering
+\includegraphics[width=0.25\linewidth]{Figures/quaternion01.pdf}
+\caption{Representation of $ \lambda = 3\qi + \qk $ in the $ \qi \qk $ plane.}
+\label{fig:quat3ik}
+\end{figure}
+
+Recalling that our desired transformation is written as $ \lambda \mapsto q^{-1} \lambda q $, then
+\begin{equation}
+%\label{key}
+q = v^{-1} = e^{- \qj \alpha} = e^{- \qj \frac{\theta}{2}}.
+\end{equation}
+
+As a sanity check, let us find the value of $ \alpha $ which results in $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $. Since $ v = q^{-1} = \cos \alpha + \qj \sin \alpha $,
+\begin{equation}
+%\label{key}
+\begin{aligned}
+%\label{key}
+q^{-1} \lambda &= (\cos \alpha + \qj \sin \alpha)(3 \qi + \qk)\\
+&= \qi(3 \cos \alpha + \sin \alpha) + \qk(\cos \alpha - 3 \sin \alpha). \\
+q^{-1} \lambda q &= [\qi(3 \cos \alpha + \sin \alpha) + \qk(\cos \alpha - 3 \sin \alpha)] (\cos \alpha - \qj \sin \alpha) \\
+&= \qi (3 \cos 2\alpha + \sin 2\alpha) + \qk(\cos 2\alpha - 3 \sin 2\alpha).
+\end{aligned}
+\end{equation}
+
+Therefore, $ q^{-1} \lambda q \in \mathbb{C}_{\qi} $ if and only if
+\begin{equation}
+%\label{key}
+\begin{aligned}\textbf{}
+\cos 2\alpha - 3 \sin 2\alpha &= 0 \\
+2\alpha &= \tan^{-1} \frac{1}{3},
+\end{aligned}
+\end{equation}
+as determined by (\ref{eq:04}).
+
+Consequently, the unit pure quaternion $ q = e^{- \qj \alpha} $, $ \alpha = - \displaystyle \nicefrac{1}{2} \tan^{-1} \nicefrac{1}{3} $, yields $ q^{-1} \lambda q \in \mathbb{C}_{\qi}$, so that (\ref{eq:03}) can be rewritten as in (\ref{eq:rewritten}),
+\begin{equation}
+%\label{key}
+\mathbf{A} \underbrace{\begin{pmatrix}
+cos \alpha + \qi \sin \alpha - \qj \sin \alpha - \qk \sin \alpha \\
+2 \sin \alpha + \qi \sin \alpha + \qj 2 \cos \alpha + \qk \cos \alpha
+\end{pmatrix}}_{= \mathbf{v} q} =
+(\mathbf{v} q) \cdot \underbrace{\qi (3 \cos 2\alpha + \sin 2\alpha)}_{= q^{-1} \lambda q}.
+%\underbrace{3.162 \qi}_{= \bar{u} q u}.
+\end{equation}
+Let us leave a remark for the user, as an anticipation of the upcoming Section: notice how $\mathbf{v}$ and $\mathbf{v}q$ are the same eigenvector up to a scaling factor, and it is always possible to make $q^{-1} \lambda q$ a complex number, given that the vector part of $\lambda$ has non-zero norm.
 \end{example}
 \end{quotation}
 
@@ -441,7 +427,7 @@ Since quaternion multiplication is noncommutative, it is necessary to distinguis
 
 We will restrict this discussion mostly to right eigenvalues, since they hold a broader set of results in literature \cite[Cap. 5]{zhang1997quaternions} and are, for that matter, a safer point of support when developing QGSP. When not explicitly mentioned, the right eigenvalues will simply be referred to as \textit{eigenvalues} of the quaternion matrix.
 
-It matters to highlight the fact that a quaternion matrix possesses a \textit{finite} number of eigenvalues if and only if they are all real-valued. Otherwise, each of them will belong to a similarity class, according to the transformation $ \lambda_1 = q^{-1} \lambda_2 q $, containing \textit{infinite} quaternions which are also eigenvalues of the same matrix. Let $ \lambda $ be, for instance, an eigenvalue of the matrix $ \mathbf{A} $ associated with the eigenvector $ \mathbf{v} $. That is,
+It matters to highlight the fact that a quaternion matrix possesses a \textit{finite} number of eigenvalues if and only if they are all real-valued. Otherwise, each of them will belong to a similarity class, according to the transformation $ \lambda_1 = q^{-1} \lambda_2 q $, containing \textit{infinite} quaternions which are also eigenvalues of the same matrix (return to Example \ref{example:01}, for instance). Let $ \lambda $ be an eigenvalue of the matrix $ \mathbf{A} $ associated with the eigenvector $ \mathbf{v} $. That is,
 \begin{equation}
 \begin{aligned}
 \label{eq:similar}
@@ -464,15 +450,14 @@ The problem of quaternion matrix diagonalization differs greatly from the case w
 \end{pmatrix}.
 \end{equation}
 
-Embora possua autovalores distintos -- $ \qi $ e $ \qj $, pois s\~ao as entradas diagonais de uma matriz triangular --, os respectivos autovetores da matriz $ \mathbf{A} $ n\~ao formam um conjunto linearmente independente. Pode-se verificar, por exemplo, que um autovetor associado a $ \qi $ \'e $ (1, 0)^T $, enquanto um associado a $ \qj $ \'e $ (\qi + \qj, 0)^T $. A raz\~ao deles serem linearmente dependentes \'e o fato, mencionado anteriormente, de que para todo autovalor e autovetor $ \lambda $ e $ \mathbf{v} $ de uma matriz quaterni\^onica, tem-se $ q^{-1}\lambda q $ e $ \mathbf{v}q $ como outros autovalor e autovetor, com $ q \in \mathbb{H}^\ast $. Ou seja, dois autovalores \emph{similares} est\~ao sempre associados aos mesmos autovetores, a menos de um fator de escala. Por isso, quat\'ernios similares s\~ao ditos pertencentes \`a mesma \emph{autoclasse} \cite{de2000right}. Para que o conjunto de autovetores associados aos autovalores distintos de uma matriz quaterni\^onica sejam linearmente independentes, portanto, estes autovalores \textbf{n\~ao} podem ser similares.  Concluindo o exemplo dado, pode-se mostrar que $ \qi $ e $ \qj $ s\~ao similares: $ \qj = q \qi q^{-1} $, para $ q \in \{ a - a\qi - a\qj + a\qk \ | \ a\in \mathbb{R}^\ast \} $.
+Although its eigenvalues are distinct -- $ \qi $ and $ \qj $, since they lie on the main diagonal of an upper triangular matrix --, the respective eigenvectors do not constitute a linearly independent set. Notice, for example, that an eigenvector associated with $ \qi $ is $ (1, 0)^T $, whereas one associated with $ \qj $ is $ (\qi + \qj, 0)^T $. The reason as to why they form a linearly dependent set is the fact previously stated that, for each eigenvalue and eigenvector $ \lambda $ and $ \mathbf{v} $ from a quaternion matrix, it follows that $ q^{-1}\lambda q $ and $ \mathbf{v}q $ form another eigenvalue-eigenvector pair, with $ q \in \mathbb{H}^\ast $. That is, two \emph{similar} eigenvalues are always associated with the sample eigenvectors, up to a scaling factor. That is why similar quaternions are said to belong to the same \emph{eigenclass} \cite{de2000right}. In order to have a linearly independent set of eigenvectors, therefore, their eigenvalues must not be similar. Concluding the counterexample, the reader may show that $ \qi $ and $ \qj $ satisfy the similarity relation $ \qj = q \qi q^{-1} $ whenever $q$ belongs to the set $ \{ a - a\qi - a\qj + a\qk \ | \ a\in \mathbb{R}^\ast \} $.
 
-O teorema \ref{th:02} relaciona a autodecomposi\c c\~ao de uma matriz e de sua complexa adjunta, fornecendo um princ\'ipio \'util para o estudo da autoestrutura de matrizes quaterni\^onicas.
-
+Theorem \ref{th:02} relates the eigendecomposition of a quaternion matrix and that of its complex adjoint, providing a central principle to the study of quaternions matrices eigenstructure.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.6\linewidth]{Figures/complex_adjoint_eigvals_PT.pdf}
-\caption{\emph{Autovalores padrão} de uma matriz $ \mathbf{A} $ quaterni\^onica, indicados como um subconjunto dos autovalores de sua respectiva matriz complexa adjunta.}
+\includegraphics[width=0.6\linewidth]{Figures/complex_adjoint_eigvals_EN.pdf}
+\caption{\emph{Standard eigenvalues} of a quaternion matrix $ \mathbf{A} $, indicated as a subset of the eigenvalues of the complex adjoint matrix.}
 \end{figure}
 
 
