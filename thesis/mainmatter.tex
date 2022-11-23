@@ -467,11 +467,11 @@ Every matrix $ A \in \mathbb{H}^{n \times n} $ has exactly $ n $ right eigenvalu
 \end{theorem}
 
 \begin{proof}
-Como demonstrado no ap\^endice \ref{ch:AppendixA}, a partir da equa\c c\~ao de autovalor quaterni\^onica
+As demonstrated in the Appendix \ref{ch:AppendixA}, starting from the quaternion eigenvalue equation
 \begin{equation}
 \mathbf{A} \mathbf{v} = \mathbf{v} \lambda
 \end{equation}
-em que se pode assumir, sem perda de generalidade, que $ \lambda \in \mathbb{C} $, pode-se chegar \`a equa\c c\~ao equivalente
+in which one can assume without loss of generality that $ \lambda \in \mathbb{C} $, it is possible to arrive at the \emph{equivalent} equation
 \begin{equation}
 \label{eq:eigvalueequation}
 \begin{pmatrix}
@@ -488,7 +488,7 @@ em que se pode assumir, sem perda de generalidade, que $ \lambda \in \mathbb{C} 
 \end{pmatrix}
 \lambda,
 \end{equation}
-envolvendo apenas vari\'aveis complexas (i.~e. as componentes da decomposi\c c\~ao de simpl\'etica de $ \mathbf{A} $ e $ \mathbf{v} $). Uma vez que
+which involves solely complex-valued matrices and vectors, namely: the components of the symplectic decomposition of $ \mathbf{A} $ and $ \mathbf{v} $). Since
 \begin{equation}
 \rchi_A = 
 \begin{pmatrix}
@@ -496,7 +496,7 @@ envolvendo apenas vari\'aveis complexas (i.~e. as componentes da decomposi\c c\~
 - \overline{\mathbf{A}}_2 & \overline{\mathbf{A}}_1
 \end{pmatrix}
 \end{equation}
-\'e uma matriz complexa $ 2n \times 2n $, ela possui $ 2n $ autovalores complexos (distintos ou não). Segundo \cite[Teorema 5]{lee1948eigenvalues}, seus autovalores ocorrem na forma de $ n $ pares conjugados e, por isso, a matriz $ \mathbf{A} $ possui exatamente $ n $ autovalores complexos com parte imagin\'aria n\~ao-negativa.
+is a $ 2n \times 2n $-complex matrix, it has $ 2n $ complex-valued eigenvalues (possibly repeated). According to \cite[Theorem 5]{lee1948eigenvalues}, its eigenvalues appear as $ n $ conjugate pairs (possibly some pairs are real-valued, so they are actually identical).
 
 Os demais autovalores s\~ao redundantes. Seja $ q \in \mathbb{C}_{\qi}$ um destes autovalores. Podemos mostrar que $ q \sim \overline{q} $, pois obt\'em-se $ \overline{q} $ atrav\'es de uma rota\c c\~ao da parte imagin\'aria de $ q $ de 180$ ^\circ $ em torno do eixo $ \qj $. Utilizando o racioc\'inio exposto na subse\c c\~ao \ref{subsec:rotacionando}, com o quat\'ernio $ v = e^{\qj \frac{\pi}{2}} = \qj $ (logo $ v^{-1} = e^{- \qj \frac{\pi}{2}} = -\qj $) e o mapeamento $ q \mapsto v q v^{-1} $,
 \begin{equation}
