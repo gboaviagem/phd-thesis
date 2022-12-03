@@ -2654,7 +2654,7 @@ in which the notation $\mathbf{e} = \mathbf{e}(\mathbf{\widetilde{h}}^{(k)})$ wa
 \mathbf{e}^T \overline{\mathbf{X}}
 \right)^T - \mathbf{X}^H \overline{\mathbf{e}}
 \end{equation}
-providing all that is needed to implement the update rule in (\ref{eq:updateqlms}).
+providing all that is needed to implement the update rule in (\ref{eq:updateqlms}). The reader is encouraged to refer to \cite{took2008quaternion} and verify the equivalence between the original equations and their matrix forms, just presented. Equations (\ref{eq:updateqlms}) to (\ref{eq:qlmsgradient}) were used exactly as they were written in the computations in Subsection \ref{subsec:denoising}.
 
 As a last and more practical note, it is important to mention that, because of the structure of matrix $\mathbf{X}$, it is indispensable to add the extra step of normalizing the columns of $\mathbf{X}$ before running the QLMS, otherwise convergence is slow, if not even prevented. It is a well known practice for least-mean squares regression and other algorithms based on gradient descent, which do not work well if the features have highly disproportionate scales. Let us recall that this is precisely the current case: the columns in $\mathbf{X}$ represent variables in a regression problem (with target given by the ideal frequency response $\mathbf{y}$) and they differ massively in scale. The normalization here is understood in the sense of bringing the mean and standard deviation of the feature distribution to 0 and 1, respective. That is, for each vector $\mathbf{x}_i = (\lambda^i_0, \lambda^i_1, \dots, \lambda^i_{N-1})^T$ with mean $\mu$ and standard deviation $\sigma$, the normalization takes place by replacing it with $\frac{\mathbf{x}_i - \mu}{\sigma}$.
 
@@ -2663,6 +2663,7 @@ As a last and more practical note, it is important to mention that, because of t
 This section is devoted to experimenting with QGSP in real-world datasets, tackling topics such as graph inference, spectral analysis, compression and denoising. All computations in this chapter were performed using \texttt{gspx}, an open-source Python package dedicated to implement the core concepts and tools of QGSP. It constitutes a contribution of this thesis and is available at \url{https://github.com/gboaviagem/gspx}.
 
 \subsection{Denoising a quaternion graph signal via QLMS low-pass filtering}
+\label{subsec:denoising}
 
 Let us walk through an example on spectral analysis with real-world data using QGSP. The graph signal will be generated using UK towns' weather data, specifically humidity, atmospheric pressure, temperature and wind speed. The data was fetched from the Open Weather Map API\footnote{The API is accessible, as of August 2022, at the address \url{https://home.openweathermap.org/}.}, in April 20th 2022, at approximately 13:00 GMT. The latitude and longitude values of UK towns originate from the LatLong.Net database\footnote{Accessible, as of August 2022, at the address \url{https://www.latlong.net/category/towns-235-55.html}.}.
 
