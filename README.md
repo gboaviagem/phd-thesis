@@ -1,11 +1,9 @@
 # phd-thesis
 TeX files for my PhD Thesis.
 
-This repository is edited both locally and through Overleaf.
-
 ### Adding to the local repository an Overleaf Git remote
-As explained by [Overleaf](https://www.overleaf.com/learn/how-to/Using_Git_and_GitHub),
-one can link this Github repository with the (paid) Overleaf project, after cloning locally,
+As explained in the [Overleaf](https://www.overleaf.com/learn/how-to/Using_Git_and_GitHub) documentation,
+one can link this Github repository with the Overleaf project (only in paid subscription), after cloning locally,
 by doing so:
 ```sh
 cd phd-thesis
@@ -29,7 +27,7 @@ To pull the latest content from the Overleaf project and merge it into your `mai
 git pull overleaf master --allow-unrelated-histories
 ```
 
-Since the main branch in Overlear if `master`, the push will go a bit differently, in the first time:
+Since the main branch in Overlear if `master`, the push will go a bit differently:
 ```sh
 git push -u overleaf main:master
 ```
