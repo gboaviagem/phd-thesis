@@ -2,11 +2,11 @@
 
 Signal processing is a field which often interweaves pure mathematics and engineering. One of its concerns is the \textit{representation} of signals (functions) and how different representations may be explored to better manipulate such signals. The spectral analysis via Fourier and similar transforms, for instance, aims to project the signal onto a domain in which the energy support is more compact (compression), or in which some frequencies are easier to be removed (filtering), or yet in which some relevant features may be created (feature engineering for machine learning problems), among others \cite{oppenheim1999discrete, rabiner2010theory, graf2015features, vergin1999generalized}.
 
-One way to explore different signal representations is to alter the algebra over which it is defined. That is the case with numerical or arithmetic transforms \cite{blahut2010fast,pedrouzo2017number,chandra2014exact}, which deal only with finite fields instead of the usual complex (e.g. Fourier transform) or real fields (e.g. cosine transform). As the underlying algebra is extended, e.g. going from $ \mathbb{R} $ to $ \mathbb{C} $, it is possible to process signals with more information per sample. Such was the motivation behind Sangwine's \cite{sangwine1996fourier} discrete version of a family of bidimensional transforms over the \textit{quaternions}, previously created by Ell \cite{ell1993quaternion}: to exploit this class of hypercomplex numbers with four real components to perform holistic color image processing. Upon mapping each color channel inside a pixel into an imaginary component of a quaternion number, the color image may be processed as a single signal. Computationally, the spectral decomposition requires only two complex discrete Fourier transforms (DFTs), instead of three (one per color channel). Ever since, quaternion transforms have been employed not only on color image processing \cite{ell2007hypercomplex,chen2018quaternion,li2013quaternion,evans2000hypercomplex}, but also on other tasks such as bivariate signal analysis \cite{flamant2017spectral,flamant2017time,flamant2018complete}.
+One way to explore different signal representations is to alter the algebra over which its sample values are defined. That is the case with number-theoretic transforms \cite{blahut2010fast,pedrouzo2017number,chandra2014exact}, which deal only with finite algebraic structures instead of the usual complex (e.g. Fourier transform) or real fields (e.g. cosine transform). As the underlying algebra is extended, e.g. going from $ \mathbb{R} $ to $ \mathbb{C} $, it is possible to process signals with more information per sample. Such was the motivation behind Sangwine's \cite{sangwine1996fourier} discrete version of a family of bidimensional transforms over the \textit{quaternions}, previously created by Ell \cite{ell1993quaternion}: to exploit this class of hypercomplex numbers with four real components to perform holistic color image processing. Upon mapping each color channel inside a pixel into an imaginary component of a quaternion number, the color image may be processed as a single 2D signal -- instead of three, one per color channel. The holistic (as opposed to separate) processing of the color signal allows to exploit the correlation and coupling between the channels, and this is generally the advantage intended when using quaternion signal processing to handle three- or four-dimensional data \cite{took2008quaternion}. Computationally, the spectral decomposition requires only two complex discrete Fourier transforms (DFTs), instead of three (one per color channel). Ever since, quaternion transforms have been employed not only on color image processing \cite{ell2007hypercomplex,chen2018quaternion,li2013quaternion,evans2000hypercomplex}, but also on other tasks such as bivariate signal analysis \cite{flamant2017spectral,flamant2017time,flamant2018complete}.
 
-Algebra extensions change the signal representation by looking at the signal \textit{samples} but, reminding the signal is nothing more than a function, one may also shift the attention to the \textit{domain}. In fact, such reflection has led to the creation of graph signal processing (GSP). This field, which emerged in the last decade, is concerned with extending the concepts of classical discrete signal processing (DSP) to the case in which the signal samples \textit{reside in graph vertices}. It converges to the classical case of discrete-time domain when using a path or ring graph -- depending on the graph shift operator (GSO) at hand, as will soon be clear -- with equally weighted edges. The \textit{signal}, therefore, is a mapping from the vertex set to the real (or complex) numbers, and the fixed sampling frequency is represented as graph edges having the same weights (i.~e. as if the samples were at fixed ``distances'', one could say). GSP deals with the consequences of conecting more vertices in this graph, moving from the queue-shaped domaing into an arbitrary network. Many definitions from classical DSP have already found their way into GSP, thanks to the contributions of many scholars who proposed ways to implement filtering \cite{sandryhaila2013filters}, linear transforms \cite{sandryhaila2013gft,sardellitti2017graph}, interpolation \cite{segarra2015interpolation}, sampling theorem on graphs \cite{wang2015generalized,chen2016signal,tsitsvero2016signals}, among others.
+Algebra extensions change the signal representation by looking at the signal \textit{samples} but, reminding the signal is nothing more than a function, one may also shift the attention to the \textit{domain}. In fact, such a reflection has led to the creation of graph signal processing (GSP). This field, which emerged in the last decade, is concerned with extending the concepts of classical discrete signal processing (DSP) to the case in which the signal samples \textit{reside in graph vertices}. It converges to the classical case of discrete-time domain when using a path or ring graph -- depending on the graph shift operator (GSO) at hand, as will soon be clear -- with equally weighted edges. The \textit{signal}, therefore, is a mapping from the vertex set to the real (or complex) numbers, and the fixed sampling frequency is represented as graph edges having the same weights (i.~e., as if the samples were at fixed ``distances'', one could say). GSP deals with the consequences of conecting more vertices in this graph, moving from the queue-shaped domaing into an arbitrary network. Many definitions from classical digital signal processing (DSP) have already found their way into GSP, thanks to the contributions of many scholars who proposed ways to implement filtering \cite{sandryhaila2013filters}, linear transforms \cite{sandryhaila2013gft,sardellitti2017graph}, interpolation \cite{segarra2015interpolation}, sampling theorem on graphs \cite{wang2015generalized,chen2016signal,tsitsvero2016signals}, among others.
 
-The endeavour to experiment with different algebras or domain topologies has primarily theoretical motivations, but often reveal new solutions to real world problems. Taking GSP for instance, its applications spread from coding \cite{su2017graph} and light-field image super resolution schemes \cite{rossi2017graph}, to regulatory genetic networks, in which graph-based methods have already improved three state-of-the-art network inference schemes \cite{pirayre2015brane,pirayre2017brane}, also reaching recommender systems, both collaborative filtering and content-based, using regularization of graph total variation \cite{benzi2016song}, semi-supervised learning through adaptive graph filters \cite{chen2014semi}, community detection using graph wavelets \cite{tremblay2014graph}, among others. The latter examples hint at the intersection between GSP and the fields of data science and machine learning -- well established and highly active, both in Academia and industry --, to the point where we can join Benjamin Ricaud and say that \emph{Fourier could very well be, today, a data scientist} \cite{ricaud2019fourier}.
+The endeavour to experiment with different algebras or domain topologies has primarily theoretical motivations, but often reveal new solutions to real world problems. Taking GSP for instance, its applications spread from coding \cite{su2017graph} and light field image super resolution schemes \cite{rossi2017graph}, to regulatory genetic networks, in which graph-based methods have already improved three state-of-the-art network inference schemes \cite{pirayre2015brane,pirayre2017brane}, also reaching recommender systems, both collaborative filtering and content-based, using regularization of graph total variation \cite{benzi2016song}, semi-supervised learning through adaptive graph filters \cite{chen2014semi}, community detection using graph wavelets \cite{tremblay2014graph}, among others. The latter examples hint at the intersection between GSP and the fields of data science and machine learning -- well established and highly active, both in Academia and industry --, to the point where we can join Benjamin Ricaud and say that \emph{Fourier could very well be, today, a data scientist} \cite{ricaud2019fourier}.
 
 As happened to GSP, the study of quaternion-valued signal processing has also found applications. Beyond the already mentioned use in manipulating color image and bivariate signals, the work on adaptive quaternion filters has been useful, for example, in wind profile prediction \cite{jiang2014general}. Or yet the remarkable union of graphs and quaternions in the work by \cite{zhang2019quaternion} -- the only one the author is aware of --, in which quaternion embeddings are used to form a low dimensional representation of entities and relations in knowledge graphs.
 
@@ -20,7 +20,7 @@ This thesis is organized as follows. Chapters \ref{ch:reviewQuat} and \ref{ch:re
 Chapter \ref{ch:FrGSO} presents the new fractional graph shift operator, commenting on its properties and applications.
 In Chapter \ref{ch:FrQDFT}, a study on the fractionalization of the QDFT is presented, with a new method being proposed, alongside a multiparametric version of the fractional-order transform.
 The foundations of QGSP are finally presented in Chapter \ref{ch:QGSP}, with discussions and a few applications with both toy and real world datasets.
-The thesis closes with concluding remarks and future works, in Chapter \ref{ch:conclusion}. The Appendix \ref{ch:AppendixA} leads the reader through the demonstration of a relation between systems of quaternion and complex linear equations, useful for a central theorem presented in Chapter \ref{ch:reviewQuat}.
+The thesis closes with concluding remarks and future works, in Chapter \ref{ch:conclusion}. The Appendix \ref{ch:AppendixA} leads the reader through the demonstration of a relation between systems of quaternion and complex linear equations, useful for a central theorem presented in Chapter \ref{ch:reviewQuat}. As a final note, the reader may notice that many concepts in the chapters dedicated to basic literature review are presented outside formal theorems and propositions. Far from being a conscious decision from the beginning, it happened as an unconscious stylistic choice, prioritizing a steady flow of writing to the detriment of mathematical formalism.
 
 \section{Contributions}
 The contributions of this doctorate research, featured in this thesis, are:
@@ -28,9 +28,9 @@ The contributions of this doctorate research, featured in this thesis, are:
 \vspace{-1em}
 \begin{itemize}[noitemsep]
     \item The proposition and discussion of the fractional graph shift and its application on improving least-squares approximation of linear and shift-invariant ideal filters.
-    \item A novel approach to fractionalizing the quaternion discrete Fourier transform (QDFT)
+    \item A theorem which proves that the QDFT and the DFT share symmetric eigenvalues, and which enables a novel approach to fractionalizing the quaternion discrete Fourier transform (QDFT).
     \item The definition of a multiparametric fractional QDFT and its application in a novel image encryption scheme.
-    \item The proposition of Quaternion Graph Signal Processing (QGSP), a new tool designed for specialized scenarios in which both the signal samples and their quantifiable relationship may be expressed as quaternions (thus having at most four dimensions or information sources).
+    \item The proposition of quaternion graph signal processing (QGSP), a new tool designed for specialized scenarios in which both the signal samples and their quantifiable relationship may be expressed as quaternions (thus having at most four dimensions or information sources).
     \item \texttt{gspx}\footnote{The library is available as an open repository: \url{https://github.com/gboaviagem/gspx}.}, an open-source Python library with implementation of the core concepts from QGSP.
 \end{itemize}
 
@@ -72,7 +72,7 @@ And here there dawned on me the notion that we must admit, in some sense, a four
 \end{quotation}
 
 
-In 1833, at the age of 28, Willian Rowan Hamilton presented to the Royal Irish Academy (RIA) a work in which complex numbers were treated as ordered pairs of real numbers, given the appropriate definition of operations\footnote{The results were published in 1837, in the paper \emph{Theory of Conjugate Functions, or Algebraic Couples; with a Preliminary and Elementary Essay on Algebra as the Science of Pure Time} \cite{hamilton1837theory}.}. In the following years, he struggled to extend the complex field into a normed division algebra ober triples, but soon realized that, as much as his attempts were inventive, the resulting algebra was not closed under multiplication. We can see this through a simple example \cite{santos2011algebra}: let it be the set $\mathbb{F} = \{ a + b \qi + c \qj  \ | \ (a, b, c) \in \mathbb{R}^3\}$, with $\qi^2 = \qj^2 = -1$ and $\qi \neq \qj$. Since $\qi, \qj \in \mathbb{F}$, so there must exist $x, y, z \in \mathbb{R}$ so that
+In 1833, at the age of 28, Willian Rowan Hamilton presented to the Royal Irish Academy (RIA) a work in which complex numbers were treated as ordered pairs of real numbers, given the appropriate definition of operations\footnote{The results were published in 1837, in the paper \emph{Theory of Conjugate Functions, or Algebraic Couples; with a Preliminary and Elementary Essay on Algebra as the Science of Pure Time} \cite{hamilton1837theory}.}. In the following years, he struggled to extend the complex field into a normed division algebra over triples, but soon realized that, as much as his attempts were inventive, the resulting algebra\footnote{An \textit{algebra over a field}, or simply \textit{algebra}, is a vector space over a field with a bilinear multiplication (that is, the multiplication distributes over the addition and the associativity is valid for multiplication) \cite{schafer1955introduction}.} was not closed under multiplication. We can see this through a simple example \cite{santos2011algebra}: let it be the set $\mathbb{F} = \{ a + b \qi + c \qj  \ | \ (a, b, c) \in \mathbb{R}^3\}$, with $\qi^2 = \qj^2 = -1$ and $\qi \neq \qj$. Since $\qi, \qj \in \mathbb{F}$, so there should exist $x, y, z \in \mathbb{R}$ so that
 \begin{equation}
 \qi \qj = x + y \qi + z \qj.
 \label{eq:demonstration01}
@@ -85,7 +85,7 @@ Multiplying by $\qi$ both sides of the equation,
 and using (\ref{eq:demonstration01}) it yields,
 \begin{equation}
 - \qj = \qi x - y + z (x + y \qi + z \qj)
-\Rightarrow
+\iff
 (zx - y) + \qi (x + zy) + \qj (z^2 + 1) = 0.
 \end{equation}
 That is: $z \notin \mathbb{R}$ and $ \qi \qj \notin \mathbb{F} $, proving that such algebraic structure is not closed under multiplication.
@@ -126,12 +126,12 @@ Similarly, to find $ \qj \qi $,
 - \qk &=  \qj \qi. \\
 \end{aligned}
 \end{equation}
-Figure \ref{fig:quatmult} depicts the order in which the product between two elements of the canonical basis yields the third, with positive sign. The most relevant consequence, therefore, of (\ref{eq:fund_rel}), is that the quaternion product is \textit{noncommutative}. In fact, it is the first noncommutative normed division algebra in history \cite{kleiner2007history}.
+Fig. \ref{fig:quatmult} depicts the order in which the product between any pair in the triplet $ \qi $, $ \qj $ and $ \qk $ yields the third one, with positive sign. All three units commute with real numbers. The most relevant consequence, therefore, of (\ref{eq:fund_rel}), is that the quaternion product is \textit{noncommutative}. In fact, it is the first example of noncommutative normed division algebra in history \cite{kleiner2007history}.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.2\linewidth]{Figures/quaternion_multiplication.pdf}
-	\caption{Illustration of the multiplication rule between the imaginary units $ \qi $, $ \qj $ e $ \qk $.}
+	\caption{Illustration of the multiplication rule between the imaginary units $ \qi $, $ \qj $ and $ \qk $.}
 	\label{fig:quatmult}
 \end{figure}
 
@@ -154,7 +154,7 @@ The \emph{real part} of a quaternion \emph{q} is defined as
 S(q) = a.
 \end{equation}
 
-The imaginary part is usually referred to as \textit{vector part}, while the real part may also be called \textit{scalar part}. A quaternion with null real part is said to be \textit{pure} --- the set of which is represented by $\qV(\mathbb{H})$. The product between pure quaternions may be written similarly to that between $\mathbb{R}^3$ vectors, i.~e. if $v_1 = b_1\qi + c_1\qj + d_1\qk$ and $v_2 = b_2\qi + c_2\qj + d_2\qk$, then
+The imaginary part is usually referred to as \textit{vector part}, while the real part may also be called \textit{scalar part}. A quaternion with null real part is said to be \textit{pure} --- the set of which is represented by $\qV(\mathbb{H})$. The product between pure quaternions may be written similarly to that between $\mathbb{R}^3$ vectors, i.~e., if $v_1 = b_1\qi + c_1\qj + d_1\qk$ and $v_2 = b_2\qi + c_2\qj + d_2\qk$, then
 \begin{equation}
 v_1 \times v_2 = 
 \begin{vmatrix}
@@ -200,13 +200,43 @@ q_1 q_2 = & \ S(q_1)S(q_2) - \langle\qV(q_1), \qV(q_2)\rangle \\
 \end{equation}
 The lack of commutativity in the cross product is another demonstration of the fact that quaternion multiplication is noncommutative.
 
-Quaternion conjugation, as defined in the complex numbers, is obtained changing the sign of the imaginary part: $ \bar{q} \overset{\Delta}{=} S(q) - V(q) $. The quaternion \textit{norm} is defined as $\Vert q \Vert \overset{\Delta}{=} a^2 + b^2 + c^2 + d^2 = q \bar{q} = \bar{q} q$, whereas the \textit{modulus} of $q$ \cite{ell2014quaternion} is
+Quaternion conjugation, as defined in the complex numbers, is obtained changing the sign of the imaginary part: $ \bar{q} \overset{\Delta}{=} S(q) - \qV(q) $. The quaternion \textit{norm} is defined as $\Vert q \Vert \overset{\Delta}{=} a^2 + b^2 + c^2 + d^2 = q \bar{q} = \bar{q} q$, whereas the \textit{modulus} of $q$ \cite{ell2014quaternion} is
 \begin{equation}
 \label{eq:modulusq}
 |q| \overset{\Delta}{=} \sqrt{a^2 + b^2 + c^2 + d^2} = \Vert q \Vert^{\nicefrac{1}{2}}.
 \end{equation}
 
-A \textit{unit} quaternion has, by definition, unit norm, and the norm definition also leads to the quaternion multiplicative inverse,
+From the definition of quaternion conjugation, the product between the conjugate of two quaternions $q$ and $p$ equals
+\begin{equation}
+\begin{aligned}
+\bar{q} \bar{p} &=
+\left[ S(q) - \qV(q) \right] \left[ S(p) - \qV(p) \right] \\
+&= S(q)S(p) - \qV(q) S(p) - S(q) \qV(p) + \qV(q)\qV(p) \\
+&= S(q)S(p) - S(p)\qV(q) - S(q) \qV(p) + \qV(q)\qV(p).
+\end{aligned}
+\end{equation}
+From (\ref{eq:prod_vectors}),
+\begin{equation}
+\qV(q) \qV(p) = 
+\qV(q) \times \qV(p) - \langle\qV(q), \qV(p)\rangle =
+- \qV(p) \qV(q),
+\end{equation}
+therefore
+\begin{equation}
+\bar{q} \bar{p} =
+S(q)S(p) - S(p)\qV(q) - S(q) \qV(p) - \qV(p)\qV(q) =
+\overline{p q},
+\end{equation}
+showing that $\bar{q} \bar{p} = \overline{p q}$. This result allows to prove that $\Vert p q \Vert = \Vert p \Vert \Vert q \Vert$, since
+\begin{equation}
+\label{eq:normproduct}
+\begin{aligned}
+\Vert pq \Vert = \overline{pq} pq = \bar{q} \bar{p} p q = \bar{q} \Vert p \Vert q = \Vert p \Vert \bar{q} q =
+\Vert p \Vert \Vert q \Vert.
+\end{aligned}
+\end{equation}
+
+A \textit{unit} quaternion has, by definition, unit norm, and the norm definition also leads to the quaternion multiplicative inverse (if $q \neq 0$),
 \begin{equation}
 q^{-1} = \frac{\bar{q}}{\Vert q \Vert}.
 \end{equation}
@@ -214,9 +244,9 @@ q^{-1} = \frac{\bar{q}}{\Vert q \Vert}.
 From the analogy between pure quaternions and the elements in $ \mathbb{R}^3 $, the idea of perpendicularity between pure quaternions presents itself naturally. Given $ \qmu,  \qnu \in \qV(\mathbb{H})$, they are said orthogonal --- we write $ \qmu \perp \qnu $ --- if and only if
 \begin{equation}
 S(\qmu \qnu) = \langle \qmu, \qnu \rangle = 0.
-\tag{$ \iff \qmu \perp \qnu $}
+% \tag{$ \iff \qmu \perp \qnu $}
 \end{equation}
-For two orthogonal unit pure quaternions $ \qmu $ and $ \qnu $, it follows from (\ref{eq:prod_vectors}) that $ \qmu \qnu  = \qmu \times \qnu$, therefore $ \qmu \qnu \perp \qmu $ and $ \qmu \qnu \perp \qnu $. Since $ (\qmu, \qnu, \qmu \qnu) $ is a triplet of orthogonal pure unit quaternions, they form a basis for $ \qV (\mathbb{H}) $. Hence it is possible to rewrite (\ref{eq:q}) as
+For two orthogonal unit pure quaternions $ \qmu $ and $ \qnu $, it follows from (\ref{eq:prod_vectors}) that $ \qmu \qnu  = \qmu \times \qnu$, therefore $ \qmu \qnu \perp \qmu $ and $ \qmu \qnu \perp \qnu $. Since $ (\qmu, \qnu, \qmu \qnu) $ is a triplet of orthogonal unit pure quaternions, they form a basis for $ \qV (\mathbb{H}) $. Hence it is possible to rewrite (\ref{eq:q}) as
 \begin{equation}
 \label{eq:quat_generalizado}
 q = a + b'\qmu + c'\qnu + d'\qmu \qnu,
@@ -230,9 +260,9 @@ Besides the cartesian representation (\ref{eq:q}), quaternions allow the so call
 \label{eq:euler}
 q = |q| e^{\qmu \theta} = |q|\cos \theta + |q|\qmu \sen \theta,
 \end{equation}
-in which $ \qmu $ is a pure unit quaternions, parallel to the vector part of $ q $.
+in which $ \qmu $ is a unit pure quaternion, parallel to the vector part of $ q $.
 
-As a remarkable consequence of (\ref{eq:euler}), it follows that every pure unit quaternion is a square root of $-1$. For instance, let $ \qnu $ be a unit pure quaternion. From (\ref{eq:euler}),
+As a remarkable consequence of (\ref{eq:euler}), it follows that every unit pure quaternion is a square root of $-1$. For instance, let $ \qnu $ be a unit pure quaternion. From (\ref{eq:euler}),
 \begin{equation}
 %\label{key}
 \qnu = |\qnu| e^{\qnu \theta},
@@ -248,7 +278,7 @@ hence,
 \qnu^2 = \left( e^{ \qnu \frac{\pi}{2}} \right)^2 = e^{\qnu \pi} = \cos \pi + \qnu \sen \pi = -1.
 \end{equation}
 
-This property leads to the conclusion that numbers such as $ a + \qmu b  $ form an isomorphism with the complex numbers. For this reason, the set composed by such numbers is represented by $ \mathbb{C}_{\qmu} \overset{\Delta}{=} \{ a + \qmu b \ |\  a, b \in \mathbb{R} \}$ (hence $ \mathbb{C}_{\qi} $ indicates the usual set of complex numbers).
+This property leads to the conclusion that numbers such as $ a + \qmu b  $ form an isomorphism with the complex numbers. For this reason, the set composed by such numbers is represented by $ \mathbb{C}_{\qmu} \overset{\Delta}{=} \{ a + \qmu b \ |\  a, b \in \mathbb{R} \}$ (and hence $ \mathbb{C}_{\qi} $ can be identified, for all practical ends, as the usual set of complex numbers, by making the extrapolation that the unit pure quaternion $\qi$ equals the complex imaginary unit).
 
 Another crucial representation of quaternion numbers is called \emph{symplectic decomposition}. Every quaternion $ q = a + b\qi + c\qj + d\qk \in \mathbb{H} $ can be represented as
 \begin{equation}
@@ -263,14 +293,14 @@ That is a hugely important tool when it comes to computing the QDFT (see Section
 
 \subsection{Quaternion similarity and rotation}
 \label{subsec:rotacionando}
-Two quaternions $ q $ and $ r $ are said to be \emph{similar} if it exists a non-zero quaternion $ v $ such that $ v^{-1}q v = r $. In this case, one can write $ q \sim r $. Similarity between quaternions constitutes an equivalence relation \cite{zhang1997quaternions}, and all elements from a same similarity class possess the same norm, since $ |v^{-1}q v| = |v^{-1}| \cdot |q| \cdot |v| = |q| $.
+Two quaternions $ q $ and $ r $ are said to be \emph{similar} if it exists a non-zero quaternion $ v $ such that $ v^{-1}q v = r $. In this case, one can write $ q \sim r $. Similarity between quaternions constitutes an equivalence relation \cite{zhang1997quaternions}, and all elements from a same similarity class possess the same norm, since, from (\ref{eq:normproduct}), $ |v^{-1}q v| = |v^{-1}| \cdot |q| \cdot |v| = |q| $.
 
-It matters to notice that an important property of quaternion similarity transformations, which justifies its great use in mechanics and graphics computing industry, is that it performs a rotation on the $\qi \qj \qk$ space. Given $ v,x \in \mathbb{H} $, $ v = |v| e^{\qmu \alpha}$, the similarity transformation
+It matters to notice that an important property of quaternion similarity transformations, which justifies its great use in mechanics and graphics computing industry, is that it performs a rotation on the $\qi \qj \qk$ space. Given $ v,q \in \mathbb{H} $, $ v = |v| e^{\qmu \alpha}$, the similarity transformation
 \begin{equation}
 \label{eq:rotacao}
-\phi_v(x) = v x v^{-1}
+\phi_v(q) = v q v^{-1}
 \end{equation}
-produces the rotation of the vector part of $x$ along the axis $ \qmu $ (which is parallel to the vector part of $v$) through an angle $ 2\alpha $ \cite{ward2012quaternions}, following the right-hand rule. Let us illustrate this property with an example.
+produces the rotation of the vector part of $q$ along the axis $ \qmu $ (which is parallel to the vector part of $v$) through an angle $ 2\alpha $ \cite{ward2012quaternions}, following the right-hand rule. Let us illustrate this property with an example.
 
 \vspace{-2em}
 \begin{quotation}
@@ -405,7 +435,7 @@ Given the matrix $ \mathbf{A} \in \mathbb{H}^{n \times n} $, the following sente
 
 \begin{itemize}[noitemsep]
 \item $\mathbf{A}$ is invertible.
-\item $\mathrm{det}(\rchi_A) \neq 0$, i.e. $\rchi_{A}$ is invertible.
+\item $\mathrm{det}(\rchi_A) \neq 0$, i.~e., $\rchi_{A}$ is invertible.
 \end{itemize}
 
 \end{theorem}
@@ -540,7 +570,7 @@ On the other hand, if $ \rchi_A $ is diagonalizable, then it is similar to a dia
 \label{sec:QFT}
 The field of quaternion signal processing has leveraged many tools to transform signals with quaternion-valued samples, from the fundamental redefinition of the gradient operador \cite{jiang2014general} up to algorithms for adaptive filtering \cite{jiang2013frequency}. This section focuses on the quaternion Fourier transform (QFT), as it is the basis for spectral analysis of quaternion signals.
 
-Quaternion Fourier transforms have received quite a few definitions. Some are one-dimensional \cite{flamant2017spectral}, while others are intrinsically two-dimensional \cite{guanlei2008fractional}; the latter group can yet be divided into those having kernels oriented towards generic pure unit quaternions, and those using canonic imaginary units, such as $ \qi $ and $ \qj $. The 2D-transformed signals may be placed \textit{between} the two kernels or beside them. In fact, Ell \cite[sec. 3.2]{ell2014quaternion} lists 8 possibilities for the 2D-QFTs. The two dimensional case will not be covered for now, since the discussion on the 1D case already serves the purpose of introducing the main ideas and properties of this family of transforms.
+Quaternion Fourier transforms have received quite a few definitions. Some are one-dimensional \cite{flamant2017spectral}, while others are intrinsically two-dimensional \cite{guanlei2008fractional}; the latter group can yet be divided into those having kernels oriented towards generic unit pure quaternions, and those using canonic imaginary units, such as $ \qi $ and $ \qj $. The 2D-transformed signals may be placed \textit{between} the two kernels or beside them. In fact, Ell \cite[sec. 3.2]{ell2014quaternion} lists 8 possibilities for the 2D-QFTs. The two dimensional case will not be covered for now, since the discussion on the 1D case already serves the purpose of introducing the main ideas and properties of this family of transforms.
 
 Let $f$ be a quaternion-valued function $f: \mathbb{R} \rightarrow \mathbb{H}$ and $\qmu \in \qV(\mathbb{H})$, $\qmu^2 = -1$. The \textit{left} 1D QFT can be defined as the family of integral transforms
 \begin{equation}
@@ -566,7 +596,7 @@ In the expressions above, the unit pure quaternion $\qmu$ is called the \emph{ei
 
 The right QFT may be defined likewise, by simply switching the relative positions of the kernel and the operand $f(t)$. The reader may notice that, when the eigenaxis is $\qi$, the QFT coincides with the usual continuous-time Fourier transform.
 
-In this work, however, the most relevant version of the QFT is that in which both the original signal and its transformed representation are defined over discrete domains: the 1D quaternion discrete Fourier Transform (QDFT) with axis $ \qmu $, as defined in \cite[sec. 3.3.1]{ell2014quaternion}. If $ \qmu $ is a pure unit quaternion, the $ m $-th component of the transformed vector in the left unitary QDFT with axis $ \qmu $ is
+In this work, however, the most relevant version of the QFT is that in which both the original signal and its transformed representation are defined over discrete domains: the 1D quaternion discrete Fourier Transform (QDFT) with axis $ \qmu $, as defined in \cite[sec. 3.3.1]{ell2014quaternion}. If $ \qmu $ is a unit pure quaternion, the $ m $-th component of the transformed vector in the left unitary QDFT with axis $ \qmu $ is
 \begin{equation}
 \label{eq:QDFT_fwd}
 \widehat{v}_m = \text{QDFT}\{ \mathbf{v} \}_m \overset{\Delta}{=} \frac{1}{\sqrt{N}} \sum_{n=0}^{N-1}  \exp \left( -\qmu \frac{2\pi}{N} nm \right) v_n \in \mathbb{C}_{\qmu},
@@ -610,11 +640,11 @@ This brief presentation of the QDFT illustrates that
 \item the eigenstructure of the QDFT likens heavily that of the usual DFT, to the point of allowing the reuse of common DFT algorithms. This resemblance will be exploited when investigating the fractionalization of the QDFT, in Chapter \ref{ch:FrQDFT}.
 \end{itemize}
 
-For a thorough introduction on quaternions and their application to signal processing, the reader may refer to \cite{zhang1997quaternions,ell2014quaternion,flamant2017time, jiang2014general}.
+For a thorough introduction on quaternions and their application to signal processing, the reader may refer to \cite{grigoryan2018quaternion,zhang1997quaternions,ell2014quaternion,flamant2017time, jiang2014general}.
 
 \section{Summary}
 
-This Chapter discussed the main topics concerning the quaternion algebra and its Fourier transform. Although they have not been addressed with the depth and details a more curious reader would wish, the discussion was hopefully enough to present a coherent overview of
+This chapter discussed the main topics concerning the quaternion algebra and its Fourier transform. Although they have not been addressed with the depth and details a more curious reader would wish, the discussion was hopefully enough to present a coherent overview of
 \begin{itemize}[noitemsep]
 \item how the quaternions extend the complex numbers, by carrying not 2 but 4 real-valued components splitted into a scalar and a vector part,
 \item how the quaternion multiplication rules effect the quaternion similarity classes, with their rotation property,
@@ -629,7 +659,7 @@ At the heart of the field of spectral analysis lies the concept of \textit{Fouri
 
 \section{The fractional Fourier transform}
 
-It is quite common in theoretical investigations to expand the definition of some well-established operator and consider the consequences of an intermediate (fractional) application of the underlying operation. Take, for example, the power operation, which makes \textit{sense} only for integer exponents (i.~e. $x^3 \overset{\Delta}{=} x \cdot x \cdot x$), but has great use when considering also real or complex exponents. Or the the derivative of a function $f(t)$, which can be defined to possess a fractional-order equivalent by setting $n$ to non-integer values in the time differentiation property of the Fourier transform $\mathcal{F} \left\{ \cdot \right\}$:
+It is quite common in theoretical investigations to expand the definition of some well-established operator and consider the consequences of an intermediate (fractional) application of the underlying operation. Take, for example, the power operation, which makes \textit{sense} only for integer exponents (i.~e., $x^3 \overset{\Delta}{=} x \cdot x \cdot x$), but has great use when considering also real or complex exponents. Or the derivative of a function $f(t)$, which can be defined to possess a fractional-order equivalent by setting $n$ to non-integer values in the time differentiation property of the Fourier transform $\mathcal{F} \left\{ \cdot \right\}$:
 \begin{equation}
 \label{eq:derivative}
 \mathcal{F} \left\{ \left[ \frac{\mathrm{d}^n}{(\mathrm{d}t)^n} f(t) \right] \right\} =
@@ -760,14 +790,14 @@ All these examples share an important characteristic: the structure over which t
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.25\linewidth]{Figures/signal_duher_graph_2.pdf}
+	\includegraphics[width=0.35\linewidth]{Figures/signal_duher_graph_2.pdf}
 	\caption{Example of signal defined over a graph. The height of the vertical bars indicate the value of the signal samples, which are indexed by the graph vertices. The graph edges capture similarity relations between samples. How could one define spectral analysis and processing techniques in such a signal domain?}
 	\label{fig:duher}
 \end{figure}
 
 \subsection{The challenge of graph-like domains}
 
-One of the reasons why GSP has been such a fertile field, allowing the birth of so many different problems and ideas, is that the definition of a signal over a graph leads to a series of obstacles when attempting to use even the most fundamental concepts of signal processing. Let us take the simple but elucidating example given by Shuman \emph{et al.}~\cite{shuman2013emerging}, and consider the unit shift to the right of a discrete-time signal $ x[n] $, which is done in digital signal processing (DSP) by the simple variable substitution $ x[n-1] $. Good enough, but what does it mean to right-shift the signal in  Fig. \ref{fig:duher}, for example? Obviously the sense of right and left are meaningless for general graphs. On this problem, Shuman \emph{et al.} argue that a na\"ive choice would be to label the $ N $ graph vertices from $ v_0 $ to $ v_{N-1} $, so that the sample $ x[n] $ is assigned to vertex $ v_n $, for doing so would allow to define the shifted signal as the result of assigning $ x[n] $ to vertex $ v_{(n-1) \text{\,mod\,} N} $. Such an option, however, is not adequate, for its repeatability depends always on the way the vertices are labeled. This example illustrates how a concept in DSP as simple as signal translation may deserve a cautious study in GSP.
+One of the reasons why GSP has been such a fertile field, allowing the birth of so many different problems and ideas, is that the definition of a signal over a graph leads to a series of obstacles when attempting to use even the most fundamental concepts of signal processing. Let us take the simple but elucidating example given by Shuman \emph{et al.}~\cite{shuman2013emerging}, and consider the unit shift to the right of a discrete-time signal $ x[n] $, which is done in digital signal processing by the simple variable substitution $ x[n-1] $. Good enough, but what does it mean to right-shift the signal in  Fig. \ref{fig:duher}, for example? Obviously the sense of right and left are meaningless for general graphs. On this problem, Shuman \emph{et al.} argue that a na\"ive choice would be to label the $ N $ graph vertices from $ v_0 $ to $ v_{N-1} $, so that the sample $ x[n] $ is assigned to vertex $ v_n $, for doing so would allow to define the shifted signal as the result of assigning $ x[n] $ to vertex $ v_{(n-1) \text{\,mod\,} N} $. Such an option, however, is not adequate, for its repeatability depends always on the way the vertices are labeled. This example illustrates how a concept in DSP as simple as signal translation may deserve a cautious study in GSP.
 
 
 \section{Principles and definitions}
@@ -802,7 +832,7 @@ with the \emph{degree matrix} $ \mathbf{D} $ being a diagonal matrix with $ d_i 
 
 A \emph{path} is a set of distinct edges (with the same orientation, if the graph is directed) linking distinct vertices, so that one could traverse all vertices by walking over the edges without ever repeat an edge or a vertex. A \emph{cycle} is like a path, except that it has equal starting and end vertices, and if a graph has a cycle it is called \emph{cyclic} (\emph{acyclic}, otherwise). If the cycle has only one edge, it is called a \emph{loop}. One refers to \emph{multiple edges} whenever a single pair of vertices is connected by two or more edges. An undirected graph is called \emph{simple} if it has no loops nor multiple edges.
 
-A graph is said to be \emph{complete} if any two of its vertices are adjacent. Graph signal processing over such graphs may be extremely cumbersome, for the computational complexity of many of its techniques depends heavily on the number of graph edges. For most applications, it is desirable to have a small number of edges while keeping the graph \emph{connected}, i.~e. for any pair of vertices there exists a path connecting them.
+A graph is said to be \emph{complete} if any two of its vertices are adjacent. Graph signal processing over such graphs may be extremely cumbersome, for the computational complexity of many of its techniques depends heavily on the number of graph edges. For most applications, it is desirable to have a small number of edges while keeping the graph \emph{connected}, i.~e., for any pair of vertices there exists a path connecting them.
 
 A graph is said to be \emph{unweighted} if all its edges have unit weight. A \emph{subgraph} of $ \mathcal{G} $ is a graph $ \mathcal{G}' = (\mathcal{V}', \mathbf{A}')$ with edge set $ \mathcal{E}' $, in which $ \mathcal{V}' \subset \mathcal{V} $ and $ \mathcal{E}' \subset \mathcal{E} $. A \emph{connected component} of $ \mathcal{G} $ is a connected subgraph $ \mathcal{G}' = (\mathcal{V}', \mathbf{A}')$ in which any vertex in $ \mathcal{V}' $ is linked exclusively to another vertex also in $ \mathcal{V}' $. This is illustrated by Fig. \ref{fig:example_graphs_b}, in which the graph has two connected components.
 
@@ -830,7 +860,7 @@ The reader is encouraged to refer to this section whenever necessary. For a broa
 A signal $ \mathbf{s} $ defined over $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $, with $ |\mathcal{V}| = N $, is a discrete-domain function mapping the graph vertex set to a scalar set, usually the complex or real numbers,
 \begin{equation}
 \label{eq:def_signal}
-s: \ \mathcal{V} \rightarrow \mathbb{C} \ | \ s(v_i) = s_i,
+s: \ \mathcal{V} \rightarrow \mathbb{C} \ | \ s(v_i) = s_i, \ i=0, \dots, N-1,
 \end{equation}
 so that the graph signal $ \mathbf{s} $ can be seen as a column vector in $ \mathbb{C}^N $ \emph{indexed by the vertices of} $ \mathcal{G} $. Once the vertices $ \mathcal{V} = \{v_1, \dots, v_N\}$ are clearly labeled, it is not ambiguous to represent the signal as the column vector $ \mathbf{s} = (s_0 \ s_1 \ \dots \ s_{N-1})^T$, $ s_i \in \mathbb{C} $, $ 0 \leq i \leq N-1 $.
 
@@ -927,7 +957,7 @@ By inspection of the \emph{adjacency matrix} of the directed ring graph (Fig. \r
 &  &   1 & 
 \end{bmatrix},
 \end{equation}
-it was noticed that the unit (circular) shift of discrete-time signals is precisely the left-multiplication by $ \mathbf{C} $, for given a discrete-time signal $ \mathbf{x} = (x_0 \ x_1 \ \dots \ x_{N-1})^T $,
+it was noticed that the unit (circular) shift of discrete-time signals is precisely the left-multiplication by $ \mathbf{C} $, for a given discrete-time signal $ \mathbf{x} = (x_0 \ x_1 \ \dots \ x_{N-1})^T $,
 \begin{equation}\label{eq:unit_shift}
 \mathbf{C}\mathbf{x} =
 \begin{bmatrix}
@@ -945,12 +975,12 @@ x_{N-1} \\ x_0 \\ \vdots \\ x_{N-2}
 \end{equation}
 and the generalization followed: \emph{the graph unit shift was defined as the left-multiplication by the graph adjacency matrix}.
 
-In other words, for a signal $ \mathbf{x} $ defined over the graph $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $, the adjacency matrix $ \mathbf{A} $ acts as a \emph{filter} which ``delays'' (i.~e. translates in the vertex domain) the graph signal $ \mathbf{x} $ (represented here as a column vector) by one unit, producing the delayed version represented hereinafter by $ \mathbf{x}^{\langle 1 \rangle} = \mathbf{A} \mathbf{x}$.
+In other words, for a signal $ \mathbf{x} $ defined over the graph $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $, the adjacency matrix $ \mathbf{A} $ acts as a \emph{filter} which ``delays'' (i.~e., translates in the vertex domain) the graph signal $ \mathbf{x} $ (represented here as a column vector) by one unit, producing the delayed version represented hereinafter by $ \mathbf{x}^{\langle 1 \rangle} = \mathbf{A} \mathbf{x}$.
 
 \subsection{Graph filters}
 \label{subsec:filtros}
 
-Seeing the adjacency matrix as a filter suggested the general definition of \emph{graph filter} as any matrix $ \mathbf{H} \in \mathbb{C}^{N \times N} $ \cite{sandryhaila2013filters}, which preserves the necessary property that the output of a filter (i.~e. the matrix-vector product) is a signal (i.~e. a column vector). Such a definition implies that \emph{linearity} is always valid for graph filters, since the distributivity of matrix multiplication with respect to matrix addition guarantees that
+Seeing the adjacency matrix as a filter suggested the general definition of \emph{graph filter} as any matrix $ \mathbf{H} \in \mathbb{C}^{N \times N} $ \cite{sandryhaila2013filters}, which preserves the necessary property that the output of a filter (i.~e., the matrix-vector product) is a signal (i.~e., a column vector). Such a definition implies that \emph{linearity} is always valid for graph filters, since the distributivity of matrix multiplication with respect to matrix addition guarantees that
 \begin{equation}
 %\label{key}
 \mathbf{H} (\alpha_1 \mathbf{x}_1 + \alpha_2 \mathbf{x}_2) =  \alpha_1 \mathbf{H} \mathbf{x}_1 + \alpha_2 \mathbf{H}  \mathbf{x}_2.
@@ -959,7 +989,7 @@ Seeing the adjacency matrix as a filter suggested the general definition of \emp
 The next desirable property would be \emph{shift invariance}, analogous to the classical time invariance of DSP, and this means that filtering and shifting should commute. In other words, for a graph filter $ \mathbf{H} $ to be \emph{linear and shift invariant} (LSI) it is required that
 \begin{equation}
 \label{eq:lsi_def}
-\mathbf{A} \mathbf{H} \mathbf{x} = \mathbf{H} \mathbf{A} \mathbf{x} \ \forall \mathbf{x}
+\mathbf{A} \mathbf{H} \mathbf{x} = \mathbf{H} \mathbf{A} \mathbf{x}, \ \ \forall \mathbf{x} \in \mathbb{C}^N
 \Rightarrow
 \mathbf{A} \mathbf{H} = \mathbf{H} \mathbf{A}.
 \end{equation}
@@ -969,7 +999,7 @@ The next desirable property would be \emph{shift invariance}, analogous to the c
 % \label{eq:filter_poly}
 % h(\mathbf{A}) = \sum_{\ell=0}^{L-1} h_\ell \mathbf{A}^\ell,
 % \end{equation}
-% with $ L $ smaller than or equal to the degree of the minimal polynomial of $ \mathbf{A} $, i.~e. LSI filters are finite power series on the shift operator, exactly as it happens in DSP, in which LTI filters have polynomial representations on $ z^{-1} $.
+% with $ L $ smaller than or equal to the degree of the minimal polynomial of $ \mathbf{A} $, i.~e., LSI filters are finite power series on the shift operator, exactly as it happens in DSP, in which LTI filters have polynomial representations on $ z^{-1} $.
 The following theorem establishes an important property satisfied by every LSI filter~\cite{sandryhaila2013discrete} .
 \vspace{0.2cm}
 \begin{theorem}
@@ -985,7 +1015,7 @@ The assumption on $char_{\mathbf{A}}(x)$ and $m_{\mathbf{A}}(x)$ in Theorem~\ref
 
 \subsection{Graph Fourier transform}
 
-The topic of spectral analysis is key in signal processing. When studying how this would be implemented in the scope of GSP, the authors started by looking at the classical Fourier transform as a signal decomposition into a basis of eigenfunctions of the LTI filtering \cite{oppenheim1997signals}, i.e. the basis of complex time exponentials. From that point, the generalization to GSP was clear: the \emph{graph Fourier transform} (GFT) was defined as the decomposition of a graph signal into a basis of eigenvectors of LSI filtering\footnote{One may wish to distinguish between the different implementations of the GFT regarding the choice of graph shift operator. Unless clearly stated otherwise, this Chapter considers it to be always the graph adjacency matrix, but other popular option is the graph Laplacian, as already mentioned. In this regard, the reader even may find the terms GSP\textsubscript{A} and GSP\textsubscript{L} in previous publications \cite{ribeiro2018}, making the distinction clear.}.
+The topic of spectral analysis is key in signal processing. When studying how this would be implemented in the scope of GSP, the authors started by looking at the classical Fourier transform as a signal decomposition into a basis of eigenfunctions of the LTI filtering \cite{oppenheim1997signals}, i.~e., the basis of complex time exponentials. From that point, the generalization to GSP was clear: the \emph{graph Fourier transform} (GFT) was defined as the decomposition of a graph signal into a basis of eigenvectors of LSI filtering\footnote{One may wish to distinguish between the different implementations of the GFT regarding the choice of graph shift operator. Unless clearly stated otherwise, this Chapter considers it to be always the graph adjacency matrix, but other popular option is the graph Laplacian, as already mentioned. In this regard, the reader even may find the terms GSP\textsubscript{A} and GSP\textsubscript{L} in previous publications \cite{ribeiro2018}, making the distinction clear.}.
 
 Let us take the graph $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $, $ |\mathcal{V}| =N $. If $ \mathbf{A} $ is diagonalizable\footnote{If not, the reasoning may be replicated using the Jordan decomposition of $ \mathbf{A} $ and the set of generalized eigenvectors \cite{deri2017spectral}.}, then one may write
 \begin{equation}\label{eq:gft_01}
@@ -1064,7 +1094,7 @@ For discrete domain functions $ f_N[n] $, the Riemman integral is replaced by fi
 which clearly quantifies the dissimilarity between contiguous values of the function $ f_N $. With this in mind, it was natural for Sandryhaila and Moura to use this metric in their attempt to quantify smoothness in GSP. Taking again the ring graph as a starting point, they looked at the total variation of a \textit{finite-length} discrete-time signal $ \mathbf{x} $:
 \begin{equation}
 \label{eq:TV}
-TV(\mathbf{x}) = \sum_n | x_n - x_{n-1 \text{ mod } N}|.
+TV(\mathbf{x}) = \sum_n | x_n - x_{(n-1) \text{ mod } N}|.
 \end{equation}
 
 From (\ref{eq:unit_shift}), one can see that (\ref{eq:TV}) may be written in terms of the $ \ell_1 $-norm\footnote{Throughout this text, the concepts of $ \ell_1 $- and $ \ell_2 $-norm will be frequently used. They are particular cases of the $ \ell_n $-norm of a vector $ \mathbf{x} \in \mathbb{C}^{N} $, defined as $ \Vert \mathbf{x}\Vert_n \overset{\Delta}{=} \left(\sum_{k=0}^{N-1} |x_k|^n\right)^{1/n} $.}
@@ -1077,7 +1107,7 @@ with $ \mathbf{A}^{\text{norm}} = |\lambda_{max}|^{-1}\mathbf{A} $ and $ \lambda
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.35\linewidth]{Figures/graph_frequency_EN.pdf}
+	\includegraphics[width=0.45\linewidth]{Figures/graph_frequency_EN.pdf}
 	\caption{Frequency ordering of graph signals, from low to high frequencies, in the complex plane \cite{sandryhaila2014frequency}.}
 	\label{fig:ordem_freq}
 \end{figure}
@@ -1098,7 +1128,7 @@ so that, since $ \Vert \mathbf{v}_k \Vert_1 = 1 $,
 \label{eq:TV_ordering}
 \Big| \! \lambda_i  - \! |\lambda_{max}|\Big| \! \leq \! \Big|  \lambda_j  - \! |\lambda_{max}|\Big| \! \! \iff \! \! TV_G(\mathbf{v}_i) \leq TV_G(\mathbf{v}_j),
 \end{equation}
-i.~e. frequency components associated with eigenvalues closer to the real point $ |\lambda_{max}| $ in the complex plane are \emph{smoother} (because they have lower total variation), and therefore are said to be of \emph{low frequency}. Fig. \ref{fig:ordem_freq} illustrates this ordering for graph frequencies, what clarifies the spectrum of the signal in Fig. \ref{fig:diff_struct_a_GSPA} (notice that since the graph is undirected, its adjacency matrix is symmetric and the eigenvalues are real-valued).
+i.~e., frequency components associated with eigenvalues closer to the real point $ |\lambda_{max}| $ in the complex plane are \emph{smoother} (because they have lower total variation), and therefore are said to be of \emph{low frequency}. Fig. \ref{fig:ordem_freq} illustrates this ordering for graph frequencies, what clarifies the spectrum of the signal in Fig. \ref{fig:diff_struct_a_GSPA} (notice that since the graph is undirected, its adjacency matrix is symmetric and the eigenvalues are real-valued).
 
 %\begin{figure}
 %	\centering
@@ -1110,7 +1140,7 @@ i.~e. frequency components associated with eigenvalues closer to the real point 
 \begin{figure*}
 	\centering
 	\subfloat[\label{fig:directed_graph}]{
-			\includegraphics[width=0.33\linewidth]{Figures/showing_random_sensor_spectrum_directed_graph.pdf}
+			\includegraphics[width=0.31\linewidth]{Figures/showing_random_sensor_spectrum_directed_graph.pdf}
 		}
 	\subfloat[\label{fig:showing_random_sensor_spectrum_directed_b}]{
 		\includegraphics[width=0.33\linewidth]{Figures/showing_random_sensor_spectrum_directed_zero_crossings_1D_edited_EN.pdf}
@@ -1122,7 +1152,7 @@ i.~e. frequency components associated with eigenvalues closer to the real point 
 	\label{fig:showing_random_sensor_spectrum_directed}
 \end{figure*}
 
-Let us take the directed graph in Fig. \ref{fig:directed_graph} to try to verify the consistency of the notion of frequency just derived. For this, along with the total variation on graphs, also the number of zero crossings (i.~e. the number of edges connecting vertices with signal samples of different sign) will be used to \emph{quantify} frequency. This quantity is also related to frequency in classical theory: the more a discrete signal has contiguous samples with different sign, generally the higher are its frequency components. These two functions, the total variation on graphs and the number of zero crossings, were calculated for each of the adjacency matrix eigenvectors, and the result is shown in Fig. \ref{fig:showing_random_sensor_spectrum_directed}, in which the eigenvectors $ \mathbf{v}_k $ are ordered in such a way that the respective eigenvalues $ \lambda_k $ appear from the closest to the farthest from the real point $ |\lambda_{max}| $ in the complex plane. Both metrics have similar behaviour, but since the number of zero crossings is indifferent to graph signal variations which do not change sign, it was already expected to be less accurate as a figure of merit for frequency. It matters to highlight, however, how the adopted eigenvector ordering indeed implies an ascending frequency order, since both functions in Fig. \ref{fig:showing_random_sensor_spectrum_directed_b} and \ref{fig:showing_random_sensor_spectrum_directed_c} agree on the tendency of growth. More than that, $ TV_G(\mathbf{v}_k) $ grows \emph{monotonically}, as it should do according to (\ref{eq:TV_ordering}).
+Let us take the directed graph in Fig. \ref{fig:directed_graph} to try to verify the consistency of the notion of frequency just derived. For this, along with the total variation on graphs, also the number of zero crossings (i.~e., the number of edges connecting vertices with signal samples of different sign) will be used to \emph{quantify} frequency. This quantity is also related to frequency in classical theory: the more a discrete signal has contiguous samples with different sign, generally the higher are its frequency components. These two functions, the total variation on graphs and the number of zero crossings, were calculated for each of the adjacency matrix eigenvectors, and the result is shown in Fig. \ref{fig:showing_random_sensor_spectrum_directed}, in which the eigenvectors $ \mathbf{v}_k $ are ordered in such a way that the respective eigenvalues $ \lambda_k $ appear from the closest to the farthest from the real point $ |\lambda_{max}| $ in the complex plane. Both metrics have similar behaviour, but since the number of zero crossings is indifferent to graph signal variations which do not change sign, it was already expected to be less accurate as a figure of merit for frequency. It matters to highlight, however, how the adopted eigenvector ordering indeed implies an ascending frequency order, since both functions in Fig. \ref{fig:showing_random_sensor_spectrum_directed_b} and \ref{fig:showing_random_sensor_spectrum_directed_c} agree on the tendency of growth. More than that, $ TV_G(\mathbf{v}_k) $ grows \emph{monotonically}, as it should do according to (\ref{eq:TV_ordering}).
 
 %It can be seen that both metrics, which are expected to return higher values when having signals with higher frequencies as argument, have similar (but not \emph{equal}) behaviour when evaluated at the eigenvectors $ \mathbf{v}_i $, following what is suggested by (\ref{eq:TV_ordering}) and Fig. \ref{fig:ordem_freq}. However, one can find in Fig. \ref{fig:showing_random_sensor_spectrum_directed} pairs of eigenvectors in which the one expected to have higher frequency appears with lower total variation (notice that the eigenvectors, according to (\ref{eq:TV_ordering}), \emph{should be} in ascending order of frequency). Another curious fact we highlight is that, in both metrics, the eigenvector $ \mathbf{v}_{20} $ and some others have \emph{unexpectedly small values} of total variation and number of zero crossings, what is explicitly shown in Fig. \ref{fig:showing_random_sensor_spectrum_directed_TV_smallest}, in which the 12 smallest values of total variation are shown, among those obtained from all the eigenvectors of $ \mathbf{A} $, as a function of the associated eigenvalues: the eigenvalue with bigger magnitude, in fact, leads to null total variation of its respective eigenvector, but the second smaller total variation is obtained when $ \lambda=0 $. That was not yet fully understood, and further studies are needed to a complete comprehension of the notion of frequency in GSP\textsubscript{A}, and its validity under the metrics used previously.
 
@@ -1733,17 +1763,17 @@ Linear discrete transforms are building blocks for a multitude of techniques in 
 
 Fractional transforms are yet another class of tools of great use, the reader may remember the review presented in Chapter \ref{ch:reviewGSP}. Regarding quaternion transforms, a couple of competent works have already addressed their fractionalization \cite{guanlei2008fractional, wei2013different, roopkumar2016quaternionic} and some applications have been proposed \cite{chen2018quaternion}. However, the author is not aware of papers approaching fractional quaternion discrete transforms \textit{from an eigenstructure analysis point of view}. This reasoning may unfold new theoretical insights and implementation techniques, and such is the motivation for this work.
 
-In this Chapter, the eigenstructure of the quaternion discrete Fourier transform (QDFT) matrix is investigated and shown to be closely related to that of the unitary discrete Fourier transform (DFT). This result offers an approach for defining the fractional version of the QDFT (referred to as FrQDFT). Following the central goal of defining the transform through eigendecomposition theory, a generalization is proposed in the form of a multiparametric fractional quaternion discrete Fourier transform (MFrQDFT). For illustrative purposes, this work proposes and briefly explores an encryption scheme for color images with opacity layer, fully harnessing the holistic processing of 4-channels 2D signals through the MFrQDFT.
+In this chapter, the eigenstructure of the quaternion discrete Fourier transform (QDFT) matrix is investigated and shown to be closely related to that of the unitary discrete Fourier transform (DFT). This result offers an approach for defining the fractional version of the QDFT (referred to as FrQDFT). Following the central goal of defining the transform through eigendecomposition theory, a generalization is proposed in the form of a multiparametric fractional quaternion discrete Fourier transform (MFrQDFT). For illustrative purposes, this work proposes and briefly explores an encryption scheme for color images with opacity layer, fully harnessing the holistic processing of 4-channels 2D signals through the MFrQDFT.
 
-The proposed method for image encryption fits in the class of schemes that use linear transforms alongside non-linear blocks \cite{hsue2018enhancing}, to implement confusion and diffusion. The currently available methods in the state-of-the-art literature respond to a diverse range of needs, as fast implementation through parallel computing \cite{wang2019fast}, increased safety and robustness by using matrix semi-tensor product \cite{wang2020image} or one-time keys \cite{liu2010}, just to name a few examples. The main scope of this Chapter is not the encryption scheme \textit{per se}, but rather the FrQDFT eigenscructure and the MFrQDFT definition, the latter having the image encryption as a framework to showcase some of its possibilities. Nevertheless, the proposed encryption algorithm is described and evaluated to some extent. Although being an illustrative scenario, it stands on tools adopted currently by the literature. For example, the chosen method for key generation involved the use of chaotic maps, known to help achieving high bit sensibility and large key space. It follows works such as the one by Liu and Wang \cite{liu2011color}, which proposed a color image encryption scheme using two chaotic maps and one-time keying, aiming to achieve large key space and cycle lengths. Another work by Liu and Wang \cite{liu2012} employed a piecewise linear chaotic map and DNA encoding for ensuring the initial conditions of the encryption change according to the image, whereas Wang \textit{et al.} \cite{wang2010chaotic} used a Lorentz chaotic map and a perceptron model applied to image encryption. The proposed scheme uses a chaotic tent map to generate a pseudo-random sequence, from which the secret parameters are extracted.
+The proposed method for image encryption fits in the class of schemes that use linear transforms alongside non-linear blocks \cite{hsue2018enhancing}, to implement confusion and diffusion. The currently available methods in the state-of-the-art literature respond to a diverse range of needs, as fast implementation through parallel computing \cite{wang2019fast}, increased safety and robustness by using matrix semi-tensor product \cite{wang2020image} or one-time keys \cite{liu2010}, just to name a few examples. The main scope of this chapter is not the encryption scheme \textit{per se}, but rather the FrQDFT eigenscructure and the MFrQDFT definition, the latter having the image encryption as a framework to showcase some of its possibilities. Nevertheless, the proposed encryption algorithm is described and evaluated to some extent. Although being an illustrative scenario, it stands on tools adopted currently by the literature. For example, the chosen method for key generation involved the use of chaotic maps, known to help achieving high bit sensibility and large key space. It follows works such as the one by Liu and Wang \cite{liu2011color}, which proposed a color image encryption scheme using two chaotic maps and one-time keying, aiming to achieve large key space and cycle lengths. Another work by Liu and Wang \cite{liu2012} employed a piecewise linear chaotic map and DNA encoding for ensuring the initial conditions of the encryption change according to the image, whereas Wang \textit{et al.} \cite{wang2010chaotic} used a Lorentz chaotic map and a perceptron model applied to image encryption. The proposed scheme uses a chaotic tent map to generate a pseudo-random sequence, from which the secret parameters are extracted.
 
 
-This Chapter is structured as follows. Section \ref{sec:autoestrutura} presents the usual definition of the QDFT and proves the central theorem of this work, regarding how the DFT and QDFT share symmetric eigenvectors; it closes with comments on the quaternion representation of color images with opacity layer. Section \ref{sec:FrQDFT} discusses the fractionalization of the QDFT from an eigenstructure point of view and demonstrates some properties purely based on matrix algebra. Section \ref{sec:multi} proposes a multiparametric extension of the fractional transform and presents an application involving encryption of color images with opacity layer. The main results are summarized in Section \ref{sec:conclusao}.
+This chapter is structured as follows. Section \ref{sec:autoestrutura} presents the usual definition of the QDFT and proves the central theorem of this work, regarding how the DFT and QDFT share symmetric eigenvectors; it closes with comments on the quaternion representation of color images with opacity layer. Section \ref{sec:FrQDFT} discusses the fractionalization of the QDFT from an eigenstructure point of view and demonstrates some properties purely based on matrix algebra. Section \ref{sec:multi} proposes a multiparametric extension of the fractional transform and presents an application involving encryption of color images with opacity layer. The main results are summarized in Section \ref{sec:conclusao}.
 
 
 \section{Eigenstructure of the QDFT}
 \label{sec:autoestrutura}
-Let us recall the definition of the 1D left QDFT of axis $ \qmu $ -- a unit pure quaternion, as presented in \cite[sec. 3.3.1]{ell2014quaternion} and in (\ref{eq:QDFT_fwd}). The $ m$-th entry of the QDFT of vector $ \mathbf{v} $ is
+Let us recall the definition of the 1D left QDFT of axis $ \qmu $ -- a unit pure quaternion, as presented in \cite[Sec. 3.3.1]{ell2014quaternion} and in (\ref{eq:QDFT_fwd}). The $ m$-th entry of the QDFT of vector $ \mathbf{v} $ is
 \begin{equation}
 \label{eq:QDFT_fwd}
 \!\widehat{v}_m \!=\! \text{QDFT}\{ \mathbf{v} \}_m \!\overset{\Delta}{=}\! \frac{1}{\sqrt{N}} \!\sum_{n=0}^{N-1}  \exp \left( -\qmu \frac{2\pi}{N} nm \right) v_n \!\in\! \mathbb{C}_{\qmu},\!
@@ -1778,31 +1808,30 @@ This formulation of the 2D-QDFT translates into the following matrix equation,
 \end{equation}
 where the Fourier matrices are similar to the one used in (\ref{eq:QDFT}), except from the pure quaternion which serves as transform axis (shown in the parenthesis). This is a consequence of the \textit{separability} of the 2D-QDFT, by which this transform may be conceived as the successive application of two 1D-QDFTs: once in the rows of $ \mathbf{X} $, once in the columns. Therefore, some results and properties derived for the 1D-QDFT may naturally extend to the two-dimensional case.
 
-The similarities between the QDFT and the DFT matrices hugely aid the investigation of the eigenstructure of matrix $ \mathbf{F} $. As a result of Theorem \ref{th:01}, one is able to deduce the QDFT eigenstructure out of even and odd DFT eigenvectors, by using a variation of Pei's reasoning regarding the 2D-QDFT \cite{pei2010eigenfunctions}.
-\vspace{-2em}
+The similarities between the QDFT and the DFT matrices hugely aid the investigation of the eigenstructure of matrix $ \mathbf{F} $. As a result of Theorem \ref{th:01}, which is a contribution of this thesis, one is able to deduce the QDFT eigenstructure out of even and odd DFT eigenvectors, by using a variation of Pei's reasoning regarding the 2D-QDFT \cite{pei2010eigenfunctions}.
+
 \begin{theorem}
 \label{th:01}
 Let $ \mathbf{v} $ be an eigenvector of the unitary DFT with eigenvalue $ \lambda $.
 \begin{itemize}[noitemsep]
-\vspace{-1em}
 \item[(a)] If $ \mathbf{v} $ has even symmetry (in which case $ \lambda = \pm 1 $), then it is also an eigenvector of the QDFT with eigenvalue $ \lambda $.
-\item[(b)] If $ \mathbf{v} $ has odd symmetry (in which case $ \lambda = \pm \qi $), then it is also an eigenvector of the QDFT (of axis, let us say, $ \qmu $) with eigenvalue $ -\lambda \qi \qmu$, i.~e. $ \pm \qmu $.
+\item[(b)] If $ \mathbf{v} $ has odd symmetry (in which case $ \lambda = \pm \qi $), then it is also an eigenvector of the QDFT (of axis, let us say, $ \qmu $) with eigenvalue $ -\lambda \qi \qmu$, i.~e., $ \pm \qmu $.
 \end{itemize}
 \end{theorem}
-\vspace{-2em}
+
 \begin{proof}
 \begin{itemize}
-\item[(a)] If $ \mathbf{v} $ has even symmetry, i.~e. $ v_n = v_{N-n} $ for $ n=1,\dots,N-1 $, then
+\item[(a)] If $ \mathbf{v} $ has even symmetry, i.~e., $ v_n = v_{N-n} $ for $ n=1,\dots,N-1 $, then
 \begin{equation}
 %\label{key}
 \sum_{n=0}^{N-1} v_n \sin \frac{2\pi}{N} nm = 0,
 \end{equation}
 therefore,
 \newcommand{\correctinghspace}{-1.8cm}
-\begin{equation}
+% \begin{equation*}
 %\small
-\label{eq:15}
-\begin{aligned}
+% \label{eq:15}
+\begin{align*}
 \sqrt{N} \text{QDFT}\{ \mathbf{v} \}_m &= \sum_{n=0}^{N-1} v_n e^{-\qmu \frac{2\pi}{n} nm} \\
 &\hspace{\correctinghspace}
 =\sum_{n=0}^{N-1} v_n \left( \cos \frac{2\pi}{n} nm - \qmu \sin \frac{2\pi}{n} nm \right) \\
@@ -1814,9 +1843,9 @@ therefore,
 = \sqrt{N} \text{DFT}\{ \mathbf{v} \}_m = \sqrt{N} \lambda v_m \\
 &\hspace{\correctinghspace}
 \Rightarrow \text{QDFT}\{ \mathbf{v} \} = \lambda \mathbf{v}.
-\end{aligned}
-\end{equation}
-\item[(b)] If $ \mathbf{v} $ has odd symmetry, i.~e. $ v_n = -v_{N-n} $ for $ n=1,\dots,N-1 $ and $ v_0 = 0 $, then
+\end{align*}
+% \end{equation*}
+\item[(b)] If $ \mathbf{v} $ has odd symmetry, i.~e., $ v_n = -v_{N-n} $ for $ n=1,\dots,N-1 $ and $ v_0 = 0 $, then
 \begin{equation}
 %\label{key}
 \sum_{n=0}^{N-1} v_n \cos \frac{2\pi}{N} nm = 0,
@@ -1913,7 +1942,7 @@ Fig. \ref{fig:2D_QDFTv1} shows the QDFT -- according to (\ref{eq:2DQDFT}) -- of 
 \label{fig:QDFT}
 \end{figure}
 
-\section{The Fractional Quaternion Discrete Fourier Transform}
+\section{The fractional quaternion discrete Fourier transform}
 \label{sec:FrQDFT}
 The proposed fractionalization method for the QDFT explores the eigenvector sharing between the DFT and the QDFT: as long as one possesses an orthogonal eigenvector matrix $ \mathbf{E} $ for the DFT, it can be used for the QDFT matrix diagonalization and its subsequent fractionalization. For instance, the eigendecomposition of the DFT matrix allows to find its fractional counterpart by raising each eigenvalue to a non-integer parameter $ a $, i.~e.
 
@@ -1923,7 +1952,7 @@ The proposed fractionalization method for the QDFT explores the eigenvector shar
 \end{equation}
 where $ \mathbf{\Lambda} $ is the diagonal matrix containing the DFT eigenvalues.
 
-Oliveira and Lima \cite{de2017discrete} stress that a FrDFT expressed as in (\ref{eq:FrDFT}) will numerically approximate its continuous version if and only if the columns of $ \mathbf{E} $ approximate samples of continuous Hermite-Gaussian functions. In \cite{de2017discrete}, the authors present two methods to generate such an orthogonal eigenbasis, one of which (the generating matrix method) is the one adopted in this work.
+Oliveira Neto and Lima \cite{de2017discrete} stress that a FrDFT expressed as in (\ref{eq:FrDFT}) will numerically approximate its continuous version if and only if the columns of $ \mathbf{E} $ approximate samples of continuous Hermite-Gaussian functions. In \cite{de2017discrete}, the authors present two methods to generate such an orthogonal eigenbasis, one of which (the generating matrix method) is the one adopted in this work.
 
 \begin{figure*}
 \centering
@@ -1931,10 +1960,10 @@ Oliveira and Lima \cite{de2017discrete} stress that a FrDFT expressed as in (\re
 \includegraphics[width=0.25\linewidth]{Figures/dice_256x256.png}
 }~
 \subfloat[]{
-\includegraphics[width=0.35\linewidth]{Figures/dice_256x256_layers.pdf}
+\includegraphics[width=0.355\linewidth]{Figures/dice_256x256_layers.pdf}
 }~
 \subfloat[]{
-\includegraphics[width=0.35\linewidth]{Figures/dice_256x256_layers_frqdft.pdf}
+\includegraphics[width=0.355\linewidth]{Figures/dice_256x256_layers_frqdft.pdf}
 }~
 \caption{(a) Test PNG image. Visualization of each layer in the (b) test image and (c) in its FrQDFT spectrum, computed with transform axis $ \qmu = \frac{1}{\sqrt{3}}(\qi + \qj + \qk) $ e $ a=0{.}3 $.}
 \end{figure*}
@@ -1997,10 +2026,10 @@ but, since $ \mathbf{\Gamma} $ is a diagonal matrix, $ \mathbf{\Gamma}^a \mathbf
 \mathbf{F}^a (\mathbf{F}^a)^H = \mathbb{I},
 \end{equation}
 in which $ (\cdot)^H $ denotes the Hermitian (conjugate transpose) operator.
-%\footnote{The \textit{quaternion} conjugation is considered, i.~e. se $ q = a + b\qi + c\qj + d\qk = r \exp (\qmu \theta) $, ent\~ao seu conjugado \'e $ \bar{q} = a - b\qi - c\qj - d\qk = r \exp (-\qmu \theta) $}
+%\footnote{The \textit{quaternion} conjugation is considered, i.~e., se $ q = a + b\qi + c\qj + d\qk = r \exp (\qmu \theta) $, ent\~ao seu conjugado \'e $ \bar{q} = a - b\qi - c\qj - d\qk = r \exp (-\qmu \theta) $}
 
 \begin{proof}
-Since all FrQDFT eigenvalues $ \gamma_n $ are fourth roots of unity in the 1-$\qmu $ plane (i.~e. $ \gamma_n = \pm 1, \pm \qmu $ and, therefore, it has unit module), they can be written as $ \gamma_n = \exp \qmu \theta $ (in which $ \theta = 0, \pm \frac{\pi}{2}, \pi $). Hence
+Since all FrQDFT eigenvalues $ \gamma_n $ are fourth roots of unity in the 1-$\qmu $ plane (i.~e., $ \gamma_n = \pm 1, \pm \qmu $ and, therefore, it has unit module), they can be written as $ \gamma_n = \exp \qmu \theta $ (in which $ \theta = 0, \pm \frac{\pi}{2}, \pi $). Hence
 % ent\~ao podem ser escritos na forma $ \gamma_n = \exp \qmu \theta $ (em que $ \theta = 0, \pm \frac{\pi}{2}, \pi $). Assim,
 \begin{equation}
 %\label{key}
@@ -2034,7 +2063,7 @@ and, following the index additivity and the reduction to identity properties,
 
 Before proceeding, it matters to notice that other approaches have been used to define fractional transforms especially suited for image encryption. Lima \textit{et al.} \cite{figueiredo2018} applied the generating matrix method to obtain eigenvectors --- in a fashion similar to this work --- and define multiorder reality-preserving discrete fractional transforms. Roopkumar \cite{roopkumar2016quaternionic}, on the other hand, defined a {continuous} one-dimensional quaternion fractional Fourier transform by using a reasoning similar to the symplectic decomposition of quaternions: adding together two traditional fractional Fourier operators with certain imaginary unit, with one of them multiplied by an orthogonal pure quaternion. None of the approaches, to the best of the author's knowledge, made use of eigenstructure analysis to define the FrQDFT and prove some of its properties.
 
-\section{The multiparametric FrQDFT with Application to Color Image Encryption}
+\section{The multiparametric FrQDFT with application to color image encryption}
 \label{sec:multi}
 Frequently, fractional transforms are employed in both grayscale \cite{tao2010image} and color image \cite{kang2018reality, kang2018color} encryption. By setting the secret key to be the transform fractional order, alongside the use of multiple encryption or multiparametric transforms, one is able to create ciphers with sufficiently large key spaces and highly sensible to small key changes. This section presents an illustrative application of the FrQDFT, creating a holistic encryption scheme for PNG images based on the proposition of a multiparametric FrQDFT.
 
@@ -2161,21 +2190,21 @@ In the case of a PNG image, four histograms are drawn, one for each layer. Fig. 
 %MSEint:  7.380345314385882e-25
 
 
-\newcommand{\constlength}{0.33}
+\newcommand{\constlength}{0.5}
 
 \begin{figure}[htbp]
 \centering
-\subfloat[]{\includegraphics[width=0.3\linewidth]{Figures/alphatest_resized_decrypted.png}}~
-\subfloat[]{\includegraphics[width=\constlength\linewidth]{Figures/alphatest_resized_decrypted_RGBA_layers.pdf}}~
-\subfloat[]{\includegraphics[width=\constlength\linewidth]{Figures/alphatest_resizeddecrypted_histograms.pdf}}\\
-\subfloat[]{\includegraphics[width=0.25\linewidth]{Figures/alphatest_resized_encrypted_img.png}}~
+\subfloat[]{\includegraphics[width=0.35\linewidth]{Figures/alphatest_resized_decrypted.png}}~
+\subfloat[]{\includegraphics[width=\constlength\linewidth]{Figures/alphatest_resized_decrypted_RGBA_layers.pdf}} \\
+\subfloat[]{\includegraphics[width=\constlength\linewidth]{Figures/alphatest_resizeddecrypted_histograms.pdf}}~
+\subfloat[]{\includegraphics[width=0.3\linewidth]{Figures/alphatest_resized_encrypted_img.png}} \\
 \subfloat[]{\includegraphics[width=\constlength\linewidth]{Figures/alphatest_resized_encrypted_RGBA_layers.pdf}}~
 \subfloat[]{\includegraphics[width=\constlength\linewidth]{Figures/alphatest_resized_encrypted_histograms.pdf}}
 \caption{(a) Test image in PNG format, with 256$ \times $256 pixels. (b) Color and opacity layers of the \textit{decrypted} image (which coincides with the original in (a)). (c) Histograms of each layer of the \textit{decrypted} image. (d) Encrypted image, in PNG format. (e) Color and opacity layers of the \textit{encrypted} image. (f) Histograms of each layer of the \textit{encrypted} image.}
 \label{fig:testing_hist}
 \end{figure}
 
-\newcommand{\fixedlength}{0.32}
+\newcommand{\fixedlength}{0.35}
 \newcommand{\smallerlength}{0.15}
 \begin{figure}[htbp]
 \centering
@@ -2195,6 +2224,9 @@ In the case of a PNG image, four histograms are drawn, one for each layer. Fig. 
 \subfloat[]{\includegraphics[width=\fixedlength\linewidth]{Figures/colorparrots_encrypted_histograms.pdf}}~
 \subfloat[]{\includegraphics[width=\smallerlength\linewidth]{Figures/bouquet_resized.png}}~
 \subfloat[]{\includegraphics[width=\fixedlength\linewidth]{Figures/bouquet_encrypted_histograms.pdf}}
+
+\vspace{3em}
+\noindent \textit{(Part of Fig. \ref{fig:allhistograms}, it continues on the next page).}
 %\caption{Legenda.}
 \end{figure}
 
@@ -2216,7 +2248,7 @@ In the case of a PNG image, four histograms are drawn, one for each layer. Fig. 
 \label{fig:allhistograms}
 \end{figure}
 
-Finally, as stated at the beginning of the Chapter, there are a multitude of studies on image encryption, each addressing particular aspects and problems. Therefore, it is adequate to acknowledge the position of this proposed encryption algorithm in the literature landscape. Without providing an extensive and complete analysis, for lack of space, some remarks can be done. The key space dimension in related works vary from circa $ 10^{54} $, around 160 bits, in a work by Wang \textit{et al.} with flexible key space \cite{wang2015novel}, to more than 400 bits, in a paper by Zhang \textit{et al.} \cite{zhang2015new}, an interval which includes the 260 bits of the proposed algorithm. Regarding time of encryption, Wang \textit{et al.} \cite{wang2015novelchaotic} used Arnold cat map and dynamic random growth to obtain large running speed of the encryption and decryption algorithm. This is an aspect our proposed scheme is not optimized for, although great improvement in processing time can be achieved if the eigenvector and eigenvalue matrices of the QDFT are stored in-memory, taking the eigendecomposition out of the encryption process. As a final comment, the main advantages of the proposed scheme are its modularization, the holistic processing of color images with opacity layer, the lack of long iterations and the ease to describe, comprehend and implement.
+Finally, as stated at the beginning of the chapter, there are a multitude of studies on image encryption, each addressing particular aspects and problems. Therefore, it is adequate to acknowledge the position of this proposed encryption algorithm in the literature landscape. Without providing an extensive and complete analysis, for lack of space, some remarks can be done. The key space dimension in related works vary from circa $ 10^{54} $, around 160 bits, in a work by Wang \textit{et al.} with flexible key space \cite{wang2015novel}, to more than 400 bits, in a paper by Zhang \textit{et al.} \cite{zhang2015new}, an interval which includes the 260 bits of the proposed algorithm. Regarding time of encryption, Wang \textit{et al.} \cite{wang2015novelchaotic} used Arnold cat map and dynamic random growth to obtain large running speed of the encryption and decryption algorithm. This is an aspect our proposed scheme is not optimized for, although great improvement in processing time can be achieved if the eigenvector and eigenvalue matrices of the QDFT are stored in-memory, taking the eigendecomposition out of the encryption process. As a final comment, the main advantages of the proposed scheme are its modularization, the holistic processing of color images with opacity layer, the lack of long iterations and the ease to describe, comprehend and implement.
 
 \section{Concluding remarks}
 \label{sec:conclusao}
@@ -2250,6 +2282,7 @@ In order to properly address these questions and establish the foundations of QG
 \end{itemize}
 
 \subsection{Eigendecomposing the shift operator}
+\label{subsec:eigendecomposition}
 At the very center of vertex-frequency analysis in GSP lies the definition that a basis of eigenvectors of the chosen graph shift operator act as Fourier components for the space of graph signals. This can be directly translated to QGSP, after taking into account the results presented in Chapter \ref{ch:reviewQuat}, regarding diagonalization of quaternion matrices.
 
 \begin{definition}
@@ -2313,9 +2346,9 @@ Given that $\mathbf{A}_s$ is also invertible, the closed formula for the inverse
 \end{equation}
 so that the inversion of $\mathbf{M}$ is now reduced to inversion of the two smaller matrices $\mathbf{A}$ and $\mathbf{A}_s$.
 
-When it came the time to implement the method using Schur complements for inversion of the eigenvector matrix, the method proved to be challenging coding-wise, especially in the available time frame. Based on theorems \ref{th:equiv01} and \ref{th:equiv02}, the algorithm \ref{alg:qinv} was proposed to provide a reasonable balance between processing speed, implementation time and broad applicability.
+When it came the time to implement the method using Schur complements for inversion of the eigenvector matrix, the method proved to be challenging coding-wise, especially in the available time frame. Based on Theorems \ref{th:equiv01} and \ref{th:equiv02}, the Algorithm \ref{alg:qinv} was proposed to provide a reasonable balance between processing speed, implementation time and broad applicability.
 
-The reasoning goes as follows. According to theorem \ref{th:equiv02}, a necessary and sufficient condition for the invertibility of a matrix $\mathbf{V} \in \mathbb{H}^{n \times n}$ is the existance of $\rchi^{-1}_{V}$. Moreover, from theorem \ref{th:equiv01}, if $\rchi^{-1}_{V}$ exists and has the form of a complex adjoint matrix, let us say $\rchi_{V}^{-1} = \rchi_{M}$, then it follows that $\mathbf{M} = \mathbf{V}^{-1}$, since the theorem guarantees that
+The reasoning goes as follows. According to Theorem \ref{th:equiv02}, a necessary and sufficient condition for the invertibility of a matrix $\mathbf{V} \in \mathbb{H}^{n \times n}$ is the existance of $\rchi^{-1}_{V}$. Moreover, from Theorem \ref{th:equiv01}, if $\rchi^{-1}_{V}$ exists and has the form of a complex adjoint matrix, let us say $\rchi_{V}^{-1} = \rchi_{M}$, then it follows that $\mathbf{M} = \mathbf{V}^{-1}$, since the theorem guarantees that
 \begin{equation}
 \rchi_{V} \rchi_{M} = \rchi_{V} \rchi_{V}^{-1} = \mathbf{I}_{2n \times 2n} = \rchi_{I_{n \times n}}
 \Rightarrow \mathbf{V} \mathbf{M} = \mathbf{I}_{n \times n},
@@ -2352,7 +2385,7 @@ Compute the inverse of a quaternion-valued matrix, if a sufficient condition for
 \item $\mathrm{to\_complex\_adjoint}$: converts a quaternion matrix to its complex adjoint form.
 \item $\mathrm{from\_complex\_adjoint}$: converts a complex adjoint matrix to its quaternion-valued form.
 \item $\mathrm{inverse}$: computes the inverse of a complex-valued matrix.
-\item $\mathrm{has\_complex\_adjoint\_form}$: checks if the matrix has the complex adjoint form, i.~e. is a block matrix as the one in Definition \ref{def:complexadjoint}.
+\item $\mathrm{has\_complex\_adjoint\_form}$: checks if the matrix has the complex adjoint form, i.~e., is a block matrix as the one in Definition \ref{def:complexadjoint}.
 \end{itemize}
 \end{algorithm}
 
@@ -2372,7 +2405,7 @@ Now, let us notice that the graph total variation, defined in (\ref{eq:tv_graphs
 TV_{G, p}(\mathbf{s}) \overset{\Delta}{=} \left\Vert \mathbf{s} - \frac{1}{|\lambda_{max}|}\mathbf{A} \mathbf{s} \right\Vert_p.
 \end{equation}
 
-If we take the important step of scaling the eigenvectors $\mathbf{v}_i$ so they have unit $\ell_p$-norm, i.~e. making $\Vert \mathbf{v}_i\Vert_p = 1$, then the associative and distributive properties of quaternion multiplication allow us to do
+If we take the important step of scaling the eigenvectors $\mathbf{v}_i$ so they have unit $\ell_p$-norm, i.~e., making $\Vert \mathbf{v}_i\Vert_p = 1$, then the associative and distributive properties of quaternion multiplication allow us to do
 
 \begin{equation}
 \begin{aligned}
@@ -2391,7 +2424,7 @@ What leads to exactly the same frequency ordering obtained in the classical GSP 
 \Big| \! \lambda_i  - \! |\lambda_{max}|\Big| \! \leq \! \Big|  \lambda_j  - \! |\lambda_{max}|\Big| \! \! \iff \! \! TV_{G, p}(\mathbf{v}_i) \leq TV_{G, p}(\mathbf{v}_j).
 \end{equation}
 
-In other words, once the eigenvectors are individually \textit{normalized}, i.~e. scaled to have unit $\ell_p$-norm, then the farther an eigenvalue lies from the point $|\lambda_{max}|$ in the real line of the complex plane, the greater is its eigenvector graph total variation $TV_{G, p}$. By definition, it means the greater is the frequency it represents. Besides, notice how the scaling implies that the value of $TV_{G, p}$ depends solely on the eigenvalues, not on $p$.
+In other words, once the eigenvectors are individually \textit{normalized}, i.~e., scaled to have unit $\ell_p$-norm, then the farther an eigenvalue lies from the point $|\lambda_{max}|$ in the real line of the complex plane, the greater is its eigenvector graph total variation $TV_{G, p}$. By definition, it means the greater is the frequency it represents. Besides, notice how the scaling implies that the value of $TV_{G, p}$ depends solely on the eigenvalues, not on $p$.
 
 In order to interpret the spectrum domain, the eigenvalues are sorted in ascending order of their respective eigenvector total variation: this sorts the frequency from lowest to highest. When not explicitly mentioned, it is assumed a value of $p = 1$ for all occurrences of $\ell_p$-norm.
 
@@ -2407,10 +2440,10 @@ The reader may notice that undirected quaternion graphs do not possess necessari
 \end{pmatrix}.
 \end{equation}
 
-The subjacent reason as to why undirected real-weighted graphs have diagonalizable adjacency matrices is that these real-valued matrices are symmetric, or more generally \textit{normal}, i.~e. they commute with (because are equal to) their transpose. In the case of complex-valued matrices, being normal (i.~e. commuting with their Hermitian transpose) also suffices for proving their diagonalizability. So, in order to find quaternion graphs analogous to undirected real-weighted graphs, in the sense of having a sufficient condition for diagonalizable shift operators, their adjacency matrix must possess \textit{normal} complex adjoint matrices. Fortunately, Theorem \ref{th:equiv01} states the condition:
+The subjacent reason as to why undirected real-weighted graphs have diagonalizable adjacency matrices is that these real-valued matrices are symmetric, or more generally \textit{normal}, i.~e., they commute with (because are equal to) their transpose. In the case of complex-valued matrices, being normal (i.~e., commuting with their Hermitian transpose) also suffices for proving their diagonalizability. So, in order to find quaternion graphs analogous to undirected real-weighted graphs, in the sense of having a sufficient condition for diagonalizable shift operators, their adjacency matrix must possess \textit{normal} complex adjoint matrices. Fortunately, Theorem \ref{th:equiv01} states the condition:
  $ \rchi_{A}$ is normal ($ \rchi_{A}^H \rchi_{A} = \rchi_{A} \rchi_{A}^H $) or Hermitian ($\rchi_{A}^H = \rchi_{A}$) if and only if so is $ \mathbf{A}$.
  
- Zhang claims Theorem \ref{th:equiv01} is proved by direct verification, but let us go through a way to visualize part of the proof within the context of GSP.
+ Zhang claims Theorem \ref{th:equiv01} is proved by direct verification \cite{zhang1997quaternions}, but let us go through a way to visualize part of the proof within the context of GSP.
  
 \begin{proof}
 The part of the Theorem about to be verified is: \emph{is it true that Hermitian quaternion-valued matrices have Hermitian complex adjoints?} Equivalently,
@@ -2456,7 +2489,7 @@ precisely the matrix $\rchi_A$, as intended to be proved.
 
 \subsection{Does a Hermitian QGSO have unitary eigenvector matrix?}
 
-It is known that every Hermitian complex matrix is diagonalizable by a unitary matrix. In other words, if $\mathbf{M} \in \mathbb{C}^{n \times n}$ and $\mathbf{M} = \mathbf{M}^H$, then there exists a complex matrix $\mathbf{U}$ and a diagonal matrix $\mathbf{\Gamma}$ so that $\mathbf{M} = \mathbf{U} \mathbf{\Gamma} \mathbf{U}^{-1}$ and $\mathbf{U}^{-1} = \mathbf{U}^H$. However, despite the fact one can guarantee that a Hermitian QGSO has a Hermitian complex adjoint matrix, \textit{it is not true that its eigenvector matrix is necessarily unitary}.
+It is known that every Hermitian complex matrix is diagonalizable by a unitary matrix and has only real-valued eigenvalues. In other words, if $\mathbf{M} \in \mathbb{C}^{n \times n}$ and $\mathbf{M} = \mathbf{M}^H$, then there exists a complex matrix $\mathbf{U}$ and a diagonal real matrix $\mathbf{\Gamma}$ so that $\mathbf{M} = \mathbf{U} \mathbf{\Gamma} \mathbf{U}^{-1}$ and $\mathbf{U}^{-1} = \mathbf{U}^H$. However, despite the fact one can guarantee that a Hermitian QGSO has a Hermitian complex adjoint matrix, \textit{it is not true that its eigenvector matrix is necessarily unitary}.
 
 Let $\mathbf{A}$ be a Hermitian (hence diagonalizable) quaternion adjacency matrix, therefore $\mathbf{A} \mathbf{V} = \mathbf{V} \mathbf{\Lambda}$. Since $\rchi_{A}$ is complex-valued and Hermitian, its eigenvector matrix (let us say, $\mathbf{\Phi}$) is unitary and we may write $\rchi_{A} = \mathbf{\Phi} \mathbf{\Gamma} \mathbf{\Phi}^H$. Each column $\mathbf{\qphi}$ in $\mathbf{\Phi}$, the reader may recall, is written is terms of the simplex and perplex parts (which are complex-valued) of the respective column $\mathbf{v}$ in $\mathbf{V}$:
 \begin{equation}
@@ -2500,8 +2533,8 @@ That is, unless the complex adjoint eigenvector $\mathbf{\qphi}^{(n)} = \big( \m
 
 \subsection{Numerical example: computing the QGFT matrix}
 
-Let the graph in Figure \ref{fig:degenerate_qgft_graph} have the following adjacency matrix,
-\begin{equation}
+Let the graph in Fig. \ref{fig:degenerate_qgft_graph} have the following adjacency matrix,
+\begin{equation*}
 \small
 \mathbf{A} = \begin{pmatrix}
 0 & 0 & 0 & 1 -7\qi -5\qj -1\qk & 6 +3\qi +7\qj +4\qk \\
@@ -2510,10 +2543,10 @@ Let the graph in Figure \ref{fig:degenerate_qgft_graph} have the following adjac
 1 +7\qi +5\qj +1\qk & 0 & 0 & 0 & 7 +2\qi +5\qj +4\qk \\
 6 -3\qi -7\qj -4\qk & 6 -9\qi -2\qj -6\qk & 7 -4\qi -3\qj -7\qk & 7 -2\qi -5\qj -4\qk & 0 \\
 \end{pmatrix}.
-\end{equation}
+\end{equation*}
 
 As expected, since $ \mathbf{A}$ is Hermitian, so it is its complex adjoint:
-\begin{equation}
+\begin{equation*}
 \small
 \rchi_A = 
 \begin{pmatrix}
@@ -2528,10 +2561,10 @@ As expected, since $ \mathbf{A}$ is Hermitian, so it is its complex adjoint:
 -5 +1 \qi & 0 & 0 & 0 & -5 +4 \qi &  1 -7 \qi &  0 & 0 &  0 &  7 -2 \qi \\
 7 -4 \qi &  2 -6 \qi &  3 -7 \qi &  5 -4 \qi & 0 &  6 +3 \qi &  6 +9 \qi & 7 +4 \qi &  7 +2 \qi &  0
 \end{pmatrix}.
-\end{equation}
+\end{equation*}
 
 Since the matrix $\rchi_A$ is complex-valued and Hermitian, it is diagonalizable by a unitary matrix $\mathbf{\Phi}$. The eigenvalues of $\rchi_A$ are all real-valued and appear in pairs:
-\begin{equation}
+\begin{equation*}
 \mathrm{diag}(\mathbf{\Gamma}) = \begin{pmatrix}
 -22.83570384 \\
 -22.83570384 \\
@@ -2544,7 +2577,7 @@ Since the matrix $\rchi_A$ is complex-valued and Hermitian, it is diagonalizable
 22.72691312 \\
 22.72691312 \\
 \end{pmatrix}.
-\end{equation}
+\end{equation*}
 The next step is to take half the eigenvalues of $\rchi_A$ (the ones with positive imaginary part, plus half the real-valued ones) to obtain the standard eigenvalues of $\mathbf{A}$ and the respective eigenvectors. It is important to take one eigenvalue for each pair, to avoid picking eigenvectors from the same eigenspace. Therefore, $\mathrm{diag}(\mathbf{A}) = (-22.83570384, -6.34920255, 0, 6.45799327, 22.72691312)^T$.
 
 \begin{landscape}
@@ -2565,7 +2598,12 @@ The chosen eigenvalues will determine the eigenvectors of $\rchi_A$ used to asse
 
 This matrix passes the inversibility test, since its determinant is $\mathrm{det}(\mathbf{V}) = \mathrm{det}(\rchi_V) = 1 \neq 0$. Not only that, the matrix is also unitary, since the product $\mathbf{V} \mathbf{V}^H$ yields an identity matrix. Therefore, the QGFT matrix is promptly determined.
 
-Figure \ref{fig:simple_example_tv} closes the example, depicting the graph total variation for each normalized eigenvector. The values of $TV_{G, p}$ are \textit{(2, 1.2780384 , 1, 0.71719754, 0.00476406)}, and remain the same as $p$ is changed, following the commentary after (\ref{eq:TV_ordering_q}).
+Fig. \ref{fig:simple_example_tv} closes the example, depicting the graph total variation $TV_{G, p}$ for each normalized eigenvector $\mathbf{v}_i$. The values are
+\begin{equation}
+TV_{G, p}(\mathbf{v}_i) \in 
+\{2, \ 1.2780384,  \ 1,  \ 0.71719754,  \ 0.00476406\},
+\end{equation}
+and \textit{remain the same} as $p$ is changed, following the commentary after (\ref{eq:TV_ordering_q}).
 \end{landscape}
 
 \begin{figure}
@@ -2665,263 +2703,272 @@ This section is devoted to experimenting with QGSP in real-world datasets, tackl
 \subsection{Denoising a quaternion graph signal via QLMS low-pass filtering}
 \label{subsec:denoising}
 
-Let us walk through an example on spectral analysis and denoising. The graph signal will be generated using UK towns' weather data, specifically humidity, atmospheric pressure, temperature and wind speed. The data was fetched from the Open Weather Map API\footnote{The API is accessible, as of August 2022, at the address \url{https://home.openweathermap.org/}.}, in April 20th 2022, at approximately 13:00 GMT. The latitude and longitude values of UK towns originate from the LatLong.Net database\footnote{Accessible, as of August 2022, at the address \url{https://www.latlong.net/category/towns-235-55.html}.}.
+Let us walk through an example on spectral analysis and denoising. The graph signal will be generated using UK towns' weather data, specifically setting the humidity, atmospheric pressure, temperature and wind speed data to the $1$, $\qi$, $\qj$ and $\qk$ components of each signal sample. The data was fetched from the Open Weather Map API\footnote{The API is accessible, as of August 2022, at the address \url{https://home.openweathermap.org/}.}, in April 20th 2022, at approximately 13:00 GMT, and a sample is shown in Table \ref{tab:02}. The latitude and longitude values of UK towns originate from the LatLong.Net database\footnote{Accessible, as of August 2022, at the address \url{https://www.latlong.net/category/towns-235-55.html}.}.
 
 \begin{figure}
-	\centering
-	\includegraphics[width=0.3\linewidth]{thesis/Figures/uk_qgsp_graph.pdf}
-	\caption{Graph created using the towns in England.}
-	\label{fig:uk_graph}
+\centering
+\includegraphics[width=0.3\linewidth]{thesis/Figures/uk_example/uk_graph.pdf}
+\caption{Graph created using the 145 towns in England and Wales.}
+\label{fig:uk_graph}
 \end{figure}
 
 The graph was created using a nearest-neighbors approach, as in (\ref{eq:weights}), since the nodes possess a clear relation to geographic location. The edge weights were defined using the following steps:
 \begin{itemize}[noitemsep]
-\item Compute a real-valued nearest-neighbors adjacency matrix based on the latitude and longitude of UK towns (graph nodes), using the ten closest neighbors to each graph node. At this point, the real-valued edge weights correspond to the euclidian distances between nearby towns \textit{i} and \textit{j}, represented by ${d}(i, j)$.
-\item For each pair of connected nodes from the real-weighted graph in the previous step, compute the \textbf{absolute difference} in \textit{humidity}, \textit{temperature} and \textit{wind speed}, represented respectively by ${h}(i, j)$, ${t}(i, j)$ and ${w}(i, j)$.
-\item For each pair of connected nodes, create the quaternion $q(i, j) = {d}(i, j) + \qi {h}(i, j) + \qj {t}(i, j) + \qk {w}(i, j)$ and set as edge weight the value
+\item Compute a real-valued nearest-neighbors adjacency matrix based on the latitude and longitude of UK towns (graph nodes), using the seven closest neighbors to each graph node. At this point, the real-valued edge weights correspond to the euclidian distances between nearby towns \textit{i} and \textit{j}, represented by ${d}(i, j)$.
+\item For each pair of connected nodes from the real-weighted graph in the previous step, compute the \textbf{absolute difference} in \textit{humidity}, \textit{atmospheric pressure}, \textit{temperature} and \textit{wind speed}, represented respectively by ${h}(i, j)$, $p(i, j)$, ${t}(i, j)$ and ${w}(i, j)$. Then, create the quaternion $q(i, j) = {h}(i, j) + \qi {p}(i, j) + \qj {t}(i, j) + \qk {w}(i, j)$ and compute the edge weight
 \begin{equation}
-% \label{eq:}
-\mathbf{A}_{i, j} = \exp^{-1} \left(\frac{q}{\theta} \right).
+\label{eq:edge_weight_qgsp}
+\mathbf{A}_{i, j} = \exp^{-1} \left(
+\frac{d(i, j)}{\theta} \cdot 
+\frac{q(i, j)}{\parallel q(i, j) \parallel}
+\right).
 \end{equation}
-For the current example, it was chosen $\theta = 0.5$.
+Finally, in order to exploit the diagonalizability of the adjacency matrix, it was made Hermitian, i.~e., $\mathbf{A}_{i, j} = \overline{\mathbf{A}}_{j, i}$.
 \end{itemize}
-Figure \ref{fig:uk_graph} depicts a representation of the UK Town Graph, with quaternion-valued edge weights. A total of 177 towns were used, and the reader may find the full dataset at \url{https://github.com/gboaviagem/gspx/blob/main/resources/uk_weather_at_20Apr202213pm.gz}. The first few rows, so it becomes clear how the data is organized, are displayed in Table \ref{tab:02}.
+
+The reasoning behind the choice of (\ref{eq:edge_weight_qgsp}) is to have edge weights whose magnitude reflect the expected similarity between adjacent signal samples, as in (\ref{eq:weights}), and whose phase are aligned with the difference between such samples. The choice of $\theta$ for the current graph, after some experimentation, was $\theta = 2$.
+
+% Figure \ref{fig:uk_graph} depicts a representation of the UK Town Graph, with quaternion-valued edge weights. A total of 177 towns were used, and the reader may find the full dataset at \url{https://github.com/gboaviagem/gspx/blob/main/resources/uk_weather_at_20Apr202213pm.gz}. The first few rows, so it becomes clear how the data is organized, are displayed in Table \ref{tab:02}.
 
 \begin{table}
 \center
-\captionof{table}{Sample of the dataset containing UK towns' weather data \red{Update!}}
+\captionof{table}{Sample of the dataset containing UK towns' weather data.}
 \label{tab:02}
 \begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} cccc}
 \toprule
 & \textbf{town} & \textbf{latitude} & \textbf{longitude} & \textbf{humidity (\%)} \\
 \midrule
-1 & Troon, Scotland & 55.540001 & -4.66 & 55\\
-2 & St.Asaph, Wales & 53.257999 & -3.442 & 59\\
-3 & Stirling, Scotland & 56.1166 & -3.9369 & 53\\
-4 & Welling, Bexley, London & 51.4566 & 0.1056 & 39 \\
-5 & Bonnybridge, Scotland & 56.003227 & -3.888634 & 50\\
+1 & St.Asaph & 53.257& -3.442 & 59 \\
+2 & Welling, Bexley&51.45&0.1056&39 \\
+3 & Soham, Ely&52.33&0.3375&43 \\
+4 & Boulmer, Northumberland&55.422&-1.536&79 \\
+5 & Higham Ferrers, East Northamptonshire & 52.303 & -0.592841 & 53 \\
 \midrule
 \end{tabular*}
 \begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} cccc}
 & \textbf{pressure (hPa)} & \textbf{temp (K)} & \textbf{wind speed (m/s)} & \textbf{wind degrees} \\
 \midrule
-1 & 1018 & 289.19 & 3.6 & 220 \\
-2 & 1017 & 288.49 & 3.71 & 99 \\
-3 & 1018 & 288.15 & 3.72 & 114 \\
-4 & 1014 & 290.09 & 8.23 & 80 \\
-5 & 1018 & 288.0 & 3.53 & 106 \\
+1&1017&288.49&3.71&99 \\
+2&1014&290.09&8.23&80 \\
+3&1016&290.07&6.69&60 \\
+4&1020&282.77&4.07&115 \\
+5&1017&289.78&3.13&53 \\
 \bottomrule
 \end{tabular*}
 \end{table}
 
-% With the quaternion-valued adjacency matrix $\mathbf{A}$ at hand, it was verified that this quaternion graph shift operator (QGSO) was diagonalizable and the direct ($\mathbf{V}^{-1}$) and inverse ($\mathbf{V}$) QGFT matrices were computed. Figure \ref{fig:uk_graph_tv} shows the total variation of the eigenvectors associated with the adjacency matrix eigenvalues.
-
-% \begin{figure}
-% 	\centering
-% 	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_qgsp_sig.pdf}
-% 	\caption{Each component of the quaternion graph signal.}
-% 	% \label{fig:graph_tv_1}
-% \end{figure}
-
-% \begin{figure}
-% 	\centering
-% 	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_qgsp_tv1.pdf}
-% 	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
-% 	\label{fig:graph_tv_1}
-% \end{figure}
-
-% \begin{figure}
-% 	\centering
-% 	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_qgsp_spectrumsig_norm1.pdf}
-% 	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
-% 	% \label{fig:graph_tv_1}
-% \end{figure}
-
-% \begin{figure}
-% 	\centering
-% 	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_ss1_abs.pdf}
-% 	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
-% 	% \label{fig:graph_tv_1}
-% \end{figure}
-
-% \begin{figure}
-% 	\centering
-% 	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_qgsp_tv2.pdf}
-% 	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
-% 	\label{fig:graph_tv_2}
-% \end{figure}
-
-% \begin{figure}
-% 	\centering
-% 	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_qgsp_spectrumsig_norm2.pdf}
-% 	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
-% 	% \label{fig:graph_tv_1}
-% \end{figure}
-
-% \begin{figure}
-% 	\centering
-% 	\includegraphics[width=0.6\linewidth]{thesis/Figures/uk_ss2_abs.pdf}
-% 	\caption{Eigenvalues of the quaternion graph adjacency matrix, shown in the complex plane. The pseudo-colorscale indicates the respective eigenvectors total variation.}
-% 	% \label{fig:graph_tv_1}
-% \end{figure}
-
-One may define a quaternion graph signal as being composed by the four last columns of weather data in UK towns (see Table \ref{tab:02}). That is, each sample corresponds to the quaternion with components $(1, \qi, \qj, \qk)$ respectively equal to humidity, pressure, temperature and wind speed in the given town. The scale disparity between components is removed by scaling each column to be within range $[0, 1]$. A way of visualizing the graph signal is to plot each quaternion dimension separately, as done in Figure \ref{fig:uk_qgsp_graphsig}.
+As a way to remove the scale disparity between the quaternion components (the reader may compare, for instance, pressure and wind speed), each of the 4 columns were linearly scaled down to be within the range $[0, 1]$. A way of visualizing the graph signal is to plot each quaternion dimension separately, as it was done in Fig. \ref{fig:uk_qgsp_graphsig}.
 
 \begin{figure}
-	\centering
-	\includegraphics[width=0.5\linewidth]{thesis/Figures/uk_signal.pdf}
-	\caption{Quaternion graph signal, visualized in the vertex domain. The panels (a) to (d) depict, respectively, the real, $\qi$, $\qj$ and $\qk$ components of each quaternion-valued sample.}
-	\label{fig:uk_qgsp_graphsig}
+\centering
+\includegraphics[width=0.55\linewidth]{thesis/Figures/uk_signal.pdf}
+\caption{Quaternion graph signal, visualized in the vertex domain. The panels (a) to (d) depict, respectively, the real, $\qi$, $\qj$ and $\qk$ components of each quaternion-valued sample.}
+\label{fig:uk_qgsp_graphsig}
 \end{figure}
 
-\red{Rewrite this paragraph. Comment on the eigenvectors total variation, in Figure \ref{fig:uk_qgft_tv1}} Complementary to the vertex-domain visualization is the spectrum of the signal. This is obtained by the direct QGFT,
+The QGFT of the graph signal is computed, as defined earlier on this chapter, by the projection of the graph signal on the basis of eigenvectors of the graph adjacency matrix (which is diagonalizable, since it is Hermitian). The signal spectrum is depicted in Fig. \ref{fig:uk_qgsp_spectrum_hermitian}, in which the frequency components are ordered from lowest to highest frequency, using the total variation rule in (\ref{eq:TV_ordering_q}). After the computation of the total variation for each eigenvector, in order to perform the frequency ordering, Fig. \ref{fig:uk_total_variation_hermitian} was generated, demonstrating two previously discussed facts: the eigenvalues of the adjacency matrix are all real-valued and the total variation increases monotonically the further the eigenvalue is from the point $|\lambda_{max}|$ in the complex plane.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{thesis/Figures/uk_example/uk_spectrum_hermitian.pdf}
+\caption{Spectrum of the quaternion graph signal, defined over the vertices of the graph with Hermitian adjacency matrix.}
+\label{fig:uk_qgsp_spectrum_hermitian}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{thesis/Figures/uk_example/uk_spectrum_noisy.pdf}
+\caption{Spectrum of the noisy signal.}
+\label{fig:uk_spectrum_noisy}
+\end{figure}
+
+Let us now add a white noise on the graph signal, obtained by adding to the original spectrum samples from a uniform distribution with amplitude $5$. The result is shown in Fig. \ref{fig:uk_spectrum_noisy}. The goal of this exercise is to recover as perfectly as possible the original signal out of the noisy one, by using a FIR LSI low-pass filter of length $L+1 = 7$, designed using QLMS.
+
+The ideal low-pass filter was created by setting the passband to have 20\% of the frequency support, i.~e., the values $\alpha_i$ in $h(\lambda_i) = \alpha_i$ were set to 0 except for the eigenvalues corresponding to the 20\% eigenvectors with smallest total variation, in which case $\alpha_i = 1$.
+
+The QLMS algorithm was executed using the following values of step sizes: [0.0001, 0.0005, 0.001, 0.002], and a maximum of 100 iterations were allowed for each step size. To avoid incurring in computational memory overflow, a ``patience'' of 3 iterations were considered, meaning that after 3 iterations of monotonically increasing cost function, the process for that step size was aborted. Any step size greater than 0.002 was found to diverge quickly. Fig. \ref{fig:uk_qlms_iterations} shows the evolution of the cost function during all 100 iterations for each of the mentioned step sizes. The optimal vector $\mathbf{\widetilde{h}}$ was therefore found with $\mu = 0.002$.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.65\linewidth]{thesis/Figures/uk_example/uk_total_variation_hermitian.pdf}
+\caption{Total variation of the eigenvectors of the Hermitian graph adjacency matrix, for each respective eigenvalue.}
+\label{fig:uk_total_variation_hermitian}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.65\linewidth]{thesis/Figures/uk_example/uk_qlms_iterations.pdf}
+\caption{QLMS cost function for each iteration and for each step size.}
+\label{fig:uk_qlms_iterations}
+\end{figure}
+
+The filter taps obtained by the end of the optimization were all real-valued, because the matrix $\mathbf{X}$, the ideal frequency response $\mathbf{y}$ and the vector of initial filter taps (a null vector) are all real-valued: $\mathbf{\widetilde{h}}_{best} = (
+0.199, 0.241, 0.304, -0.177, -0.088, -0.072, 0.014
+)^T$ (rounded up to 3 decimal places).
+
+The frequency response of the FIR low-pass filter which best approximated the ideal one is obtained as in (\ref{eq:siseq2_qgsp}),
 \begin{equation}
-% \label{}
-\widehat{\mathbf{s}} = \mathbf{V}^{-1} \mathbf{s},
+\mathbf{y}_{best} = \left(
+\mathbf{\widetilde{h}}_{best}^T \mathbf{X}^T
+\right)^T.
 \end{equation}
-and the signal frequency components are shown in Figure \ref{fig:uk_qgsp_spectrumsig}.
+Fig. \ref{fig:uk_qlm_filter} shows the filter frequency response.
 
 \begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{thesis/Figures/uk_qgft_tv1.pdf}
-	\caption{Graph eigenvectors total variation using $\ell_1$-norm.}
-	\label{fig:uk_qgft_tv1}
+\centering
+\includegraphics[width=\linewidth]{thesis/Figures/uk_example/uk_qlm_filter.pdf}
+\caption{Frequency response of the FIR low-pass filter after running the QLMS.}
+\label{fig:uk_qlm_filter}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{thesis/Figures/uk_qgft_spectrumsig.pdf}
-	\caption{Spectrum of the graph signal in the symmetric graph.}
-	\label{fig:uk_qgsp_spectrumsig}
-\end{figure}
+Finally, let us evaluate how well the QLMS filter realizes the denoising in the corrupted signal. As a figure of merit, let us consider the mean squared error between the original $\mathbf{s}$ and filtered $\mathbf{s_f}$ signals, normalized by the total average energy per sample of the original signal. This so called normalized MSE (NMSE) can be written as
+\begin{equation}
+\label{eq:errormetric}
+\text{NMSE}\{ \mathbf{s_f} \} \overset{\Delta}{=}
+\frac{\parallel \mathbf{s} - \mathbf{s_f} \parallel}{N} 
+\frac{N}{{\parallel \mathbf{s} \parallel}}
+=
+\frac{\parallel \mathbf{s} - \mathbf{s_f} \parallel}{\parallel \mathbf{s} \parallel}.
+\end{equation}
 
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{thesis/Figures/cost_vs_iterations.pdf}
-	\caption{.}
-	\label{fig:cost_vs_iterations}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{thesis/Figures/qlms_filter.pdf}
-	\caption{.}
-	\label{fig:qlms_filter}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{thesis/Figures/ideal_filter_output.pdf}
-	\caption{.}
-	\label{fig:ideal_filter_output}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{thesis/Figures/qlms_filter_output.pdf}
-	\caption{.}
-	\label{fig:qlms_filter_output}
-\end{figure}
+Trying out firstly the \textit{ideal} low-pass filter, as a benchmark, we see that it was able to produce a filtered signal with $\text{NMSE}\{ \mathbf{s_{ideal}} \} = 0.166$, dropping by 42\% the error verified in the corrupted signal $\mathbf{s_n}$, which was $\text{NMSE}\{ \mathbf{s_n} \} = 0.28991$. The FIR low-pass filter, designed via QLMS optimization and having only $L+1 = 7$ filter taps, performed better, reaching an error of $\text{NMSE}\{ \mathbf{s_{qlms}} \} = 0.15579$, a 46\% drop. The reason is justified, since the original signal was not null outside the passband, so that the FIR filter was able to preserve more of its energy in that frequency range than the ideal filter.
 
 \subsubsection{Comparison between signal smoothness in symmetric and Hermitian graphs}
-\red{Draw a comment here about the drawback of using Hermitian graphs (which we know have always diagonalizable adjacency matrices): they do not capture the expected relation between signal samples when the domain represents undirected influences.}
 
-\red{Also comment the difference in calculations made to create the symmetric and Hermitian graphs.}
+The reader may have risen the question of which differences would have appeared if a symmetric adjacency matrix was used, instead of a Hermitian one. Although the graph shift operator would lose the \textit{guaranteed} diagonalizability, the undirect edges would more naturally represent the context at hand, in which similarity between weather in close towns has no directional preference. Let us go briefly through the consequences found when switching from Hermitian to symmetric adjacency matrices.
 
-Figure \ref{fig:uk_qgft_spectrumsig_hermitian}
+First of all, it was somehow harder to find a value of $\theta$ in (\ref{eq:edge_weight_qgsp}) which led to a low-pass signal. After some trials, the most satisfactory choice was also $\theta = 2$, but the spectrum profile did not show an energy concentration on low frequencies as good as with the Hermitian case. See Fig. \ref{fig:uk_spectrum_symmetric}.
 
 \begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{thesis/Figures/uk_qgft_spectrumsig_hermitian.pdf}
-	\caption{Spectrum of the graph signal in the Hermitian graph.}
-	\label{fig:uk_qgft_spectrumsig_hermitian}
+\centering
+\includegraphics[width=\linewidth]{thesis/Figures/uk_example/uk_spectrum_symmetric.pdf}
+\caption{Spectrum of the original signal in the symmetric graph.}
+\label{fig:uk_spectrum_symmetric}
+\end{figure}
+
+Another difference was the fact that the symmetric quaternion adjacency matrix does not have \textit{only} real-valued eigenvalues. Instead, the standard eigenvalues follow the rule explained in Subsections \ref{subsec:autovetores_XA} and \ref{subsec:eigendecomposition}, being placed either \textit{on} or \textit{above} the real line in the complex plane. See the eigenvalues and the total variation of eigenvectors in Fig. \ref{fig:uk_total_variation_symmetric}.
+
+As a consequence of the eigenvalues being complex-valued, the matrix $\mathbf{X}$ was also complex and the QLMS filter presented a complex frequency response, see Fig. \ref{fig:uk_qlm_filter_symmetric}.
+The QLMS algorithm did not suffer, given that the step sizes were conveniently chosen, and converged to the filter taps
+\begin{equation}
+\mathbf{\widetilde{h}}_{best} = 
+\begin{bmatrix}
+0.199 \\
+0.227 -0.025\qi \\
+0.148 -0.065 \qi \\
+-0.062 + 0.002 \qi \\
+-0.031 + 0.049 \qi \\
+-0.030 + 0.037 \qi \\
+-0.016 + 0.020 \qi
+\end{bmatrix}.
+\end{equation}
+See the cost function \textit{versus} iterations in Fig. \ref{fig:uk_qlms_iterations_symmetric}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{thesis/Figures/uk_example/uk_total_variation_symmetric.pdf}
+\caption{Total variation of eigenvectors of the symmetric graph adjacency matrix.}
+\label{fig:uk_total_variation_symmetric}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{thesis/Figures/uk_example/uk_qlm_filter_symmetric.pdf}
+\caption{Frequency response of the FIR low-pass filter after running the QLMS in the scenario with symmetric graph adjacency matrix.}
+\label{fig:uk_qlm_filter_symmetric}
+\end{figure}
+\renewcommand{\floatpagefraction}{.9}%
+\begin{figure}
+\centering
+\includegraphics[width=0.58\linewidth]{thesis/Figures/uk_example/uk_qlms_iterations_symmetric.pdf}
+\caption{QLMS cost function for each iteration and for each step size, in the scenario with symmetric graph adjacency matrix.}
+\label{fig:uk_qlms_iterations_symmetric}
 \end{figure}
 
 \subsection{Spectral analysis and compression of quaternion graph signal}
 
-For this example, let us move away from the UK graph and consider a problem with a larger network. Let us select 1000 of the United States (US) counties and create a simple nearest-neighbors graph out of their geographic coordinates. The resulting undirected graph is depicted in Figure \ref{fig:us_graph}. It consists of 1000 vertices and 4158 edges, and, as it happens with nearest-neighbors graphs, it has a single connected component. The edge weights are not addressed at this point, rather this example tailors the weights to fit nicely the quaternion graph signal.
-
-In order to define a quaternion-valued signal over this graph using real-world data, we propose taking four variables from the same context or problem and assigning each to a quaternion component. The \textit{ad hoc} constraint of having the variables picked from similar areas is an attempt to make the quaternion graph signal meaningful, so each sample makes sense as a whole.
+For this example, let us move away from the UK graph and consider a problem with a larger network. Let us select 1000 of the United States (US) counties and create a simple nearest-neighbors graph out of their geographic coordinates. The resulting undirected graph is depicted in Fig. \ref{fig:us_graph}. It consists of 1000 vertices and 4158 edges. In order to create the quaternion graph signal, it will be used a few sociodemographic variables from OpenIntro, a non-profit organization focused on spreading high-quality open-source publications. The full dataset\footnote{Avaiable at \url{https://www.openintro.org/data/?data=county_complete}, accessed in October 2022.} comprises 188 variables for each of the 3142 US counties, but only the following indicators were used:
+\begin{itemize}[noitemsep]
+\item \textbf{bachelors\_2017}: percent of population that earned a bachelor's degree in 2017.
+\item \textbf{median\_household\_income\_2017}: median household income as of 2017.
+\item \textbf{unemployment\_rate\_2017}: unemployment rate in 2017.
+\item \textbf{uninsured\_2017}: percent of population who were uninsured in 2017.
+\end{itemize}
+All variables relate to the financial health of american population. 
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\linewidth]{thesis/Figures/us_graph.pdf}
+\includegraphics[width=0.8\linewidth]{thesis/Figures/usa_example/us_graph.pdf}
 \caption{Nearest-neighbors graph of a few of the United States counties.}
 \label{fig:us_graph}
 \end{figure}
 
-For this example, the data was taken from OpenIntro, a non-profit organization focused on spreading high-quality open-source publications. The full dataset\footnote{Avaiable at \url{https://www.openintro.org/data/?data=county_complete}, accessed in October 2022.} comprises 188 variables for each of the 3142 US counties, but only the following four sociodemographic indicators were used:
-\begin{itemize}[noitemsep]
-    \item \textbf{bachelors\_2017}: percent of population that earned a bachelor's degree in 2017.
-    \item \textbf{median\_household\_income\_2017}: median household income as of 2017.
-    \item \textbf{unemployment\_rate\_2017}: unemployment rate in 2017.
-    \item \textbf{uninsured\_2017}: percent of population who were uninsured in 2017.
-\end{itemize}
-
-All variables relate to the financial health of american population. Not surprisingly, the Pearson correlation varies from 15\% to 63\% between the group, as shown in Table \ref{tab:02}.
-\begin{table}[!h]
-\center
-\captionof{table}{Correlation between variables used to define the graph signal.}
-\label{tab:02}
-\begin{tabular*}{\textwidth}{ccc}
-\toprule
-& & \textbf{Correlation}\\
-\midrule
-\textbf{bachelors\_2017} & \textbf{median\_household\_income\_2017} & $0.63$ \\
-\textbf{bachelors\_2017} & \textbf{unemployment\_rate\_2017} & $-0.35$ \\
-\textbf{bachelors\_2017} & \textbf{uninsured\_2017} & $-0.32$ \\
-\textbf{median\_household\_income\_2017} & \textbf{unemployment\_rate\_2017} & $-0.38$ \\
-\textbf{median\_household\_income\_2017} & \textbf{uninsured\_2017} & $-0.34$ \\
-\textbf{unemployment\_rate\_2017} & \textbf{uninsured\_2017} & $0.18$ \\
-\bottomrule
-\end{tabular*}
-\end{table}
-
-Figure \ref{fig:us_signal} displays each quaternion component as a real-valued graph signal. From the plot (a) to (d), the signals contain the features, respectively: \textbf{bachelors\_2017}, \textbf{median\_household\_income\_2017}, \textbf{unemployment\_rate\_2017} and \textbf{uninsured\_2017}.
+Fig. \ref{fig:us_signal} displays each quaternion component as a real-valued graph signal. From the plot (a) to (d), the signals contain the features, respectively: \textit{bachelors\_2017}, \textit{median\_household\_income\_2017}, \textit{unemployment\_rate\_2017} and \textit{uninsured\_2017}.
 
 \begin{figure}
-	\centering
-	\includegraphics[width=0.95\linewidth]{thesis/Figures/us_signal.pdf}
-	\caption{Sociodemographic quaternion-valued graph signal, split into its Hamiltonian components: (a) real part, (b) $\qi$, (c) $\qj$ and (d) $\qk$.}
-	\label{fig:us_signal}
+\centering
+\includegraphics[width=0.95\linewidth]{thesis/Figures/usa_example/us_signal.pdf}
+\caption{Sociodemographic quaternion-valued graph signal, split into its components: (a) real part, (b) $\qi$, (c) $\qj$ and (d) $\qk$.}
+\label{fig:us_signal}
+\end{figure}
+
+This example is focused on the use of QGSP for compression of multidimensional data. By keeping only a few frequency components with large fraction of the whole signal energy, and given that the underlying graph shift operator is known, the signal representation may be highly condensed. Let us create a Hermitian adjacency matrix, using (\ref{eq:edge_weight_qgsp}) along with the four sociodemographic indicators and the geographic location of each of the 1000 US counties. After the diagonalization of the shift operator the frequency ordering through the total variation metric (see Fig. \ref{fig:us_counties_qgsp_tv1}), the QGFT of the graph signal was computed and is depicted in Fig. \ref{fig:us_counties_qgsp_spectrumsig}.
+
+\renewcommand{\floatpagefraction}{.8}%
+\begin{figure}
+\centering
+\includegraphics[width=0.65\linewidth]{thesis/Figures/usa_example/us_counties_qgsp_tv1.pdf}
+\caption{Total variation for each eigenvector of the (Hermitian) adjacency matrix of the US graph.}
+\label{fig:us_counties_qgsp_tv1}
 \end{figure}
 
 \begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{thesis/Figures/us_counties_qgsp_tv1.pdf}
-	\caption{.}
-	\label{fig:us_counties_qgsp_tv1}
+\centering
+\includegraphics[width=0.95\linewidth]{thesis/Figures/usa_example/us_counties_qgsp_spectrumsig.pdf}
+\caption{US graph signal spectrum.}
+\label{fig:us_counties_qgsp_spectrumsig}
 \end{figure}
 
+Although the signal presents a heavy noise along all the spectrum, it clearly possesses a prominent low-pass characteristic. Let us measure how well a small fraction of the frequency components with highest energy are able to convey most of the signal.
+
+To this end, 20 values of compression rate were taken, linearly spaced between 5\% and 95\% (inclusive). A compression rate of 5\%, for example, meant that only 5\% of the frequency components with highest energy were kept, the rest being set to zero. After compressing the signal, it was inverse-transformed by the QGFT and compared to the original signal, by means of the same normalized mean squared error used in (\ref{eq:errormetric}).
+
+Fig. \ref{fig:mse_values} shows how the error changed as a function of the compression rate. Since very few frequency components concentrate a relevant amount of energy, a compression rate of 95\% (only 50 components) reaches an NMSE of only 15.4\%. A drop from 95\% to 90\% in the compression rate produces a steep decay in the NMSE, which goes to 11.8\%, a result that makes sense for a low-pass signal: with a few more frequency components, a large chunk of the signal energy is captured. As the compression decreases (i.~e., more components of the spectrum are kept) the NMSE reduction becomes less and less significant, because smaller fractions of the energy are added.
+
 \begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{thesis/Figures/us_counties_qgsp_spectrumsig.pdf}
-	\caption{.}
-	\label{fig:us_counties_qgsp_spectrumsig}
+\centering
+\includegraphics[width=0.7\linewidth]{thesis/Figures/usa_example/mse_values.pdf}
+\caption{Normalized mean squared error as a function of the compression rate.}
+\label{fig:mse_values}
 \end{figure}
 
 \section{Concluding remarks}
 
+This chapter presented the basis for graph signal processing with quaternion-valued signals and edge weights. Drawing the majority of its content from previous works, the contributions mainly consist of needlework, sewing together tools and concepts from quaternion algebra, quaternion adaptive filtering and graph signal processing. In a nutshell,
+\begin{itemize}[noitemsep]
+\item it was proposed a simple framework to define and analyze quaternion graph signals, involving the eigendecomposition of the quaternion adjacency matrix and inversion of its eigenvector matrix,
+\item it was presented a condition under which a graph certainly has diagonalizable quaternion adjacency matrix (although one cannot guarantee that its eigenvector matrix is unitary),
+\item it was shown how to approximate ideal filters in the context of QGSP by means of the QLMS algorithm,
+\item and extensive examples were provided, discussing the application of QGSP in spectral analysis, denoising and compression.
+\end{itemize}
+
 \chapter{Concluding remarks and future works}
 \label{ch:conclusion}
 
-Este projeto de tese prop\~oe-se a contribuir com o processamento de sinais quaterni\^onicos, em particular pelo estudo da autodecomposi\c c\~ao de matrizes quaterni\^onicas, sejam elas matrizes de transforma\c c\~oes lineares ou operadores de deslocamento sobre grafos com pesos quaterni\^onicos. O estudo da autoestrutura da QDFT levou a um novo m\'etodo para sua fracionariza\c c\~ao, juntamente com a proposta de uma vers\~ao multiparam\'etrica e um esquema de cifragem de imagens coloridas com camada de opacidade. A decomposi\c c\~ao de matrizes que servem como operadores de deslocamento para sinais sobre grafos deve ser revelada, em parte, pelos estudos conduzidos at\'e o momento, reunindo teoremas relacionando propriedades destas matrizes e de suas complexas adjuntas, bem como sobre a exist\^encia e similaridade entre autovalores de matrizes sobre os quat\'ernios.
+\begin{quotation}
+\itshape
+Quatemions came from Hamilton after his really good work had been done; and, though beautifully ingenious, have been an unmixed evil to those who have touched them in any way [...].
 
-Future works:
-\begin{itemize}
-\item From Ch 4: ``Fractional diffusion has been used to model certain phenomena that allow long-range interactions and are non-local in nature~\cite{ilic2005,riascos2014,estrada2021,antil2021}. In future works, we intend to investigate the possible relationships between the operator proposed in this paper and the mathematical tools for fractional diffusion in networks. ''
-\end{itemize}
+\noindent --- Lord Kelvin, letter to Hayward, 1892, as cited in \cite{altmann1989hamilton}.
+\end{quotation}
 
-Dentre os desafios te\'oricos que permanecem, pode-se listar os seguintes:
-\begin{itemize}
-\item encontrar classes de grafos com operadores de deslocamento diagonaliz\'aveis. De fato, enquanto um grafo n\~ao-direcionado com pesos reais ou complexos possui um operador de deslocamento sempre diagonaliz\'avel, n\~ao se pode afirmar o mesmo quando os pesos percentem a $ \mathbb{H} $, pois a simetria presente na matriz de adjac\^encia de um grafo quaterni\^onico n\~ao-direcionado n\~ao se transmite \`a sua matriz complexa adjunta. Neste sentido, pretende-se investigar se h\'a classes de grafos com operadores de deslocamento diagonaliz\'aveis, ou se \'e poss\'ivel definir operadores com tal propriedade. Este problema alinha-se com o entendimento de \cite{ortega2018graph}, que observam forte interesse da comunidade em avan\c cos te\'oricos de GSP voltados a \emph{classes espec\'ificas} de grafos.
-\item Ainda nesta linha, pode-se investigar se h\'a quaisquer propriedades particulares presentes na classe de grafos quaterni\^onicos que possuem \emph{apenas autovalores reais} (i.~e. cada autoclasse possui apenas um elemento e o grafo possui um n\'umero finito de autovalores). Em GSP, esta propriedade \'e observada, por exemplo, nos grafos n\~ao-direcionados de pesos reais.
-\item Por fim, outra quest\~ao de estudo em aberto \'e como definir um ordenamento das frequ\^encias quando os autovetores s\~ao quaterni\^onicos, pois ainda n\~ao est\'a claro se \'e poss\'ivel transpor a interpreta\c c\~ao oriunda da varia\c c\~ao total sobre grafos, em (\ref{eq:var_total}), para o contexto quaterni\^onico.
-\end{itemize}
-%est\'a o problema de encontrar classes de grafos com operadores de deslocamento diagonaliz\'aveis. De fato, enquanto um grafo n\~ao-direcionado com pesos reais ou complexos possui um operador de deslocamento sempre diagonaliz\'avel, n\~ao se pode afirmar o mesmo quando os pesos percentem a $ \mathbb{H} $, pois a simetria presente na matriz de adjac\^encia de um grafo quaterni\^onico n\~ao-direcionado n\~ao se transmite \`a sua matriz complexa adjunta. Neste sentido, pretende-se investigar se h\'a classes de grafos com operadores de deslocamento diagonaliz\'aveis, ou se \'e poss\'ivel definir operadores com tal propriedade. Este problema alinha-se com o entendimento de \cite{ortega2018graph}, que observam forte interesse da comunidade em avan\c cos te\'oricos de GSP voltados a \emph{classes espec\'ificas} de grafos. Ainda nesta linha, pode-se investigar se h\'a quaisquer propriedades particulares presentes na classe de grafos quaterni\^onicos que possuem \emph{apenas autovalores reais} (i.~e. cada autoclasse possui apenas um elemento e o grafo possui um n\'umero finito de autovalores). Por fim, outra quest\~ao de estudo em aberto \'e como definir um ordenamento das frequ\^encias quando os autovetores s\~ao quaterni\^onicos, pois ainda n\~ao est\'a claro se \'e poss\'ivel transpor a interpre\c c\~ao oriunda da varia\c c\~ao total sobre grafos, em (\ref{eq:var_total}), para o contexto quaterni\^onico.
+This thesis has tackled the problem of extending the basic tools of graph signal processing by changing the subjacent algebra in which signals and edge weights were defined, moving from the complex to the quaternion numbers. The exploration has also led to contributions on fractional linear operators, specifically proposing the fractional graph shift and a new way of computing the fractional QDFT, the latter having been used on an encryption scheme of color images in the form of a multiparametric transform.
 
-%\red{Ler estas fontes e comentar \cite{yin2019quaternion, hsu2018quatnet, parcollet2019quaternion}}
+The opening quote of this chapter is intended to be read in a light and ironic tone. The only ``evil'' the quaternions have bestowed on this thesis -- if we can humorously declare this way --  was the struggles with understanding the intricacies of its algebra and application on signal processing. But instead of causing any harm, the journey has borne fruit. And has done so in three fronts, let us recall the main contributions in each of them.
 
-%De posse de um acabou\c co b\'asico de an\'alise espectral e filtragem em QGSP, pretende-se implementar os algoritmos e estruturas de dados em \emph{software}.
-Um arcabou\c co coeso de QGSP deve encontrar aplica\c c\~oes em cen\'arios envolvendo sinais que guardem informa\c c\~oes em tr\^es ou quatro dimens\~oes, como dados de dire\c c\~ao de fluidos, imagens coloridas ou rota\c c\~oes de objetos no espa\c co tridimensional. O uso de quat\'ernios pode melhorar a performance em alguns problemas que, hoje, s\~ao atacados com GSP tradicional, tal como ocorreu com aplica\c c\~oes de redes neurais convolucionais \emph{quaterni\^onicas}. Estudos mostraram resultados iguais ou superiores a esquemas com redes convolucionais tradicionais em problemas de processamento e classifica\c c\~ao de imagens coloridas \cite{yin2019quaternion, parcollet2019quaternion}, bem como estima\c c\~ao de pose a partir apenas de imagens em RGB \cite{hsu2018quatnet}. Um exemplo para aplica\c c\~ao de QGSP seria o uso de grafos para predi\c c\~ao de movimento ou compress\~ao de nuvens de pontos (\textit{point clouds}) com informa\c c\~ao espacial e de cor. Em \cite{thanou2016graph}, nuvens de pontos com informa\c c\~ao de cor e posi\c c\~ao no espa\c co 3D s\~ao modeladas como um grafo sobre o qual se define seis sinais distintos (tr\^es de posi\c c\~ao e tr\^es de cor). Utiliza-se de an\'alise espectral para extrair \emph{features} sobre cada um destes sinais, de forma independente, de modo a utiliz\'a-las para estima\c c\~ao de movimento e compress\~ao das nuvens de pontos. Ora, pode-se afirmar sem d\'uvida alguma que tais sinais n\~ao s\~ao independentes e a modelagem utilizando QGSP poderia prover um processamento hol\'istico, eventualmente com maior capacidade de compress\~ao. Em \cite{batabyal2015ugrasp}, os autores representam pontos do corpo humano como v\'ertices de um grafo 3D, com pesos das arestas relacionados \`a dist\^ancia euclidiana entre estes pontos, e utilizam-no para extrair vari\'aveis de entrada para algoritmos de aprendizado de m\'aquina. Cada amostra do sinal sobre o grafo \'e uma tripla ordenada $ s_i = (x_i, y_i, z_i) $, indicando a posi\c c\~ao do v\'ertice no espa\c co. Este sinal, originalmente composto por elementos em $ \mathbb{R}^3 $, \'e representado pelos autores como $ \hat{\mathbf{s}} = [x_1, \dots, x_N, y_1, \dots, y_N, z_1, \dots, z_N] \in \mathbb{R}^{3N}$, ao mesmo tempo em que se define a extens\~ao da matriz $ \mathbf{U} $ de autovetores da Laplaciana: $ \mathbf{U}_g = \text{diag}(\mathbf{U}, \mathbf{U}, \mathbf{U}) $, de modo a se poder utilizar GSP tradicional. O uso de grafos e sinais quaterni\^onicos poderia prover um modelo que naturalmente explora o sinal na sua forma original.
+In the proposed fractional shift operator, it was demonstrated how it approximates  the classical ideal interpolating filter in the case of ring graphs and how it can be implemented as an LSI graph filter, even for arbitrary graphs. Also, it was shown how the operator may be used in filter design to improve the frequency response with the same filter length. A future work in this front could be the investigation of the possible relationships between the $\mathbf{A}^a$ and the mathematical tools for fractional diffusion in networks, since fractional diffusion has already been used to model certain phenomena that allow long-range interactions and are non-local in nature~\cite{ilic2005,riascos2014,estrada2021,antil2021}.
+
+In the study of the fractionalization of the QDFT, it was demonstrated how this transform share symmetric eigenvectors with the DFT, what allowed for the construction of an orthogonal eigenbasis of the QDFT and subsequent definition of its fractional (and even multiparametric) version. Since quaternions possess 4 real-valued components, an application of the 2D-MFrQDFT was proposed in the form of a holistic encryption scheme for color images with opacity layer, which was shown to provide satisfactorily large key space and key sensitivity. This front also allow for future works, for instance trying to expand this analysis and address whether some hypercomplex image moments, such as ternary radial harmonic Fourier moments and quaternion polar harmonic \cite{wang2019ternary,wang2018quaternion}, could be used for image encryption, eventually in specific scenarios and applications.
+
+Finally, the proposition of quaternion graph signal processing brought some interesting results. For instance, it was stated that a way to enforce a diagonalizable graph adjacency matrix is by making it Hermitian, which will provide also real-valued eigenvalues. During the examples provided, it was shown a method for graph inference which extracts the phase of the difference in adjacent samples and their geographic distance to build the edge weights, as well as it was shown a way of designing FIR LSI filters using QLMS optimization. All computations in the aforementioned examples were performed using a new open-source Python package, released as a Github repository for peer-review and free reuse. Among the theoretical and practical challenges which may be addressed in future work, is using better versions of the QLMS algorithm \cite{ogunfunmi2015adaptive}, which may provide faster convergence or computational efficiency, or even applying some adaptive graph filtering techniques, such as the Normalized LMS for graph signals \cite{spelta2020normalized}, to design quaternion graph filters.
