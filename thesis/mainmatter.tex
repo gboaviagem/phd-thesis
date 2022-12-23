@@ -1193,10 +1193,6 @@ This Chapter guided the reader through the aspects regarding the fractional Four
 
 Over the last decade, theory and applications related to graph signal processing have been widely developed and attracted the attention of several scholars~\cite{ortega2018,richard2018,ribeiro2018}. The reader may recall from Chapter \ref{ch:reviewGSP} that GSP aims to extend concepts and operations of classical digital signal processing to scenarios in which the signals lie over irregular domains. Such scenarios include, for instance, sensors arbitrarily positioned in a geographic region and measuring some climatological variable, points of a three-dimensional cloud representing some virtual object and its attributes, people linked according to their interests and proximity relationships in a social network and so on~\cite{chen2014,zhang2014,benzi2016,weiyu2018,saad2018,jiang2021,gama2019,liu2019,zhang2020,ferreira2020,zhang2021,xiao2021,sun2021}.
 
-% To be more specific, among the issues related to the referred scenarios, one can cite segmentation and attribute compression of 3D point clouds~\cite{zhang2014,zhang2020}, stochastic filtering under asymmetric links in wireless sensor networks~\cite{saad2018}, community detection in social networks~\cite{zhang2021}, anomalous IoT sensor data detection~\cite{xiao2021} and traffic prediction via attention networks~\cite{sun2021}. It is intuitive that the mentioned examples can be modeled as graphs whose vertices are connected by edges inferred from a variety of influence or dependency criteria. This contrasts with the discrete-time domain, over which the samples of a signal are equidistantly placed and have left- and right-side immediate neighbors only; something similar happens in the case of digital images, where the pixels are arranged in a regular rectangular grid.
-
-% Two main GSP approaches have been consolidated throughout the last years. The first is based on the spectral graph theory and analyzes signals on undirected graphs with real and non-negative edge weights, by using the graph Laplacian to construct a basis for the signal space~\cite{shuman2013emerging}. The second comes from the algebraic signal processing and uses the weighted adjacency matrix $\mathbf{A}$ as elementary building block~\cite{puschel2008time,puschel2008space}; such an approach, which is adopted in this paper, allows to deal with signals defined over both directed and undirected graphs, and with real- and complex-valued edge weights~\cite{sandryhaila2014big}. {In any case, the aforementioned approaches have used $\mathbf{L}$ and $\mathbf{A}$ as elementary building blocks because, among other reasons, these matrices are well established in graph theory and allow some meaningful physical interpretation or some parallel with the classical DSP; while $\mathbf{A}$ can be viewed as a generalization of the discrete-time unit shift, $\mathbf{L}$ is a kind of discrete counterpart to the continuous Laplace-Beltrami (second order) derivative operator on a manifold~\cite{chung1997spectral,Coifman2005}.}
-
 Among the research fronts active in GSP, the one that investigates alternatives to the shift operators, employed as building blocks to describe graph signals and systems, deserves to be highlighted~\cite{girault2015translation,gavili2017,fan20191,fan2019,mollaebrahim2021,shafipour2018,shafipour2019}. {In fact, when the purpose is to consider linear operators in this context, any matrix can be chosen to play the role of elementary building block; multiplying a matrix by a graph signal represented as a vector produces another signal whose samples result from a linear combination of the samples of the original signal. In this scope,} the use of matrices other than the \textit{standard} adjacency matrix and the Laplacian for the mentioned purpose may {be more suitable in specific scenarios and to carry out specific (graph) signal processing tasks. Even when the focus is on designing other graph operators (e.g., the graph Fourier transform), the decision about which elementary operator to use has an impact on the expected results.}
 
 {Regarding the issue discussed in the last paragraph, some works archived in the GSP literature can be brought to the fore. In~\cite{girault2015translation}, for example, the authors propose an isometric graph translation operator that is described in the spectral domain as a phase shifting operator; this operator shares key properties with the time shift and behaves reasonably in the vertex domain. In~\cite{gavili2017}, the authors define an energy-preserving shift operator that satisfy many properties similar to their counterparts in classical signal processing; the GSP framework based on the referred operator enables the signal analysis along a correlation structure defined by a graph shift manifold. In~\cite{fan20191} and~\cite{fan2019}, the authors employ different features associated with a graph to generate a series of shift operators and design a graph-filter-based classifier. Although the proposed method produces better results than those achieved using conventional graph-filter-based classifiers, it requires dealing with a non-convex optimization problem whose solution involves a relatively high computational cost. In~\cite{mollaebrahim2021}, motivated by the typical scenario of asymmetric communications in wireless sensor networks, the authors study the optimal design of graph shift operators to perform decentralized subspace projection for asymmetric topologies. Obtaining the referred operators can be performed either by solving an optimization problem or by employing a decentralized algorithm based on an Alternating Direction Method of Multipliers (ADMM). In~\cite{shafipour2018} and~\cite{shafipour2019}, the goal is to construct a graph Fourier transform for directed graphs (digraphs), such that the corresponding orthonormal frequency components are as spread as possible in the graph spectral domain. The method uses the Laplacian of an undirected version of the digraph and involves non-convex, orthonormality-constrained optimization problems.} 
@@ -1620,7 +1616,7 @@ the polynomial representation of $\mathbf{A}^{0.3}$.
 	\label{fig:polyrepres}
 \end{figure}
 
-\subsection{Least-Square approximation of LSI filters}\label{subsec:lsi}
+\subsection{Least-square approximation of LSI filters}\label{subsec:lsi}
 Before developing a numerical example illustrating the use of $\mathbf{A}^a$ to filter graph signals, let us first review a simple design technique that are least-squares approximations of ideal LSI filters~\cite{sandryhaila2014frequency}. Such a method consists of defining the (ideal) filter by specifying the values of $h(\lambda_i)$ (filter response in each eigenvalue of the shift operator), instead of determining the values of $h_{\ell}$ (filter coefficients). Describing the frequency response of the filter for each eigenvalue  $ \lambda_i $ yields the linear system of equations
 \begin{equation}
 \label{eq:siseq}
@@ -1692,11 +1688,11 @@ In this example, we consider a network formed by $230$ weather stations that mea
 where $d_{n,m}$ denotes the geodesical distance between the $n^{\text{th}}$ and the $m^{\text{th}}$ sensors. The snapshot of all measurements taken on February $1^{\text{st}}$, 2003 forms the signal indexed by the referred graph, which is shown in Fig.~\ref{fig:usa00}. From the GFT of the signal, which is plotted in Fig.~\ref{fig:usa01}, it can be seen that its spectral content is concentrated in the low graph frequencies. Note that such frequencies correspond to the eigenvalues of $\mathbf{A}$, which are marked along the horizontal axis of the figure; additionally, the referred marking accompanies the fact that low (resp. high) graph frequencies are associated with higher (resp. lower) eigenvalues~\cite{sandryhaila2014frequency}.
 
 \begin{figure}%
-	\centering
+\centering
 \includegraphics[width=0.6\linewidth]{Figures/GNorm_estacoes_temperatura.pdf}
-	\caption{Graph of a network formed by $230$ weather stations measuring the temperature across the United States. The snapshot of all measurements taken on February $1^{\text{st}}$, 2003 is the corresponding graph signal.}%
-	\label{fig:usa00}%
-	\vspace{0.14cm}
+\caption{Graph of a network formed by $230$ weather stations measuring the temperature across the United States. The snapshot of all measurements taken on February $1^{\text{st}}$, 2003 is the corresponding graph signal.}%
+\label{fig:usa00}%
+\vspace{0.14cm}
 \end{figure}
 
 \begin{figure}[ht!]%
@@ -1965,7 +1961,7 @@ Oliveira Neto and Lima \cite{de2017discrete} stress that a FrDFT expressed as in
 \subfloat[]{
 \includegraphics[width=0.355\linewidth]{Figures/dice_256x256_layers_frqdft.pdf}
 }~
-\caption{(a) Test PNG image. Visualization of each layer in the (b) test image and (c) in its FrQDFT spectrum, computed with transform axis $ \qmu = \frac{1}{\sqrt{3}}(\qi + \qj + \qk) $ e $ a=0{.}3 $.}
+\caption{(a) Test PNG image. Visualization of each layer in the (b) test image and (c) in its FrQDFT spectrum, computed with transform axis $ \qmu = \frac{1}{\sqrt{3}}(\qi + \qj + \qk) $ and $ a=0{.}3 $.}
 \end{figure*}
 
 Once one is able to compute an orthogonal eigenbasis $ \mathbf{E} $ containing Hermite-Gaussian-like DFT eigenvectors, for instance by means of the generating matrix method, Theorem \ref{th:01} assures that matrix $ \mathbf{E} $ is also an eigenvector matrix for the QDFT. As a consequence, the transform matrix $ \mathbf{F} $ may be decomposed and written as
@@ -2491,7 +2487,7 @@ precisely the matrix $\rchi_A$, as intended to be proved.
 
 It is known that every Hermitian complex matrix is diagonalizable by a unitary matrix and has only real-valued eigenvalues. In other words, if $\mathbf{M} \in \mathbb{C}^{n \times n}$ and $\mathbf{M} = \mathbf{M}^H$, then there exists a complex matrix $\mathbf{U}$ and a diagonal real matrix $\mathbf{\Gamma}$ so that $\mathbf{M} = \mathbf{U} \mathbf{\Gamma} \mathbf{U}^{-1}$ and $\mathbf{U}^{-1} = \mathbf{U}^H$. However, despite the fact one can guarantee that a Hermitian QGSO has a Hermitian complex adjoint matrix, \textit{it is not true that its eigenvector matrix is necessarily unitary}.
 
-Let $\mathbf{A}$ be a Hermitian (hence diagonalizable) quaternion adjacency matrix, therefore $\mathbf{A} \mathbf{V} = \mathbf{V} \mathbf{\Lambda}$. Since $\rchi_{A}$ is complex-valued and Hermitian, its eigenvector matrix (let us say, $\mathbf{\Phi}$) is unitary and we may write $\rchi_{A} = \mathbf{\Phi} \mathbf{\Gamma} \mathbf{\Phi}^H$. Each column $\mathbf{\qphi}$ in $\mathbf{\Phi}$, the reader may recall, is written is terms of the simplex and perplex parts (which are complex-valued) of the respective column $\mathbf{v}$ in $\mathbf{V}$:
+Let $\mathbf{A}$ be a Hermitian (hence diagonalizable) quaternion adjacency matrix, therefore $\mathbf{A} \mathbf{V} = \mathbf{V} \mathbf{\Lambda}$. Since $\rchi_{A}$ is complex-valued and Hermitian, its eigenvector matrix (let us say, $\mathbf{\Phi}$) is unitary and we may write $\rchi_{A} = \mathbf{\Phi} \mathbf{\Gamma} \mathbf{\Phi}^H$. Each column $\mathbf{ normalized MSE (NMSE}$ in $\mathbf{\Phi}$, the reader may recall, is written is terms of the simplex and perplex parts (which are complex-valued) of the respective column $\mathbf{v}$ in $\mathbf{V}$:
 \begin{equation}
 \mathbf{\qphi}^{(n)} = 
 \begin{pmatrix}
@@ -2535,7 +2531,7 @@ That is, unless the complex adjoint eigenvector $\mathbf{\qphi}^{(n)} = \big( \m
 
 Let the graph in Fig. \ref{fig:degenerate_qgft_graph} have the following adjacency matrix,
 \begin{equation*}
-\small
+\footnotesize
 \mathbf{A} = \begin{pmatrix}
 0 & 0 & 0 & 1 -7\qi -5\qj -1\qk & 6 +3\qi +7\qj +4\qk \\
 0 & 0 & 0 & 0 & 6 +9\qi +2\qj +6\qk \\
@@ -2547,7 +2543,7 @@ Let the graph in Fig. \ref{fig:degenerate_qgft_graph} have the following adjacen
 
 As expected, since $ \mathbf{A}$ is Hermitian, so it is its complex adjoint:
 \begin{equation*}
-\small
+\footnotesize
 \rchi_A = 
 \begin{pmatrix}
 0 &  0 &  0 &  1 -7 \qi &  6 +3 \qi &  0 &  0 & 0 & -5 -1 \qi &  7 +4 \qi \\
@@ -2586,7 +2582,7 @@ The next step is to take half the eigenvalues of $\rchi_A$ (the ones with positi
 % \recalctypearea
 The chosen eigenvalues will determine the eigenvectors of $\rchi_A$ used to assemble those from $\mathbf{A}$. The resulting eigenvector matrix (with rounded decimals, to fit the page) is
 \begin{equation*}
-\footnotesize
+\scriptsize
 \mathbf{V} = \left(\begin{matrix}
 -0.24  -0.27\qj +0.16\qk & 0.59  -0.02\qj +0.04\qk & 0  & -0.02  -0.52\qj -0.28\qk & -0.040  +0.38\qj +0.03\qk \\
 -0.17 -0.19\qi -0.22\qj +0.17\qk & -0.31 +0.13\qi +0.09\qj +0.16\qk & -0.410 +0.24\qi +0.39\qj -0.23\qk  & -0.05 +0.01\qi -0.12\qj +0.35\qk & -0.010 +0.05\qi +0.20\qj +0.31\qk \\
@@ -2904,7 +2900,7 @@ All variables relate to the financial health of american population.
 \label{fig:us_graph}
 \end{figure}
 
-Fig. \ref{fig:us_signal} displays each quaternion component as a real-valued graph signal. From the plot (a) to (d), the signals contain the features, respectively: \textit{bachelors\_2017}, \textit{median\_household\_income\_2017}, \textit{unemployment\_rate\_2017} and \textit{uninsured\_2017}.
+Fig. \ref{fig:us_signal} displays each quaternion component as a real-valued graph signal. From the plot (a) to (d), the signals contain the features, respectively: \textit{bachelors\_2017}, \textit{median\_\-household\_\-income\_2017}, \textit{unemployment\_rate\_2017} and \textit{uninsured\_2017}.
 
 \begin{figure}
 \centering
@@ -2958,7 +2954,7 @@ This chapter presented the basis for graph signal processing with quaternion-val
 
 \begin{quotation}
 \itshape
-Quatemions came from Hamilton after his really good work had been done; and, though beautifully ingenious, have been an unmixed evil to those who have touched them in any way [...].
+Quaternions came from Hamilton after his really good work had been done; and, though beautifully ingenious, have been an unmixed evil to those who have touched them in any way [...].
 
 \noindent --- Lord Kelvin, letter to Hayward, 1892, as cited in \cite{altmann1989hamilton}.
 \end{quotation}
