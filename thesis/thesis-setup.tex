@@ -1,0 +1,141 @@
+
+% **************************************************
+% Files' Character Encoding
+% **************************************************
+\PassOptionsToPackage{utf8}{inputenc}
+\usepackage{inputenc}
+
+
+
+% **************************************************
+% Information and Commands for Reuse
+% **************************************************
+\newcommand{\thesisTitle}{title}
+\newcommand{\thesisName}{author}
+\newcommand{\mypriorstudies}{authorgraduation}
+\newcommand{\mypriorstudiesPlace}{Universidad Polit\'ecnica de Madrid}
+\newcommand{\thesisSubject}{Doctoral Dissertation}
+\newcommand{\thesisDate}{December xx, 2018}
+\newcommand{\thesisVersion}{My First Draft}
+
+\newcommand{\thesisFirstReviewer}{John Smith}
+\newcommand{\thesisFirstReviewerUniversity}{\protect{Clean Thesis Style University}}
+\newcommand{\thesisFirstReviewerDepartment}{Department of Clean Thesis Style}
+
+\newcommand{\thesisSecondReviewer}{John Doe}
+\newcommand{\thesisSecondReviewerUniversity}{\protect{Clean Thesis Style University}}
+\newcommand{\thesisSecondReviewerDepartment}{Department of Clean Thesis Style}
+
+\newcommand{\thesisFirstSupervisor}{Mark Scott}
+\newcommand{\thesisSecondSupervisor}{Tom Parker}
+
+\newcommand{\thesisUniversity}{\protect{Universidad Polit\'ecnica de Madrid}}
+\newcommand{\thesisUniversityDepartment}{Department}
+\newcommand{\thesisUniversityInstitute}{Escuela T\'ecnica Superior de Ingenieros Industriales}
+\newcommand{\thesisUniversityGroup}{Escuela T\'ecnica Superior de Ingenieros Industriales}
+\newcommand{\thesisUniversityCity}{Madrid}
+\newcommand{\thesisUniversityStreetAddress}{C\textbackslash  Jos\'e Guti\'errez Abascal 2}
+\newcommand{\thesisUniversityPostalCode}{28006}
+
+% **************************************************
+% Debug LaTeX Information
+% **************************************************
+%\listfiles
+
+
+% **************************************************
+% Load and Configure Packages
+% **************************************************
+
+
+
+
+%Emilio
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\mb}[1]{\mathbf{#1}}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{cancel}
+%\usepackage{subfigure}
+\usepackage{gensymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\newcommand{\nn}{\nonumber}
+\usepackage{bm}
+\usepackage[super]{nth}
+\usepackage{lscape}
+\usepackage{dsfont}
+\usepackage{isotope}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{subcaption}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{afterpage}
+\usepackage{changepage}
+\usepackage[title]{appendix}
+\usepackage{breakcites}
+%End Emilio
+
+% **************************************************
+% Load and Configure Packages
+% **************************************************
+\usepackage[utf8]{inputenc}		% defines file's character encoding
+\usepackage[english]{babel} % babel system, adjust the language of the content
+\PassOptionsToPackage{% setup clean thesis style
+	figuresep=colon,%
+	hangfigurecaption=false,%
+	hangsection=true,%
+	hangsubsection=true,%
+	colorize=bw,% full, reduced, bw
+	colortheme=bluemagenta,%
+	bibsys=biber,%
+	bibfile=mybib,%
+	bibstyle=authoryear,%
+    bibliographystyle=ieeetr
+}{cleanthesis}
+\usepackage{cleanthesis}
+
+%Emilio
+%This allows creating diagrams and drawing arrows in the tables
+\usepackage{tikz}
+\usetikzlibrary{tikzmark,matrix,arrows.meta,trees,shapes,positioning,calc,shadows,fit}
+\tikzset{
+	centered/.style = { align=center, anchor=center },
+	empty/.style = { font=\rmfamily\Large, centered, text width=2cm },
+	boxSolidLine/.style = { fill=white, draw=black, thick, centered },
+	boxSolidLine7ex/.style = { fill=white, draw=black, thick, centered ,minimum width = 8ex, minimum height = 8ex},
+	invisible/.style = { fill=white, draw=white, text=white },
+	hexagonSolidLine/.style = { fill=white, draw=black, thick, regular polygon, regular polygon sides = 6, centered },
+	octogonSolidLine/.style = { fill=white, draw=black, thick, regular polygon, regular polygon sides = 8, centered },
+	ellipseSolidLine/.style = { fill=white, draw=black, thick, ellipse, centered },
+	decision/.style = {diamond, thick, draw=black,align=center,inner sep=1pt, aspect=2},
+	boxDashedLine/.style = { fill=white, draw=black, thick, dashed, centered },
+	boxDottedLine/.style = { fill=white, draw=black, thick, dotted, centered },
+	shadowbox/.style={boxSolidLine, double copy shadow={shadow xshift=-1.5ex, shadow yshift=1.5ex}},
+	result/.style = { fill=black!20, centered},
+	blank/.style = { fill=white, left,centered,opacity=0,text opacity=1},
+	arrow/.style = { thick, color=black, ->, >=Triangle},
+	arrowDouble/.style = { thick, color=black, <->, >=Triangle},
+	line/.style = { thick, color=black},
+	arrowshadow/.style = { thick, color=black, ->, >=Triangle,double copy shadow={thick, shadow xshift=-1.5ex, shadow yshift=1.5ex}},
+}
+
+%Lo siguiente es para ajustar el tamaño de letra de las secciones con formato verbatim
+\usepackage{fancyvrb}
+%End Emilio
+
+\hypersetup{					% setup the hyperref-package options
+	pdftitle={\thesisTitle},	% 	- title (PDF meta)
+	pdfsubject={\thesisSubject},% 	- subject (PDF meta)
+	pdfauthor={\thesisName},	% 	- author (PDF meta)
+	plainpages=false,			% 	-
+	colorlinks=false,			% 	- colorize links?
+	pdfborder={0 0 1},			% 	- Para quitar el recuadro en los links poner 0 0 0 
+	breaklinks=true,			% 	- allow line break inside links
+	bookmarksnumbered=true,		%
+	bookmarksopen=true			%
+}
+
+\usepackage[acronym,nonumberlist,nomain]{glossaries}
+

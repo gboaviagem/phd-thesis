@@ -3,9 +3,9 @@
 
 Graph signal processing is a highly flexible tool for analysing and transforming graph-based data. However, as it happens with so many engineering tasks, often it appears to mix mathematics and art: the experienced GSP user knows that quite a few characteristics of the underlying graph are open to be determined by the very problem at hand and by the user's intuition. That is, whether one must consider real or complex edge weights, directed or undirected graphs, whether loops or multiple edges shall be allowed, all of these modeling choices arise from the data and from the way one considers the most appropriate to represent the relations within. We make hereby the argument that changing the algebra over which the graph signal samples (and edge weights) are defined, although rarely regarded among modeling choices, may reveal powerful new tools.
 
-Let us take an example of how the signal algebra may affect the processing possibilities, in the current state of GSP. Undirected graphs with real-valued weights are a common option for those used to model data defined over geographic spaces, since it is reasonable to consider the adjacency relations to be non-directional and weighted by positive real numbers \cite{shuman2013emerging}. However, the same topology would be arguably inappropriate should one deal with complex-valued signals: a directed graph or a graph with complex-valued edge weights would be more reasonable options to evaluate, since they would produce graph Fourier transform matrices with complex entries. Although this scenario may seem to lack practical purpose, defining a graph signal with samples lying in extensions of the real field (e.g. complex numbers) would be justified by the increase in the amount of information stored within each sample (from a single real number, to twice as much in the complex case).
+Let us take an example of how the signal algebra may affect the processing possibilities, in the current state of GSP. Undirected graphs with real-valued weights are a common option for those used to model data defined over geographic spaces, since it is reasonable to consider the adjacency relations to be non-directional and weighted by positive real numbers \parencite{shuman2013emerging}. However, the same topology would be arguably inappropriate should one deal with complex-valued signals: a directed graph or a graph with complex-valued edge weights would be more reasonable options to evaluate, since they would produce graph Fourier transform matrices with complex entries. Although this scenario may seem to lack practical purpose, defining a graph signal with samples lying in extensions of the real field (e.g. complex numbers) would be justified by the increase in the amount of information stored within each sample (from a single real number, to twice as much in the complex case).
 
-Electrical engineers for many decades have exploited the benefits of handling more than one real-valued information (e.g. magnitude and phase) encoded in a single signal sample, and a similar motivation led to Sangwine's \cite{sangwine1996fourier} discrete version of a family of bidimensional transforms over the \textit{quaternions} (a skew-field which extends the complex numbers by having four real valued components). As the reader may recall from Chapter \ref{ch:Intro}, these transforms used this class of hypercomplex numbers to perform holistic color image processing, handling all three color channels at once. In fact, \emph{quaternion signal processing} was created to embed three- or four-dimensional data into one-dimensional signals \cite{took2008quaternion}. Ever since, quaternion transforms have been employed not only on color image processing \cite{ell2007hypercomplex,chen2018quaternion,li2013quaternion,evans2000hypercomplex}, but also on other tasks such as bivariate signal analysis \cite{flamant2017spectral,flamant2017time,flamant2018complete}.
+Electrical engineers for many decades have exploited the benefits of handling more than one real-valued information (e.g. magnitude and phase) encoded in a single signal sample, and a similar motivation led to Sangwine's \parencite{sangwine1996fourier} discrete version of a family of bidimensional transforms over the \textit{quaternions} (a skew-field which extends the complex numbers by having four real valued components). As the reader may recall from Chapter \ref{ch:Intro}, these transforms used this class of hypercomplex numbers to perform holistic color image processing, handling all three color channels at once. In fact, \emph{quaternion signal processing} was created to embed three- or four-dimensional data into one-dimensional signals \parencite{took2008quaternion}. Ever since, quaternion transforms have been employed not only on color image processing \parencite{ell2007hypercomplex,chen2018quaternion,li2013quaternion,evans2000hypercomplex}, but also on other tasks such as bivariate signal analysis \parencite{flamant2017spectral,flamant2017time,flamant2018complete}.
 
 In Chapter \ref{ch:reviewGSP} it was presented the motivation and fundamentals of graph signal processing, while Chapter \ref{ch:FrGSO} delved into the exploration of a fractional graph shift.
 This chapter attempts to further extend the borders of GSP by pondering the problem of signal processing on graphs with quaternion-valued edge weights, referred to as \textit{quaternion graph signal processing}.
@@ -30,7 +30,7 @@ At the very center of vertex-frequency analysis in GSP lies the definition that 
     Given the graph $\mathcal{G} = \{\mathcal{V}, \mathbf{A}\}  $,  with adjacency matrix $ \mathbf{A} \in \mathbb{H}^{n \times n}$, the \textit{quaternion graph Fourier transform} (QGFT) is the projection of a graph signal onto the eigenspace of $\mathbf{A}$.
 \end{definition}
 
-The first step towards the QGFT is, therefore, the generation of a basis of (possibly generalized) eigenvectors of the adjacency matrix. This work has dealt only with the case of diagonalizable graph matrices, but the use of the Jordan canonical form can be investigated for non-diagonalizable QGSOs \cite{Longxuan1996}.
+The first step towards the QGFT is, therefore, the generation of a basis of (possibly generalized) eigenvectors of the adjacency matrix. This work has dealt only with the case of diagonalizable graph matrices, but the use of the Jordan canonical form can be investigated for non-diagonalizable QGSOs \parencite{Longxuan1996}.
 
 On the one hand, from the Corollary \ref{cor:diagonalizable} it is known that the diagonalizability of an adjacency matrix $\mathbf{A}$ both implies and requires that of its complex adjoint matrix $\rchi_A$. Let us write $\mathbf{A} = \mathbf{V} \mathbf{\Lambda} \mathbf{V}^{-1}$. On the other hand, Theorem \ref{th:02} guarantees that the eigenvalues of the adjacency matrix can be taken as half the ones of its complex adjoint matrix. More specifically, they can be taken as the union of the set of eigenvalues with positive imaginary part (recall that they are complex-valued) and the set of \textit{distinct} eigenvalues with null imaginary part (recall that every real-valued eigenvalue appears twice).
 
@@ -56,7 +56,7 @@ So far we are able to obtain $\mathbf{V}$ from $\mathbf{A}$, bypassing the direc
 
 \subsection{Inversion of the eigenvector matrix and frequency ordering}
 \label{subsec:inversion}
-The inversion of quaternion matrices is certainly a problem tackled by many researchers, but is not featured prominently in literature, at least not as far as the author is aware. There is, however, an algorithm proposed by \cite{cohen1999quaternionic} during studies on the determinant of quaternion matrices, when they highlighted the utility of Schur complements on computing the inversion of any matrix $\mathbf{M} \in \mathcal{R}^{n \times n}$ over the ring $\mathcal{R}$. Let us go quickly through their idea. Given that $\mathbf{M}$ is written in block form,
+The inversion of quaternion matrices is certainly a problem tackled by many researchers, but is not featured prominently in literature, at least not as far as the author is aware. There is, however, an algorithm proposed by \parencite{cohen1999quaternionic} during studies on the determinant of quaternion matrices, when they highlighted the utility of Schur complements on computing the inversion of any matrix $\mathbf{M} \in \mathcal{R}^{n \times n}$ over the ring $\mathcal{R}$. Let us go quickly through their idea. Given that $\mathbf{M}$ is written in block form,
 \begin{equation}
     \label{eq:block}
     \mathbf{M} = \begin{pmatrix}
@@ -185,7 +185,7 @@ The reader may notice that undirected quaternion graphs do not possess necessari
 The subjacent reason as to why undirected real-weighted graphs have diagonalizable adjacency matrices is that these real-valued matrices are symmetric, or more generally \textit{normal}, i.~e., they commute with (because are equal to) their transpose. In the case of complex-valued matrices, being normal (i.~e., commuting with their Hermitian transpose) also suffices for proving their diagonalizability. So, in order to find quaternion graphs analogous to undirected real-weighted graphs, in the sense of having a sufficient condition for diagonalizable shift operators, their adjacency matrix must possess \textit{normal} complex adjoint matrices. Fortunately, Theorem \ref{th:equiv01} states the condition:
 $ \rchi_{A}$ is normal ($ \rchi_{A}^H \rchi_{A} = \rchi_{A} \rchi_{A}^H $) or Hermitian ($\rchi_{A}^H = \rchi_{A}$) if and only if so is $ \mathbf{A}$.
 
-Zhang claims Theorem \ref{th:equiv01} is proved by direct verification \cite{zhang1997quaternions}, but let us go through a way to visualize part of the proof within the context of GSP.
+Zhang claims Theorem \ref{th:equiv01} is proved by direct verification \parencite{zhang1997quaternions}, but let us go through a way to visualize part of the proof within the context of GSP.
 
 \begin{proof}
     The part of the Theorem about to be verified is: \emph{is it true that Hermitian quaternion-valued matrices have Hermitian complex adjoints?} Equivalently,
@@ -318,7 +318,10 @@ Since the matrix $\rchi_A$ is complex-valued and Hermitian, it is diagonalizable
         22.72691312  \\
     \end{pmatrix}.
 \end{equation*}
-The next step is to take half the eigenvalues of $\rchi_A$ (the ones with positive imaginary part, plus half the real-valued ones) to obtain the standard eigenvalues of $\mathbf{A}$ and the respective eigenvectors. Since the real-valued eigenvalues appear in pairs, it is important to take one from each pair, to avoid picking eigenvectors from the same eigenspace. Therefore, $\mathrm{diag}(\mathbf{A}) = (-22.83570384, -6.34920255, 0, 6.45799327, 22.72691312)^T$.
+The next step is to take half the eigenvalues of $\rchi_A$ (the ones with positive imaginary part, plus half the real-valued ones) to obtain the standard eigenvalues of $\mathbf{A}$ and the respective eigenvectors. Since the real-valued eigenvalues appear in pairs, it is important to take one from each pair, to avoid picking eigenvectors from the same eigenspace. Therefore,
+\begin{equation*}
+\mathrm{diag}(\mathbf{A}) = (-22.83570384, -6.34920255, 0, 6.45799327, 22.72691312)^T.
+\end{equation*}
 
 \begin{landscape}
     % \newpage
@@ -361,7 +364,7 @@ The next step is to take half the eigenvalues of $\rchi_A$ (the ones with positi
 \end{figure}
 
 \section{Filter design via QLMS optimization}
-We have seen so far the establishment of the basis of QGSP, borrowing concepts and tools from GSP and finding the particular consequences of having a quaternion-valued graph shift operator. The last milestone set in the beginning of the last section was to find a method for designing finite impulse response (FIR) LSI filters in QGSP and, fortunately, we can benefit from the large field of adaptive filtering with quaternion signals \cite{ortolani2017frequency}. In this section, we will go through how the quaternion least mean square (QLMS) algorithm can be used for FIR LSI filter design in QGSP, mimicking the method applied in in Subsection \ref{subsec:lsi}.
+We have seen so far the establishment of the basis of QGSP, borrowing concepts and tools from GSP and finding the particular consequences of having a quaternion-valued graph shift operator. The last milestone set in the beginning of the last section was to find a method for designing finite impulse response (FIR) LSI filters in QGSP and, fortunately, we can benefit from the large field of adaptive filtering with quaternion signals \parencite{ortolani2017frequency}. In this section, we will go through how the quaternion least mean square (QLMS) algorithm can be used for FIR LSI filter design in QGSP, mimicking the method applied in in Subsection \ref{subsec:lsi}.
 
 As the reader may recall, the desired frequency response of the LSI filter with filter taps $\{h_\ell\}_{\ell=0,\dots, L}$ may be defined through a system of linear equations with the format $h(\lambda_i) = \alpha_i$. Using the matrix and vectors
 \begin{align}
@@ -401,7 +404,7 @@ this system of equations can be written in matrix form as
 very similar to (\ref{eq:siseq2}). The odd use of transposition in (\ref{eq:siseq2_qgsp}) is justified by the noncommutativity of quaternion multiplication: the following discussion requires that the filter taps left-multiply the eigenvalues' powers, otherwise the QLMS equations would have different formulations.
 
 Back to the methodology of filter design, after choosing the cutoff frequency (or frequencies) of the ideal filter one wishes to approximate and setting to 1 the values $\alpha_i$ within the passband (zero otherwise),
-the intended FIR filter is designed by means of the QLMS algorithm, which was proposed by Took in 2009 \cite{took2008quaternion}. Although many different versions have been formulated since then \cite{ogunfunmi2015adaptive, almeida2014low, ortolani2016quaternion}, all consist in solving the optimization problem
+the intended FIR filter is designed by means of the QLMS algorithm, which was proposed by Took in 2009 \parencite{took2008quaternion}. Although many different versions have been formulated since then \parencite{ogunfunmi2015adaptive, almeida2014low, ortolani2016quaternion}, all consist in solving the optimization problem
 \begin{equation}
     \label{eq:opt}
     \underset{\{\widetilde{h_\ell}\}_{0, \dots, L}}{\text{min}} J(\mathbf{\widetilde{h}}),
@@ -414,7 +417,7 @@ with $\mathbf{\widetilde{h}}$ being an estimation of the desired filter, by mean
     \mu \nabla_{\mathbf{\widetilde{h}}^{(k)}} J(\mathbf{\widetilde{h}}^{(k)}).
 \end{equation}
 
-The core difference between QLMS approaches stem from the subjacent definition of $\nabla_{\mathbf{\widetilde{h}}} J(\mathbf{\widetilde{h}})$, the gradient of the real-valued mean squared error cost function $J$ with respect to the quaternion-valued vector $\mathbf{\widetilde{h}}$ (which depends on the concept of quaternion derivatives, a subject matter of many research papers, e.g. \cite{xu2015enabling,jahanchahi2012gradient}). The approach used in this thesis was the original one, from \cite{took2008quaternion}, which considers the following formulation -- adapted to be in matrix form -- for the estimation error and cost function,
+The core difference between QLMS approaches stem from the subjacent definition of $\nabla_{\mathbf{\widetilde{h}}} J(\mathbf{\widetilde{h}})$, the gradient of the real-valued mean squared error cost function $J$ with respect to the quaternion-valued vector $\mathbf{\widetilde{h}}$ (which depends on the concept of quaternion derivatives, a subject matter of many research papers, e.g. \parencite{xu2015enabling,jahanchahi2012gradient}). The approach used in this thesis was the original one, from \parencite{took2008quaternion}, which considers the following formulation -- adapted to be in matrix form -- for the estimation error and cost function,
 \begin{align}
     \label{eq:errorqlms}
     \mathbf{e}(\mathbf{\widetilde{h}}^{(k)}) & \overset{\Delta}{=}
@@ -424,7 +427,7 @@ The core difference between QLMS approaches stem from the subjacent definition o
     \mathbf{e}^T
     \overline{\mathbf{e}},
 \end{align}
-in which the notation $\mathbf{e} = \mathbf{e}(\mathbf{\widetilde{h}}^{(k)})$ was used to improve readability. After the gradient derivation in \cite{took2008quaternion}, one arrives at the gradient expression in matrix form
+in which the notation $\mathbf{e} = \mathbf{e}(\mathbf{\widetilde{h}}^{(k)})$ was used to improve readability. After the gradient derivation in \parencite{took2008quaternion}, one arrives at the gradient expression in matrix form
 \begin{equation}
     \label{eq:qlmsgradient}
     \nabla_{\mathbf{\widetilde{h}}^{(k)}} J(\mathbf{\widetilde{h}}^{(k)}) =
@@ -432,7 +435,7 @@ in which the notation $\mathbf{e} = \mathbf{e}(\mathbf{\widetilde{h}}^{(k)})$ wa
     \mathbf{e}^T \overline{\mathbf{X}}
     \right)^T - \mathbf{X}^H \overline{\mathbf{e}}
 \end{equation}
-providing all that is needed to implement the update rule in (\ref{eq:updateqlms}). The reader is encouraged to refer to \cite{took2008quaternion} and verify the equivalence between the original equations and their matrix forms, just presented. Equations (\ref{eq:updateqlms}) to (\ref{eq:qlmsgradient}) were used exactly as they were written in the computations in Subsection \ref{subsec:denoising}.
+providing all that is needed to implement the update rule in (\ref{eq:updateqlms}). The reader is encouraged to refer to \parencite{took2008quaternion} and verify the equivalence between the original equations and their matrix forms, just presented. Equations (\ref{eq:updateqlms}) to (\ref{eq:qlmsgradient}) were used exactly as they were written in the computations in Subsection \ref{subsec:denoising}.
 
 As a last and more practical note, it is important to mention that, because of the structure of matrix $\mathbf{X}$, it is indispensable to add the extra step of normalizing the columns of $\mathbf{X}$ before running the QLMS, otherwise convergence is slow, if not even prevented. It is a well known practice for least-mean squares regression and other algorithms based on gradient descent, which do not work well if the features have highly disproportionate scales. Let us recall that this is precisely the current case: the columns in $\mathbf{X}$ represent variables in a regression problem (with target given by the ideal frequency response $\mathbf{y}$) and they differ massively in scale. The normalization here is understood in the sense of bringing the mean and standard deviation of the feature distribution to 0 and 1, respective. That is, for each vector $\mathbf{x}_i = (\lambda^i_0, \lambda^i_1, \dots, \lambda^i_{N-1})^T$ with mean $\mu$ and standard deviation $\sigma$, the normalization takes place by replacing it with $\frac{\mathbf{x}_i - \mu}{\sigma}$.
 

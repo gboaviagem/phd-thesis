@@ -1,0 +1,651 @@
+\documentclass[
+	% -- opções da classe memoir --
+	11pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	twoside,			% para impressão em recto e verso. Oposto a oneside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	french,				% idioma adicional para hifenização
+	brazil,			% idioma adicional para hifenização
+	english				% o último idioma é o principal do documento
+	]{abntex2}
+
+% ---
+% Pacotes básicos 
+% ---
+\usepackage{times}
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+% ---
+		
+% ---
+% Pacotes adicionais
+% ---
+\include{mypreamble}
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Cited on page(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		No citation found.%
+	\or
+		Cited on page #2.%
+	\else
+		Cited #1 times on page(s) #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\titulo{Foundations of Quaternion Graph Signal Processing and related contributions to fractional-order operators}
+\autor{Guilherme Boaviagem Ribeiro}
+\local{Recife}
+\data{2022}
+\orientador{Prof. Dr. Juliano Bandeira Lima}
+%\coorientador{Equipe \abnTeX}
+\instituicao{%
+  Federal University of Pernambuco
+  \par
+  Technology and Geoscience Center
+  \par
+  Electrical Engineering Graduate Program}
+\tipotrabalho{Thesis}
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+\preambulo{This work was presented to the Electrical Engineering Graduate Program, at the Technology and Geoscience Center of the Federal University of Pernambuco, as a partial requisite to obtain a doctorate degree on Electrical Engineering.
+}
+% ---
+
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+    %pagebackref=true,
+    pdftitle={\@title}, 
+    pdfauthor={\@author},
+    pdfsubject={\imprimirpreambulo},
+    pdfcreator={LaTeX with abnTeX2},
+    pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+    colorlinks=true,       		% false: boxed links; true: colored links
+    linkcolor=blue,          	% color of internal links
+    citecolor=blue,        		% color of links to bibliography
+    filecolor=magenta,      		% color of file links
+    urlcolor=blue,
+    bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% ---
+% Posiciona figuras e tabelas no topo da página quando adicionadas sozinhas
+% em um página em branco. Ver https://github.com/abntex/abntex2/issues/170
+\makeatletter
+\setlength{\@fptop}{5pt} % Set distance from top of page to first float
+\makeatother
+% ---
+
+% ---
+% Possibilita criação de Quadros e Lista de quadros.
+% Ver https://github.com/abntex/abntex2/issues/176
+%
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
+% configurações para atender às regras da ABNT
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space} 
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+
+\setfloatlocations{quadro}{hbtp} % Ver https://github.com/abntex/abntex2/issues/176
+% ---
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Seleciona o idioma do documento (conforme pacotes do babel)
+\selectlanguage{english}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+\imprimirfolhaderosto*
+% ---
+
+% ---
+% Inserir a ficha bibliografica
+% ---
+
+% Isto é um exemplo de Ficha Catalográfica, ou ``Dados internacionais de
+% catalogação-na-publicação''. Você pode utilizar este modelo como referência. 
+% Porém, provavelmente a biblioteca da sua universidade lhe fornecerá um PDF
+% com a ficha catalográfica definitiva após a defesa do trabalho. Quando estiver
+% com o documento, salve-o como PDF no diretório do seu projeto e substitua todo
+% o conteúdo de implementação deste arquivo pelo comando abaixo:
+%
+% \begin{fichacatalografica}
+%     \includepdf{fig_ficha_catalografica.pdf}
+% \end{fichacatalografica}
+
+%\begin{fichacatalografica}
+%	\sffamily
+%	\vspace*{\fill}					% Posição vertical
+%	\begin{center}					% Minipage Centralizado
+%	\fbox{\begin{minipage}[c][8cm]{13.5cm}		% Largura
+%	\small
+%	\imprimirautor
+%	%Sobrenome, Nome do autor
+%	
+%	\hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
+%	\imprimirlocal, \imprimirdata-
+%	
+%	\hspace{0.5cm} \thelastpage p. : il. (algumas color.) ; 30 cm.\\
+%	
+%	\hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
+%	
+%	\hspace{0.5cm}
+%	\parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
+%	\imprimirdata.}\\
+%	
+%	\hspace{0.5cm}
+%		1. Palavra-chave1.
+%		2. Palavra-chave2.
+%		2. Palavra-chave3.
+%		I. Orientador.
+%		II. Universidade xxx.
+%		III. Faculdade de xxx.
+%		IV. Título 			
+%	\end{minipage}}
+%	\end{center}
+%\end{fichacatalografica}
+% ---
+
+% ---
+% Inserir errata
+% ---
+%\begin{errata}
+%Elemento opcional da \citeonline[4.2.1.2]{NBR14724:2011}. Exemplo:
+%
+%\vspace{\onelineskip}
+%
+%FERRIGNO, C. R. A. \textbf{Tratamento de neoplasias ósseas apendiculares com
+%reimplantação de enxerto ósseo autólogo autoclavado associado ao plasma
+%rico em plaquetas}: estudo crítico na cirurgia de preservação de membro em
+%cães. 2011. 128 f. Tese (Livre-Docência) - Faculdade de Medicina Veterinária e
+%Zootecnia, Universidade de São Paulo, São Paulo, 2011.
+%
+%\begin{table}[htb]
+%\center
+%\footnotesize
+%\begin{tabular}{|p{1.4cm}|p{1cm}|p{3cm}|p{3cm}|}
+%  \hline
+%   \textbf{Folha} & \textbf{Linha}  & \textbf{Onde se lê}  & \textbf{Leia-se}  \\
+%    \hline
+%    1 & 10 & auto-conclavo & autoconclavo\\
+%   \hline
+%\end{tabular}
+%\end{table}
+%
+%\end{errata}
+% ---
+
+% ---
+% Inserir folha de aprovação
+% ---
+
+% Isto é um exemplo de Folha de aprovação, elemento obrigatório da NBR
+% 14724/2011 (seção 4.2.1.3). Você pode utilizar este modelo até a aprovação
+% do trabalho. Após isso, substitua todo o conteúdo deste arquivo por uma
+% imagem da página assinada pela banca com o comando abaixo:
+%
+% \begin{folhadeaprovacao}
+% \includepdf{folhadeaprovacao_final.pdf}
+% \end{folhadeaprovacao}
+%
+%\begin{folhadeaprovacao}
+%
+%  \begin{center}
+%    {\ABNTEXchapterfont\large\imprimirautor}
+%
+%    \vspace*{\fill}\vspace*{\fill}
+%    \begin{center}
+%      \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+%    \end{center}
+%    \vspace*{\fill}
+%    
+%    \hspace{.45\textwidth}
+%    \begin{minipage}{.5\textwidth}
+%        \imprimirpreambulo
+%    \end{minipage}%
+%    \vspace*{\fill}
+%   \end{center}
+%        
+%   Trabalho aprovado. \imprimirlocal, 24 de novembro de 2012:
+%
+%   \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
+%   \assinatura{\textbf{Professor} \\ Convidado 1}
+%   \assinatura{\textbf{Professor} \\ Convidado 2}
+%   %\assinatura{\textbf{Professor} \\ Convidado 3}
+%   %\assinatura{\textbf{Professor} \\ Convidado 4}
+%      
+%   \begin{center}
+%    \vspace*{0.5cm}
+%    {\large\imprimirlocal}
+%    \par
+%    {\large\imprimirdata}
+%    \vspace*{1cm}
+%  \end{center}
+%  
+%\end{folhadeaprovacao}
+% ---
+
+\begin{dedicatoria}
+    \vspace*{\fill}
+    \centering
+    \noindent
+    \textit{\`A minha esposa, B\'arbara, e aos meus filhos, Rafael e Gianna.} \vspace*{\fill}
+\end{dedicatoria}
+
+% \begin{agradecimentos}
+
+% \end{agradecimentos}
+
+\begin{epigrafe}
+    \vspace*{\fill}
+    \begin{flushright}
+        \textit{Algebra is generous, she often gives more than is asked of her.}\\
+        % As quoted in: Bulletin American Mathematical Society, Vol. 2 (1905), p. 285
+        Jean le Rond d'Alembert
+    \end{flushright}
+\end{epigrafe}
+% ---
+
+%% Agradecimentos
+\begin{resumo}[Agradecimentos]
+    \begin{otherlanguage*}{portuguese}
+        \input{frontmatter/agradecimentos.tex}
+    \end{otherlanguage*}
+\end{resumo}
+
+%
+%% resumo em inglês
+\begin{resumo}[Abstract]
+    \begin{otherlanguage*}{english}
+        \input{frontmatter/abstract.tex}
+    \end{otherlanguage*}
+\end{resumo}
+
+% resumo em francês 
+%\begin{resumo}[Résumé]
+%\begin{otherlanguage*}{french}
+%Il s'agit d'un résumé en français.
+%
+%\textbf{Mots-clés}: latex. abntex. publication de textes.
+%\end{otherlanguage*}
+%\end{resumo}
+
+% resumo em espanhol
+%\begin{resumo}[Resumen]
+%\begin{otherlanguage*}{spanish}
+%Este es el resumen en español.
+%
+%\textbf{Palabras clave}: latex. abntex. publicación de textos.
+%\end{otherlanguage*}
+%\end{resumo}
+% ---
+
+% ---
+% inserir lista de ilustrações
+% ---
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de quadros
+% ---
+%\pdfbookmark[0]{\listofquadrosname}{loq}
+%\listofquadros*
+%\cleardoublepage
+% ---
+
+% ---
+% inserir lista de tabelas
+% ---
+%\pdfbookmark[0]{\listtablename}{lot}
+%\listoftables*
+%\cleardoublepage
+% ---
+
+% ---
+% inserir lista de abreviaturas e siglas
+% ---
+\begin{siglas}
+    \input{frontmatter/acronyms.tex}
+\end{siglas}
+% ---
+
+% ---
+% inserir lista de símbolos
+% ---
+\begin{simbolos}
+    \input{frontmatter/symbols.tex}
+\end{simbolos}
+
+
+% ---
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+\input{chapters/ch01.tex}
+\input{chapters/ch02.tex}
+\input{chapters/ch03.tex}
+\input{chapters/ch04.tex}
+\input{chapters/ch05.tex}
+\input{chapters/ch06.tex}
+\input{chapters/ch07-conclusion.tex}
+
+% ----------------------------------------------------------
+% Finaliza a parte no bookmark do PDF
+% para que se inicie o bookmark na raiz
+% e adiciona espaço de parte no Sumário
+% ----------------------------------------------------------
+\phantompart
+
+% ---
+% Conclusão
+% ---
+%\chapter{Conclusão}
+% ---
+
+%\lipsum[31-33]
+%Conclus\~ao.
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+%\bibliographystyle{ieeetr}
+\bibliography{mybib}
+%\addcontentsline{toc}{section}{Refer\^encias}
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Consulte o manual da classe abntex2 para orientações sobre o glossário.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+\begin{apendicesenv}
+
+    % Imprime uma página indicando o início dos apêndices
+    \partapendices
+
+    % ----------------------------------------------------------
+    \chapter{Mapping a system of linear equations from $ \mathbb{H} $ to $ \mathbb{C} $}
+    \label{ch:AppendixA}
+    % ----------------------------------------------------------
+
+    Theorem \ref{th:02} requires a step the reader of \cite{zhang1997quaternions} may have missed: demonstrating the equivalence between
+    \begin{equation}
+        \label{eq:A1}
+        \mathbf{A} \mathbf{v} = \mathbf{v} \lambda
+    \end{equation}
+    and
+    \begin{equation}
+        \begin{pmatrix}
+            \mathbf{A}_1              & \mathbf{A}_2            \\
+            - \overline{\mathbf{A}}_2 & \overline{\mathbf{A}}_1
+        \end{pmatrix}
+        \begin{pmatrix}
+            \mathbf{v}_1 \\
+            - \overline{\mathbf{v}}_2
+        \end{pmatrix} =
+        \begin{pmatrix}
+            \mathbf{v}_1 \\
+            - \overline{\mathbf{v}}_2
+        \end{pmatrix}
+        \lambda,
+    \end{equation}
+    where $ \mathbf{A} \in \mathbb{H}^{n \times n} $, $ \mathbf{v} \in \mathbb{H}^{n} $, $ \lambda \in \mathbb{C} $, and the subscripts $ (\cdot)_1 $ a $ (\cdot)_2 $ indicate the usual symplectic decomposition components, e.~g. $ q = q_1 + q_2 \qj $, $q\in \mathbb{H}, \ q_1, q_2 \in \mathbb{C}_{\qi} $.
+
+    To fully comprehend this equivalence, it suffices to prove that any system of $ m $ quaternion linear equations, expressed in matrix form as
+    \begin{equation}
+        \label{eq:A2}
+        \mathbf{M} \mathbf{x} = \mathbf{y},
+    \end{equation}
+    in which $ \mathbf{M} \in \mathbb{H}^{m\times n} ,\ \mathbf{x} \in \mathbb{H}^{n \times 1}, \ \mathbf{y} \in \mathbb{H}^{m \times 1} $, is equivalent, given the symplectic decomposition of $ \mathbf{M} $, $ \mathbf{x} $ and $ \mathbf{y} $, to a system of $ 2m $ complex equations
+    \begin{equation}
+        \label{eq:A3}
+        \begin{pmatrix}
+            \mathbf{M}_1              & \mathbf{M}_2            \\
+            - \overline{\mathbf{M}}_2 & \overline{\mathbf{M}}_1
+        \end{pmatrix}
+        \begin{pmatrix}
+            \mathbf{x}_1 \\
+            - \overline{\mathbf{x}}_2
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \mathbf{y}_1 \\
+            - \overline{\mathbf{y}}_2
+        \end{pmatrix}.
+    \end{equation}
+
+    Following the expansion of the left-hand side in (\ref{eq:A2}), one has
+    \begin{equation}
+        \begin{aligned}
+            \label{eq:A5}
+            \mathbf{M} \mathbf{x} & = (\mathbf{M}_1 + \mathbf{M}_2 \qj)(\mathbf{x}_1 + \mathbf{x}_2 \qj)                                                            \\
+                                  & =\mathbf{M}_1 \mathbf{x}_1 + \mathbf{M}_1 \mathbf{x}_2 \qj + \mathbf{M}_2 \qj \mathbf{x}_1 + \mathbf{M}_2 \qj \mathbf{x}_2 \qj.
+        \end{aligned}
+    \end{equation}
+    % It is possible to manipulate that expression by looking at how one can rewrite the product $ \qj x $, for a given arbitrary \emph{complex} number $ x = x_r + x_i \qi $,
+    % \begin{equation}
+    % \begin{aligned}
+    % \qj x &= \qj (x_r + x_i \qi) = x_r \qj + x_i \qj \qi = x_r \qj - x_i \qi \qj \\
+    % &= (x_r - x_i \qi) \qj = \overline{x} \qj.
+    % \end{aligned}
+    % \end{equation}
+    It is possible to manipulate that expression using (\ref{eq:commutej}), i.~e. $ \qj x = \overline{x} \qj \ \forall \ x \in \mathbb{C}$, so (\ref{eq:A5}) equals
+    \begin{equation}
+        \begin{aligned}
+            \label{eq:A7}
+            \mathbf{M} \mathbf{x} & = \mathbf{M}_1 \mathbf{x}_1 + \qj \overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2 + \qj \overline{\mathbf{M}}_2 \mathbf{x}_1 + \qj \overline{\mathbf{M}}_2 \mathbf{x}_2 \qj \\
+                                  & = \mathbf{M}_1 \mathbf{x}_1 + \qj \overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2 + \qj \overline{\mathbf{M}}_2 \mathbf{x}_1 + \qj\qj \mathbf{M}_2 \overline{\mathbf{x}}_2  \\
+                                  & = (\mathbf{M}_1 \mathbf{x}_1 - \mathbf{M}_2 \overline{\mathbf{x}}_2) + \qj (\overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2 + \overline{\mathbf{M}}_2 \mathbf{x}_1).
+        \end{aligned}
+    \end{equation}
+
+    Replacing (\ref{eq:A7}) in (\ref{eq:A2}) and using $ \mathbf{y} = \mathbf{y}_1 + \mathbf{y}_2 \qj$ yields
+    \begin{equation}
+        \begin{aligned}
+            (\mathbf{M}_1 \mathbf{x}_1 - \mathbf{M}_2 \overline{\mathbf{x}}_2) + \qj (\overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2 + \overline{\mathbf{M}}_2 \mathbf{x}_1) & =
+            \mathbf{y}_1 + \mathbf{y}_2 \qj                                                                                                                                                                                   \\
+                                                                                                                                                                              & = \mathbf{y}_1 + \qj \overline{\mathbf{y}}_2,
+        \end{aligned}
+    \end{equation}
+    what can be written as two systems of $m$ linear complex equations,
+    \begin{equation}
+        \label{eq:A9}
+        \begin{aligned}
+            \mathbf{M}_1 \mathbf{x}_1 - \mathbf{M}_2 \overline{\mathbf{x}}_2                       & = \mathbf{y}_1             \\
+            \overline{\mathbf{M}}_2 \mathbf{x}_1 + \overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2 & = \overline{\mathbf{y}}_2,
+        \end{aligned}
+    \end{equation}
+    or equivalently,
+    \begin{equation}
+        \label{eq:A8}
+        \begin{pmatrix}
+            \mathbf{M}_1            & \mathbf{M}_2              \\
+            \overline{\mathbf{M}}_2 & - \overline{\mathbf{M}}_1
+        \end{pmatrix}
+        \begin{pmatrix}
+            \mathbf{x}_1 \\
+            - \overline{\mathbf{x}}_2
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \mathbf{y}_1 \\
+            \overline{\mathbf{y}}_2
+        \end{pmatrix}.
+    \end{equation}
+    Finally, multiplying the second matrix equation in (\ref{eq:A9}) by $ -1 $, (\ref{eq:A8}) becomes
+    \begin{equation}
+        \label{eq:10}
+        \begin{pmatrix}
+            \mathbf{M}_1              & \mathbf{M}_2            \\
+            - \overline{\mathbf{M}}_2 & \overline{\mathbf{M}}_1
+        \end{pmatrix}
+        \begin{pmatrix}
+            \mathbf{x}_1 \\
+            - \overline{\mathbf{x}}_2
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \mathbf{y}_1 \\
+            - \overline{\mathbf{y}}_2
+        \end{pmatrix},
+    \end{equation}
+    precisely as in (\ref{eq:A3}).
+
+\end{apendicesenv}
+% ---
+
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+
+% ---
+% Inicia os anexos
+% ---
+%\begin{anexosenv}
+%
+%% Imprime uma página indicando o início dos anexos
+%\partanexos
+%
+%% ---
+%\chapter{Morbi ultrices rutrum lorem.}
+%% ---
+%\lipsum[30]
+%
+%% ---
+%\chapter{Cras non urna sed feugiat cum sociis natoque penatibus et magnis dis
+%parturient montes nascetur ridiculus mus}
+%% ---
+%
+%\lipsum[31]
+%
+%% ---
+%\chapter{Fusce facilisis lacinia dui}
+%% ---
+%
+%\lipsum[32]
+%
+%\end{anexosenv}
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+\phantompart
+\printindex
+%---------------------------------------------------------------------
+
+\end{document}

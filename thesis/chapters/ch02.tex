@@ -9,7 +9,7 @@
 \end{quotation}
 
 
-In 1833, at the age of 28, Willian Rowan Hamilton presented to the Royal Irish Academy (RIA) a work in which complex numbers were treated as ordered pairs of real numbers, given the appropriate definition of operations\footnote{The results were published in 1837, in the paper \emph{Theory of Conjugate Functions, or Algebraic Couples; with a Preliminary and Elementary Essay on Algebra as the Science of Pure Time} \cite{hamilton1837theory}.}. In the following years, he struggled to extend the complex field into a normed division algebra over triples, but soon realized that, as much as his attempts were inventive, the resulting algebra\footnote{An \textit{algebra over a field}, or simply \textit{algebra}, is a vector space over a field with a bilinear multiplication (that is, the multiplication distributes over the addition and the associativity is valid for multiplication) \cite{schafer1955introduction}.} was not closed under multiplication. We can see this through a simple example \cite{santos2011algebra}: let it be the set $\mathbb{F} = \{ a + b \qi + c \qj  \ | \ (a, b, c) \in \mathbb{R}^3\}$, with $\qi^2 = \qj^2 = -1$ and $\qi \neq \qj$. Since $\qi, \qj \in \mathbb{F}$, so there should exist $x, y, z \in \mathbb{R}$ so that
+In 1833, at the age of 28, Willian Rowan Hamilton presented to the Royal Irish Academy (RIA) a work in which complex numbers were treated as ordered pairs of real numbers, given the appropriate definition of operations\footnote{The results were published in 1837, in the paper \emph{Theory of Conjugate Functions, or Algebraic Couples; with a Preliminary and Elementary Essay on Algebra as the Science of Pure Time} \parencite{hamilton1837theory}.}. In the following years, he struggled to extend the complex field into a normed division algebra over triples, but soon realized that, as much as his attempts were inventive, the resulting algebra\footnote{An \textit{algebra over a field}, or simply \textit{algebra}, is a vector space over a field with a bilinear multiplication (that is, the multiplication distributes over the addition and the associativity is valid for multiplication) \parencite{schafer1955introduction}.} was not closed under multiplication. We can see this through a simple example \parencite{santos2011algebra}: let it be the set $\mathbb{F} = \{ a + b \qi + c \qj  \ | \ (a, b, c) \in \mathbb{R}^3\}$, with $\qi^2 = \qj^2 = -1$ and $\qi \neq \qj$. Since $\qi, \qj \in \mathbb{F}$, so there should exist $x, y, z \in \mathbb{R}$ so that
 \begin{equation}
     \qi \qj = x + y \qi + z \qj.
     \label{eq:demonstration01}
@@ -63,7 +63,7 @@ Similarly, to find $ \qj \qi $,
         - \qk           & =  \qj \qi. \\
     \end{aligned}
 \end{equation}
-Fig. \ref{fig:quatmult} depicts the order in which the product between any pair in the triplet $ \qi $, $ \qj $ and $ \qk $ yields the third one, with positive sign. All three units commute with real numbers. The most relevant consequence, therefore, of (\ref{eq:fund_rel}), is that the quaternion product is \textit{noncommutative}. In fact, it is the first example of noncommutative normed division algebra in history \cite{kleiner2007history}.
+Fig. \ref{fig:quatmult} depicts the order in which the product between any pair in the triplet $ \qi $, $ \qj $ and $ \qk $ yields the third one, with positive sign. All three units commute with real numbers. The most relevant consequence, therefore, of (\ref{eq:fund_rel}), is that the quaternion product is \textit{noncommutative}. In fact, it is the first example of noncommutative normed division algebra in history \parencite{kleiner2007history}.
 
 \begin{figure}
     \centering
@@ -137,7 +137,7 @@ Finally, it is possible to write the quaternion product in (\ref{eq:q_prod}) as 
 \end{equation}
 The lack of commutativity in the cross product is another demonstration of the fact that quaternion multiplication is noncommutative.
 
-Quaternion conjugation, as defined in the complex numbers, is obtained changing the sign of the imaginary part: $ \bar{q} \overset{\Delta}{=} S(q) - \qV(q) $. The quaternion \textit{norm} is defined as $\Vert q \Vert \overset{\Delta}{=} a^2 + b^2 + c^2 + d^2 = q \bar{q} = \bar{q} q$, whereas the \textit{modulus} of $q$ \cite{ell2014quaternion} is
+Quaternion conjugation, as defined in the complex numbers, is obtained changing the sign of the imaginary part: $ \bar{q} \overset{\Delta}{=} S(q) - \qV(q) $. The quaternion \textit{norm} is defined as $\Vert q \Vert \overset{\Delta}{=} a^2 + b^2 + c^2 + d^2 = q \bar{q} = \bar{q} q$, whereas the \textit{modulus} of $q$ \parencite{ell2014quaternion} is
 \begin{equation}
     \label{eq:modulusq}
     |q| \overset{\Delta}{=} \sqrt{a^2 + b^2 + c^2 + d^2} = \Vert q \Vert^{\nicefrac{1}{2}}.
@@ -192,7 +192,7 @@ $a, b', c', d' \in \mathbb{R}$,
 which represents the so called \emph{generalized quaternion}. The \emph{classical Hamiltonian quaternions} are those written in terms of the canonical basis $ (1, \qi, \qj, \qk) $.
 
 
-Besides the cartesian representation (\ref{eq:q}), quaternions allow the so called \emph{Euler form} \cite{ell2014quaternion}, a polar representation commonly expressed as
+Besides the cartesian representation (\ref{eq:q}), quaternions allow the so called \emph{Euler form} \parencite{ell2014quaternion}, a polar representation commonly expressed as
 \begin{equation}
     \label{eq:euler}
     q = |q| e^{\qmu \theta} = |q|\cos \theta + |q|\qmu \sen \theta,
@@ -230,14 +230,14 @@ That is a hugely important tool when it comes to computing the QDFT (see Section
 
 \subsection{Quaternion similarity and rotation}
 \label{subsec:rotacionando}
-Two quaternions $ q $ and $ r $ are said to be \emph{similar} if it exists a non-zero quaternion $ v $ such that $ v^{-1}q v = r $. In this case, one can write $ q \sim r $. Similarity between quaternions constitutes an equivalence relation \cite{zhang1997quaternions}, and all elements from a same similarity class possess the same norm, since, from (\ref{eq:normproduct}), $ |v^{-1}q v| = |v^{-1}| \cdot |q| \cdot |v| = |q| $.
+Two quaternions $ q $ and $ r $ are said to be \emph{similar} if it exists a non-zero quaternion $ v $ such that $ v^{-1}q v = r $. In this case, one can write $ q \sim r $. Similarity between quaternions constitutes an equivalence relation \parencite{zhang1997quaternions}, and all elements from a same similarity class possess the same norm, since, from (\ref{eq:normproduct}), $ |v^{-1}q v| = |v^{-1}| \cdot |q| \cdot |v| = |q| $.
 
 It matters to notice that an important property of quaternion similarity transformations, which justifies its great use in mechanics and graphics computing industry, is that it performs a rotation on the $\qi \qj \qk$ space. Given $ v,q \in \mathbb{H} $, $ v = |v| e^{\qmu \alpha}$, the similarity transformation
 \begin{equation}
     \label{eq:rotacao}
     \phi_v(q) = v q v^{-1}
 \end{equation}
-produces the rotation of the vector part of $q$ along the axis $ \qmu $ (which is parallel to the vector part of $v$) through an angle $ 2\alpha $ \cite{ward2012quaternions}, following the right-hand rule. Let us illustrate this property with an example.
+produces the rotation of the vector part of $q$ along the axis $ \qmu $ (which is parallel to the vector part of $v$) through an angle $ 2\alpha $ \parencite{ward2012quaternions}, following the right-hand rule. Let us illustrate this property with an example.
 
 \vspace{-2em}
 \begin{quotation}
@@ -336,7 +336,7 @@ produces the rotation of the vector part of $q$ along the axis $ \qmu $ (which i
 
 When analyzing the eigenstructure and subsequent fractionalization of the QDFT matrix, the eigendecomposition of the DFT and the eigenvector sharing served as a convenient shortcut. In order to build the results in QGSP, however, it is required to dive into more general properties of quaternion matrices. The symplectic decomposition, already presented in (\ref{eq:decomposicao}), plays an important role in that matter, specialy for its use in defining the \textit{complex adjoint matrix}.
 
-\begin{definition}[Complex adjoint matrix \cite{zhang1997quaternions}]
+\begin{definition}[Complex adjoint matrix \parencite{zhang1997quaternions}]
     \label{def:complexadjoint}
     Given $ \mathbf{A} \in \mathbb{H}^{n \times n} $, with symplectic decomposition $ \mathbf{A}_1 + \mathbf{A}_2 \qj$, $ \mathbf{A}_1,\mathbf{A}_2 \in \mathbb{C}^{n \times n} $, its complex adjoint matrix is defined as
     \begin{equation}
@@ -351,7 +351,7 @@ When analyzing the eigenstructure and subsequent fractionalization of the QDFT m
 In the following theorems, Zhang brings fundamental results for building QGSP.
 
 \begin{theorem}[Part of Theorem 4.2 in
-        \cite{zhang1997quaternions}
+        \parencite{zhang1997quaternions}
     ]
     \label{th:equiv01}
     Given the matrix $ \mathbf{A} \in \mathbb{H}^{n \times n} $, the following sentences are equivalent:
@@ -365,7 +365,7 @@ In the following theorems, Zhang brings fundamental results for building QGSP.
 \end{theorem}
 
 \begin{theorem}[Part of Theorem 4.3 in
-        \cite{zhang1997quaternions}
+        \parencite{zhang1997quaternions}
     ]
     \label{th:equiv02}
     Given the matrix $ \mathbf{A} \in \mathbb{H}^{n \times n} $, the following sentences are equivalent:
@@ -386,7 +386,7 @@ Since quaternion multiplication is noncommutative, it is necessary to distinguis
     \mathbf{A} \mathbf{v} & = \lambda \mathbf{v}.  \tag{left}
 \end{align*}
 
-We will restrict this discussion mostly to right eigenvalues, since they hold a broader set of results in literature \cite[Cap. 5]{zhang1997quaternions} and are, for that matter, a safer point of support when developing QGSP. When not explicitly mentioned, the right eigenvalues will simply be referred to as \textit{eigenvalues} of the quaternion matrix.
+We will restrict this discussion mostly to right eigenvalues, since they hold a broader set of results in literature \parencite[Cap. 5]{zhang1997quaternions} and are, for that matter, a safer point of support when developing QGSP. When not explicitly mentioned, the right eigenvalues will simply be referred to as \textit{eigenvalues} of the quaternion matrix.
 
 It matters to highlight the fact that a quaternion matrix possesses a \textit{finite} number of eigenvalues if and only if they are all real-valued. Otherwise, each of them will belong to a similarity class, according to the transformation $ \lambda_1 = q^{-1} \lambda_2 q $, containing \textit{infinite} quaternions which are also eigenvalues of the same matrix (return to Example \ref{example:01}, for instance). Let $ \lambda $ be an eigenvalue of the matrix $ \mathbf{A} $ associated with the eigenvector $ \mathbf{v} $. That is,
 \begin{equation}
@@ -402,7 +402,7 @@ so that $ q^{-1} \lambda q $ is an eigenvalue associated with the eigenvector $ 
 \subsection{Diagonalizability}
 \label{subsec:autovetores_XA}
 
-The problem of quaternion matrix diagonalization differs greatly from the case with complex matrices. In the latter scenario, having no pair of equal eigenvalues is a sufficient condition for diaginalizability, but the rule does not hold for the quaternio case. See for instance the counterexample given by Zhang \cite[Exemplo 7.4]{zhang1997quaternions}, the matrix
+The problem of quaternion matrix diagonalization differs greatly from the case with complex matrices. In the latter scenario, having no pair of equal eigenvalues is a sufficient condition for diaginalizability, but the rule does not hold for the quaternio case. See for instance the counterexample given by Zhang \parencite[Exemplo 7.4]{zhang1997quaternions}, the matrix
 \begin{equation}
     \mathbf{A} =
     \begin{pmatrix}
@@ -411,7 +411,7 @@ The problem of quaternion matrix diagonalization differs greatly from the case w
     \end{pmatrix}.
 \end{equation}
 
-Although its eigenvalues are distinct -- $ \qi $ and $ \qj $, since they lie on the main diagonal of an upper triangular matrix --, the respective eigenvectors do not constitute a linearly independent set. Notice, for example, that an eigenvector associated with $ \qi $ is $ (1, 0)^T $, whereas one associated with $ \qj $ is $ (\qi + \qj, 0)^T $. The reason as to why they form a linearly dependent set is the fact previously stated that, for each eigenvalue and eigenvector $ \lambda $ and $ \mathbf{v} $ from a quaternion matrix, it follows that $ q^{-1}\lambda q $ and $ \mathbf{v}q $ form another eigenvalue-eigenvector pair, with $ q \in \mathbb{H}^\ast $. That is, two \emph{similar} eigenvalues are always associated with the same eigenvector (up to a scaling factor). That is why similar quaternions are said to belong to the same \emph{eigenclass} \cite{de2000right}. In order to have a linearly independent set of eigenvectors, therefore, their eigenvalues must not be similar. Concluding the counterexample, the reader may show that $ \qi $ and $ \qj $ satisfy the similarity relation $ \qj = q \qi q^{-1} $ whenever $q$ belongs to the set $ \{ a - a\qi - a\qj + a\qk \ | \ a\in \mathbb{R}^\ast \} $.
+Although its eigenvalues are distinct -- $ \qi $ and $ \qj $, since they lie on the main diagonal of an upper triangular matrix --, the respective eigenvectors do not constitute a linearly independent set. Notice, for example, that an eigenvector associated with $ \qi $ is $ (1, 0)^T $, whereas one associated with $ \qj $ is $ (\qi + \qj, 0)^T $. The reason as to why they form a linearly dependent set is the fact previously stated that, for each eigenvalue and eigenvector $ \lambda $ and $ \mathbf{v} $ from a quaternion matrix, it follows that $ q^{-1}\lambda q $ and $ \mathbf{v}q $ form another eigenvalue-eigenvector pair, with $ q \in \mathbb{H}^\ast $. That is, two \emph{similar} eigenvalues are always associated with the same eigenvector (up to a scaling factor). That is why similar quaternions are said to belong to the same \emph{eigenclass} \parencite{de2000right}. In order to have a linearly independent set of eigenvectors, therefore, their eigenvalues must not be similar. Concluding the counterexample, the reader may show that $ \qi $ and $ \qj $ satisfy the similarity relation $ \qj = q \qi q^{-1} $ whenever $q$ belongs to the set $ \{ a - a\qi - a\qj + a\qk \ | \ a\in \mathbb{R}^\ast \} $.
 
 Theorem \ref{th:02} relates the eigendecomposition of a quaternion matrix to that of its complex adjoint, providing a fundamental principle to the study of quaternions matrices eigenstructure.
 
@@ -422,7 +422,7 @@ Theorem \ref{th:02} relates the eigendecomposition of a quaternion matrix to tha
 \end{figure}
 
 
-\begin{theorem}[\cite{zhang1997quaternions}]
+\begin{theorem}[\parencite{zhang1997quaternions}]
     \label{th:02}
     Every matrix $ A \in \mathbb{H}^{n \times n} $ has exactly $ n $ right eigenvalues which are complex numbers with nonnegative imaginary parts. These are called the \textbf{standard eigenvalues} of $ \mathbf{A} $ and are a subset of the $ 2n $ eigenvalues of $ \rchi_A $.
 \end{theorem}
@@ -465,7 +465,7 @@ Theorem \ref{th:02} relates the eigendecomposition of a quaternion matrix to tha
 
     Since $\rchi_A$ is a $ 2n \times 2n $-complex matrix, it has $ 2n $ complex-valued eigenvalues (possibly repeated). The reason why $\rchi_A$ share $2n$ eigenvalues with $\mathbf{A}$, even though $\mathbf{A}$ is an $ n \times n $ matrix is, once more, due to the existance of eigenclasses.
 
-    According to \cite[Theorem 5]{lee1948eigenvalues}, the complex adjoint eigenvalues appear as $ n $ conjugate pairs (possibly some pairs are real-valued, so they are actually identical). Let us say that $2m$ of those eigenvalues are real, leaving $2(n-m)$ complex eigenvalues. Let $ q \in \mathbb{C}_{\qi}$ belong to the latter group. It can be shown imediately that $ q \sim \overline{q} $, since $ \overline{q} $ is obtained through a 180$ ^\circ $ rotation of the vector part of $ q $ around the $ \qj $ axis. This similarity transformation was already shown in (\ref{eq:commutej}), written as $\qj x = \overline{x} \qj$, or equivalently $\qj x (-\qj)= \overline{x}$. In the format of (\ref{eq:rotacao}), $ q \mapsto v q v^{-1} = \overline{q}$ with $ v = e^{\qj \frac{\pi}{2}} = \qj $.
+    According to \parencite[Theorem 5]{lee1948eigenvalues}, the complex adjoint eigenvalues appear as $ n $ conjugate pairs (possibly some pairs are real-valued, so they are actually identical). Let us say that $2m$ of those eigenvalues are real, leaving $2(n-m)$ complex eigenvalues. Let $ q \in \mathbb{C}_{\qi}$ belong to the latter group. It can be shown imediately that $ q \sim \overline{q} $, since $ \overline{q} $ is obtained through a 180$ ^\circ $ rotation of the vector part of $ q $ around the $ \qj $ axis. This similarity transformation was already shown in (\ref{eq:commutej}), written as $\qj x = \overline{x} \qj$, or equivalently $\qj x (-\qj)= \overline{x}$. In the format of (\ref{eq:rotacao}), $ q \mapsto v q v^{-1} = \overline{q}$ with $ v = e^{\qj \frac{\pi}{2}} = \qj $.
 
     % (and so $ v^{-1} = e^{- \qj \frac{\pi}{2}} = -\qj $) to perform the simlarity transformation $ q \mapsto v q v^{-1} $,
     % \begin{equation}
@@ -479,7 +479,7 @@ Theorem \ref{th:02} relates the eigendecomposition of a quaternion matrix to tha
 
 The following theorem is another fundamental result relating the eigenstructure of a quaternions matrix and that of its complex adjoint.
 
-\begin{theorem}[Theorem 7.4 in \cite{zhang1997quaternions}]
+\begin{theorem}[Theorem 7.4 in \parencite{zhang1997quaternions}]
     \label{th:diagonal}
     Given the matrices $ \mathbf{A}, \mathbf{B} \in \mathbb{H}^{n \times n} $, then $ \mathbf{A} $ is similar to $ \mathbf{B} $ if and only if $ X\rchi_A $ is similar to $ \rchi_B $.
 \end{theorem}
@@ -505,9 +505,9 @@ The following theorem is another fundamental result relating the eigenstructure 
 
 \section{The quaternion Fourier transform}
 \label{sec:QFT}
-The field of quaternion signal processing has leveraged many tools to transform signals with quaternion-valued samples, from the fundamental redefinition of the gradient operador \cite{jiang2014general} up to algorithms for adaptive filtering \cite{jiang2013frequency}. This section focuses on the quaternion Fourier transform (QFT), as it is the basis for spectral analysis of quaternion signals.
+The field of quaternion signal processing has leveraged many tools to transform signals with quaternion-valued samples, from the fundamental redefinition of the gradient operador \parencite{jiang2014general} up to algorithms for adaptive filtering \parencite{jiang2013frequency}. This section focuses on the quaternion Fourier transform (QFT), as it is the basis for spectral analysis of quaternion signals.
 
-Quaternion Fourier transforms have received quite a few definitions. Some are one-dimensional \cite{flamant2017spectral}, while others are intrinsically two-dimensional \cite{guanlei2008fractional}; the latter group can yet be divided into those having kernels oriented towards generic unit pure quaternions, and those using canonic imaginary units, such as $ \qi $ and $ \qj $. The 2D-transformed signals may be placed \textit{between} the two kernels or beside them. In fact, Ell \cite[sec. 3.2]{ell2014quaternion} lists 8 possibilities for the 2D-QFTs. The two dimensional case will not be covered for now, since the discussion on the 1D case already serves the purpose of introducing the main ideas and properties of this family of transforms.
+Quaternion Fourier transforms have received quite a few definitions. Some are one-dimensional \parencite{flamant2017spectral}, while others are intrinsically two-dimensional \parencite{guanlei2008fractional}; the latter group can yet be divided into those having kernels oriented towards generic unit pure quaternions, and those using canonic imaginary units, such as $ \qi $ and $ \qj $. The 2D-transformed signals may be placed \textit{between} the two kernels or beside them. In fact, Ell \parencite[sec. 3.2]{ell2014quaternion} lists 8 possibilities for the 2D-QFTs. The two dimensional case will not be covered for now, since the discussion on the 1D case already serves the purpose of introducing the main ideas and properties of this family of transforms.
 
 Let $f$ be a quaternion-valued function $f: \mathbb{R} \rightarrow \mathbb{H}$ and $\qmu \in \qV(\mathbb{H})$, $\qmu^2 = -1$. The \textit{left} 1D QFT can be defined as the family of integral transforms
 \begin{equation}
@@ -533,7 +533,7 @@ In the expressions above, the unit pure quaternion $\qmu$ is called the \emph{ei
 
 The right QFT may be defined likewise, by simply switching the relative positions of the kernel and the operand $f(t)$. The reader may notice that, when the eigenaxis is $\qi$, the QFT coincides with the usual continuous-time Fourier transform.
 
-In this work, however, the most relevant version of the QFT is that in which both the original signal and its transformed representation are defined over discrete domains: the 1D quaternion discrete Fourier Transform (QDFT) with axis $ \qmu $, as defined in \cite[sec. 3.3.1]{ell2014quaternion}. If $ \qmu $ is a unit pure quaternion, the $ m $-th component of the transformed vector in the left unitary QDFT with axis $ \qmu $ is
+In this work, however, the most relevant version of the QFT is that in which both the original signal and its transformed representation are defined over discrete domains: the 1D quaternion discrete Fourier Transform (QDFT) with axis $ \qmu $, as defined in \parencite[sec. 3.3.1]{ell2014quaternion}. If $ \qmu $ is a unit pure quaternion, the $ m $-th component of the transformed vector in the left unitary QDFT with axis $ \qmu $ is
 \begin{equation}
     \label{eq:QDFT_fwd}
     \widehat{v}_m = \text{QDFT}\{ \mathbf{v} \}_m \overset{\Delta}{=} \frac{1}{\sqrt{N}} \sum_{n=0}^{N-1}  \exp \left( -\qmu \frac{2\pi}{N} nm \right) v_n \in \mathbb{C}_{\qmu},
@@ -557,7 +557,7 @@ in which $ \mathbf{F} $ is the unitary transform matrix,
 %--multiplicando sempre \`a esquerda--,
 with entries $ \{\mathbf{F}\}_{n,m} = \sqrt{N}^{-1} \exp \left( -\qmu \frac{2\pi}{N} nm \right)$. Since  $ \exp \left( -\qmu \frac{2\pi}{N} \right) $ is a $ N $-th root of unity, just like $ \exp \left( -\qi \frac{2\pi}{N} \right) $, it follows that $ \mathbf{F} $ shares many properties with the usual discrete Fourier transform (DFT) matrix, among which the invertibility, validating the existence of (\ref{eq:QDFT_inv}) and (\ref{eq:QDFT_mtx_inv}).
 
-As it was done in previous pages, the symplectic decomposition may be applied to each entry of a quaternion matrix, generating complex-valued \emph{simplex} and \emph{perplex} matrices\footnote{Please note that, in what follows, the usual subscripts $1$ and $2$ for denoting the simplex and perplex parts were replaced by the superscripts $^{(s)}$ and $^{(p)}$, as in $q = q^{(s)} + q^{(p)} \qj$, to avoid confusion with the summation indices.}. Using this reasoning, Ell e Sangwine \cite{ell2014quaternion} demonstrated that the QDFT of a signal $ \mathbf{x} = [x_0, x_1, \dots, x_{N-1}] \in \mathbb{H}^N $ could be easily computed using two (complex) DFT, by decomposing each signal sample along the QDFT eigenaxis:
+As it was done in previous pages, the symplectic decomposition may be applied to each entry of a quaternion matrix, generating complex-valued \emph{simplex} and \emph{perplex} matrices\footnote{Please note that, in what follows, the usual subscripts $1$ and $2$ for denoting the simplex and perplex parts were replaced by the superscripts $^{(s)}$ and $^{(p)}$, as in $q = q^{(s)} + q^{(p)} \qj$, to avoid confusion with the summation indices.}. Using this reasoning, Ell e Sangwine \parencite{ell2014quaternion} demonstrated that the QDFT of a signal $ \mathbf{x} = [x_0, x_1, \dots, x_{N-1}] \in \mathbb{H}^N $ could be easily computed using two (complex) DFT, by decomposing each signal sample along the QDFT eigenaxis:
 %. Relembrando a eq. (\ref{eq:QDFT_fwd}),
 \begin{equation}
     \begin{aligned}
@@ -577,7 +577,7 @@ This brief presentation of the QDFT illustrates that
     \item the eigenstructure of the QDFT likens heavily that of the usual DFT, to the point of allowing the reuse of common DFT algorithms. This resemblance will be exploited when investigating the fractionalization of the QDFT, in Chapter \ref{ch:FrQDFT}.
 \end{itemize}
 
-For a thorough introduction on quaternions and their application to signal processing, the reader may refer to \cite{grigoryan2018quaternion,zhang1997quaternions,ell2014quaternion,flamant2017time, jiang2014general}.
+For a thorough introduction on quaternions and their application to signal processing, the reader may refer to \parencite{grigoryan2018quaternion,zhang1997quaternions,ell2014quaternion,flamant2017time, jiang2014general}.
 
 \section{Summary}
 

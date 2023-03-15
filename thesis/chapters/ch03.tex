@@ -11,9 +11,9 @@ It is quite common in theoretical investigations to expand the definition of som
 \mathcal{F} \left\{ \left[ \frac{\mathrm{d}^n}{(\mathrm{d}t)^n} f(t) \right] \right\} =
 (\qj \omega)^n \mathcal{F} \left\{ f(t) \right\}.
 \end{equation}
-Mendlovic and Ozaktas made this observation \cite{mendlovic1993fractionalI} and pointed out that this was the spark behind the creation of the FrFT. However theoretical this endeavor might have been, even at its origin in the 1980's paper on the Journal of Applied Mathematics by the physicist Victor Namias \cite{namias1980fractional}, the fractional Fourier transform had already potential applications, originally in quantum mechanics. After 40 years, the FrFT has been applied to time-frequency analysis, compression, digital watermarking, filtering, encryption, let alone its utility in Optics \cite{bultheel2002shattered,figueiredo2018}.
+Mendlovic and Ozaktas made this observation \parencite{mendlovic1993fractionalI} and pointed out that this was the spark behind the creation of the FrFT. However theoretical this endeavor might have been, even at its origin in the 1980's paper on the Journal of Applied Mathematics by the physicist Victor Namias \parencite{namias1980fractional}, the fractional Fourier transform had already potential applications, originally in quantum mechanics. After 40 years, the FrFT has been applied to time-frequency analysis, compression, digital watermarking, filtering, encryption, let alone its utility in Optics \parencite{bultheel2002shattered,figueiredo2018}.
 
-The fractional Fourier transform is a generalization of the usual continuous-time Fourier transform and can be interpreted as a rotation of the signal (operand) in the time-frequency plane \cite{almeida1994fractional}. To understand why, let us consider its definition. The usual (unitary) Fourier transform, with operator represented by $\mathcal{F}$ as in (\ref{eq:derivative}), has analysis and synthesis equations given by
+The fractional Fourier transform is a generalization of the usual continuous-time Fourier transform and can be interpreted as a rotation of the signal (operand) in the time-frequency plane \parencite{almeida1994fractional}. To understand why, let us consider its definition. The usual (unitary) Fourier transform, with operator represented by $\mathcal{F}$ as in (\ref{eq:derivative}), has analysis and synthesis equations given by
 \begin{equation}
 \mathcal{F}\left\{ f(t) \right\} = F(\qj \omega) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} f(t) \exp(-\qj \omega t) \mathrm{d}t,
 \end{equation}
@@ -21,7 +21,7 @@ The fractional Fourier transform is a generalization of the usual continuous-tim
 \mathcal{F}^{-1}\left\{ F(\qj \omega) \right\} = f(t) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} F(\qj \omega) \exp(\qj \omega t) \mathrm{d}\omega.
 \end{equation}
 
-The eigenfunctions of the $\mathcal{F}$ operator are the family of functions $\exp (\frac{-x^2}{2}) H_n(x)$ (on the variable $x$), where $H_n(x)$ are the Hermite polynomials of order $n$ \cite{namias1980fractional}. The associated eigenvalues have the form $\exp(- \qj n \frac{\pi}{2})$; therefore, if we add the notation $\mathcal{F}_{\frac{\pi}{2}} \overset{\Delta}{=} \mathcal{F}$,
+The eigenfunctions of the $\mathcal{F}$ operator are the family of functions $\exp (\frac{-x^2}{2}) H_n(x)$ (on the variable $x$), where $H_n(x)$ are the Hermite polynomials of order $n$ \parencite{namias1980fractional}. The associated eigenvalues have the form $\exp(- \qj n \frac{\pi}{2})$; therefore, if we add the notation $\mathcal{F}_{\frac{\pi}{2}} \overset{\Delta}{=} \mathcal{F}$,
 \begin{equation}
 \label{eq:eighermite}
 \mathcal{F}_{\frac{\pi}{2}} \left\{ \exp \left(\frac{-x^2}{2}\right) H_n(x) \right\} = 
@@ -57,7 +57,7 @@ K_\alpha (t, u) =
 \begin{figure}
 \centering
 \includegraphics[width=0.65\linewidth]{Figures/FrFT-Rotation-cropped.pdf}
-\caption{Illustration of the FrFT property of rotation in the time-frequency plane. Adapted from \cite{almeida1994fractional}.}
+\caption{Illustration of the FrFT property of rotation in the time-frequency plane. Adapted from \parencite{almeida1994fractional}.}
 \label{fig:frft_rotation}
 \end{figure}
 
@@ -77,7 +77,7 @@ K_{\alpha_1} (t, s) K_{\alpha_2} (s, u) \mathrm{d}s
 \right)
 \mathrm{d}t.
 \end{align}
-After a ``rather long derivation'', according to \cite{almeida1994fractional}, it has been shown that
+After a ``rather long derivation'', according to \parencite{almeida1994fractional}, it has been shown that
 \begin{equation}
 \label{eq:summingangles}
 \int_{-\infty}^{\infty}
@@ -121,17 +121,17 @@ It is as if the Fourier transform moved the signal back and forth in 90\textsupe
 \end{equation}
 which in fact goes ``back'' to the original time axis. See a depiction of the rotation in the time-frequency plane in Fig. \ref{fig:frft_rotation}.
 
-Finally, the additivity of orders guarantees that the inverse of the $\mathcal{F}_\alpha$ exists and equals $\mathcal{F}_{-\alpha}$. Since the fractional transform order is a real-valued parameter, it is quite hard to recover perfectly the original signal from its spectrum if the value of $\alpha$ is unknown. This favors the use of discrete fractional transforms in specific steps of encryption schemes \cite{tao2010image, kang2018reality, kang2018color}.
+Finally, the additivity of orders guarantees that the inverse of the $\mathcal{F}_\alpha$ exists and equals $\mathcal{F}_{-\alpha}$. Since the fractional transform order is a real-valued parameter, it is quite hard to recover perfectly the original signal from its spectrum if the value of $\alpha$ is unknown. This favors the use of discrete fractional transforms in specific steps of encryption schemes \parencite{tao2010image, kang2018reality, kang2018color}.
 
 \section{Fundamentals of graph signal processing}
 
-Multivariate data defined over networks are nowadays ubiquitous, being constantly generated, stored and processed in the most diverse systems in engineering and technology. Measurements in a set of IoT sensors and mobile devices~\cite{alam2015toward,guo2016qos,ma2016non,yu2016novel}, number of citations in a scientific collaboration network or social media relations (\emph{collaboration graph}, or \emph{social graph})~\cite{chung2010graph} and interactions between individuals in a ecosystem (\emph{ecological networks})~\cite{golubski2016} are some examples of situations in which the acquired data are intimately related to the topology of the network over which they are defined.
+Multivariate data defined over networks are nowadays ubiquitous, being constantly generated, stored and processed in the most diverse systems in engineering and technology. Measurements in a set of IoT sensors and mobile devices~\parencite{alam2015toward,guo2016qos,ma2016non,yu2016novel}, number of citations in a scientific collaboration network or social media relations (\emph{collaboration graph}, or \emph{social graph})~\parencite{chung2010graph} and interactions between individuals in a ecosystem (\emph{ecological networks})~\parencite{golubski2016} are some examples of situations in which the acquired data are intimately related to the topology of the network over which they are defined.
 
-Such multivariate network-like systems are not only present in various applications, but are also systematically growing in number, as sensors become cheaper and smaller and concepts such as cloud storage/computing and Big Data consolidate, as indicated by the 2011 report from McKinsey Global Institute \cite{mckinsey2011big}. This document also states that the information acquired from the adequate processing of such massive networked data is a fundamental requisite for the companies to thrive from now on.
+Such multivariate network-like systems are not only present in various applications, but are also systematically growing in number, as sensors become cheaper and smaller and concepts such as cloud storage/computing and Big Data consolidate, as indicated by the 2011 report from McKinsey Global Institute \parencite{mckinsey2011big}. This document also states that the information acquired from the adequate processing of such massive networked data is a fundamental requisite for the companies to thrive from now on.
 
-Still another motivation that feeds the urge to study processing techniques for data defined over network-like domains, for example, is the growth of research on \emph{smart cities}, which takes advantage of the considerable information (that are or are yet to be) generated in cities to provide (or improve the) solutions  for many urban problems \cite{jain2014big}.
+Still another motivation that feeds the urge to study processing techniques for data defined over network-like domains, for example, is the growth of research on \emph{smart cities}, which takes advantage of the considerable information (that are or are yet to be) generated in cities to provide (or improve the) solutions  for many urban problems \parencite{jain2014big}.
 
-All these examples share an important characteristic: the structure over which the data is defined may be modelled by a graph \cite{mei2016signal}, to which vertices are assigned the variables of interest, as depicted in Fig. \ref{fig:duher}. That is the context in which the field of \emph{graph signal processing} (GSP) was developed in the last decade, a theoretical framework aiming to generalize the classical signal processing methods and concepts to scenarios in which the signal is no more defined over a regular domain, but sits on a generally irregular structure, an arbitrary graph. The research is still very active and numerous contributions have been made, but two distinct frameworks consistently grew throughout the years and have been established as default mindsets when dealing with graph signals. The first one is based on algebraic signal processing and uses the graph adjacency matrix as elementary block. This approach imposes no restrictions regarding the graph being directed or undirected, and the edge weights are allowed to be negative or complex numbers~\cite{sandryhaila2014big}. The second framework draws ideas from spectral graph theory and analyzes signals defined only over undirected graphs with non-negative real edge weights, using the graph Laplacian matrix to build a basis for the signal space~\cite{shuman2013emerging}. This section will cover the first branch of GSP, using the adjacency matrix as default shift operator, since it matches the approach used in the remaining chapters of this thesis.
+All these examples share an important characteristic: the structure over which the data is defined may be modelled by a graph \parencite{mei2016signal}, to which vertices are assigned the variables of interest, as depicted in Fig. \ref{fig:duher}. That is the context in which the field of \emph{graph signal processing} (GSP) was developed in the last decade, a theoretical framework aiming to generalize the classical signal processing methods and concepts to scenarios in which the signal is no more defined over a regular domain, but sits on a generally irregular structure, an arbitrary graph. The research is still very active and numerous contributions have been made, but two distinct frameworks consistently grew throughout the years and have been established as default mindsets when dealing with graph signals. The first one is based on algebraic signal processing and uses the graph adjacency matrix as elementary block. This approach imposes no restrictions regarding the graph being directed or undirected, and the edge weights are allowed to be negative or complex numbers~\parencite{sandryhaila2014big}. The second framework draws ideas from spectral graph theory and analyzes signals defined only over undirected graphs with non-negative real edge weights, using the graph Laplacian matrix to build a basis for the signal space~\parencite{shuman2013emerging}. This section will cover the first branch of GSP, using the adjacency matrix as default shift operator, since it matches the approach used in the remaining chapters of this thesis.
 % Both approaches have particular characteristics which make each more appropriate than the other for some applications. In this paper, we intend to present an overview of the basic aspects concerning each framework and provide the reader with a good understanding of their basic concepts and tools.
 
 \begin{figure}
@@ -143,7 +143,7 @@ All these examples share an important characteristic: the structure over which t
 
 \subsection{The challenge of graph-like domains}
 
-One of the reasons why GSP has been such a fertile field, allowing the birth of so many different problems and ideas, is that the definition of a signal over a graph leads to a series of obstacles when attempting to use even the most fundamental concepts of signal processing. Let us take the simple but elucidating example given by Shuman \emph{et al.}~\cite{shuman2013emerging}, and consider the unit shift to the right of a discrete-time signal $ x[n] $, which is done in digital signal processing by the simple variable substitution $ x[n-1] $. Good enough, but what does it mean to right-shift the signal in  Fig. \ref{fig:duher}, for example? Obviously the sense of right and left are meaningless for general graphs. On this problem, Shuman \emph{et al.} argue that a na\"ive choice would be to label the $ N $ graph vertices from $ v_0 $ to $ v_{N-1} $, so that the sample $ x[n] $ is assigned to vertex $ v_n $, for doing so would allow to define the shifted signal as the result of assigning $ x[n] $ to vertex $ v_{(n-1) \text{\,mod\,} N} $. Such an option, however, is not adequate, for its repeatability depends always on the way the vertices are labeled. This example illustrates how a concept in DSP as simple as signal translation may deserve a cautious study in GSP.
+One of the reasons why GSP has been such a fertile field, allowing the birth of so many different problems and ideas, is that the definition of a signal over a graph leads to a series of obstacles when attempting to use even the most fundamental concepts of signal processing. Let us take the simple but elucidating example given by Shuman \emph{et al.}~\parencite{shuman2013emerging}, and consider the unit shift to the right of a discrete-time signal $ x[n] $, which is done in digital signal processing by the simple variable substitution $ x[n-1] $. Good enough, but what does it mean to right-shift the signal in  Fig. \ref{fig:duher}, for example? Obviously the sense of right and left are meaningless for general graphs. On this problem, Shuman \emph{et al.} argue that a na\"ive choice would be to label the $ N $ graph vertices from $ v_0 $ to $ v_{N-1} $, so that the sample $ x[n] $ is assigned to vertex $ v_n $, for doing so would allow to define the shifted signal as the result of assigning $ x[n] $ to vertex $ v_{(n-1) \text{\,mod\,} N} $. Such an option, however, is not adequate, for its repeatability depends always on the way the vertices are labeled. This example illustrates how a concept in DSP as simple as signal translation may deserve a cautious study in GSP.
 
 
 \section{Principles and definitions}
@@ -153,7 +153,7 @@ The field of graph signal processing draws basic concepts from the classical the
 
 \subsection{Graph theory: a brief terminology}
 
-A graph is commonly defined as the ordered pair  $ (\mathcal{V},\mathcal{E}) $, in which the set $ \mathcal{V} $ contains the so called graph \emph{vertices} and the set of \emph{edges} $ \mathcal{E} $ is a subset of $ \mathcal{V}^2 $ \cite{feofiloff2011introduccao}.  We will usually indicate by $ |\mathcal{V}| = N $\footnote{The set operator $ |\cdot| $ means the cardinality, or amount of elements, of the set.} and $ |\mathcal{E}| = E $ the number of vertices and edges of a graph, respectively. For our purposes it is convenient to represent a graph as the structure $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $, endowed with the (weighted) adjacency matrix $ \mathbf{A} $ which captures the vertex-to-vertex relations: if $ A_{i,j} \neq 0$, then there is an edge of weight $ A_{i,j} $ from the vertex $ v_j $ to $ v_i $. It is denoted by $ d_i^- $ the \emph{indegree} of vertex $ v_i $, consisting of the sum of weights of all incoming edges to vertex $ v_i $. Likewise, the \emph{outdegree} $ d^+_i $ is the sum of weights of edges departing from $ v_i $.
+A graph is commonly defined as the ordered pair  $ (\mathcal{V},\mathcal{E}) $, in which the set $ \mathcal{V} $ contains the so called graph \emph{vertices} and the set of \emph{edges} $ \mathcal{E} $ is a subset of $ \mathcal{V}^2 $ \parencite{feofiloff2011introduccao}.  We will usually indicate by $ |\mathcal{V}| = N $\footnote{The set operator $ |\cdot| $ means the cardinality, or amount of elements, of the set.} and $ |\mathcal{E}| = E $ the number of vertices and edges of a graph, respectively. For our purposes it is convenient to represent a graph as the structure $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $, endowed with the (weighted) adjacency matrix $ \mathbf{A} $ which captures the vertex-to-vertex relations: if $ A_{i,j} \neq 0$, then there is an edge of weight $ A_{i,j} $ from the vertex $ v_j $ to $ v_i $. It is denoted by $ d_i^- $ the \emph{indegree} of vertex $ v_i $, consisting of the sum of weights of all incoming edges to vertex $ v_i $. Likewise, the \emph{outdegree} $ d^+_i $ is the sum of weights of edges departing from $ v_i $.
 
 A graph is called \emph{undirected} if and only if its adjacency matrix is symmetric, in which case it is defined the \emph{degree} of vertex $ v_i $ as $ d_i^- = d_i^+ = d_i $. In this case, a graph is said to be \emph{d-regular} whenever all graph vertices have degree $ d $\label{pag:regular}. If $ \mathbf{A} $ is asymmetric, however, the respective graph is \emph{directed} and its pictorial representation depicts the edges as arrows, to account for the unidirectional relation between adjacent vertices. Examples of directed and undirected graphs are shown in Fig. \ref{fig:example_graphs}.
 
@@ -198,7 +198,7 @@ A graph is said to be \emph{unweighted} if all its edges have unit weight. A \em
 
 The \emph{neighbourhood} of a vertex $ v_i $ is the set $ \mathcal{N}_i $ of all vertices adjacent to $ v_i $. Sometimes it is useful as well to denote by $ \mathcal{N}(i,K) $ the set of vertices connected to $ v_i $ through a path of length $ K $ or less. This notion is represented in Fig. \ref{fig:k_hop_neighborhood}.
 
-The reader is encouraged to refer to this section whenever necessary. For a broader glossary with a solid introduction to graph theory, the reader may wish to read \cite{murty2008graph, chung1997spectral}.
+The reader is encouraged to refer to this section whenever necessary. For a broader glossary with a solid introduction to graph theory, the reader may wish to read \parencite{murty2008graph, chung1997spectral}.
 
 
 \subsection{Defining a graph signal}
@@ -231,7 +231,7 @@ so that the graph signal $ \mathbf{s} $ can be seen as a column vector in $ \mat
 
 Fig. \ref{fig:graphs} provides examples of graph signal representations, in which the vertex labeling is omitted for the sake of simplicity, as it will be assumed that the signal sample $ s_i $ is assigned to vertex $ v_i $. The signal values are indicated in two manners: either by writing down its numerical value next to the respective vertex, or by using a pseudocolor scale, the latter of which is the scheme adopted throughout this paper.
 
-It is crucial to stress a certain graph which links GSP to the classical DSP theory: the directed ring graph, shown in Fig. \ref{figa_graphs}, which models the finite-length discrete-time domain. Its directed edges model the causality of time domain, whereas the feedback edge accounts for the boundary condition of periodicity imposed by the DFT analysis. Other signals that arise in practical applications have the respective graphs easily identified: the rectangular lattice in Fig. \ref{figb_graphs}, for example, models the digital image domain \cite{sandryhaila2012nearest}, and Fig. \ref{figd_graphs} shows an example of signal defined over a mesh network of sensors, with the edges weighted using the inverse of the euclidian distance, which arises in many scenarios such as IoT applications.
+It is crucial to stress a certain graph which links GSP to the classical DSP theory: the directed ring graph, shown in Fig. \ref{figa_graphs}, which models the finite-length discrete-time domain. Its directed edges model the causality of time domain, whereas the feedback edge accounts for the boundary condition of periodicity imposed by the DFT analysis. Other signals that arise in practical applications have the respective graphs easily identified: the rectangular lattice in Fig. \ref{figb_graphs}, for example, models the digital image domain \parencite{sandryhaila2012nearest}, and Fig. \ref{figd_graphs} shows an example of signal defined over a mesh network of sensors, with the edges weighted using the inverse of the euclidian distance, which arises in many scenarios such as IoT applications.
 
 \begin{figure*}
 	\centering
@@ -280,16 +280,16 @@ A_{ij} =
 0 & \text{ otherwise},
 \end{cases}
 \end{equation}
-as used in \cite{shuman2013emerging}. The choice of the parameters $ T $\footnote{$ T $ indicates a distance threshold above which we set the edge weight to zero, effectively leaving the vertices unlinked. This means that the distance between them is assumed to be too high for any significant interdependence to exist.} and $ \theta $ (standard deviation of the distribution), and of how to use the metric (in this case, inside a Gaussian distribution), are dictated by the application and by the analyst experience. 
+as used in \parencite{shuman2013emerging}. The choice of the parameters $ T $\footnote{$ T $ indicates a distance threshold above which we set the edge weight to zero, effectively leaving the vertices unlinked. This means that the distance between them is assumed to be too high for any significant interdependence to exist.} and $ \theta $ (standard deviation of the distribution), and of how to use the metric (in this case, inside a Gaussian distribution), are dictated by the application and by the analyst experience. 
 
 However, if there is an isolated vertex, far from the others, the use of (\ref{eq:weights}) may lead to a compromise between keeping the graph connected and obtaining a sparse adjacency matrix, since imposing connectivity to the graph in this case implies increasing $ T $, and therefore having many edges. To deal with this problem and still have a good representation of the underlying graph, one alternative is to connect a vertex to its $ K $ closest neighbours (setting $ K $ to an appropriate value, according to the context) and weight the edges using the Gaussian distribution in (\ref{eq:weights}).
 
-As previously discussed, these methods require an adequate metric to evaluate the expected similarity between samples in the graph vertex, but given the diverse areas in which graph signals may arise, estimating the topology of the  underlying graph constitutes a challenge of its own \cite{mei2016signal,Sardellitti2016}.
+As previously discussed, these methods require an adequate metric to evaluate the expected similarity between samples in the graph vertex, but given the diverse areas in which graph signals may arise, estimating the topology of the  underlying graph constitutes a challenge of its own \parencite{mei2016signal,Sardellitti2016}.
 
 \section{Formulating GSP based on the graph adjacency matrix}
 \label{sec:DSPG}
 
-In 2008, P\"uschel and Moura published their \emph{algebraic signal processing} (ASP) theory \cite{puschel2008time,puschel2008space}, which expands DSP by looking at it from an algebraic point of view: each signal processing theory is studied as a triple $ (\mathscr{A}, \mathscr{M}, \Phi) $ consisting of an algebra $ \mathscr{A} $ (a vector space endowed with multiplication between vectors), an $ \mathscr{A} $-module $ \mathscr{M} $ (a vector space over the same base field as $ \mathscr{A} $ which admits left-multiplication by elements of $ \mathscr{A} $) and a linear transformation $ \Phi $. $ \mathscr{A} $ is called the filter space, $ \mathscr{M} $ is the signal space and $ \Phi $ is the Fourier transform (homomorphism over $ \mathscr{M} $) associated with the structure.
+In 2008, P\"uschel and Moura published their \emph{algebraic signal processing} (ASP) theory \parencite{puschel2008time,puschel2008space}, which expands DSP by looking at it from an algebraic point of view: each signal processing theory is studied as a triple $ (\mathscr{A}, \mathscr{M}, \Phi) $ consisting of an algebra $ \mathscr{A} $ (a vector space endowed with multiplication between vectors), an $ \mathscr{A} $-module $ \mathscr{M} $ (a vector space over the same base field as $ \mathscr{A} $ which admits left-multiplication by elements of $ \mathscr{A} $) and a linear transformation $ \Phi $. $ \mathscr{A} $ is called the filter space, $ \mathscr{M} $ is the signal space and $ \Phi $ is the Fourier transform (homomorphism over $ \mathscr{M} $) associated with the structure.
 
 When these authors drew inspiration from ASP to develop their GSP theory, the starting point was necessarily to find (better, to define) the unit shift operator of graph signals, the reason being that such an operator in ASP is the building block of the algebra $ \mathscr{A} $ (as, for example, the unit delay $ z^{-1} $ is the building block for filters of discrete-time and finite-length signals $ \mathscr{A}  = \{ \sum_{\ell=0}^{N-1} h_\ell z^{-\ell} | h_\ell \in \mathbb{C} \}$). To do so, the shift of discrete-time signals, defined over directed ring graphs, was investigated.
 
@@ -326,7 +326,7 @@ In other words, for a signal $ \mathbf{x} $ defined over the graph $ \mathcal{G}
 \subsection{Graph filters}
 \label{subsec:filtros}
 
-Seeing the adjacency matrix as a filter suggested the general definition of \emph{graph filter} as any matrix $ \mathbf{H} \in \mathbb{C}^{N \times N} $ \cite{sandryhaila2013filters}, which preserves the necessary property that the output of a filter (i.~e., the matrix-vector product) is a signal (i.~e., a column vector). Such a definition implies that \emph{linearity} is always valid for graph filters, since the distributivity of matrix multiplication with respect to matrix addition guarantees that
+Seeing the adjacency matrix as a filter suggested the general definition of \emph{graph filter} as any matrix $ \mathbf{H} \in \mathbb{C}^{N \times N} $ \parencite{sandryhaila2013filters}, which preserves the necessary property that the output of a filter (i.~e., the matrix-vector product) is a signal (i.~e., a column vector). Such a definition implies that \emph{linearity} is always valid for graph filters, since the distributivity of matrix multiplication with respect to matrix addition guarantees that
 \begin{equation}
 %\label{key}
 \mathbf{H} (\alpha_1 \mathbf{x}_1 + \alpha_2 \mathbf{x}_2) =  \alpha_1 \mathbf{H} \mathbf{x}_1 + \alpha_2 \mathbf{H}  \mathbf{x}_2.
@@ -340,13 +340,13 @@ The next desirable property would be \emph{shift invariance}, analogous to the c
 \mathbf{A} \mathbf{H} = \mathbf{H} \mathbf{A}.
 \end{equation}
 % $ \mathbf{A} \mathbf{H} \mathbf{x} = \mathbf{H} \mathbf{A} \mathbf{x} \ \forall \mathbf{x}$, and therefore $ \mathbf{A} \mathbf{H} = \mathbf{H} \mathbf{A}$.
-% Sandryhaila and Moura have shown \cite{sandryhaila2013discrete,sandryhaila2014big} that LSI filters can be represented as polynomials $ h(\cdot) $ evaluated over $ \mathbf{A} $,
+% Sandryhaila and Moura have shown \parencite{sandryhaila2013discrete,sandryhaila2014big} that LSI filters can be represented as polynomials $ h(\cdot) $ evaluated over $ \mathbf{A} $,
 % \begin{equation}
 % \label{eq:filter_poly}
 % h(\mathbf{A}) = \sum_{\ell=0}^{L-1} h_\ell \mathbf{A}^\ell,
 % \end{equation}
 % with $ L $ smaller than or equal to the degree of the minimal polynomial of $ \mathbf{A} $, i.~e., LSI filters are finite power series on the shift operator, exactly as it happens in DSP, in which LTI filters have polynomial representations on $ z^{-1} $.
-The following theorem establishes an important property satisfied by every LSI filter~\cite{sandryhaila2013discrete} .
+The following theorem establishes an important property satisfied by every LSI filter~\parencite{sandryhaila2013discrete} .
 \vspace{0.2cm}
 \begin{theorem}
 \label{theo:01}
@@ -357,13 +357,13 @@ Let $ \mathbf{A} $ be the adjacency matrix of a graph. Let us assume that the ch
 where $ \mathbf{A}^0 $ is the identity matrix and $ L < \deg(m_{\mathbf{A}}) $.
 \end{theorem}
 
-The assumption on $char_{\mathbf{A}}(x)$ and $m_{\mathbf{A}}(x)$ in Theorem~\ref{theo:01} does not hold for all adjacency matrices $\mathbf{A}$. Nevertheless, the result in the referred theorem can be extended to all matrices using the concept of \emph{equivalent graph filters}, as clearly explained in~\cite{sandryhaila2013filters}. As a consequence, for any graph $\mathcal{G} = \{\mathbf{A}, \mathcal{V}\}$, every LSI filter has polynomial representation in $\mathbf{A}$. In this sense, Theorem~\ref{theo:01} suggests a convenient analogy with the classical DSP, since every filter for discrete-time signals can be represented as polynomials evaluated in $ z^{-1} $, the unit delay, via the $z$-transform of its impulse response.
+The assumption on $char_{\mathbf{A}}(x)$ and $m_{\mathbf{A}}(x)$ in Theorem~\ref{theo:01} does not hold for all adjacency matrices $\mathbf{A}$. Nevertheless, the result in the referred theorem can be extended to all matrices using the concept of \emph{equivalent graph filters}, as clearly explained in~\parencite{sandryhaila2013filters}. As a consequence, for any graph $\mathcal{G} = \{\mathbf{A}, \mathcal{V}\}$, every LSI filter has polynomial representation in $\mathbf{A}$. In this sense, Theorem~\ref{theo:01} suggests a convenient analogy with the classical DSP, since every filter for discrete-time signals can be represented as polynomials evaluated in $ z^{-1} $, the unit delay, via the $z$-transform of its impulse response.
 
 \subsection{Graph Fourier transform}
 
-The topic of spectral analysis is key in signal processing. When studying how this would be implemented in the scope of GSP, the authors started by looking at the classical Fourier transform as a signal decomposition into a basis of eigenfunctions of the LTI filtering \cite{oppenheim1997signals}, i.~e., the basis of complex time exponentials. From that point, the generalization to GSP was clear: the \emph{graph Fourier transform} (GFT) was defined as the decomposition of a graph signal into a basis of eigenvectors of LSI filtering\footnote{One may wish to distinguish between the different implementations of the GFT regarding the choice of graph shift operator. Unless clearly stated otherwise, this chapter considers it to be always the graph adjacency matrix, but other popular option is the graph Laplacian, as already mentioned. In this regard, the reader even may find the terms GSP\textsubscript{A} and GSP\textsubscript{L} in previous publications \cite{ribeiro2018}, making the distinction clear.}.
+The topic of spectral analysis is key in signal processing. When studying how this would be implemented in the scope of GSP, the authors started by looking at the classical Fourier transform as a signal decomposition into a basis of eigenfunctions of the LTI filtering \parencite{oppenheim1997signals}, i.~e., the basis of complex time exponentials. From that point, the generalization to GSP was clear: the \emph{graph Fourier transform} (GFT) was defined as the decomposition of a graph signal into a basis of eigenvectors of LSI filtering\footnote{One may wish to distinguish between the different implementations of the GFT regarding the choice of graph shift operator. Unless clearly stated otherwise, this chapter considers it to be always the graph adjacency matrix, but other popular option is the graph Laplacian, as already mentioned. In this regard, the reader even may find the terms GSP\textsubscript{A} and GSP\textsubscript{L} in previous publications \parencite{ribeiro2018}, making the distinction clear.}.
 
-Let us take the graph $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $, $ |\mathcal{V}| =N $. If $ \mathbf{A} $ is diagonalizable\footnote{If not, the reasoning may be replicated using the Jordan decomposition of $ \mathbf{A} $ and the set of generalized eigenvectors \cite{deri2017spectral}.}, then one may write
+Let us take the graph $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $, $ |\mathcal{V}| =N $. If $ \mathbf{A} $ is diagonalizable\footnote{If not, the reasoning may be replicated using the Jordan decomposition of $ \mathbf{A} $ and the set of generalized eigenvectors \parencite{deri2017spectral}.}, then one may write
 \begin{equation}\label{eq:gft_01}
 \mathbf{A} = \mathbf{V} \mathbf{\Lambda} \mathbf{V}^{-1},
 \end{equation}
@@ -372,7 +372,7 @@ in which $ \mathbf{V} $ contains the $ N $ eigenvectors of $ \mathbf{A} $ in its
 \mathbf{V} = (\mathbf{v}_0 \ \mathbf{v}_1 \ \dots\ \mathbf{v}_{N-1}).
 \end{equation}
 
-Since LSI filters are polynomials in $ \mathbf{A} $, and since a matrix and its powers share the same set of eigenvectors, the columns of $ \mathbf{V} $ form a basis of vectors invariant to LSI filtering. Besides, given that the subspaces generated by the linearly independent eigenvectors of a same eigenvalue of $ \mathbf{A} $ are irreducible, have null intersection and the dimensions of all subspaces add to $ N $ \cite{sandryhaila2013gft}, $ \mathbf{V} $ provides a basis which is invariant to LSI filtering for the space of signals defined over $ \mathcal{G} $.
+Since LSI filters are polynomials in $ \mathbf{A} $, and since a matrix and its powers share the same set of eigenvectors, the columns of $ \mathbf{V} $ form a basis of vectors invariant to LSI filtering. Besides, given that the subspaces generated by the linearly independent eigenvectors of a same eigenvalue of $ \mathbf{A} $ are irreducible, have null intersection and the dimensions of all subspaces add to $ N $ \parencite{sandryhaila2013gft}, $ \mathbf{V} $ provides a basis which is invariant to LSI filtering for the space of signals defined over $ \mathcal{G} $.
 
 Therefore, a signal $ \mathbf{x} $ may be decomposed into its components with respect to $ \mathbf{V} $ as
 \begin{align}\label{eq:GFT_inv}
@@ -405,7 +405,7 @@ and one can see that, in the case of directed ring graphs, the GFT and the DFT m
 
  \subsection{The frequency domain}
 
-The way the GFT was defined naturally suggests the interpretation of the adjacency matrix eigenvectors $ \mathbf{v}_i $ as ``frequency components'' associated with the ``graph frequencies'' given by the eigenvalues $ \lambda_i $, exactly as the Fourier component $ e^{-j \Omega t} $, in the continuous time domain $ t $, is associated with the frequency $ \Omega $. This subsection aims to provide the mathematical justification used by Sandryhaila and Moura \cite{sandryhaila2014frequency} to support this understanding, along with some authorial comments.
+The way the GFT was defined naturally suggests the interpretation of the adjacency matrix eigenvectors $ \mathbf{v}_i $ as ``frequency components'' associated with the ``graph frequencies'' given by the eigenvalues $ \lambda_i $, exactly as the Fourier component $ e^{-j \Omega t} $, in the continuous time domain $ t $, is associated with the frequency $ \Omega $. This subsection aims to provide the mathematical justification used by Sandryhaila and Moura \parencite{sandryhaila2014frequency} to support this understanding, along with some authorial comments.
 
 \begin{figure}
 	\centering
@@ -426,7 +426,7 @@ The way the GFT was defined naturally suggests the interpretation of the adjacen
 
 The reader may have noticed a curious consequence from what was previously stated: unless the minimal and characteristic polynomials of $ \mathbf{A} $ are equal, the same frequency may be associated with two or more linearly independent frequency components, as indeed was the case in the example of Fig. \ref{fig:diff_struct_GSPA}. Furthermore, this figure shows that although the signal seems to be smooth, its frequency components are mostly associated with eigenvalues of high magnitude, what is counter-intuitive and provides a motivation to define a clear criterion to distinguish high and low graph frequencies.
 
-The following mathematical reasoning consists of taking a metric which quantifies the expected signal smoothness, and use it to propose or confirm a notion of graph frequency. The metric used by Sandryhaila and Moura was the \emph{total variation}, taken from classical real analysis and defined for differentiable functions as \cite{rudin1987real,mallat1999wavelet}
+The following mathematical reasoning consists of taking a metric which quantifies the expected signal smoothness, and use it to propose or confirm a notion of graph frequency. The metric used by Sandryhaila and Moura was the \emph{total variation}, taken from classical real analysis and defined for differentiable functions as \parencite{rudin1987real,mallat1999wavelet}
 \begin{equation}
 %\label{key}
 \Vert f \Vert_V = \int_{-\infty}^{\infty} |f'(t)| \mathrm{d}t.
@@ -449,12 +449,12 @@ as $ TV(\mathbf{x}) = \Vert \mathbf{x} - \mathbf{C x}\Vert_1 $, by using the dir
 \label{eq:tv_graphs}
 TV_G(\mathbf{s}) \overset{\Delta}{=} \Vert \mathbf{s} - \mathbf{A}^{\text{norm}} \mathbf{s}\Vert_1,
 \end{equation}
-with $ \mathbf{A}^{\text{norm}} = |\lambda_{max}|^{-1}\mathbf{A} $ and $ \lambda_{max} $ being the eigenvalue of $ \mathbf{A} $ having the highest absolute value. The normalization of the adjacency matrix aims to avoid the excessive magnification of the shifted signal \cite{sandryhaila2014frequency}.
+with $ \mathbf{A}^{\text{norm}} = |\lambda_{max}|^{-1}\mathbf{A} $ and $ \lambda_{max} $ being the eigenvalue of $ \mathbf{A} $ having the highest absolute value. The normalization of the adjacency matrix aims to avoid the excessive magnification of the shifted signal \parencite{sandryhaila2014frequency}.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.45\linewidth]{Figures/graph_frequency_EN.pdf}
-	\caption{Frequency ordering of graph signals, from low to high frequencies, in the complex plane \cite{sandryhaila2014frequency}.}
+	\caption{Frequency ordering of graph signals, from low to high frequencies, in the complex plane \parencite{sandryhaila2014frequency}.}
 	\label{fig:ordem_freq}
 \end{figure}
 
