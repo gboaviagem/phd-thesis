@@ -18,7 +18,8 @@
 % ---
 % Pacotes básicos 
 % ---
-\usepackage{times}
+\usepackage{tgschola}
+% \usepackage{utopia}
 \usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
 \usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
 \usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
@@ -192,41 +193,42 @@
 % com o documento, salve-o como PDF no diretório do seu projeto e substitua todo
 % o conteúdo de implementação deste arquivo pelo comando abaixo:
 %
-% \begin{fichacatalografica}
-%     \includepdf{fig_ficha_catalografica.pdf}
-% \end{fichacatalografica}
+\begin{fichacatalografica}
+    \includepdf[pages={1}]{./frontmatter/fichacatalografica.pdf}
+    % \includepdf[pages=-]{frontmatter/fichacatalografica.pdf}
+\end{fichacatalografica}
 
-%\begin{fichacatalografica}
-%	\sffamily
-%	\vspace*{\fill}					% Posição vertical
-%	\begin{center}					% Minipage Centralizado
-%	\fbox{\begin{minipage}[c][8cm]{13.5cm}		% Largura
-%	\small
-%	\imprimirautor
-%	%Sobrenome, Nome do autor
-%	
-%	\hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
-%	\imprimirlocal, \imprimirdata-
-%	
-%	\hspace{0.5cm} \thelastpage p. : il. (algumas color.) ; 30 cm.\\
-%	
-%	\hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
-%	
-%	\hspace{0.5cm}
-%	\parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
-%	\imprimirdata.}\\
-%	
-%	\hspace{0.5cm}
-%		1. Palavra-chave1.
-%		2. Palavra-chave2.
-%		2. Palavra-chave3.
-%		I. Orientador.
-%		II. Universidade xxx.
-%		III. Faculdade de xxx.
-%		IV. Título 			
-%	\end{minipage}}
-%	\end{center}
-%\end{fichacatalografica}
+% \begin{fichacatalografica}
+% 	\sffamily
+% 	\vspace*{\fill}					% Posição vertical
+% 	\begin{center}					% Minipage Centralizado
+% 	\fbox{\begin{minipage}[c][8cm]{13.5cm}		% Largura
+% 	\small
+% 	\imprimirautor
+% 	%Sobrenome, Nome do autor
+	
+% 	\hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
+% 	\imprimirlocal, \imprimirdata-
+	
+% 	\hspace{0.5cm} \thelastpage p. : il. (algumas color.) ; 30 cm.\\
+	
+% 	\hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
+	
+% 	\hspace{0.5cm}
+% 	\parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
+% 	\imprimirdata.}\\
+	
+% 	\hspace{0.5cm}
+% 		1. Palavra-chave1.
+% 		2. Palavra-chave2.
+% 		2. Palavra-chave3.
+% 		I. Orientador.
+% 		II. Universidade xxx.
+% 		III. Faculdade de xxx.
+% 		IV. Título 			
+% 	\end{minipage}}
+% 	\end{center}
+% \end{fichacatalografica}
 % ---
 
 % ---
@@ -309,10 +311,7 @@
 % ---
 
 \begin{dedicatoria}
-    \vspace*{\fill}
-    \centering
-    \noindent
-    \textit{\`A minha esposa, B\'arbara, e aos meus filhos, Rafael e Gianna.} \vspace*{\fill}
+    \input{frontmatter/dedicatoria.tex}
 \end{dedicatoria}
 
 % \begin{agradecimentos}
@@ -320,45 +319,14 @@
 % \end{agradecimentos}
 
 \begin{epigrafe}
-    \vspace*{\fill}
-    \begin{flushright}
-        \textit{Algebra is generous, she often gives more than is asked of her.}\\
-        % As quoted in: Bulletin American Mathematical Society, Vol. 2 (1905), p. 285
-        Jean le Rond d'Alembert
-    \end{flushright}
+    \input{frontmatter/epigraph.tex}
 \end{epigrafe}
 % ---
 
 %% Agradecimentos
 \begin{resumo}[Agradecimentos]
     \begin{otherlanguage*}{portuguese}
-        \begin{quotation}
-            \itshape
-            % Let me stress this point: it is in the simplicity of your ordinary work, in the monotonous details of each day, that you have to find the secret, which is hidden from so many, of something great and new: Love.
-            Insisto: na simplicidade do teu \emph{trabalho habitual}, nos detalhes monótonos de cada dia, tens que descobrir o segredo -- para tantos escondido -- da grandeza e da novidade: o Amor.
-
-            % \noindent --- Saint Josemaria Escriv\'a, \textit{Furrow}, n. 489.
-            \noindent --- S\~ao Josemaria Escriv\'a, \emph{Sulco}, n. 489.
-        \end{quotation}
-
-        \vspace{3em}
-
-        Ao toque do Amor, uma Pessoa divina que lhe chama e move o cora\c c\~ao em meio \`as atividades corriqueiras, \'e inevit\'avel o sentimento de gratid\~ao. Especialmente, aqui, agrade\c co pelas gra\c cas concedidas para realizar este trabalho e frutificar parte do tempo que Ele me concedeu. Sua benignidade n\~ao tem fim.
-
-        Fujo da l\'ingua inglesa, por um momento, para dirigir tamb\'em meus profundos e sinceros agradecimentos a algumas pessoas em nossa l\'ingua materna; amigos e familiares que foram fundamentais para tornar poss\'ivel o desenvolvimento e conclus\~ao deste trabalho.
-
-        % Antes deles, no entanto, meu cora\c c\~ao \'e imensamente grato ao bom Deus pelas gra\c cas concedidas para realizar este trabalho e frutificar parte do tempo que Ele me concedeu. Sua benignidade n\~ao tem fim.
-
-        Agrade\c co a B\'arbara, minha esposa, por ser a cada dia ocasi\~ao de encontrar o nosso Amor mais profundo. Al\'em de dividir comigo a vida e o futuro, sua dedica\c c\~ao nas pequenas coisas tornaram poss\'ivel que eu conclu\'isse esta jornada.
-
-        Agrade\c co a meus pais e meu irm\~ao, pela educa\c c\~ao e exemplo com que me nutriram ao longo da vida. Deram-me a possibilidade de ser quem sou, e por isso serei eternamente grato. Tamb\'em a meus sogros, cunhadas e compadres, cujo carinho forte tal qual la\c cos de sangue se manifesta no suporte t\~ao grande que d\~ao a mim e minha fam\'ilia.
-
-        Agrade\c co ao prof. Juliano Bandeira, meu orientador, que com incr\'ivel paci\^encia e lucidez me ajudou a reencontrar o caminho da pesquisa, quando este se mostrava t\~ao esquecido e desafiador. Sua orienta\c c\~ao me ajudou a enxergar o caminho e reunir for\c cas para as \'ultimas milhas dessa corrida de longa dist\^ancia.
-
-        Agrade\c co tamb\'em a Petr\^onio Braga e meus colegas da Neurotech, pelas conversas dentro e fora do trabalho, que de uma forma ou de outra me ajudaram a amadurecer meu olhar e n\~ao deixar para tr\'as minha veia acad\^emica.
-
-        Agrade\c co, por fim, \`a CAPES e \`a Pr\'o-reitoria de Pesquisa e P\'os-gradua\c c\~ao pelo aux\'ilio financeiro durante parte dessa pesquisa (sob o projeto n. 88882.380374/2019-01), e ao Programa de P\'os-gradua\c c\~ao em Engenharia El\'etrica da UFPE pela oportunidade concedida.
-        % I am also truly trankful for the scholarship granted by CAPES under the project n. 88882.380374/ 2019-01, which provided an important financial support throughout most of my research.
+        \input{frontmatter/acknowledgement.tex}
     \end{otherlanguage*}
 \end{resumo}
 
@@ -366,16 +334,7 @@
 %% resumo em inglês
 \begin{resumo}[Abstract]
     \begin{otherlanguage*}{english}
-        The field signal processing, at its core, is concerned with exploring how different representations of a signal may provide useful ways of manipulating it. These representations may arise from a change in the subjacent algebra over which the signal samples are defined, for example when embedding three- and four-dimensional signals into the quaternion space; or maybe from a different model of the signal domain, as it happened with the development of graph signal processing to deal with network-like data; or even by exploring new linear transforms that map the signal onto a domain in which tasks such as compression, filtering or feature extraction are easier or more efficient.
-
-        This thesis traverses exactly through these paths, aiming at answering the question of how to extend graph signal processing to the case in which signals and edge weights are quaternion-valued. It proposes a new set of tools which are a basis for what may be called Quaternion Graph Signal Processing (QGSP) and, as byproducts of the research journey, it contributes to the field of fractional transforms in two fronts: by proposing a new approach to the fractionalization of the quaternion discrete Fourier transform (QDFT), alongside the proposition of its multiparametric version, and by proposing a new fractional graph shift operator (GSO).
-
-        As highlights of the main results, we can mention: (1) the polynomial representation of the fractional GSO for arbitrary graphs was obtained, and it was shown that its use in filter design of FIR LSI filters improve the overall filter quality for a given filter length; (2) the new multiparametric fractional QDFT was used to create a holistic encryption scheme for color images with opacity layer, which was shown to provide satisfactorily large key space and key sensitivity; and (3) the main aspects of spectral analysis, filtering and compression in the context of QGSP were formulated, along extensive practical examples on real-world data computed through a custom-made and open-source Python package.
-        \vspace{\onelineskip}
-
-        \noindent
-        \textbf{Keywords}: quaternions, fractional quaternion discrete Fourier transform, fractional graph shift operator, quaternion graph signal processing.
-        %quat\'ernios, transformada discreta de Fourier quaterni\^onica fracion\'aria, processamento de sinais sobre grafos, processamento de imagens coloridas.
+    \input{frontmatter/abstract.tex}
     \end{otherlanguage*}
 \end{resumo}
 
@@ -426,20 +385,7 @@
 % inserir lista de abreviaturas e siglas
 % ---
 \begin{siglas}
-    \item[DSP] Digital Signal Processing.
-    \item[LTI] Linear and Time-invariant.
-    \item[FIR] Finite Impulse Response.
-    \item[DFT] Discrete Fourier Transform.
-    \item[QFT] Quaternion Fourier Transform.
-    \item[FrFT] Fractional Fourier Transform.
-    \item[FrDFT] Fractional Discrete Fourier Transform.
-    \item[FrQDFT] Fractional Quaternion Discrete Fourier Transform.
-    \item[MFrQDFT] Multi-parametric Fractional Quaternion Discrete Fourier Transform.
-    \item[GSP] Graph Signal Processing.
-    \item[GSO] Graph Shift Operator.
-    \item[QGSP] Quaternion Graph Signal Processing.
-    \item[LSI] Linear and Shift-invariant.
-    \item[NMSE] Normalized Mean Squared Error.
+    \input{frontmatter/acronyms.tex}
 \end{siglas}
 % ---
 
@@ -447,25 +393,7 @@
 % inserir lista de símbolos
 % ---
 \begin{simbolos}
-    \item[$ \mathbf{A} $] Graph weighted adjacency matrix.
-    \item[$ \mathbf{L} $] Graph Laplacian matrix.
-    \item[$ \mathbf{\Lambda}, \mathbf{J} $] Respectively the eigenvalue matrix (if it exists) and the Jordan matrix of the graph adjacency matrix.
-    \item[$ \mathbf{V} $] The (possibly generalized) eigenvector matrix of the graph adjacency matrix.
-    \item[$\mathcal{R}e \{ x \}$] Real part of the complex number $x$.
-    \item[$\mathcal{I}m \{ x \}$] Imaginary part of the complex number $x$.
-    \item[$ \overline{x} $] Conjugate of the complex (or quaternion) $x$. If vectors or matrices are used instead of $x$, the conjugation is realized in each of its entries.
-    \item[$\mathbf{M}^T$] Transpose of the matrix $\mathbf{M}$.
-    \item[$\mathbf{M}^H$] Conjugate transpose of the matrix $\mathbf{M}$.
-    \item[$\mathbb{R}$, $\mathbb{C}$ and $\mathbb{H}$] Respectively the set of real, complex and (Hamiltonian) quaternion numbers. By association, we may also refer to the respective (skew-)field.
-    \item[$\mathbb{F}^n$] Set of the vectors of length $n$ with entries in the (possibly skew) field $\mathbb{F}$.
-    \item[$ | \cdot | $] Modulus of a real, complex or quaternion number.
-    \item[$ \rchi_A $] Complex adjoint of the quaternion matrix $ \mathbf{A} $.
-    \item[$ S(q) $] Scalar part of the quaternion $q$.
-    \item[$ \qV(q) $] Vector part of the quaternion $q$.
-    \item[$ \qV(\mathbb{H}) $] Set of all pure quaternions (i.e. with null scalar part).
-    \item[$ \qi $, $ \qj $ and $ \qk $] Unit pure quaternions which constitute the canonical basis for the set of pure quaternions.
-    \item[$ \mathbb{C}_{\qmu}$] Set of numbers $\{ a + b\qmu \ | \ a, b \in \mathbb{R} \}$ with $\qmu \in \qV(\mathbb{H})$ and $|\qmu| = 1$, isomorphic to the complex numbers.
-    \item[$ \Vert \mathbf{x}\Vert_p $] $ \ell_p $-norm of the vector $\mathbf{x} \in \mathbb{C}^n$, defined as $\left(\sum_{k=0}^{n-1} |x_k|^p\right)^{1/p}$.
+    \input{frontmatter/symbols.tex}
 \end{simbolos}
 
 

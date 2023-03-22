@@ -9,7 +9,7 @@
 \end{quotation}
 
 
-In 1833, at the age of 28, Willian Rowan Hamilton presented to the Royal Irish Academy (RIA) a work in which complex numbers were treated as ordered pairs of real numbers, given the appropriate definition of operations\footnote{The results were published in 1837, in the paper \emph{Theory of Conjugate Functions, or Algebraic Couples; with a Preliminary and Elementary Essay on Algebra as the Science of Pure Time} \cite{hamilton1837theory}.}. In the following years, he struggled to extend the complex field into a normed division algebra over triples, but soon realized that, as much as his attempts were inventive, the resulting algebra\footnote{An \textit{algebra over a field}, or simply \textit{algebra}, is a vector space over a field with a bilinear multiplication (that is, the multiplication distributes over the addition and the associativity is valid for multiplication) \cite{schafer1955introduction}.} was not closed under multiplication. We can see this through a simple example \cite{santos2011algebra}: let it be the set $\mathbb{F} = \{ a + b \qi + c \qj  \ | \ (a, b, c) \in \mathbb{R}^3\}$, with $\qi^2 = \qj^2 = -1$ and $\qi \neq \qj$. Since $\qi, \qj \in \mathbb{F}$, so there should exist $x, y, z \in \mathbb{R}$ so that
+In 1833, at the age of 28, Willian Rowan Hamilton presented to the Royal Irish Academy (RIA) a work in which complex numbers were treated as ordered pairs of real numbers, given the appropriate definition of operations.\footnote{The results were published in 1837, in the paper \emph{Theory of Conjugate Functions, or Algebraic Couples; with a Preliminary and Elementary Essay on Algebra as the Science of Pure Time} \cite{hamilton1837theory}.} In the following years, he struggled to extend the complex field into a normed division algebra over triples, but soon realized that, as much as his attempts were inventive, the resulting algebra\footnote{An \textit{algebra over a field}, or simply \textit{algebra}, is a vector space over a field with a bilinear multiplication (that is, the multiplication distributes over the addition and the associativity is valid for multiplication) \cite{schafer1955introduction}.} was not closed under multiplication. We can see this through a simple example \cite{santos2011algebra}: let it be the set $\mathbb{F} = \{ a + b \qi + c \qj  \ | \ (a, b, c) \in \mathbb{R}^3\}$, with $\qi^2 = \qj^2 = -1$ and $\qi \neq \qj$. Since $\qi, \qj \in \mathbb{F}$, so there should exist $x, y, z \in \mathbb{R}$ so that
 \begin{equation}
     \qi \qj = x + y \qi + z \qj.
     \label{eq:demonstration01}
@@ -27,7 +27,7 @@ and using (\ref{eq:demonstration01}) it yields,
 \end{equation}
 That is: $z \notin \mathbb{R}$ and $ \qi \qj \notin \mathbb{F} $, proving that such algebraic structure is not closed under multiplication.
 
-Only a decade later, in 1843, while walking by the roads in Dublin towards the RIA, ``an electric circuit seemed to close, and a spark flashed forth'', as he would say. He had conceived the four-dimensional structure required to the desired algebra, creating the quaternions. Moved by excitement, he craved on the stone below Broome Bridge, in Cabra (Dublin), the equations that define the relations between the canonical basis elements of quaternions\footnote{Close to the original site of the inscriptions, the RIA placed a commemorative plaque in 1958, with the same writings.}. This creation, made possible by an insight in 1843, is found accross most of this work. The following sections lead the reader through the foundations of quaternion algebra and quaternion signal analysis.
+Only a decade later, in 1843, while walking by the roads in Dublin toward the RIA, ``an electric circuit seemed to close, and a spark flashed forth,'' as he would say. He had conceived the four-dimensional structure required to the desired algebra, creating the quaternions. Moved by excitement, he craved on the stone below Broome Bridge, in Cabra (Dublin), the equations that define the relations between the canonical basis elements of quaternions.\footnote{Close to the original site of the inscriptions, the RIA placed a commemorative plaque in 1958, with the same writings.} This creation, made possible by an insight in 1843, is found accross most of this work. The following sections lead the reader through the foundations of quaternion algebra and quaternion signal analysis.
 
 
 \section{Introduction to the quaternion algebra}
@@ -143,39 +143,35 @@ Quaternion conjugation, as defined in the complex numbers, is obtained changing 
     |q| \overset{\Delta}{=} \sqrt{a^2 + b^2 + c^2 + d^2} = \Vert q \Vert^{\nicefrac{1}{2}}.
 \end{equation}
 
-From the definition of quaternion conjugation, the product between the conjugate of two quaternions $q$ and $p$ equals
+A closed expression for the product between the conjugate of two quaternions $q$ and $p$ may be obtained from (\ref{eq:prod_vectors}), by changing the sign in the vector part of the operands,
 \begin{equation}
-    \begin{aligned}
-        \bar{q} \bar{p} & =
-        \left[ S(q) - \qV(q) \right] \left[ S(p) - \qV(p) \right]               \\
-                        & = S(q)S(p) - \qV(q) S(p) - S(q) \qV(p) + \qV(q)\qV(p) \\
-                        & = S(q)S(p) - S(p)\qV(q) - S(q) \qV(p) + \qV(q)\qV(p).
-    \end{aligned}
+\bar{q} \bar{p} = S(q)S(p) - \langle\qV(q), \qV(p)\rangle
+- S(q) \qV(p) - S(p)\qV(q) + \qV(q) \times \qV(p).
 \end{equation}
-From (\ref{eq:prod_vectors}),
+Similarly, the conjugate of the product $pq$ may be taken simply by adding a minus sign in the vector part of the product $pq$, yielding
 \begin{equation}
-    \qV(q) \qV(p) =
-    \qV(q) \times \qV(p) - \langle\qV(q), \qV(p)\rangle =
-    - \qV(p) \qV(q),
+\overline{p q} = S(p)S(q) - \langle\qV(p), \qV(q)\rangle
+- S(p) \qV(q) - S(q)\qV(p) - \qV(p) \times \qV(q).
 \end{equation}
-therefore
+Since $\qV(p) \times \qV(q) = - \qV(q) \times \qV(p)$, it follows that $\bar{q} \bar{p} = \overline{p q}$. This result allows to prove that $\Vert p q \Vert = \Vert p \Vert \Vert q \Vert$, since
 \begin{equation}
-    \bar{q} \bar{p} =
-    S(q)S(p) - S(p)\qV(q) - S(q) \qV(p) - \qV(p)\qV(q) =
-    \overline{p q},
-\end{equation}
-showing that $\bar{q} \bar{p} = \overline{p q}$. This result allows to prove that $\Vert p q \Vert = \Vert p \Vert \Vert q \Vert$, since
-\begin{equation}
-    \label{eq:normproduct}
-    \begin{aligned}
-        \Vert pq \Vert = \overline{pq} pq = \bar{q} \bar{p} p q = \bar{q} \Vert p \Vert q = \Vert p \Vert \bar{q} q =
-        \Vert p \Vert \Vert q \Vert.
-    \end{aligned}
+\label{eq:normproduct}
+\begin{aligned}
+    \Vert pq \Vert = \overline{pq} pq = \bar{q} \bar{p} p q = \bar{q} \Vert p \Vert q = \Vert p \Vert \bar{q} q =
+    \Vert p \Vert \Vert q \Vert.
+\end{aligned}
 \end{equation}
 
 A \textit{unit} quaternion has, by definition, unit norm, and the norm definition also leads to the quaternion multiplicative inverse (if $q \neq 0$),
 \begin{equation}
-    q^{-1} = \frac{\bar{q}}{\Vert q \Vert}.
+    q^{-1} = \frac{\bar{q}}{\Vert q \Vert},
+\end{equation}
+from which follows that a quaternion and its multiplicative inverse have reciprocal moduli, i.~e.
+\begin{equation}
+    \label{eq:reciprocalmoduli}
+    |q^{-1}| = \frac{|\bar{q}|}{\Vert q \Vert} =
+    \frac{|q|}{|q|^2}=
+    \frac{1}{|q|}.
 \end{equation}
 
 From the analogy between pure quaternions and the elements in $ \mathbb{R}^3 $, the idea of perpendicularity between pure quaternions presents itself naturally. Given $ \qmu,  \qnu \in \qV(\mathbb{H})$, they are said orthogonal --- we write $ \qmu \perp \qnu $ --- if and only if
@@ -230,7 +226,7 @@ That is a hugely important tool when it comes to computing the QDFT (see Section
 
 \subsection{Quaternion similarity and rotation}
 \label{subsec:rotacionando}
-Two quaternions $ q $ and $ r $ are said to be \emph{similar} if it exists a non-zero quaternion $ v $ such that $ v^{-1}q v = r $. In this case, one can write $ q \sim r $. Similarity between quaternions constitutes an equivalence relation \cite{zhang1997quaternions}, and all elements from a same similarity class possess the same norm, since, from (\ref{eq:normproduct}), $ |v^{-1}q v| = |v^{-1}| \cdot |q| \cdot |v| = |q| $.
+Two quaternions $ q $ and $ r $ are said to be \emph{similar} if it exists a non-zero quaternion $ v $ such that $ v^{-1}q v = r $. In this case, one can write $ q \sim r $. Similarity between quaternions constitutes an equivalence relation \cite{zhang1997quaternions}, and all elements from a same similarity class possess the same norm, since, from (\ref{eq:normproduct}) and (\ref{eq:reciprocalmoduli}), $ |v^{-1}q v| = |v^{-1}| \cdot |q| \cdot |v| = |q| $.
 
 It matters to notice that an important property of quaternion similarity transformations, which justifies its great use in mechanics and graphics computing industry, is that it performs a rotation on the $\qi \qj \qk$ space. Given $ v,q \in \mathbb{H} $, $ v = |v| e^{\qmu \alpha}$, the similarity transformation
 \begin{equation}
@@ -557,7 +553,7 @@ in which $ \mathbf{F} $ is the unitary transform matrix,
 %--multiplicando sempre \`a esquerda--,
 with entries $ \{\mathbf{F}\}_{n,m} = \sqrt{N}^{-1} \exp \left( -\qmu \frac{2\pi}{N} nm \right)$. Since  $ \exp \left( -\qmu \frac{2\pi}{N} \right) $ is a $ N $-th root of unity, just like $ \exp \left( -\qi \frac{2\pi}{N} \right) $, it follows that $ \mathbf{F} $ shares many properties with the usual discrete Fourier transform (DFT) matrix, among which the invertibility, validating the existence of (\ref{eq:QDFT_inv}) and (\ref{eq:QDFT_mtx_inv}).
 
-As it was done in previous pages, the symplectic decomposition may be applied to each entry of a quaternion matrix, generating complex-valued \emph{simplex} and \emph{perplex} matrices\footnote{Please note that, in what follows, the usual subscripts $1$ and $2$ for denoting the simplex and perplex parts were replaced by the superscripts $^{(s)}$ and $^{(p)}$, as in $q = q^{(s)} + q^{(p)} \qj$, to avoid confusion with the summation indices.}. Using this reasoning, Ell e Sangwine \cite{ell2014quaternion} demonstrated that the QDFT of a signal $ \mathbf{x} = [x_0, x_1, \dots, x_{N-1}] \in \mathbb{H}^N $ could be easily computed using two (complex) DFT, by decomposing each signal sample along the QDFT eigenaxis:
+As it was done in previous pages, the symplectic decomposition may be applied to each entry of a quaternion matrix, generating complex-valued \emph{simplex} and \emph{perplex} matrices.\footnote{Please note that, in what follows, the usual subscripts $1$ and $2$ for denoting the simplex and perplex parts were replaced by the superscripts $^{(s)}$ and $^{(p)}$, as in $q = q^{(s)} + q^{(p)} \qj$, to avoid confusion with the summation indices.} Using this reasoning, Ell e Sangwine \cite{ell2014quaternion} demonstrated that the QDFT of a signal $ \mathbf{x} = [x_0, x_1, \dots, x_{N-1}] \in \mathbb{H}^N $ could be easily computed using two (complex) DFT, by decomposing each signal sample along the QDFT eigenaxis:
 %. Relembrando a eq. (\ref{eq:QDFT_fwd}),
 \begin{equation}
     \begin{aligned}

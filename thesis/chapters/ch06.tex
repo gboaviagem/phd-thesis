@@ -95,7 +95,7 @@ The reasoning goes as follows. According to Theorem \ref{th:equiv02}, a necessar
     \rchi_{V} \rchi_{M} = \rchi_{V} \rchi_{V}^{-1} = \mathbf{I}_{2n \times 2n} = \rchi_{I_{n \times n}}
     \Rightarrow \mathbf{V} \mathbf{M} = \mathbf{I}_{n \times n},
 \end{equation}
-letting $\mathbf{I}_{m \times m}$ be the identity matrix of order $m$\footnote{For simplicity, this notation is slightly loose, representing both a complex- and a quaternion-valued identity matrix, since in both cases their entries have zero-valued or zero-normed imaginary parts.}. That is, once the complex adjoint of $\mathbf{V}$ is computed, one simply needs to compute its inverse, if it exists, and verify if it follows the format in Definition \ref{def:complexadjoint}.
+letting $\mathbf{I}_{m \times m}$ be the identity matrix of order $m$.\footnote{For simplicity, this notation is slightly loose, representing both a complex- and a quaternion-valued identity matrix, since in both cases their entries have zero-valued or zero-normed imaginary parts.} That is, once the complex adjoint of $\mathbf{V}$ is computed, one simply needs to compute its inverse, if it exists, and verify if it follows the format in Definition \ref{def:complexadjoint}.
 
 \newcommand{\algorithmspacing}{0.5}
 \begin{algorithm}
@@ -443,7 +443,7 @@ This section is devoted to experimenting with QGSP in real-world datasets, tackl
 \subsection{Denoising a quaternion graph signal via QLMS low-pass filtering}
 \label{subsec:denoising}
 
-Let us walk through an example on spectral analysis and denoising. The graph signal will be generated using UK towns' weather data, specifically setting the humidity, atmospheric pressure, temperature and wind speed data to the $1$, $\qi$, $\qj$ and $\qk$ components of each signal sample. The data was fetched from the Open Weather Map API\footnote{The API is accessible, as of August 2022, at the address \url{https://home.openweathermap.org/}.}, in April 20th 2022, at approximately 13:00 GMT, and a sample is shown in Table \ref{tab:02}. The latitude and longitude values of UK towns originate from the LatLong.Net database\footnote{Accessible, as of August 2022, at the address \url{https://www.latlong.net/category/towns-235-55.html}.}.
+Let us walk through an example on spectral analysis and denoising. The graph signal will be generated using UK towns' weather data, specifically setting the humidity, atmospheric pressure, temperature and wind speed data to the $1$, $\qi$, $\qj$ and $\qk$ components of each signal sample. The data was fetched from the Open Weather Map API,\footnote{The API is accessible, as of August 2022, at the address \url{https://home.openweathermap.org/}.} in April 20th 2022, at approximately 13:00 GMT, and a sample is shown in Table \ref{tab:02}. The latitude and longitude values of UK towns originate from the LatLong.Net database.\footnote{Accessible, as of August 2022, at the address \url{https://www.latlong.net/category/towns-235-55.html}.}
 
 \begin{figure}
     \centering
