@@ -271,7 +271,7 @@ produces the rotation of the vector part of $q$ along the axis $ \qmu $ (which i
         \end{equation}
         which presents the similarity transformation $q^{-1} \lambda q$. Since similar quaternions differ only by a rotation of their vector parts, it is clearly possible to find a quaternion $q$ so that the vector part of $q^{-1} \lambda q$ is parallel to $\qi$ --- that is, $q^{-1} \lambda q$ is a complex number. Let us go through that process.
 
-        Since the vector part of $\lambda$ belongs to the $ \qi \qk $ plane, the idea is to use (\ref{eq:rotacao}) to rotate $\lambda$ along the $\qj$ axis (orthogonal to the rotation plane) by an angle of $ \theta = \tan^{-1} \frac{1}{3} $ radians, towards $ \qi $ (see Fig. \ref{fig:quat3ik}). The required quaternion to enable such rotation is, therefore,
+        Since the vector part of $\lambda$ belongs to the $ \qi \qk $ plane, the idea is to use (\ref{eq:rotacao}) to rotate $\lambda$ along the $\qj$ axis (orthogonal to the rotation plane) by an angle of $ \theta = \tan^{-1} \frac{1}{3} $ radians, toward $ \qi $ (see Fig. \ref{fig:quat3ik}). The required quaternion to enable such rotation is, therefore,
         \begin{equation}
             \label{eq:04}
             v = e^{\qj \alpha}, \quad 2\alpha = \theta = \tan^{-1} \frac{1}{3},
@@ -503,7 +503,7 @@ The following theorem is another fundamental result relating the eigenstructure 
 \label{sec:QFT}
 The field of quaternion signal processing has leveraged many tools to transform signals with quaternion-valued samples, from the fundamental redefinition of the gradient operador \cite{jiang2014general} up to algorithms for adaptive filtering \cite{jiang2013frequency}. This section focuses on the quaternion Fourier transform (QFT), as it is the basis for spectral analysis of quaternion signals.
 
-Quaternion Fourier transforms have received quite a few definitions. Some are one-dimensional \cite{flamant2017spectral}, while others are intrinsically two-dimensional \cite{guanlei2008fractional}; the latter group can yet be divided into those having kernels oriented towards generic unit pure quaternions, and those using canonic imaginary units, such as $ \qi $ and $ \qj $. The 2D-transformed signals may be placed \textit{between} the two kernels or beside them. In fact, Ell \cite[sec. 3.2]{ell2014quaternion} lists 8 possibilities for the 2D-QFTs. The two dimensional case will not be covered for now, since the discussion on the 1D case already serves the purpose of introducing the main ideas and properties of this family of transforms.
+Quaternion Fourier transforms have received quite a few definitions. Some are one-dimensional \cite{flamant2017spectral}, while others are intrinsically two-dimensional \cite{guanlei2008fractional}; the latter group can yet be divided into those having kernels oriented toward generic unit pure quaternions, and those using canonic imaginary units, such as $ \qi $ and $ \qj $. The 2D-transformed signals may be placed \textit{between} the two kernels or beside them. In fact, Ell \cite[sec. 3.2]{ell2014quaternion} lists 8 possibilities for the 2D-QFTs. The two dimensional case will not be covered for now, since the discussion on the 1D case already serves the purpose of introducing the main ideas and properties of this family of transforms.
 
 Let $f$ be a quaternion-valued function $f: \mathbb{R} \rightarrow \mathbb{H}$ and $\qmu \in \qV(\mathbb{H})$, $\qmu^2 = -1$. The \textit{left} 1D QFT can be defined as the family of integral transforms
 \begin{equation}
