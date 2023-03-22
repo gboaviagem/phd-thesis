@@ -1,9 +1,15 @@
 # phd-thesis
-TeX files for my PhD Thesis.
+TeX files for my PhD Thesis (doctoral dissertation).
 
-**[v1.0]** See **[here the .pdf version](https://drive.google.com/file/d/1Kp-uSYZWhAMEfrG7Uqi_vSR_0ukaTVO_/view?usp=share_link)** submitted to the evaluation by reviewers.
+See **[here the most recent .pdf version](./thesis/out/main.pdf)**.
 
-### Adding to the local repository an Overleaf Git remote
+### Outside Overleaf: running LaTeX in VSCode 
+Recently I moved from using Overleaf to running LaTeX locally with VSCode and docker. This repository is exactly the one I used in the last days of correction of the text. I used as reference the [vscode-latex-docker-template](https://github.com/nuric/vscode-latex-docker-template) repository and [this article on Medium](https://towardsdatascience.com/three-ways-to-create-dockernized-latex-environment-2534163ee0c4).
+
+![](./assets/screenshot-vscode.png)
+*Screenshot of the compiled thesis.*
+
+### Adding to the local repository an Overleaf Git remote (deprecated)
 In the beginning, this repository shared a remote with the Overleaf Git. Here is how I usually managed the code in both.
 
 As explained in the [Overleaf](https://www.overleaf.com/learn/how-to/Using_Git_and_GitHub) documentation,
@@ -35,6 +41,3 @@ Since the main branch in Overleaf if `master`, the push will go a bit differentl
 ```sh
 git push -u overleaf main:master
 ```
-
-### Outside Overleaf: running LaTeX in VSCode 
-More recently, I moved from using Overleaf to running LaTeX locally with VSCode and docker. I used as reference the [vscode-latex-docker-template](https://github.com/nuric/vscode-latex-docker-template) repository and [this article on Medium](https://towardsdatascience.com/three-ways-to-create-dockernized-latex-environment-2534163ee0c4).

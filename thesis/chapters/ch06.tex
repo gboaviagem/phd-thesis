@@ -194,9 +194,9 @@ Zhang claims Theorem \ref{th:equiv01} is proved by direct verification \cite{zha
         \rchi_{A}^H = \rchi_{A}, \ \rchi_{A} \in \mathbb{C}^{2n \times 2n}?
     \end{equation}
 
-    Look at $\mathbf{A}$ as a graph adjacency matrix and let $A_{i,j} = a + b\qi + c\qj + d\qk$ be the weight of the edge going from $v_j$ to $v_i$. The hypothesis of a Hermitian quaternion-valued matrix implies $A_{j,i} = \overline{A_{i,j}}$, or $A_{j,i} = a - b\qi - c\qj - d\qk$. As an example, a pair of connected vertices in this graph is represented in Fig. \ref{fig:hermitian-crop-2}, in which one can see the edges in opposite directions and with conjugate edge weights.
+    Look at $\mathbf{A}$ as a graph adjacency matrix and let $A_{i,j} = a + b\qi + c\qj + d\qk$ be the weight of the edge going from $v_j$ to $v_i$. The hypothesis of a Hermitian quaternion-valued matrix implies $A_{j,i} = \overline{A_{i,j}}$, or $A_{j,i} = a - b\qi - c\qj - d\qk$. As an example, a pair of connected vertices in this graph is represented in the left-hand side of Fig. \ref{fig:hermitian-crop-2}, in which one can see the edges in opposite directions and with conjugate edge weights.
 
-    Fig. \ref{fig:hermitian-crop-2} depicts also the edges that would arise separately from the simplex and perplex parts of the edge weights (see the center and right diagrams). For instance, the edge weight $A_{j,i} = a - b\qi - c\qj - d\qk$ satisfies\footnote{Notice how the notation will mix once more in this thesis the superscripts \textsuperscript{(s)} and \textsuperscript{(p)} along with the subscripts 1 and 2 to indicate the symplectic decomposition parts.}
+    At the center and at the right-hand side of Fig. \ref{fig:hermitian-crop-2}, one can see the edges that would arise separately from the simplex and perplex parts of the edge weights (see the center and right diagrams). For instance, the edge weight $A_{j,i} = a - b\qi - c\qj - d\qk$ satisfies\footnote{Notice how the notation will mix once more in this thesis the superscripts \textsuperscript{(s)} and \textsuperscript{(p)} along with the subscripts 1 and 2 to indicate the symplectic decomposition parts.}
     \begin{equation}
         A_{j,i} = A^{(s)}_{j,i} + A^{(p)}_{j,i} \qj, \text{ with }
         \begin{cases}
@@ -268,9 +268,7 @@ Now, does the final equality in (\ref{eq:phi_hermitian}) imply that ${\mathbf{v}
 \end{equation}
 Since the eigenvector $\mathbf{\qphi}^{(n)} = \big( \mathbf{v}^{(n)}_1 \quad - \overline{\mathbf{v}}^{(n)}_2 \big)^T$ is complex-valued, then it satisfies the additional constraint ${\mathbf{v}^{(n)}}^H_1 {\mathbf{v}^{(n)}}_2 - {\mathbf{v}^{(n)}}_2^T {\overline{\mathbf{v}}^{(n)}}_1 = 0$, because the product ${\mathbf{v}^{(n)}}_2^T {\overline{\mathbf{v}}^{(n)}}_1$ commutes. Therefore, a Hermitian QGSO \textit{does have} a unitary eigenvector matrix. As a practical consequence, the inverse eigenvector matrix can always be computed simply by taking its complex conjugate.
 
-% In fact, the eigenvector matrix may even be degenerate, as the following example demonstrates.
-% \red{(But I have not found a single counterexample! Is the additional constraint always met?)}
-
+\vspace{-1em}
 \subsection{Numerical example: computing the QGFT matrix}
 
 Let the graph in Fig. \ref{fig:degenerate_qgft_graph} have the following adjacency matrix,
