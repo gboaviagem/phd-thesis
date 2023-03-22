@@ -385,7 +385,7 @@ s_{n+1} =
 \end{equation}
 with $0 <  \gamma \leq 2 $.
 
-The tent map parameters were set to $ s_0 = 0{.}3 $ and $ \gamma = 1{.}8 $, for no particular reason other than obeying the range of values for chaotic behaviour. The proposed encryption algorithm was used on the image in Fig. \ref{fig:dice}, what yielded the ciphered output in Fig. \ref{fig:ciphered01}.
+The tent map parameters were set to $ s_0 = 0{.}3 $ and $ \gamma = 1{.}8 $, for no particular reason other than obeying the range of values for chaotic behavior. The proposed encryption algorithm was used on the image in Fig. \ref{fig:dice}, what yielded the ciphered output in Fig. \ref{fig:ciphered01}.
 
 In order to evaluate the key space dimension, the ciphered image was decrypted using keys $ \widetilde{s_0} = s_0 \pm \epsilon $ for different values of $ \epsilon \in [-10 \times 10^{-80}; 10 \times 10^{-80}]$, with the aid of multiple precision tools provided by the \textit{RealField} class in the SageMath software. By the end of each decryption, it was computed the MSE between the supposedly recovered image and the original one, what is plotted in Fig. \ref{fig:MSE}. The graph does not change smoothly because each tweak in $ s_0 $ propagates along the whole sequence $ \mathbf{s} $, what affects randomly all the decryption parameters. This is, of course, consequence of the nature of a chaotic map. As shown in the graph, the smallest MSE (still using wrong keys, with $ \epsilon \neq 0 $) was 39dB, obtained with $ \epsilon = -1{,}6 \times 10^{-80} $.
 
