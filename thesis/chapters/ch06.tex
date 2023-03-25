@@ -207,8 +207,9 @@ Zhang claims Theorem \ref{th:equiv01} is proved by direct verification \cite{zha
 
     \begin{figure}
         \centering
-        \includegraphics[width=0.95\linewidth]{Figures/hermitian-crop-2.pdf}
         \caption{Illustration of two connected vertices in a graph with Hermitian adjacency matrix (left-hand side). In the center and on the right, respectively, are displayed the edges created by the simplex and perplex parts of the adjacency matrix.}
+        \includegraphics[width=0.95\linewidth]{Figures/hermitian-crop-2.pdf}
+        \floatsource
         \label{fig:hermitian-crop-2}
     \end{figure}
 
@@ -346,15 +347,17 @@ The next step is to take half the eigenvalues of $\rchi_A$ (the ones with positi
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.55\linewidth]{Figures/simple_example_tv.pdf}
     \caption{Graph total variation (pseudocolor scale) of the normalized eigenvectors, as a function of their respective eigenvalues.}
+    \includegraphics[width=0.55\linewidth]{Figures/simple_example_tv.pdf}
+    \floatsource
     \label{fig:simple_example_tv}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.3\linewidth]{Figures/degenerate_qgft_graph.pdf}
     \caption{Graph used in the numerical example. The edges are represented by double-headed arrows to indicate the adjacency matrix is not symmetrical.}
+    \includegraphics[width=0.3\linewidth]{Figures/degenerate_qgft_graph.pdf}
+    \floatsource
     \label{fig:degenerate_qgft_graph}
 \end{figure}
 
@@ -436,17 +439,18 @@ As a last and more practical note, it is important to mention that, because of t
 
 \section{Examples}
 
-This section is devoted to experimenting with QGSP in real-world datasets, tackling topics such as graph inference, spectral analysis, compression and denoising. All computations in this chapter were performed using \texttt{gspx}, an open-source Python package dedicated to implement the core concepts and tools of QGSP. It constitutes a contribution of this thesis and is available at \url{https://github.com/gboaviagem/gspx}.
+This section is devoted to experimenting with QGSP in real-world datasets, tackling topics such as graph inference, spectral analysis, compression and denoising. All computations in this chapter were performed using \texttt{gspx}, an open-source Python package dedicated to implement the core concepts and tools of QGSP. It constitutes a contribution of this thesis and is available at \texttt{\url{https://github.com/gboaviagem/gspx}}.
 
 \subsection{Denoising a quaternion graph signal via QLMS low-pass filtering}
 \label{subsec:denoising}
 
-Let us walk through an example on spectral analysis and denoising. The graph signal will be generated using UK towns' weather data, specifically setting the humidity, atmospheric pressure, temperature and wind speed data to the $1$, $\qi$, $\qj$ and $\qk$ components of each signal sample. The data was fetched from the Open Weather Map API,\footnote{The API is accessible, as of August 2022, at the address \url{https://home.openweathermap.org/}.} in April 20th 2022, at approximately 13:00 GMT, and a sample is shown in Table \ref{tab:02}. The latitude and longitude values of UK towns originate from the LatLong.Net database.\footnote{Accessible, as of August 2022, at the address \url{https://www.latlong.net/category/towns-235-55.html}.}
+Let us walk through an example on spectral analysis and denoising. The graph signal will be generated using UK towns' weather data, specifically setting the humidity, atmospheric pressure, temperature and wind speed data to the $1$, $\qi$, $\qj$ and $\qk$ components of each signal sample. The data was fetched from the Open Weather Map API,\footnote{The API is accessible, as of August 2022, at the address \texttt{\url{https://home.openweathermap.org/}}.} in April 20th 2022, at approximately 13:00 GMT, and a sample is shown in Table \ref{tab:02}. The latitude and longitude values of UK towns originate from the LatLong.Net database.\footnote{Accessible, as of August 2022, at the address \texttt{\url{https://www.latlong.net/category/towns-235-55.html}}.}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.3\linewidth]{Figures/uk_example/uk_graph.pdf}
     \caption{Graph created using the 145 towns in England and Wales.}
+    \includegraphics[width=0.3\linewidth]{Figures/uk_example/uk_graph.pdf}
+    \floatsource
     \label{fig:uk_graph}
 \end{figure}
 
@@ -465,8 +469,6 @@ The graph was created using a nearest-neighbors approach, as in (\ref{eq:weights
 \end{itemize}
 
 The reasoning behind the choice of (\ref{eq:edge_weight_qgsp}) is to have edge weights whose magnitude reflect the expected similarity between adjacent signal samples, as in (\ref{eq:weights}), and whose phase are aligned with the difference between such samples. The choice of $\theta$ for the current graph, after some experimentation, was $\theta = 2$.
-
-% Figure \ref{fig:uk_graph} depicts a representation of the UK Town Graph, with quaternion-valued edge weights. A total of 177 towns were used, and the reader may find the full dataset at \url{https://github.com/gboaviagem/gspx/blob/main/resources/uk_weather_at_20Apr202213pm.gz}. The first few rows, so it becomes clear how the data is organized, are displayed in Table \ref{tab:02}.
 
 \begin{table}
     \center
@@ -499,8 +501,9 @@ As a way to remove the scale disparity between the quaternion components (the re
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.55\linewidth]{Figures/uk_signal.pdf}
     \caption{Quaternion graph signal, visualized in the vertex domain. The panels (a) to (d) depict, respectively, the real, $\qi$, $\qj$ and $\qk$ components of each quaternion-valued sample.}
+    \includegraphics[width=0.55\linewidth]{Figures/uk_signal.pdf}
+    \floatsource
     \label{fig:uk_qgsp_graphsig}
 \end{figure}
 
@@ -508,15 +511,17 @@ The QGFT of the graph signal is computed, as defined earlier on this chapter, by
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{Figures/uk_example/uk_spectrum_hermitian.pdf}
     \caption{Spectrum of the quaternion graph signal, defined over the vertices of the graph with Hermitian adjacency matrix.}
+    \includegraphics[width=\linewidth]{Figures/uk_example/uk_spectrum_hermitian.pdf}
+    \floatsource
     \label{fig:uk_qgsp_spectrum_hermitian}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{Figures/uk_example/uk_spectrum_noisy.pdf}
     \caption{Spectrum of the noisy signal.}
+    \includegraphics[width=\linewidth]{Figures/uk_example/uk_spectrum_noisy.pdf}
+    \floatsource
     \label{fig:uk_spectrum_noisy}
 \end{figure}
 
@@ -528,15 +533,17 @@ The QLMS algorithm was executed using the following values of step sizes: 0.0001
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.65\linewidth]{Figures/uk_example/uk_total_variation_hermitian.pdf}
     \caption{Total variation of the eigenvectors of the Hermitian graph adjacency matrix, for each respective eigenvalue.}
+    \includegraphics[width=0.9\linewidth]{Figures/uk_example/uk_total_variation_hermitian.pdf}
+    \floatsource
     \label{fig:uk_total_variation_hermitian}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.65\linewidth]{Figures/uk_example/uk_qlms_iterations.pdf}
     \caption{QLMS cost function for each iteration and for each step size.}
+    \includegraphics[width=0.8\linewidth]{Figures/uk_example/uk_qlms_iterations.pdf}
+    \floatsource
     \label{fig:uk_qlms_iterations}
 \end{figure}
 
@@ -554,8 +561,9 @@ Fig. \ref{fig:uk_qlm_filter} shows the filter frequency response.
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{Figures/uk_example/uk_qlm_filter.pdf}
     \caption{Frequency response of the FIR low-pass filter after running the QLMS.}
+    \includegraphics[width=\linewidth]{Figures/uk_example/uk_qlm_filter.pdf}
+    \floatsource
     \label{fig:uk_qlm_filter}
 \end{figure}
 
@@ -579,15 +587,17 @@ First of all, it was somehow harder to find a value of $\theta$ in (\ref{eq:edge
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{Figures/uk_example/uk_spectrum_symmetric.pdf}
     \caption{Spectrum of the original signal in the symmetric graph.}
+    \includegraphics[width=\linewidth]{Figures/uk_example/uk_spectrum_symmetric.pdf}
+    \floatsource
     \label{fig:uk_spectrum_symmetric}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\linewidth]{Figures/uk_example/uk_total_variation_symmetric.pdf}
     \caption{Total variation of eigenvectors of the symmetric graph adjacency matrix.}
+    \includegraphics[width=0.7\linewidth]{Figures/uk_example/uk_total_variation_symmetric.pdf}
+    \floatsource
     \label{fig:uk_total_variation_symmetric}
 \end{figure}
 
@@ -612,21 +622,23 @@ See the cost function \textit{versus} iterations in Fig. \ref{fig:uk_qlms_iterat
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{Figures/uk_example/uk_qlm_filter_symmetric.pdf}
     \caption{Frequency response of the FIR low-pass filter after running the QLMS in the scenario with symmetric graph adjacency matrix.}
+    \includegraphics[width=\linewidth]{Figures/uk_example/uk_qlm_filter_symmetric.pdf}
+    \floatsource
     \label{fig:uk_qlm_filter_symmetric}
 \end{figure}
 \renewcommand{\floatpagefraction}{.9}%
 \begin{figure}
     \centering
-    \includegraphics[width=0.58\linewidth]{Figures/uk_example/uk_qlms_iterations_symmetric.pdf}
     \caption{QLMS cost function for each iteration and for each step size, in the scenario with symmetric graph adjacency matrix.}
+    \includegraphics[width=0.58\linewidth]{Figures/uk_example/uk_qlms_iterations_symmetric.pdf}
+    \floatsource
     \label{fig:uk_qlms_iterations_symmetric}
 \end{figure}
 
 \subsection{Spectral analysis and compression of quaternion graph signal}
 
-For this example, let us move away from the UK graph and consider a problem with a larger network. Let us select 1000 of the United States (US) counties and create a simple nearest-neighbors graph out of their geographic coordinates. The resulting undirected graph is depicted in Fig. \ref{fig:us_graph}. It consists of 1000 vertices and 4158 edges. In order to create the quaternion graph signal, four sociodemographic variables will be used. The full source dataset\footnote{Extracted from OpenIntro, a non-profit organization focused on spreading high-quality open-source publications, and avaiable at \url{https://www.openintro.org/data/?data=county_complete}, accessed in October 2022.} comprises 188 variables for each of the 3142 US counties, but only the following indicators were used:
+For this example, let us move away from the UK graph and consider a problem with a larger network. Let us select 1000 of the United States (US) counties and create a simple nearest-neighbors graph out of their geographic coordinates. The resulting undirected graph is depicted in Fig. \ref{fig:us_graph}. It consists of 1000 vertices and 4158 edges. In order to create the quaternion graph signal, four sociodemographic variables will be used. The full source dataset\footnote{Extracted from OpenIntro, a non-profit organization focused on spreading high-quality open-source publications, and avaiable at \texttt{\url{https://www.openintro.org/data/?data=county_complete}}, accessed in October 2022.} comprises 188 variables for each of the 3142 US counties, but only the following indicators were used:
 \begin{itemize}[noitemsep]
     \item \textbf{bachelors\_2017}: percent of population that earned a bachelor's degree in 2017.
     \item \textbf{median\_household\_income\_2017}: median household income as of 2017.
@@ -637,8 +649,9 @@ All variables relate to the financial health of american population.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{Figures/usa_example/us_graph.pdf}
     \caption{Nearest-neighbors graph of a few of the United States counties.}
+    \includegraphics[width=0.8\linewidth]{Figures/usa_example/us_graph.pdf}
+    \floatsource
     \label{fig:us_graph}
 \end{figure}
 
@@ -646,28 +659,31 @@ Fig. \ref{fig:us_signal} displays each quaternion component as a real-valued gra
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.95\linewidth]{Figures/usa_example/us_signal.pdf}
     \caption{Sociodemographic quaternion-valued graph signal, split into its components: (a) real part, (b) $\qi$, (c) $\qj$ and (d) $\qk$.}
+    \includegraphics[width=0.95\linewidth]{Figures/usa_example/us_signal.pdf}
+    \floatsource
     \label{fig:us_signal}
 \end{figure}
 
 This example is focused on the use of QGSP for compression of multidimensional data. By keeping only a few frequency components with large fraction of the whole signal energy, and given that the underlying graph shift operator is known, the signal representation may be highly condensed. Let us create a Hermitian adjacency matrix, using (\ref{eq:edge_weight_qgsp}) along with the four sociodemographic indicators and the geographic location of each of the 1000 US counties. After the diagonalization of the shift operator the frequency ordering through the total variation metric (see Fig. \ref{fig:us_counties_qgsp_tv1}), the QGFT of the graph signal was computed and is depicted in Fig. \ref{fig:us_counties_qgsp_spectrumsig}.
 
-Before proceeding, however, a few notes regarding the computational challenges of the task must be presented. All calculations were performed (and images were generated) using our \texttt{gspx}\footnote{The library is available as an open repository: \url{https://github.com/gboaviagem/gspx}.} Python package, in a Jupyter Notebook inside a Google Colab Pro instance with 27 GB of RAM. As a representation of the computational cost of computing the QGFT in this 1000-vertices graph, using the mentioned hardware and custom-made code, the time it took to eigendecompose the graph shift operator, sort the frequencies based on total variation and normalize each eigenvector by its L1-norm was roughly around 9 minutes.
+Before proceeding, however, a few notes regarding the computational challenges of the task must be presented. All calculations were performed (and images were generated) using our \texttt{gspx}\footnote{The library is available as an open repository: \texttt{\url{https://github.com/gboaviagem/gspx}}.} Python package, in a Jupyter Notebook inside a Google Colab Pro instance with 27 GB of RAM. As a representation of the computational cost of computing the QGFT in this 1000-vertices graph, using the mentioned hardware and custom-made code, the time it took to eigendecompose the graph shift operator, sort the frequencies based on total variation and normalize each eigenvector by its L1-norm was roughly around 9 minutes.
 
 
 \renewcommand{\floatpagefraction}{.8}%
 \begin{figure}
     \centering
-    \includegraphics[width=0.65\linewidth]{Figures/usa_example/us_counties_qgsp_tv1.pdf}
     \caption{Total variation for each eigenvector of the (Hermitian) adjacency matrix of the US graph.}
+    \includegraphics[width=0.65\linewidth]{Figures/usa_example/us_counties_qgsp_tv1.pdf}
+    \floatsource
     \label{fig:us_counties_qgsp_tv1}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.95\linewidth]{Figures/usa_example/us_counties_qgsp_spectrumsig.pdf}
     \caption{US graph signal spectrum.}
+    \includegraphics[width=0.95\linewidth]{Figures/usa_example/us_counties_qgsp_spectrumsig.pdf}
+    \floatsource
     \label{fig:us_counties_qgsp_spectrumsig}
 \end{figure}
 
@@ -679,8 +695,9 @@ Fig. \ref{fig:mse_values} shows how the error changed as a function of the compr
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\linewidth]{Figures/usa_example/mse_values.pdf}
     \caption{Normalized mean squared error as a function of the compression rate.}
+    \includegraphics[width=0.7\linewidth]{Figures/usa_example/mse_values.pdf}
+    \floatsource
     \label{fig:mse_values}
 \end{figure}
 

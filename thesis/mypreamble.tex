@@ -11,6 +11,8 @@
 \usepackage{framed}
 \usepackage{cancel} % Use \usepackage[thicklines]{cancel} for thicker strokes
 
+\usepackage[font=small,labelfont=bf, position=top]{caption}
+
 \definecolor{cancelgray}{gray}{0.5}
 \renewcommand{\CancelColor}{\color{cancelgray}}
 
@@ -35,6 +37,7 @@
 \newcommand{\red}[1]{{\color{red}#1}}
 \DeclareRobustCommand{\rchi}{{\mathpalette\irchi\relax}}
 \newcommand{\irchi}[2]{\raisebox{\depth}{\Large $#1\chi$}} % inner command, used by \rchi
+\newcommand{\floatsource}[1][author]{\\ \small Source: #1.}
 
 % ISOMORPHISM SYMBOL
 \makeatletter

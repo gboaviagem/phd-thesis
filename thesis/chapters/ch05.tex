@@ -167,20 +167,18 @@ One should notice that the transformation in (\ref{eq:2DQDFT}) does \textit{not}
 \mathbf{F} \left( \mathbf{F}\mathbf{X}^T \right)^T.
 \end{equation}
 
-Fig. \ref{fig:2D_QDFTv1} shows the QDFT -- according to (\ref{eq:2DQDFT}) -- of Fig. \ref{fig:dice}, as another PNG image. As an illustration of the difference in using (\ref{eq:2DQDFT}) or (\ref{eq:2DQDFTv2}), caused by the lack of commutativity in quaternion multiplication, the mean squared error (MSE) between the two spectra was computed. The result was approximately 1070. % Cálculo feito com o script trying_separable_2DQDFT.py
-
-
-%{\color{red}(Mantemos isso?) \'E curioso observar que, ao processar imagens em PNG utilizando a 2D-QDFT, tanto o sinal (imagem) de entrada como o de sa\'ida s\~ao compostos por quaternions (geralmente) n\~ao-puros, o que permite usar a mesma representa\c c\~ao no dom\'inio do sinal e da transformada. Ao usar a 2D-DFT para processar imagens em escala de cinza, ou a 2D-QDFT para imagens em RGB, o dom\'inio espectral difere daquele do sinal original.}
+Fig. \ref{fig:2D_QDFTv1} shows the QDFT -- according to (\ref{eq:2DQDFT}) -- of Fig. \ref{fig:dice}, as another PNG image. As an illustration of the difference in using (\ref{eq:2DQDFT}) or (\ref{eq:2DQDFTv2}), caused by the lack of commutativity in quaternion multiplication, the mean squared error (MSE) between the two spectra was computed. The result was approximately 1070.
 
 \begin{figure}
 \centering
+\caption{(a) 2D-QDFT of the PNG image in Fig. \ref{fig:dice}, according to (\ref{eq:2DQDFT}), with axis $ \qmu = \frac{1}{\sqrt{3}}(\qi + \qj + \qk) $. (b) 2D-QDFT of the same image, same transform axis, following the approach in (\ref{eq:2DQDFTv2}).}
 \subfloat[\label{fig:2D_QDFTv1}]{
 \includegraphics[width=0.3\linewidth]{Figures/2D_QDFTv1.png}
 }~
 \subfloat[\label{fig:2D_QDFTv2}]{
 \includegraphics[width=0.3\linewidth]{Figures/2D_QDFTv2.png}
 }
-\caption{(a) 2D-QDFT of the PNG image in Fig. \ref{fig:dice}, according to (\ref{eq:2DQDFT}), with axis $ \qmu = \frac{1}{\sqrt{3}}(\qi + \qj + \qk) $. (b) 2D-QDFT of the same image, same transform axis, following the approach in (\ref{eq:2DQDFTv2}).}
+\floatsource
 \label{fig:QDFT}
 \end{figure}
 
@@ -198,6 +196,7 @@ Oliveira Neto and Lima \cite{de2017discrete} stress that a FrDFT expressed as in
 
 \begin{figure*}
 \centering
+\caption{(a) Test PNG image. Visualization of each layer in the (b) test image and (c) in its FrQDFT spectrum, computed with transform axis $ \qmu = \frac{1}{\sqrt{3}}(\qi + \qj + \qk) $ and $ a=0{.}3 $.}
 \subfloat[\label{fig:dice}]{
 \includegraphics[width=0.25\linewidth]{Figures/dice_256x256.png}
 }~
@@ -207,7 +206,7 @@ Oliveira Neto and Lima \cite{de2017discrete} stress that a FrDFT expressed as in
 \subfloat[]{
 \includegraphics[width=0.355\linewidth]{Figures/dice_256x256_layers_frqdft.pdf}
 }~
-\caption{(a) Test PNG image. Visualization of each layer in the (b) test image and (c) in its FrQDFT spectrum, computed with transform axis $ \qmu = \frac{1}{\sqrt{3}}(\qi + \qj + \qk) $ and $ a=0{.}3 $.}
+\floatsource
 \end{figure*}
 
 Once one is able to compute an orthogonal eigenbasis $ \mathbf{E} $ containing Hermite-Gaussian-like DFT eigenvectors, for instance by means of the generating matrix method, Theorem \ref{th:01} assures that matrix $ \mathbf{E} $ is also an eigenvector matrix for the QDFT. As a consequence, the transform matrix $ \mathbf{F} $ may be decomposed and written as
@@ -328,13 +327,15 @@ with inverse transform obtained from the properties listed in Section \ref{sec:F
 
 \begin{figure*}
 \centering
-\includegraphics[width=0.9\linewidth]{Figures/esquema_EN.pdf}
 \caption{Proposed encryption scheme, exploring the 2D-MFrQDFT.}
+\includegraphics[width=0.9\linewidth]{Figures/esquema_EN.pdf}
+\floatsource
 \label{fig:cifragem}
 \end{figure*}
 
 \begin{figure*}
 \centering
+\caption{(a) Encrypted image. (b) Image decrypted with the correct key $ s_0 $. (c) Image decrypted with the wrong key $ \widetilde{s_0} = s_0 + \epsilon $, with $ \epsilon = -1{,}6 \cdot 10^{-80} $.}
 \subfloat[\label{fig:ciphered01}]{
 \includegraphics[width=0.2\linewidth]{Figures/sage_Encrypted_image.png}
 }~
@@ -344,7 +345,7 @@ with inverse transform obtained from the properties listed in Section \ref{sec:F
 \subfloat[\label{fig:ciphered03}]{
 \includegraphics[width=0.2\linewidth]{Figures/sage_Decrypted_image_error_minus1dot6.png}
 }~
-\caption{(a) Encrypted image. (b) Image decrypted with the correct key $ s_0 $. (c) Image decrypted with the wrong key $ \widetilde{s_0} = s_0 + \epsilon $, with $ \epsilon = -1{,}6 \cdot 10^{-80} $.}
+\floatsource
 \end{figure*}
 
 \subsection{Encryption scheme using MFrQDFT}
@@ -408,8 +409,9 @@ a value greater than 256 bits, assumed to be appropriate for symmetric encryptio
 %
 \begin{figure}
 \centering
-\includegraphics[width=10cm]{Figures/MSEdb_FrQDFT_EN.pdf}
 \caption{Mean squared error, in dB, between the original and the decrypted images as function of the key error $ \epsilon $.}
+\includegraphics[width=10cm]{Figures/MSEdb_FrQDFT_EN.pdf}
+\floatsource
 \label{fig:MSE}
 \end{figure}
 %
@@ -436,13 +438,14 @@ In the case of a PNG image, four histograms are drawn, one for each layer. Fig. 
 
 \begin{figure}[htbp]
 \centering
+\caption{(a) Test image in PNG format, with 256$ \times $256 pixels. (b) Color and opacity layers of the \textit{decrypted} image (which coincides with the original in (a)). (c) Histograms of each layer of the \textit{decrypted} image. (d) Encrypted image, in PNG format. (e) Color and opacity layers of the \textit{encrypted} image. (f) Histograms of each layer of the \textit{encrypted} image.}
 \subfloat[]{\includegraphics[width=0.35\linewidth]{Figures/alphatest_resized_decrypted.png}}~
 \subfloat[]{\includegraphics[width=\constlength\linewidth]{Figures/alphatest_resized_decrypted_RGBA_layers.pdf}} \\
 \subfloat[]{\includegraphics[width=\constlength\linewidth]{Figures/alphatest_resizeddecrypted_histograms.pdf}}~
 \subfloat[]{\includegraphics[width=0.3\linewidth]{Figures/alphatest_resized_encrypted_img.png}} \\
 \subfloat[]{\includegraphics[width=\constlength\linewidth]{Figures/alphatest_resized_encrypted_RGBA_layers.pdf}}~
 \subfloat[]{\includegraphics[width=\constlength\linewidth]{Figures/alphatest_resized_encrypted_histograms.pdf}}
-\caption{(a) Test image in PNG format, with 256$ \times $256 pixels. (b) Color and opacity layers of the \textit{decrypted} image (which coincides with the original in (a)). (c) Histograms of each layer of the \textit{decrypted} image. (d) Encrypted image, in PNG format. (e) Color and opacity layers of the \textit{encrypted} image. (f) Histograms of each layer of the \textit{encrypted} image.}
+\floatsource[all images were generated by the author, except the first in (a), which was taken from the World Wide Web Consortium website at \texttt{\url{https://www.w3.org/Graphics/PNG/Alphatest.html}}]
 \label{fig:testing_hist}
 \end{figure}
 
@@ -450,6 +453,7 @@ In the case of a PNG image, four histograms are drawn, one for each layer. Fig. 
 \newcommand{\smallerlength}{0.15}
 \begin{figure}[htbp]
 \centering
+\caption{Set of 13 PNG test images, 256$ \times $256 pixels, alongside the histograms of each layer (colors and opacity) of their encrypted version.}
 \subfloat[]{\includegraphics[width=\smallerlength\linewidth]{Figures/dice_256x256_decrypted.png}}~
 \subfloat[]{\includegraphics[width=\fixedlength\linewidth]{Figures/dice_256x256_encrypted_histograms.pdf}}~
 \subfloat[]{\includegraphics[width=\smallerlength\linewidth]{Figures/another_dice_resized_decrypted.png}}~
@@ -468,7 +472,8 @@ In the case of a PNG image, four histograms are drawn, one for each layer. Fig. 
 \subfloat[]{\includegraphics[width=\fixedlength\linewidth]{Figures/bouquet_encrypted_histograms.pdf}}
 
 \vspace{3em}
-\noindent \textit{(Part of Fig. \ref{fig:allhistograms}, it continues on the next page).}
+\noindent \textit{(The figure continues on the next page).}
+\label{fig:allhistograms}
 %\caption{Legenda.}
 \end{figure}
 
@@ -486,8 +491,7 @@ In the case of a PNG image, four histograms are drawn, one for each layer. Fig. 
 \subfloat[]{\includegraphics[width=\fixedlength\linewidth]{Figures/globe_encrypted_histograms.pdf}}\\
 \subfloat[]{\includegraphics[width=\smallerlength\linewidth]{Figures/phones_resized.png}}~
 \subfloat[]{\includegraphics[width=\fixedlength\linewidth]{Figures/phones_encrypted_histograms.pdf}}
-\caption{Set of 13 PNG test images, 256$ \times $256 pixels, alongside the histograms of each layer (colors and opacity) of their encrypted version. Images downloaded from the online free database \texttt{https://purepng.com/}, under CC0 license.}
-\label{fig:allhistograms}
+\floatsource[plots generated by the author, whereas the test images were taken from the PurePNG online free database, available at \texttt{\url{https://purepng.com/}}, under CC0 license]
 \end{figure}
 
 Finally, as stated at the beginning of the chapter, there are a multitude of studies on image encryption, each addressing particular aspects and problems. Therefore, it is adequate to acknowledge the position of this proposed encryption algorithm in the literature landscape. Without providing an extensive and complete analysis, for lack of space, some remarks can be done. The key space dimension in related works vary from circa $ 10^{54} $, around 160 bits, in a work by Wang \textit{et al.} with flexible key space \cite{wang2015novel}, to more than 400 bits, in a paper by Zhang \textit{et al.} \cite{zhang2015new}, an interval which includes the 260 bits of the proposed algorithm. Regarding time of encryption, Wang \textit{et al.} \cite{wang2015novelchaotic} used Arnold cat map and dynamic random growth to obtain large running speed of the encryption and decryption algorithm. This is an aspect our proposed scheme is not optimized for, although great improvement in processing time can be achieved if the eigenvector and eigenvalue matrices of the QDFT are stored in-memory, taking the eigendecomposition out of the encryption process. As a final comment, the main advantages of the proposed scheme are its modularization, the holistic processing of color images with opacity layer, the lack of long iterations and the ease to describe, comprehend and implement.

@@ -240,20 +240,27 @@
 
 % ---
 % Fontes padroes de part, chapter, section, subsection e subsubsection
+% GBR: Font styles
+\newcommand{\GBRChapterStyle}{\scshape}
+\newcommand{\GBRSectionStyle}{\bfseries}
+\newcommand{\GBRSubsectionStyle}{\mdseries}
+\newcommand{\GBRSubsubsectionStyle}{\sffamily}
+
+% GBR: Here I edit the default fonts from ABNTeX.
 \newcommand{\ABNTEXchapterfont}{\rmfamily}
-\newcommand{\ABNTEXchapterfontsize}{\Huge}
+\newcommand{\ABNTEXchapterfontsize}{\Huge\GBRChapterStyle}
 
 \newcommand{\ABNTEXpartfont}{\ABNTEXchapterfont}
 \newcommand{\ABNTEXpartfontsize}{\ABNTEXchapterfontsize}
 
 \newcommand{\ABNTEXsectionfont}{\ABNTEXchapterfont}
-\newcommand{\ABNTEXsectionfontsize}{\Large}
+\newcommand{\ABNTEXsectionfontsize}{\Large\GBRSectionStyle}
 
 \newcommand{\ABNTEXsubsectionfont}{\ABNTEXsectionfont}
-\newcommand{\ABNTEXsubsectionfontsize}{\large}
+\newcommand{\ABNTEXsubsectionfontsize}{\Large\GBRSubsectionStyle}
 
 \newcommand{\ABNTEXsubsubsectionfont}{\ABNTEXsubsectionfont}
-\newcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
+\newcommand{\ABNTEXsubsubsectionfontsize}{\large\GBRSubsubsectionStyle}
 
 \newcommand{\ABNTEXsubsubsubsectionfont}{\ABNTEXsubsectionfont}
 \newcommand{\ABNTEXsubsubsubsectionfontsize}{\normalsize}
@@ -468,17 +475,25 @@
 
 % No caso de Sumario (TOC) especifico da ABNT-6027-2012
 
+% GBR: Here we edit the specificity of the TOC
 \makeatletter
 \ifthenelse{\boolean{ABNTEXsumario-abnt-6027-2012}}{
   \settocpreprocessor{chapter}{%
   \let\tempf@rtoc\f@rtoc%
   \def\f@rtoc{%
-  \texorpdfstring{\MakeTextUppercase{\tempf@rtoc}}{\tempf@rtoc}}%
+  \texorpdfstring{\GBRChapterStyle\NoCaseChange{\tempf@rtoc}}{\tempf@rtoc}}%
   }
+  %
   \settocpreprocessor{part}{%
   \let\tempf@rtoc\f@rtoc%
   \def\f@rtoc{%
-  \texorpdfstring{\MakeTextUppercase{\tempf@rtoc}}{\tempf@rtoc}}%
+  \texorpdfstring{\NoCaseChange{\tempf@rtoc}}{\tempf@rtoc}}%
+  }
+  %
+  \settocpreprocessor{sec}{%
+  \let\tempf@rtoc\f@rtoc%
+  \def\f@rtoc{%
+  \texorpdfstring{\GBRSectionStyle\NoCaseChange{\tempf@rtoc}}{\tempf@rtoc}}%
   }
 }{}
 \makeatother

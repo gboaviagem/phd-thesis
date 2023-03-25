@@ -223,20 +223,21 @@ where $ W_N = e^{-j \frac{2\pi}{N}} $ and
 $n=0,1,\ldots,N-1$. It can be shown that the inverse DFT of $ \widehat{\mathbf{h}}_a $ has components given by~(\ref{eq:DFT_inversa_autovalores}).
 
 \begin{figure*}%[h!]
-    \begin{equation}\label{eq:DFT_inversa_autovalores}
-        h_a[n]\hspace{-0.03cm}=\hspace{-0.03cm}
-        \left\{\begin{array}{ll}
-            %\displaystyle
-            {\dfrac{1}{N}} \dfrac{\sin (\pi (n-a))}{\sin \left(\frac{\pi}{N} (n-a)\right)},                             & \text{ if $N$ is odd},\vspace{0.25cm} \\
-            %\displaystyle
-            {\dfrac{1}{N} \cot \left(\dfrac{\pi}{N} (n-a)\right) \sin (\pi (n-a))}{+ \dfrac{j}{N} (-1)^n \sin (\pi a)}, & \text{ if } N \text{ is even}.
-        \end{array}\right.
-    \end{equation}
-    % \hrule
+\begin{equation}\label{eq:DFT_inversa_autovalores}
+h_a[n]\hspace{-0.03cm}=\hspace{-0.03cm}
+\left\{\begin{array}{ll}
+    %\displaystyle
+    {\dfrac{1}{N}} \dfrac{\sin (\pi (n-a))}{\sin \left(\frac{\pi}{N} (n-a)\right)},                             & \text{ if $N$ is odd},\vspace{0.25cm} \\
+    %\displaystyle
+    {\dfrac{1}{N} \cot \left(\dfrac{\pi}{N} (n-a)\right) \sin (\pi (n-a))}{+ \dfrac{j}{N} (-1)^n \sin (\pi a)}, & \text{ if } N \text{ is even}.
+\end{array}\right.
+\end{equation}
+% \hrule
 \end{figure*}
 
 \begin{figure}[b]
     \centering
+    \caption{Fractional shift by $a=0{.}3 $ of a sample of a signal on a directed ring graph with unit weights. (a) Original signal on a directed ring graph. (b) Graph in which the 5$\textsuperscript{th}$ sample delayed by $a=0{.}3 $ appears as an interpolated sample between the 4$\textsuperscript{th}$ and the 5$\textsuperscript{th}$ samples of the original signal. (c) Original discrete signal and the delayed sample.}
     \subfloat[\label{figa_frac_delay_directed}]{{
                 \includegraphics[width=0.35\linewidth]{Figures/d170309_frac_delay_ring_visualization_V5_a.eps}
             }}
@@ -247,7 +248,7 @@ $n=0,1,\ldots,N-1$. It can be shown that the inverse DFT of $ \widehat{\mathbf{h
     \subfloat[\label{figc_frac_delay_directed}]{{
                 \includegraphics[width=0.6\linewidth]{Figures/d170309_frac_delay_ring_visualization_V5_c1.eps}
             }}% 
-    \caption{Fractional shift by $a=0{.}3 $ of a sample of a signal on a directed ring graph with unit weights. (a) Original signal on a directed ring graph. (b) Graph in which the 5$\textsuperscript{th}$ sample delayed by $a=0{.}3 $ appears as an interpolated sample between the 4$\textsuperscript{th}$ and the 5$\textsuperscript{th}$ samples of the original signal. (c) Original discrete signal and the delayed sample.}
+    \floatsource
     \label{fig:frac_delay_directed}
     %\vspace{-0.3cm}
 \end{figure}
@@ -258,14 +259,16 @@ Finally, it matters to highlight the fact that the signal to be shifted has to b
 
 \begin{figure}[t!]
     \centering
-    \includegraphics[width=0.6\linewidth]{Figures/signal_PE_V2_PT.pdf}
     \caption{Fractional shift of a signal, (originally) with $10$ non-zero samples, defined on a graph formed by $80$ cities of Pernambuco state, Brazil. Note that the shifted signal is similar to the original signal, if $ a $ is close to $0$, and similar to the unit-shifted signal, if $ a $ is close to $1$.}%
+    \includegraphics[width=0.6\linewidth]{Figures/signal_PE_V2_PT.pdf}
+    \floatsource
     \label{fig:sinal_Pernambuco}%
     \vspace{-0.2cm}
 \end{figure}
 
 \begin{figure}[t!]
     \centering
+    \caption{Fractional shift for a signal (a) without and (b) with abrupt variations (descontinuities).}%
     \subfloat[\label{figa_gibbs}]{{
                 \includegraphics[width=0.4\linewidth]{Figures/d170309_frac_delay_ring_visualization_V2_no_gibbs.eps}
             }}~
@@ -273,7 +276,7 @@ Finally, it matters to highlight the fact that the signal to be shifted has to b
     \subfloat[\label{figb_gibbs}]{{
                 \includegraphics[width=0.4\linewidth]{Figures/frac_delay_ring_TESTS_gibbs_effect.eps}
             }}%
-    \caption{Fractional shift for a signal (a) without and (b) with abrupt variations (descontinuities).}%
+    \floatsource
     \label{fig:frac_delay_gibbs}%
     \vspace{-0.2cm}
 \end{figure}
@@ -303,22 +306,25 @@ The same result is obtained for even $N$, starting from the second row of~(\ref{
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.5\linewidth]{Figures/convergence_odd_N_V4.pdf}
     \caption{Percent error (normalized by the energy of $ \mathbf{h}_{_{LPF}} $) of $ \mathbf{h}_a $ related to $ \mathbf{h}_{_{LPF}} $, for different (odd) values of $ N $ and the fractional shift parameter $ a $.}
+    \includegraphics[width=0.5\linewidth]{Figures/convergence_odd_N_V4.pdf}
+    \floatsource
     \label{fig:convergence}
 \end{figure}
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.5\linewidth]{Figures/convergence_even_N_real_part.pdf}
     \caption{Relative mean error between $ \mathcal{R}e\{\mathbf{h}_a\} $ and $ \mathbf{h}_{_{LPF}} $ for $ N $ even, in terms of the fractional shift parameter $a$.}
+    \includegraphics[width=0.5\linewidth]{Figures/convergence_even_N_real_part.pdf}
+    \floatsource
     \label{fig:convergence_even_N_real_part}
 \end{figure}
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.5\linewidth]{Figures/convergence_even_N_abs_V2.pdf}
     \caption{Modulus of the relative mean error between $ \mathbf{h}_a $ and $ \mathbf{h}_{_{LPF}} $ for $ N $ even, in terms of the fractional shift parameter $a$.}
+    \includegraphics[width=0.5\linewidth]{Figures/convergence_even_N_abs_V2.pdf}
+    \floatsource
     \label{fig:convergence_even_N_abs}
     \vspace{-0.3cm}
 \end{figure}
@@ -423,8 +429,9 @@ the polynomial representation of $\mathbf{A}^{0.3}$.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.35\linewidth]{Figures/graph_jordan.pdf}
     \caption{Directed graph used to illustrate how the corresponding fractional shift operator can be computed and represented in polynomial form.}
+    \includegraphics[width=0.35\linewidth]{Figures/graph_jordan.pdf}
+    \floatsource
     \label{fig:polyrepres}
 \end{figure}
 
@@ -501,24 +508,27 @@ where $d_{n,m}$ denotes the geodesical distance between the $n^{\text{th}}$ and 
 
 \begin{figure}%
     \centering
-    \includegraphics[width=0.6\linewidth]{Figures/GNorm_estacoes_temperatura.pdf}
     \caption{Graph of a network formed by $230$ weather stations measuring the temperature across the United States. The snapshot of all measurements taken on February $1^{\text{st}}$, 2003 is the corresponding graph signal.}%
+    \includegraphics[width=0.6\linewidth]{Figures/GNorm_estacoes_temperatura.pdf}
+    \floatsource
     \label{fig:usa00}%
     \vspace{0.14cm}
 \end{figure}
 
 \begin{figure}[ht!]%
     \centering
-    \includegraphics[width=0.5\linewidth]{Figures/GNorm_estacoes_GFT_Temperatura.pdf}%\vspace{-0.1cm}
     \caption{Magnitude of the graph Fourier transform of the signal in Fig~\ref{fig:usa00}. The graph frequencies correspond to the eigenvalues of $\mathbf{A}$; low (resp. high) graph frequencies are associated with higher (resp. lower) eigenvalues.}%
+    \includegraphics[width=0.5\linewidth]{Figures/GNorm_estacoes_GFT_Temperatura.pdf}%\vspace{-0.1cm}
+    \floatsource
     \label{fig:usa01}%
     %\vspace{-0.2cm}
 \end{figure}
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.5\linewidth]{Figures/ERROR_ordens_fracionarias.pdf}
     \caption{Fractional parameters providing the minimum approximation errors, for different values of $L$, between the ideal LPF and the filter designed by using the fractional graph shift operator $\mathbf{A}^a$.}%
+    \includegraphics[width=0.5\linewidth]{Figures/ERROR_ordens_fracionarias.pdf}
+    \floatsource
     \label{fig:usa02}%
     %\vspace{-0.5cm}
 \end{figure}
@@ -529,16 +539,18 @@ In Fig.~\ref{fig:usa04}, we can observe the ideal filter response superimposed o
 
 \begin{figure}[t!]
     \centering
-    \includegraphics[width=0.65\linewidth]{Figures/ERROR_mse_min.pdf}
     \caption{Minimum approximation (mean squared) errors, for different values of $L$, between the ideal LPF and the filters designed by using the fractional graph shift operator $\mathbf{A}^a$ and the non-fractional operator $\mathbf{A}$.}%
+    \includegraphics[width=0.65\linewidth]{Figures/ERROR_mse_min.pdf}
+    \floatsource
     \label{fig:usa03}%
     %\vspace{-0.2cm}
 \end{figure}
 
 \begin{figure}[t!]
     \centering
-    \includegraphics[width=0.65\linewidth]{Figures/ERROR_estacoes_resposta_grau10.pdf}%\vspace{-0.4cm}
     \caption{Ideal filter response superimposed on the responses obtained when $\mathbf{A}$ and $\mathbf{A}^a$, $a=0.855$, are used to design a filter with $L+1=10$ coefficients.}
+    \includegraphics[width=0.65\linewidth]{Figures/ERROR_estacoes_resposta_grau10.pdf}%\vspace{-0.4cm}
+    \floatsource
     \label{fig:usa04}%
     %\vspace{-0.2cm}
 \end{figure}
@@ -554,8 +566,9 @@ During the experiment, the aforementioned percentage was varied from $1\%$ to $5
 
 \begin{figure}[t!]
     \centering
-    \includegraphics[width=0.7\linewidth]{Figures/ERROR_errobar_filtrados.pdf}
     \caption{Reconstruction (mean squared) errors after a noise removal procedure is performed by using graph filters with $L+1=10$ coefficients and designed from $\mathbf{A}$ and $\mathbf{A}^a$, $a=0.855$.}%
+    \includegraphics[width=0.7\linewidth]{Figures/ERROR_errobar_filtrados.pdf}
+    \floatsource
     \label{fig:usa05}%
     \vspace{-0.1cm}
 \end{figure}

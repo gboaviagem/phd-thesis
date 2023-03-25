@@ -56,8 +56,9 @@ K_\alpha (t, u) =
 
 \begin{figure}
 \centering
+\caption{Illustration of the FrFT property of rotation in the time-frequency plane.}
 \includegraphics[width=0.65\linewidth]{Figures/FrFT-Rotation-cropped.pdf}
-\caption{Illustration of the FrFT property of rotation in the time-frequency plane. Adapted from \cite{almeida1994fractional}.}
+\floatsource[adapted from \cite{almeida1994fractional}]
 \label{fig:frft_rotation}
 \end{figure}
 
@@ -136,8 +137,9 @@ All these examples share an important characteristic: the structure over which t
 
 \begin{figure}
 	\centering
+    \caption{Example of signal defined over a graph. The height of the vertical bars indicate the value of the signal samples, which are indexed by the graph vertices. The graph edges capture similarity relations between samples. How could one define spectral analysis and processing techniques in such a signal domain?}
 	\includegraphics[width=0.35\linewidth]{Figures/signal_duher_graph_2.pdf}
-	\caption{Example of signal defined over a graph. The height of the vertical bars indicate the value of the signal samples, which are indexed by the graph vertices. The graph edges capture similarity relations between samples. How could one define spectral analysis and processing techniques in such a signal domain?}
+	\floatsource
 	\label{fig:duher}
 \end{figure}
 
@@ -159,13 +161,14 @@ A graph is called \emph{undirected} if and only if its adjacency matrix is symme
 
 \begin{figure}
 	\centering
+    \caption{Examples of (a) directed and (b) undirected graphs, defined over the same vertex set.}
 	\subfloat[]{
 		\includegraphics[width=0.25\linewidth]{Figures/example_graph_01_math.pdf}
 	}~
 	\subfloat[\label{fig:example_graphs_b}]{
 		\includegraphics[width=0.25\linewidth]{Figures/example_graph_02_math.pdf}
 	}
-	\caption{Examples of (a) directed and (b) undirected graphs, defined over the same vertex set.}
+	\floatsource
 	\label{fig:example_graphs}
 \end{figure}
 
@@ -184,6 +187,7 @@ A graph is said to be \emph{unweighted} if all its edges have unit weight. A \em
 
 \begin{figure}
 	\centering
+    \caption{(a) A graph and (b) the set of vertices $ \mathcal{N}(i,2) $ shown in red, with $ v_i $ being depicted in white. The edges linking $ v_i $ to the elements in $ \mathcal{N}(i,2) $ are also highlighted in red.}%
 	\subfloat[\label{fig:k_hop_neighborhood_01}]{
 		\includegraphics[width=0.25\linewidth]{Figures/k_hop_neighborhood_01.pdf}
 	}~
@@ -192,7 +196,7 @@ A graph is said to be \emph{unweighted} if all its edges have unit weight. A \em
 		\includegraphics[width=0.25\linewidth]{Figures/k_hop_neighborhood_02.pdf}
 	}
 	%\hspace{0.2cm}%
-	\caption{(a) A graph and (b) the set of vertices $ \mathcal{N}(i,2) $ shown in red, with $ v_i $ being depicted in white. The edges linking $ v_i $ to the elements in $ \mathcal{N}(i,2) $ are also highlighted in red.}%
+	\floatsource
 	\label{fig:k_hop_neighborhood}%
 \end{figure}
 
@@ -212,6 +216,9 @@ so that the graph signal $ \mathbf{s} $ can be seen as a column vector in $ \mat
 
 \begin{figure*}
 	\centering
+    \caption{Examples of depictions of graph signals over (a) a directed ring graph,
+		(b) an undirected regular grid graph and (c) a graph of cities from the Brazilian Northeastern region, over which was defined a signal of temperature measurements from February 1\textsuperscript{st} of 2012, retrieved from the
+		\emph{Banco de Dados Meteorol\'ogicos para Ensino e Pesquisa} (BDMEP, freely translated as Meteorological Database for Teaching and Research), available at: \texttt{\url{http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep}}.}%
 	\subfloat[\label{figa_graphs}]{
 		\includegraphics[width=0.25\linewidth]{Figures/signal_ring_graph_white_border.pdf}
 	}
@@ -220,14 +227,10 @@ so that the graph signal $ \mathbf{s} $ can be seen as a column vector in $ \mat
 	}%
 	\subfloat[\label{figd_graphs}]{
 		\includegraphics[width=0.3\linewidth]{Figures/temp_NE_stretched.pdf} }%
-	\caption{Examples of depictions of graph signals over (a) a directed ring graph,
-		(b) an undirected regular grid graph and (c) a graph of cities from the Brazilian Northeastern region, over which was defined a signal of temperature measurements from February 1\textsuperscript{st} of 2012, retrieved from the
-		\emph{Banco de Dados Meteorol\'ogicos para Ensino e Pesquisa} (BDMEP, freely translated as Meteorological Database for Teaching and Research), available at: \url{http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep}.}%
+	\floatsource
 	\label{fig:graphs}%
 	\vspace{-0.2cm}
 \end{figure*}
-
-%\footnote{Fonte: Banco de Dados Meteorol\'ogicos para Ensino e Pesquisa (BDMEP) do Instituto Nacional de Meteorologia. Acesso gratuito ap\'os cadastro, dispon\'ivel em: \url{http://www.inmet.gov.br/portal/index.php?r=bdmep/bdmep}.}
 
 Fig. \ref{fig:graphs} provides examples of graph signal representations, in which the vertex labeling is omitted for the sake of simplicity, as it will be assumed that the signal sample $ s_i $ is assigned to vertex $ v_i $. The signal values are indicated in two manners: either by writing down its numerical value next to the respective vertex, or by using a pseudocolor scale, the latter of which is the scheme adopted throughout this paper.
 
@@ -235,6 +238,7 @@ It is crucial to stress a certain graph which links GSP to the classical DSP the
 
 \begin{figure*}
 	\centering
+    \caption{The same signal defined over two similar graphs, one of them being (a) the undirected ring graph. In (b) and (d) are depicted the Fourier spectra of the signals in (a) and (c), respectively.}%
 	\begin{minipage}[c]{0.24\linewidth}
 		\subfloat[\label{fig:diff_struct_a}]{
 			\includegraphics[width=\linewidth]{Figures/ring_different_structure_01.pdf}
@@ -255,7 +259,7 @@ It is crucial to stress a certain graph which links GSP to the classical DSP the
 			\includegraphics[width=\linewidth]{Figures/ring_different_structure_02_spectrum_EN.pdf}
 		}
 	\end{minipage}%
-	\caption{The same signal defined over two similar graphs, one of them being (a) the undirected ring graph. In (b) and (d) are depicted the Fourier spectra of the signals in (a) and (c), respectively.}%
+	\floatsource
 	\label{fig:diff_struct}%
 	\vspace{-0.2cm}
 \end{figure*}
@@ -408,6 +412,7 @@ The way the GFT was defined naturally suggests the interpretation of the adjacen
 
 \begin{figure}
 	\centering
+    \caption{(a) Signal defined over an undirected ring graph and (b) its spectrum. The frequencies are indicated by the eigenvalues of the adjacency matrix.}%
 	\begin{minipage}[c]{0.25\linewidth}
 		\subfloat[\label{fig:diff_struct_a_GSPA}]{
 			\includegraphics[width=\linewidth]{Figures/ring_different_structure_01_GSPA.pdf}
@@ -418,7 +423,7 @@ The way the GFT was defined naturally suggests the interpretation of the adjacen
 			\includegraphics[width=\linewidth]{Figures/ring_different_structure_01_spectrum_GSPA_EN_2.pdf}
 		}
 	\end{minipage}%
-	\caption{(a) Signal defined over an undirected ring graph and (b) its spectrum. The frequencies are indicated by the eigenvalues of the adjacency matrix.}%
+	\floatsource
 	\label{fig:diff_struct_GSPA}%
 	\vspace{-0.2cm}
 \end{figure}
@@ -452,8 +457,9 @@ with $ \mathbf{A}^{\text{norm}} = |\lambda_{max}|^{-1}\mathbf{A} $ and $ \lambda
 
 \begin{figure}
 	\centering
+    \caption{Frequency ordering of graph signals, from low to high frequencies, in the complex plane.}
 	\includegraphics[width=0.45\linewidth]{Figures/graph_frequency_EN.pdf}
-	\caption{Frequency ordering of graph signals, from low to high frequencies, in the complex plane \cite{sandryhaila2014frequency}.}
+	\floatsource[adapted from \cite{sandryhaila2014frequency}]
 	\label{fig:ordem_freq}
 \end{figure}
 
@@ -475,15 +481,10 @@ so that, since $ \Vert \mathbf{v}_k \Vert_1 = 1 $,
 \end{equation}
 i.~e., frequency components associated with eigenvalues closer to the real point $ |\lambda_{max}| $ in the complex plane are \emph{smoother} (because they have lower total variation), and therefore are said to be of \emph{low frequency}. Fig. \ref{fig:ordem_freq} illustrates this ordering for graph frequencies, what clarifies the spectrum of the signal in Fig. \ref{fig:diff_struct_a_GSPA} (notice that since the graph is undirected, its adjacency matrix is symmetric and the eigenvalues are real-valued).
 
-%\begin{figure}
-%	\centering
-%	\includegraphics[width=0.6\linewidth]{Figures/showing_random_sensor_spectrum_directed_graph.pdf}
-%	\caption{Grafo de sensores direcionado, com 100 v\'ertices, sem la\c cos ou m\'ultiplas arestas.}
-%	\label{fig:directed_graph}
-%\end{figure}
 
 \begin{figure*}
 	\centering
+    \caption{(a) Directed sensor graph, with $ N=100 $ vertices and no loops or multiple edges. (b) Number of zero crossings and (b) total variation of the eigenvectors $ (\mathbf{v}_i)_{i=0,\dots,N-1} $ of the adjacency matrix $ \mathbf{A} $ of the graph in \emph{(a)}, ordered so that the respective eigenvalues appear from the closest to the farthest from the real point $ |\lambda_{max}| $ in the complex plane. That is, according to (\ref{eq:TV_ordering}) and Fig. \ref{fig:ordem_freq}, the eigenvectors are disposed in ascending order of frequency.}
 	\subfloat[\label{fig:directed_graph}]{
 			\includegraphics[width=0.31\linewidth]{Figures/showing_random_sensor_spectrum_directed_graph.pdf}
 		}
@@ -493,21 +494,11 @@ i.~e., frequency components associated with eigenvalues closer to the real point
 	\subfloat[\label{fig:showing_random_sensor_spectrum_directed_c}]{
 		\includegraphics[width=0.33\linewidth]{Figures/showing_random_sensor_spectrum_directed_TV_1D_edited_EN.pdf}
 	}
-	\caption{(a) Directed sensor graph, with $ N=100 $ vertices and no loops or multiple edges. (b) Number of zero crossings and (b) total variation of the eigenvectors $ (\mathbf{v}_i)_{i=0,\dots,N-1} $ of the adjacency matrix $ \mathbf{A} $ of the graph in \emph{(a)}, ordered so that the respective eigenvalues appear from the closest to the farthest from the real point $ |\lambda_{max}| $ in the complex plane. That is, according to (\ref{eq:TV_ordering}) and Fig. \ref{fig:ordem_freq}, the eigenvectors are disposed in ascending order of frequency.}
+	\floatsource
 	\label{fig:showing_random_sensor_spectrum_directed}
 \end{figure*}
 
 Let us take the directed graph in Fig. \ref{fig:directed_graph} to try to verify the consistency of the notion of frequency just derived. For this, along with the total variation on graphs, also the number of zero crossings (i.~e., the number of edges connecting vertices with signal samples of different sign) will be used to \emph{quantify} frequency. This quantity is also related to frequency in classical theory: the more a discrete signal has contiguous samples with different sign, generally the higher are its frequency components. These two functions, the total variation on graphs and the number of zero crossings, were calculated for each of the adjacency matrix eigenvectors, and the result is shown in Fig. \ref{fig:showing_random_sensor_spectrum_directed}, in which the eigenvectors $ \mathbf{v}_k $ are ordered in such a way that the respective eigenvalues $ \lambda_k $ appear from the closest to the farthest from the real point $ |\lambda_{max}| $ in the complex plane. Both metrics have similar behaviour, but since the number of zero crossings is indifferent to graph signal variations which do not change sign, it was already expected to be less accurate as a figure of merit for frequency. It matters to highlight, however, how the adopted eigenvector ordering indeed implies an ascending frequency order, since both functions in Fig. \ref{fig:showing_random_sensor_spectrum_directed_b} and \ref{fig:showing_random_sensor_spectrum_directed_c} agree on the tendency of growth. More than that, $ TV_G(\mathbf{v}_k) $ grows \emph{monotonically}, as it should do according to (\ref{eq:TV_ordering}).
-
-%It can be seen that both metrics, which are expected to return higher values when having signals with higher frequencies as argument, have similar (but not \emph{equal}) behavior when evaluated at the eigenvectors $ \mathbf{v}_i $, following what is suggested by (\ref{eq:TV_ordering}) and Fig. \ref{fig:ordem_freq}. However, one can find in Fig. \ref{fig:showing_random_sensor_spectrum_directed} pairs of eigenvectors in which the one expected to have higher frequency appears with lower total variation (notice that the eigenvectors, according to (\ref{eq:TV_ordering}), \emph{should be} in ascending order of frequency). Another curious fact we highlight is that, in both metrics, the eigenvector $ \mathbf{v}_{20} $ and some others have \emph{unexpectedly small values} of total variation and number of zero crossings, what is explicitly shown in Fig. \ref{fig:showing_random_sensor_spectrum_directed_TV_smallest}, in which the 12 smallest values of total variation are shown, among those obtained from all the eigenvectors of $ \mathbf{A} $, as a function of the associated eigenvalues: the eigenvalue with bigger magnitude, in fact, leads to null total variation of its respective eigenvector, but the second smaller total variation is obtained when $ \lambda=0 $. That was not yet fully understood, and further studies are needed to a complete comprehension of the notion of frequency in GSP\textsubscript{A}, and its validity under the metrics used previously.
-
-%\begin{figure}
-%	\centering
-%	\includegraphics[width=0.65\linewidth]{Figures/showing_random_sensor_spectrum_directed_TV_smallest12_EN.pdf}
-%	\caption{The total variation of the adjacency matrix eigenvectors of the graph in Fig. \ref{fig:showing_random_sensor_spectrum_directed} was computed, and the 12 smallest values are shown in red. They are indexed in the horizontal axis by the respective eigenvectors, and the associated eigenvalues are shown in blue.}
-%	\label{fig:showing_random_sensor_spectrum_directed_TV_smallest}
-%%	\vspace{-0.5cm}
-%\end{figure}
 
 It is convenient to conclude this discussion on the graph frequency domain by referring to the frequency response of graph filters. The definition given in Subsection \ref{subsec:filtros} considers the action of a matrix on a signal $ \mathbf{x} $ in the vertex domain of the graph $ \mathcal{G} = \{\mathcal{V}, \mathbf{A}\} $. In order to understand how the filter acts in the GFT domain, hereinafter called frequency domain, one may use (\ref{eq:gft_01}) and the polynomial representation of LSI filters. Let us take the filter $ \mathbf{H} =\sum_{\ell=0}^{L} h_\ell \mathbf{A}^\ell $ and its output to the input $ \mathbf{x} $ given by
 \begin{align}\label{eq:resposta_freq_01}
