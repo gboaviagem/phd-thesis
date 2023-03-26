@@ -579,9 +579,9 @@ Finally, let us evaluate how well the QLMS filter realizes the denoising in the 
 
 Trying out firstly the \textit{ideal} low-pass filter, as a benchmark, we see that it was able to produce a filtered signal with $\text{NMSE}\{ \mathbf{s_{ideal}} \} = 0.166$, dropping by 42\% the error verified in the corrupted signal $\mathbf{s_n}$, which was $\text{NMSE}\{ \mathbf{s_n} \} = 0.28991$. The FIR low-pass filter, designed via QLMS optimization and having only $L+1 = 7$ filter taps, performed better, reaching an error of $\text{NMSE}\{ \mathbf{s_{qlms}} \} = 0.15579$, a 46\% drop. The reason is justified, since the original signal was not null outside the passband, so that the FIR filter was able to preserve more of its energy in that frequency range than the ideal filter.
 
-\subsubsection{Comparison between signal smoothness in symmetric and Hermitian graphs}
+\subsection{Comparison between signal smoothness in symmetric and Hermitian graphs}
 
-The reader may have risen the question of which differences would have appeared if a symmetric adjacency matrix was used, instead of a Hermitian one. Although the graph shift operator would lose the \textit{guaranteed} diagonalizability, the undirect edges would more naturally represent the context at hand, in which similarity between weather in close towns has no directional preference. Let us go briefly through the consequences found when switching from Hermitian to symmetric adjacency matrices.
+The reader may have risen the question of which differences would have appeared if, in the Subsection \ref{subsec:denoising}, a symmetric adjacency matrix was used, instead of a Hermitian one. Although the graph shift operator would lose the \textit{guaranteed} diagonalizability, the undirect edges would more naturally represent the context at hand, in which similarity between weather in close towns has no directional preference. Let us go briefly through the consequences found when switching from Hermitian to symmetric adjacency matrices.
 
 First of all, it was somehow harder to find a value of $\theta$ in (\ref{eq:edge_weight_qgsp}) which led to a low-pass signal. After some trials, the most satisfactory choice was also $\theta = 2$, but the spectrum profile did not show an energy concentration on low frequencies as good as with the Hermitian case. See Fig. \ref{fig:uk_spectrum_symmetric}.
 
