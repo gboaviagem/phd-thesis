@@ -1,0 +1,15 @@
+
+% !TEX root = ../thesis-example.tex
+%
+% \pdfbookmark[0]{Abstract}{Abstract}
+% \chapter*{Abstract}
+% \label{sec:abstract}
+%\vspace*{-10mm}
+
+A área de Processamento de Sinais, em sua essência, preocupa-se em explorar como diferentes representações de um sinal podem fornecer maneiras úteis de manipulá-lo. Essas representações podem surgir, por exemplo, a partir de uma mudança na álgebra subjacente sobre a qual as amostras do sinal são definidas, como ocorre ao representar sinais de três ou quatro dimensões como vetores de um espaço vetorial quaterniônico. Outras representações podem advir de mudanças no domínio do sinal, como ocorreu com o desenvolvimento do processamento de sinais de grafos, para lidar com sinais estruturados em rede; ou ainda podem vir da exploração de novas transformadas lineares que mapeiam o sinal em um domínio em que tarefas como compressão, filtragem ou extração de recursos sejam mais fáceis ou eficientes.
+Esta tese desenvolve-se exatamente por esses caminhos, visando responder à pergunta de como estender o processamento de sinais sobre grafos para o caso em que os sinais e pesos das arestas são quaterniônicos. Propõe-se um novo conjunto de ferramentas que são a base do que pode ser chamado de Processamento de Sinais Quaterniônicos sobre Grafos (QGSP, \emph{quaternion graph signal processing}) e, como subprodutos da jornada de pesquisa, contribui-se para o campo das transformadas fracionárias em duas frentes: propondo uma nova abordagem para a fracionalização da transformada discreta de Fourier quaterniônica (QDFT, \emph{quaternion discrete Fourier transform}), juntamente com a proposta de sua versão multiparamétrica, e propondo um novo operador de deslocamento sobre grafo fracionário (GSO, \emph{graph shift operator}).
+Entre os principais resultados, podemos mencionar: (1) a representação polinomial do GSO fracionário para grafos arbitrários foi obtida, e foi demonstrado que seu uso no projeto de filtros de resposta finita de impulso e lineares e invariantes a deslocamento (FIR LSI, \emph{finite impulse response and linear and shift-invariant}) melhora a qualidade geral do filtro para um determinado comprimento de filtro; (2) a nova QDFT fracionária multiparamétrica foi usada para criar um esquema de criptografia holística para imagens coloridas com camada de opacidade, que fornece um espaço de chave satisfatoriamente grande e com grande sensibilidade à mudança de chave; e (3) os principais aspectos da análise espectral, filtragem e compressão no contexto do QGSP foram formulados, juntamente com extensos exemplos práticos em dados do mundo real calculados por meio de um pacote Python personalizado e de código aberto.
+\vspace{1em}
+
+\noindent
+\textbf{Palavras-chave}: Quatérnios; Transformada discreta de Fourier quaterniônica fracionária; Operador de deslocamento de grafo fracionário; Processamento de sinal de grafo quaterniônico.

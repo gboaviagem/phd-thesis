@@ -1,12 +1,10 @@
 \chapter{A review on quaternion algebra and its Fourier transform}
 \label{ch:reviewQuat}
 
-\begin{quotation}
-    \itshape
+\begin{openingquote}
     And here there dawned on me the notion that we must admit, in some sense, a fourth dimension of space for the purpose of calculating with triples... An electric circuit seemed to close, and a spark flashed forth.
-
-    \noindent --- Sir William Hamilton.
-\end{quotation}
+    \cite[quoting directly Sir William Hamilton]{van1976hamilton}
+\end{openingquote}
 
 
 In 1833, at the age of 28, Willian Rowan Hamilton presented to the Royal Irish Academy (RIA) a work in which complex numbers were treated as ordered pairs of real numbers, given the appropriate definition of operations.\footnote{The results were published in 1837, in the paper \emph{Theory of Conjugate Functions, or Algebraic Couples; with a Preliminary and Elementary Essay on Algebra as the Science of Pure Time} \cite{hamilton1837theory}.} In the following years, he struggled to extend the complex field into a normed division algebra over triples, but soon realized that, as much as his attempts were inventive, the resulting algebra\footnote{An \textit{algebra over a field}, or simply \textit{algebra}, is a vector space over a field with a bilinear multiplication (that is, the multiplication distributes over the addition and the associativity is valid for multiplication) \cite{schafer1955introduction}.} was not closed under multiplication. We can see this through a simple example \cite{santos2011algebra}: let it be the set $\mathbb{F} = \{ a + b \qi + c \qj  \ | \ (a, b, c) \in \mathbb{R}^3\}$, with $\qi^2 = \qj^2 = -1$ and $\qi \neq \qj$. Since $\qi, \qj \in \mathbb{F}$, so there should exist $x, y, z \in \mathbb{R}$ so that

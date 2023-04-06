@@ -1,8 +1,8 @@
 \documentclass[
 	% -- opções da classe memoir --
 	11pt,				% tamanho da fonte
-	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
-	twoside,			% para impressão em recto e verso. Oposto a oneside
+	% openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,			% para impressão em recto e verso. Oposto a oneside
 	a4paper,			% tamanho do papel. 
 	% -- opções da classe abntex2 --
 	% chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
@@ -79,7 +79,7 @@
 \tipotrabalho{Thesis}
 % O preambulo deve conter o tipo do trabalho, o objetivo, 
 % o nome da instituição e a área de concentração 
-\preambulo{This work was presented to the Electrical Engineering Graduate Program, at the Technology and Geoscience Center of the Federal University of Pernambuco, as a partial requisite to obtain a doctorate degree on Electrical Engineering.
+\preambulo{This work was presented to the Electrical Engineering Graduate Program, at the Technology and Geoscience Center of the Federal University of Pernambuco, as a partial requisite to obtain a doctorate degree on Electrical Engineering. Field (\emph{\'area de concentra\c c\~ao}): Communications.}
 }
 % ---
 
@@ -269,72 +269,39 @@
 % do trabalho. Após isso, substitua todo o conteúdo deste arquivo por uma
 % imagem da página assinada pela banca com o comando abaixo:
 %
+% \begin{folhadeaprovacao}
+% \includepdf[pages={1}]{./frontmatter/folha_de_aprovacao.pdf}
+% \end{folhadeaprovacao}
+%
 \begin{folhadeaprovacao}
-\includepdf[pages={1}]{./frontmatter/folha_de_aprovacao.pdf}
+    \input{frontmatter/folhadeaprovacao.tex}
 \end{folhadeaprovacao}
-%
-%\begin{folhadeaprovacao}
-%
-%  \begin{center}
-%    {\ABNTEXchapterfont\large\imprimirautor}
-%
-%    \vspace*{\fill}\vspace*{\fill}
-%    \begin{center}
-%      \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
-%    \end{center}
-%    \vspace*{\fill}
-%    
-%    \hspace{.45\textwidth}
-%    \begin{minipage}{.5\textwidth}
-%        \imprimirpreambulo
-%    \end{minipage}%
-%    \vspace*{\fill}
-%   \end{center}
-%        
-%   Trabalho aprovado. \imprimirlocal, 24 de novembro de 2012:
-%
-%   \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
-%   \assinatura{\textbf{Professor} \\ Convidado 1}
-%   \assinatura{\textbf{Professor} \\ Convidado 2}
-%   %\assinatura{\textbf{Professor} \\ Convidado 3}
-%   %\assinatura{\textbf{Professor} \\ Convidado 4}
-%      
-%   \begin{center}
-%    \vspace*{0.5cm}
-%    {\large\imprimirlocal}
-%    \par
-%    {\large\imprimirdata}
-%    \vspace*{1cm}
-%  \end{center}
-%  
-%\end{folhadeaprovacao}
 % ---
 
 \begin{dedicatoria}
     \input{frontmatter/dedicatoria.tex}
 \end{dedicatoria}
 
-% \begin{agradecimentos}
-
-% \end{agradecimentos}
+\begin{agradecimentos}
+    \input{frontmatter/acknowledgement.tex}
+\end{agradecimentos}
 
 \begin{epigrafe}
     \input{frontmatter/epigraph.tex}
 \end{epigrafe}
 % ---
 
-%% Agradecimentos
-\begin{resumo}[Agradecimentos]
-    \begin{otherlanguage*}{portuguese}
-        \input{frontmatter/acknowledgement.tex}
-    \end{otherlanguage*}
-\end{resumo}
-
 %
 %% resumo em inglês
 \begin{resumo}[Abstract]
     \begin{otherlanguage*}{english}
     \input{frontmatter/abstract.tex}
+    \end{otherlanguage*}
+\end{resumo}
+
+\begin{resumo}[Resumo]
+    \begin{otherlanguage*}{portuguese}
+    \input{frontmatter/resumo.tex}
     \end{otherlanguage*}
 \end{resumo}
 

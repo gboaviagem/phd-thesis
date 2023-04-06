@@ -13,8 +13,31 @@
 
 \usepackage[font=small,labelfont=bf, position=top]{caption}
 
+\newenvironment{openingquote}
+    {
+        \begin{flushright}
+        \begin{minipage}{\textwidth - 4cm}
+        \small
+    }
+    { 
+        \end{minipage}
+        \end{flushright}
+    }
+
 \definecolor{cancelgray}{gray}{0.5}
 \renewcommand{\CancelColor}{\color{cancelgray}}
+
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    left=30mm,
+    top=30mm,
+    right=20mm,
+    bottom=20mm,
+}
+\linespread{1.5}
+\usepackage{chngcntr}
+\counterwithout{equation}{chapter} % remove the chapter number
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{example}{Example}
@@ -37,7 +60,7 @@
 \newcommand{\red}[1]{{\color{red}#1}}
 \DeclareRobustCommand{\rchi}{{\mathpalette\irchi\relax}}
 \newcommand{\irchi}[2]{\raisebox{\depth}{\Large $#1\chi$}} % inner command, used by \rchi
-\newcommand{\floatsource}[1][author]{\\ \small Source: #1.}
+\newcommand{\floatsource}[1][the author (2022)]{\\ \small Source: #1.}
 
 % ISOMORPHISM SYMBOL
 \makeatletter
