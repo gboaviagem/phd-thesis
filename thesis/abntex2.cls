@@ -180,8 +180,8 @@
   \renewcommand{\anexosname}{Annex}
   \renewcommand{\apendicename}{APPENDIX}
   \renewcommand{\apendicesname}{Appendix}
-  \renewcommand{\orientadorname}{Supervisor:}
-  \renewcommand{\coorientadorname}{Co-supervisor:}
+  \renewcommand{\orientadorname}{Advisor:}
+  \renewcommand{\coorientadorname}{Co-advisor:}
   \renewcommand{\folhadeaprovacaoname}{Approval}
   \renewcommand{\resumoname}{Abstract} 
   \renewcommand{\listadesiglasname}{List of abbreviations and acronyms}
@@ -1017,13 +1017,13 @@
 % Comando \assinatura for signature
    % width of the line and text under the line
 \newlength{\ABNTEXsignwidth}
-\setlength{\ABNTEXsignwidth}{8cm}
+\setlength{\ABNTEXsignwidth}{10cm}
    % thickness of the line
 \newlength{\ABNTEXsignthickness}
 \setlength{\ABNTEXsignthickness}{1pt}
    % ammount of space left between previous text and th signature line
 \newlength{\ABNTEXsignskip}
-\setlength{\ABNTEXsignskip}{0.7cm}
+\setlength{\ABNTEXsignskip}{0.3cm}
    % \assinatura{name} -> types a line with name under the line, centralized
    % \assinatura*{name} -> Creates the box with the line and name under
    %     it, but the box has no position assigned. However the line and the
@@ -1049,6 +1049,7 @@
 % ------------------------------------------------------------------------
 
 % ---
+% GBR: editing the titlepage
 % Impressão da Capa
 \newcommand{\imprimircapa}{%
   \begin{capa}%
@@ -1106,7 +1107,9 @@
 
     {\abntex@ifnotempty{\imprimirinstituicao}{\imprimirinstituicao\vspace*{\fill}}}
 
-    {\large\imprimirorientadorRotulo~\imprimirorientador\par}
+    \begin{flushleft}
+    \large\imprimirorientadorRotulo~\imprimirorientador\par
+    \end{flushleft}
     \abntex@ifnotempty{\imprimircoorientador}{%
        {\large\imprimircoorientadorRotulo~\imprimircoorientador}%
     }%
