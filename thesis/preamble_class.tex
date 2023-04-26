@@ -1,0 +1,107 @@
+\renewcommand{\ABNTEXchapterfont}{\fontfamily{cmr}\fontseries{b}\selectfont}
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+
+% NEW COMMANDS
+\newcommand{\doublecitep}[2]{\citep[como citado em \citealp{#2}]{#1}} % double citations, the result is \citep[como citado em  \citealp{someotherguykey2013}]{someguykey2010}
+
+\renewcommand{\ABNTEXsubsubsectionfont}{\rmfamily\mdseries}%neto anterior:{\rmfamily}
+\renewcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
+
+\renewcommand{\ABNTEXsubsectionfont}{\rmfamily\bfseries}%neto anterior:{\rmfamily}
+\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
+
+\renewcommand{\ABNTEXsectionfont}{\rmfamily\mdseries}%neto anterior: {\ABNTEXsubsectionfont\bfseries}
+\renewcommand{\ABNTEXsectionfontsize}{\normalsize}
+
+\renewcommand{\ABNTEXchapterfont}{\ABNTEXsectionfont\bfseries}%neto anterior:{\ABNTEXsectionfont}
+\renewcommand{\ABNTEXchapterfontsize}{\normalsize}
+%
+% Fontes das entradas do sumario
+%
+\renewcommand{\cftsubsectionfont}{\bfseries} % neto aterior: {\mdseries\normalsize}
+\renewcommand{\cftsubsectionpagefont}{\cftsubsectionfont}
+%
+\renewcommand{\cftsectionfont}{\mdseries}% neto aterior: {\bfseries}
+\renewcommand{\cftsectionpagefont}{\cftsectionfont}%neto anterior: {\cftsectionfont}
+%
+\renewcommand{\cftchapterfont}{\bfseries}
+\renewcommand{\cftchapterpagefont}{\normalsize\cftchapterfont}
+
+
+\renewcommand{\imprimircapa}{%
+\begin{capa}%
+    \center
+    \includegraphics[width=2cm]{logoufpe}\\
+    %\rmfamily\bfseries\normalsize\imprimirinstituicao\vspace{2cm}
+    
+    \vspace{1cm}
+    \rmfamily\mdseries\normalsize\imprimirinstituicao\vspace{2cm}
+    %neto mdseries-normal, bfseries-negrito
+
+    %\ABNTEXchapterfont\large\imprimirautor
+    \MakeUppercase{\rmfamily\mdseries\normalsize\imprimirautor}
+
+    \vspace{2cm}%\vfill
+    \begin{center}
+        \MakeUppercase{
+            \rmfamily\bfseries\normalsize\imprimirtitulo
+        }
+    \end{center}
+    \vfill
+
+    \mdseries\normalsize\imprimirlocal
+    
+    \mdseries\normalsize\imprimirdata
+    
+    \vspace*{1cm}
+\end{capa}
+}
+
+% FOLHA DE ROSTO
+\makeatletter
+\renewcommand{\folhaderostocontent}{
+	\begin{center}
+		
+		%\vspace*{1cm}
+		\MakeUppercase{\rmfamily\mdseries\normalsize\imprimirautor}
+		
+		\vspace*{\fill}\vspace*{\fill}
+		\begin{center}
+            \MakeUppercase{
+			    \rmfamily\bfseries\normalsize\imprimirtitulo
+            }
+		\end{center}
+		\vspace*{\fill}
+		
+		\abntex@ifnotempty{\imprimirpreambulo}{%
+			\hspace{.45\textwidth}
+			\begin{minipage}{.5\textwidth}
+				\SingleSpacing
+				\imprimirpreambulo
+				
+			\end{minipage}%
+			\vspace*{\fill}
+		}%
+		
+		%{\abntex@ifnotempty{\imprimirinstituicao}{\imprimirinstituicao\vspace*{\fill}}}
+		{\raggedright
+		{\normalsize\imprimirorientadorRotulo~\mdseries\imprimirorientador\par}
+		%\abntex@ifnotempty{\imprimircoorientador}{%
+		{\normalsize\imprimircoorientadorRotulo~\mdseries\imprimircoorientador\par}%
+		%}%
+		}
+		\vspace*{\fill}
+		
+		{\normalsize\imprimirlocal}
+		\par
+		{\normalsize\imprimirdata}
+		\vspace*{1cm}
+        \newpage
+        \
+        \newpage
+		
+	\end{center}
+}
+\makeatother

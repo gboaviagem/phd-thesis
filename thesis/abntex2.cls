@@ -1,5 +1,5 @@
-%% abntex2.cls, v<VERSION> laurocesar
-%% Copyright 2012-<COPYRIGHT_YEAR> by abnTeX2 group at https://www.abntex.net.br/ 
+%% abntex2.cls, v-1.9.6 laurocesar
+%% Copyright 2012-2016 by abnTeX2 group at https://www.abntex.net.br/ 
 %%
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
@@ -23,7 +23,7 @@
 % ------------------------------------------------------------------------
 % ------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{abntex2}[<CURRENT_DATE> v<VERSION> abnTeX2]
+\ProvidesClass{abntex2}[2016/02/26 v-1.9.6 abnTeX2]
 \RequirePackage{ifthen}
 %
 % Captura as options article e twocolumn
@@ -240,27 +240,20 @@
 
 % ---
 % Fontes padroes de part, chapter, section, subsection e subsubsection
-% GBR: Font styles
-\newcommand{\GBRChapterStyle}{\scshape}
-\newcommand{\GBRSectionStyle}{\bfseries}
-\newcommand{\GBRSubsectionStyle}{\mdseries}
-\newcommand{\GBRSubsubsectionStyle}{\sffamily}
-
-% GBR: Here I edit the default fonts from ABNTeX.
-\newcommand{\ABNTEXchapterfont}{\rmfamily}
-\newcommand{\ABNTEXchapterfontsize}{\Huge\GBRChapterStyle}
+\newcommand{\ABNTEXchapterfont}{\sffamily}
+\newcommand{\ABNTEXchapterfontsize}{\Huge}
 
 \newcommand{\ABNTEXpartfont}{\ABNTEXchapterfont}
 \newcommand{\ABNTEXpartfontsize}{\ABNTEXchapterfontsize}
 
 \newcommand{\ABNTEXsectionfont}{\ABNTEXchapterfont}
-\newcommand{\ABNTEXsectionfontsize}{\Large\GBRSectionStyle}
+\newcommand{\ABNTEXsectionfontsize}{\Large}
 
 \newcommand{\ABNTEXsubsectionfont}{\ABNTEXsectionfont}
-\newcommand{\ABNTEXsubsectionfontsize}{\Large\GBRSubsectionStyle}
+\newcommand{\ABNTEXsubsectionfontsize}{\large}
 
 \newcommand{\ABNTEXsubsubsectionfont}{\ABNTEXsubsectionfont}
-\newcommand{\ABNTEXsubsubsectionfontsize}{\large\GBRSubsubsectionStyle}
+\newcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
 
 \newcommand{\ABNTEXsubsubsubsectionfont}{\ABNTEXsubsectionfont}
 \newcommand{\ABNTEXsubsubsubsectionfontsize}{\normalsize}
@@ -373,6 +366,7 @@
 }
 
 % Define o comando \fonte que respeita as configurações de caption do memoir ou do caption
+\makeatletter
 \newcommand{\fonte}[2][\fontename]{%
   \M@gettitle{#2}%
   \memlegendinfo{#2}%
@@ -387,9 +381,12 @@
      \captiondelim{\ABNTEXcaptionfontedelim}
      \@makecaption{\ABNTEXfontereduzida #1}{\ignorespaces\ABNTEXfontereduzida #2}\par
   \endgroup}
+\makeatother
 
 % Define o comando \notas que respeita as configurações de caption do memoir ou do caption
+\makeatletter
 \newcommand{\nota}[2][\notaname]{\fonte[#1]{#2}}
+\makeatother
 
 
 % Altera os comandos \configurecaptions e \configureseparator para trabalhar com 
@@ -475,25 +472,17 @@
 
 % No caso de Sumario (TOC) especifico da ABNT-6027-2012
 
-% GBR: Here we edit the specificity of the TOC
 \makeatletter
 \ifthenelse{\boolean{ABNTEXsumario-abnt-6027-2012}}{
   \settocpreprocessor{chapter}{%
   \let\tempf@rtoc\f@rtoc%
   \def\f@rtoc{%
-  \texorpdfstring{\GBRChapterStyle\NoCaseChange{\tempf@rtoc}}{\tempf@rtoc}}%
+  \texorpdfstring{\MakeTextUppercase{\tempf@rtoc}}{\tempf@rtoc}}%
   }
-  %
   \settocpreprocessor{part}{%
   \let\tempf@rtoc\f@rtoc%
   \def\f@rtoc{%
-  \texorpdfstring{\NoCaseChange{\tempf@rtoc}}{\tempf@rtoc}}%
-  }
-  %
-  \settocpreprocessor{sec}{%
-  \let\tempf@rtoc\f@rtoc%
-  \def\f@rtoc{%
-  \texorpdfstring{\GBRSectionStyle\NoCaseChange{\tempf@rtoc}}{\tempf@rtoc}}%
+  \texorpdfstring{\MakeTextUppercase{\tempf@rtoc}}{\tempf@rtoc}}%
   }
 }{}
 \makeatother
@@ -519,18 +508,18 @@
     \addtocontents{toc}{\cftsetindents{chapter}{\cftlastnumwidth}{2em}}}
   %
   \renewcommand{\tocpartapendices}{%
-    \addtocontents{toc}{\cftsetindents{part}{\cftlastnumwidth}{2em}}
+    \addtocontents{toc}{\cftsetindents{part}{\cftlastnumwidth}{0em}}
     \cftinserthook{toc}{A}}
   %
   \renewcommand{\tocpartanexos}{%
-    \addtocontents{toc}{\cftsetindents{part}{\cftlastnumwidth}{2em}}
+    \addtocontents{toc}{\cftsetindents{part}{\cftlastnumwidth}{0em}}
     \cftinserthook{toc}{A}}
   %
-  \setlength{\cftbeforechapterskip}{1em}
+  \setlength{\cftbeforechapterskip}{0em}
   %
   % Fontes das entradas do sumario
   %
-  \renewcommand{\cftpartfont}{\bfseries\large}
+  \renewcommand{\cftpartfont}{\bfseries\larger}
   %
   \renewcommand{\cftchapterfont}{\bfseries}
   \renewcommand{\cftchapterpagefont}{\normalsize\cftchapterfont}
@@ -541,7 +530,7 @@
   \renewcommand{\cftsubsectionfont}{\normalsize}
   \renewcommand{\cftsubsectionpagefont}{\cftsubsectionfont}
   %
-  \renewcommand{\cftsubsubsectionfont}{\small}
+  \renewcommand{\cftsubsubsectionfont}{\normalsize\mdseries}%neto anterior: {\small}
   \renewcommand{\cftsubsubsectionpagefont}{\cftsubsubsectionfont}
   %
   \renewcommand{\cftparagraphfont}{\footnotesize}
@@ -554,7 +543,7 @@
     \bibmark
     \ifnobibintoc\else
     \phantomsection
-    \addcontentsline{toc}{chapter}{\texorpdfstring{\MakeTextUppercase{\bibname}}{\bibname}}
+    \addcontentsline{toc}{chapter}{\uppercase{\bibname}}
     \fi
     \prebibhook
 }
@@ -646,6 +635,11 @@
      \tocprintchapternonum
      \setboolean{abntex@innonumchapter}{true}%
     }
+    
+    %TESTE CAIO
+    \setlength\afterchapskip{18pt}
+    \setlength\aftersecskip{18pt}
+    \setlength\aftersubsecskip{18pt}
 }
 \chapterstyle{abnt}
 % ---
@@ -655,9 +649,13 @@
 % -----
 % Cabecalho padrao
 \makepagestyle{abntheadings}
-\makeevenhead{abntheadings}{\ABNTEXfontereduzida\thepage}{}{\ABNTEXfontereduzida\textit\leftmark}
-\makeoddhead{abntheadings}{\ABNTEXfontereduzida\textit\rightmark}{}{\ABNTEXfontereduzida\thepage}
-\makeheadrule{abntheadings}{\textwidth}{\normalrulethickness}
+\makeevenhead{abntheadings}{}{}{\ABNTEXfontereduzida\thepage}
+%neto: anteirior {\ABNTEXfontereduzida\thepage}{}{\ABNTEXfontereduzida\textit\leftmark}
+\makeoddhead{abntheadings}{}{}{\ABNTEXfontereduzida\thepage}
+%neto: anterior  {\ABNTEXfontereduzida\textit\rightmark}{}{\ABNTEXfontereduzida\thepage}
+%neto: eu comentei essa linha para tirar a linha em cima de cada folha \makeheadrule{abntheadings}{\textwidth}{\normalrulethickness}
+%{\textwidth}{\normalrulethickness}
+%{...}
 
 % Cabecalho do inicio do capitulo
 \makepagestyle{abntchapfirst}
@@ -709,12 +707,6 @@
 \newcommand{\titulo}[1]{\title{#1}}
 \newcommand{\imprimirtitulo}{\thetitle}
 
-% Comandos de dados - titulo do documento
-\providecommand{\theforeigntitle}[1]{}
-\newcommand{\tituloestrangeiro}[1]{\renewcommand{\theforeigntitle}{#1}}
-\newcommand{\imprimirtituloestrangeiro}{\theforeigntitle}
-
-
 % Comandos de dados - autor (use \and para multiplos autores)
 \newcommand{\autor}[1]{\author{#1}}
 \newcommand{\imprimirautor}{\theauthor}
@@ -764,13 +756,6 @@
 % ---
 % Ambiente para definicao da Capa
 \newenvironment{capa}{\begin{titlingpage}}{\end{titlingpage}\cleardoublepage}
-% ---
-
-% ---
-% Titulos em lingua estrangeira para artigos: ABNT NBR 6022:2018
-\ifthenelse{\equal{\ABNTEXisarticle}{true}}{%
-\renewcommand{\maketitlehookb}{\LARGE\center\textit{\theforeigntitle}}
-}{}
 % ---
 
 % ---
@@ -874,7 +859,7 @@
 % ---
 
 % ---
-% Lista de simbolos
+% Lista de sembolos
 \newenvironment{simbolos}{%
   \pretextualchapter{\listadesimbolosname}
   \begin{symbols}
@@ -1017,13 +1002,13 @@
 % Comando \assinatura for signature
    % width of the line and text under the line
 \newlength{\ABNTEXsignwidth}
-\setlength{\ABNTEXsignwidth}{10cm}
+\setlength{\ABNTEXsignwidth}{12cm} %Neto mudando aqui, antigo: {8cm} 
    % thickness of the line
 \newlength{\ABNTEXsignthickness}
 \setlength{\ABNTEXsignthickness}{1pt}
    % ammount of space left between previous text and th signature line
 \newlength{\ABNTEXsignskip}
-\setlength{\ABNTEXsignskip}{0.3cm}
+\setlength{\ABNTEXsignskip}{0.7cm}
    % \assinatura{name} -> types a line with name under the line, centralized
    % \assinatura*{name} -> Creates the box with the line and name under
    %     it, but the box has no position assigned. However the line and the
@@ -1049,7 +1034,6 @@
 % ------------------------------------------------------------------------
 
 % ---
-% GBR: editing the titlepage
 % Impressão da Capa
 \newcommand{\imprimircapa}{%
   \begin{capa}%
@@ -1107,9 +1091,7 @@
 
     {\abntex@ifnotempty{\imprimirinstituicao}{\imprimirinstituicao\vspace*{\fill}}}
 
-    \begin{flushleft}
-    \large\imprimirorientadorRotulo~\imprimirorientador\par
-    \end{flushleft}
+    {\large\imprimirorientadorRotulo~\imprimirorientador\par}
     \abntex@ifnotempty{\imprimircoorientador}{%
        {\large\imprimircoorientadorRotulo~\imprimircoorientador}%
     }%
