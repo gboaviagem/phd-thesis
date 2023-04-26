@@ -1,0 +1,126 @@
+\chapter{Mapping a system of linear equations from $ \mathbb{H} $ to $ \mathbb{C} $}
+\label{ch:AppendixA}
+% ----------------------------------------------------------
+
+Theorem \ref{th:02} requires a step the reader of \cite{zhang1997quaternions} may have missed: demonstrating the equivalence between
+\begin{equation}
+    \label{eq:A1}
+    \mathbf{A} \mathbf{v} = \mathbf{v} \lambda
+\end{equation}
+and
+\begin{equation}
+    \begin{pmatrix}
+        \mathbf{A}_1              & \mathbf{A}_2            \\
+        - \overline{\mathbf{A}}_2 & \overline{\mathbf{A}}_1
+    \end{pmatrix}
+    \begin{pmatrix}
+        \mathbf{v}_1 \\
+        - \overline{\mathbf{v}}_2
+    \end{pmatrix} =
+    \begin{pmatrix}
+        \mathbf{v}_1 \\
+        - \overline{\mathbf{v}}_2
+    \end{pmatrix}
+    \lambda,
+\end{equation}
+where $ \mathbf{A} \in \mathbb{H}^{n \times n} $, $ \mathbf{v} \in \mathbb{H}^{n} $, $ \lambda \in \mathbb{C} $, and the subscripts $ (\cdot)_1 $ a $ (\cdot)_2 $ indicate the usual symplectic decomposition components, e.~g. $ q = q_1 + q_2 \qj $, $q\in \mathbb{H}, \ q_1, q_2 \in \mathbb{C}_{\qi} $.
+
+To fully comprehend this equivalence, it suffices to prove that any system of $ m $ quaternion linear equations, expressed in matrix form as
+\begin{equation}
+    \label{eq:A2}
+    \mathbf{M} \mathbf{x} = \mathbf{y},
+\end{equation}
+in which $ \mathbf{M} \in \mathbb{H}^{m\times n} ,\ \mathbf{x} \in \mathbb{H}^{n \times 1}, \ \mathbf{y} \in \mathbb{H}^{m \times 1} $, is equivalent, given the symplectic decomposition of $ \mathbf{M} $, $ \mathbf{x} $ and $ \mathbf{y} $, to a system of $ 2m $ complex equations
+\begin{equation}
+    \label{eq:A3}
+    \begin{pmatrix}
+        \mathbf{M}_1              & \mathbf{M}_2            \\
+        - \overline{\mathbf{M}}_2 & \overline{\mathbf{M}}_1
+    \end{pmatrix}
+    \begin{pmatrix}
+        \mathbf{x}_1 \\
+        - \overline{\mathbf{x}}_2
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \mathbf{y}_1 \\
+        - \overline{\mathbf{y}}_2
+    \end{pmatrix}.
+\end{equation}
+
+Following the expansion of the left-hand side in (\ref{eq:A2}), one has
+\begin{equation}
+    \begin{aligned}
+        \label{eq:A5}
+        \mathbf{M} \mathbf{x} & = (\mathbf{M}_1 + \mathbf{M}_2 \qj)(\mathbf{x}_1 + \mathbf{x}_2 \qj)                                                            \\
+                              & =\mathbf{M}_1 \mathbf{x}_1 + \mathbf{M}_1 \mathbf{x}_2 \qj + \mathbf{M}_2 \qj \mathbf{x}_1 + \mathbf{M}_2 \qj \mathbf{x}_2 \qj.
+    \end{aligned}
+\end{equation}
+% It is possible to manipulate that expression by looking at how one can rewrite the product $ \qj x $, for a given arbitrary \emph{complex} number $ x = x_r + x_i \qi $,
+% \begin{equation}
+% \begin{aligned}
+% \qj x &= \qj (x_r + x_i \qi) = x_r \qj + x_i \qj \qi = x_r \qj - x_i \qi \qj \\
+% &= (x_r - x_i \qi) \qj = \overline{x} \qj.
+% \end{aligned}
+% \end{equation}
+It is possible to manipulate that expression using (\ref{eq:commutej}), i.~e. $ \qj x = \overline{x} \qj \ \forall \ x \in \mathbb{C}$, so (\ref{eq:A5}) equals
+\begin{equation}
+    \begin{aligned}
+        \label{eq:A7}
+        \mathbf{M} \mathbf{x} & = \mathbf{M}_1 \mathbf{x}_1 + \qj \overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2 + \qj \overline{\mathbf{M}}_2 \mathbf{x}_1 + \qj \overline{\mathbf{M}}_2 \mathbf{x}_2 \qj \\
+                              & = \mathbf{M}_1 \mathbf{x}_1 + \qj \overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2 + \qj \overline{\mathbf{M}}_2 \mathbf{x}_1 + \qj\qj \mathbf{M}_2 \overline{\mathbf{x}}_2  \\
+                              & = (\mathbf{M}_1 \mathbf{x}_1 - \mathbf{M}_2 \overline{\mathbf{x}}_2) + \qj (\overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2 + \overline{\mathbf{M}}_2 \mathbf{x}_1).
+    \end{aligned}
+\end{equation}
+
+Replacing (\ref{eq:A7}) in (\ref{eq:A2}) and using $ \mathbf{y} = \mathbf{y}_1 + \mathbf{y}_2 \qj$ yields
+\begin{equation}
+    \begin{aligned}
+        (\mathbf{M}_1 \mathbf{x}_1 - \mathbf{M}_2 \overline{\mathbf{x}}_2) + \qj (\overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2 + \overline{\mathbf{M}}_2 \mathbf{x}_1) & =
+        \mathbf{y}_1 + \mathbf{y}_2 \qj                                                                                                                                                                                   \\
+                                                                                                                                                                          & = \mathbf{y}_1 + \qj \overline{\mathbf{y}}_2,
+    \end{aligned}
+\end{equation}
+what can be written as two systems of $m$ linear complex equations,
+\begin{equation}
+    \label{eq:A9}
+    \begin{aligned}
+        \mathbf{M}_1 \mathbf{x}_1 - \mathbf{M}_2 \overline{\mathbf{x}}_2                       & = \mathbf{y}_1             \\
+        \overline{\mathbf{M}}_2 \mathbf{x}_1 + \overline{\mathbf{M}}_1 \overline{\mathbf{x}}_2 & = \overline{\mathbf{y}}_2,
+    \end{aligned}
+\end{equation}
+or equivalently,
+\begin{equation}
+    \label{eq:A8}
+    \begin{pmatrix}
+        \mathbf{M}_1            & \mathbf{M}_2              \\
+        \overline{\mathbf{M}}_2 & - \overline{\mathbf{M}}_1
+    \end{pmatrix}
+    \begin{pmatrix}
+        \mathbf{x}_1 \\
+        - \overline{\mathbf{x}}_2
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \mathbf{y}_1 \\
+        \overline{\mathbf{y}}_2
+    \end{pmatrix}.
+\end{equation}
+Finally, multiplying the second matrix equation in (\ref{eq:A9}) by $ -1 $, (\ref{eq:A8}) becomes
+\begin{equation}
+    \label{eq:10}
+    \begin{pmatrix}
+        \mathbf{M}_1              & \mathbf{M}_2            \\
+        - \overline{\mathbf{M}}_2 & \overline{\mathbf{M}}_1
+    \end{pmatrix}
+    \begin{pmatrix}
+        \mathbf{x}_1 \\
+        - \overline{\mathbf{x}}_2
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \mathbf{y}_1 \\
+        - \overline{\mathbf{y}}_2
+    \end{pmatrix},
+\end{equation}
+precisely as in (\ref{eq:A3}).
