@@ -172,6 +172,7 @@
 \addto\captionsenglish{% ingles
   %% adjusts names from abnTeX2
   \renewcommand{\folhaderostoname}{Title page}
+  \renewcommand{\bibname}{References}
   \renewcommand{\epigraphname}{Epigraph}
   \renewcommand{\dedicatorianame}{Dedication}
   \renewcommand{\errataname}{Errata sheet}
