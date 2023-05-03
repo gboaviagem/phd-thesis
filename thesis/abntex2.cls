@@ -829,9 +829,10 @@
   
 % A norma não diz nada sobre identação e separação entre parágrafos no abstract,
 % porém o uso mostra que muitos abstracts são montados sem identação.
-\AtBeginDocument{%
-   \setlength{\absparindent}{0pt}
-}
+% Guilherme: para a Biblioteca do CTG, da UFPE, o entendimento é que "A apresentação gráfica do Resumo deve seguir o mesmo padrão do corpo do trabalho, ou seja,  texto digitado em espaço 1,5 entre linhas, justificado com recuo inicial na primeira linha (parágrafo)."
+% \AtBeginDocument{%
+%    \setlength{\absparindent}{0pt}
+% }
 
 \newenvironment{resumo}[1][\resumoname]{%
    \PRIVATEbookmarkthis{#1}
