@@ -1069,6 +1069,7 @@
 
 % ---
 % Conteudo padrao da Folha de Rosto
+% WARNING: neste repositório nós editamos a folha de conteúdo no arquivo thesis/preamble_class.tex
 \makeatletter
 \newcommand{\folhaderostocontent}{
   \begin{center}
